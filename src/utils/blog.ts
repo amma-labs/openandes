@@ -22,3 +22,17 @@ export const getStaticPathsBlogPost = async () => {
 export const blogPostRobots = () => {
   return 'index, follow';
 };
+
+export const fetchPosts = async () => {
+  const posts = await getCollection('post');
+  return posts.map(post => ({
+    id: post.id,
+    slug: post.slug,
+    title: post.data.title,
+    description: post.data.description,
+    pubDate: post.data.pubDate,
+    image: post.data.image,
+    categories: post.data.categories || [],
+    tags: post.data.tags || [],
+  }));
+};
