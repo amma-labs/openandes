@@ -32,6 +32,19 @@ export const getStaticPathsBlogCategory = async () => {
   }));
 };
 
+export const getStaticPathsBlogTag = async () => {
+  const posts = await getCollection('post');
+  const tags = new Set();
+  posts.forEach(post => {
+    if (post.data.tags) {
+      post.data.tags.forEach(tag => tags.add(tag));
+    }
+  });
+  return Array.from(tags).map(tag => ({
+    params: { tag },
+  }));
+};
+
 export const blogPostRobots = () => 'index, follow';
 export const blogCategoryRobots = () => 'index, follow';
 export const blogTagRobots = () => 'index, follow';
