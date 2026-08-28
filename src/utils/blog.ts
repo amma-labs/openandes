@@ -73,3 +73,12 @@ export const blogListRobots = () => 'index, follow';
 export const blogCategoryRobots = () => 'index, follow';
 export const blogTagRobots = () => 'index, follow';
 export const blogPostRobots = () => 'index, follow';
+
+export const getRelatedPosts = async (slug: string, limit: number = 3) => {
+  const posts = await getBlogEntries();
+  const currentIndex = posts.findIndex(post => post.slug === slug);
+  if (currentIndex === -1) return [];
+  return posts
+    .filter((_, index) => index !== currentIndex)
+    .slice(0, limit);
+};
