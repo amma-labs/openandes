@@ -111,7 +111,6 @@ const experts = [
     image: '',
   },
   {
-  {
     name: 'Aldo Andrés Rijo',
     role: 'Investigador Asociado',
     spec: 'Economía internacional, comercio exterior, integración regional y geoeconomía.',
@@ -201,6 +200,13 @@ const experts = [
                     <p class="font-mono text-[11px] pt-1">
                       <a href={`mailto:${expert.email}`} class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline flex items-center gap-1">
                         <span>✉</span> {expert.email}
+                      </a>
+                    </p>
+                  )}
+                  {expert.linkedin && (
+                    <p class="font-mono text-[11px] pt-1">
+                      <a href={expert.linkedin} target="_blank" rel="noopener noreferrer" class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline flex items-center gap-1">
+                        <span>🔗</span> LinkedIn
                       </a>
                     </p>
                   )}
