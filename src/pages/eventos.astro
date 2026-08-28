@@ -1,5 +1,12 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Button from '~/components/ui/Button.astro';
 
 const metadata = {
   title: 'Eventos — OpenAndes',
@@ -7,15 +14,164 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-6">Eventos</h1>
-    <p class="text-lg text-muted mb-8">Próximos eventos y actividades de OpenAndes.</p>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
-        <h2 class="text-xl font-bold mb-2">Próximamente</h2>
-        <p class="text-muted">Estamos preparando nuevos eventos. Mantente atento a nuestras redes.</p>
-      </div>
+  <Hero2
+    tagline="Archivo & Agenda de Encuentros"
+    image={{
+      src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Encuentros y Diálogos OpenAndes',
+    }}
+  >
+    <Fragment slot="title">
+      Diálogos, Prospectiva y <span class="text-accent dark:text-white">Geopolítica en Acción</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Consolidado de sesiones, mesas de trabajo y seminarios organizados por <strong>FunPolitik</strong> y <strong>2050 Futures Lab</strong> a través de Luma.
+    </Fragment>
+
+    <div slot="actions" class="flex flex-col sm:flex-row max-w-md gap-4">
+      <Button variant="primary" href="https://luma.com/user/FunPolitik" target="_blank" icon="tabler:calendar">
+        Agenda FunPolitik
+      </Button>
+      <Button variant="primary" href="https://luma.com/user/2050lab" target="_blank" icon="tabler:calendar">
+        Agenda 2050 Lab
+      </Button>
     </div>
-  </div>
+  </Hero2>
+
+  <Stats
+    title="Cifras del Histórico de Encuentros"
+    subtitle="Resultados acumulados del ciclo de eventos 2025-2026"
+    stats={[
+      { amount: '30+', icon: 'tabler:calendar-event', title: 'Eventos Realizados' },
+      { amount: '2', icon: 'tabler:hierarchy', title: 'Laboratorios (FunPolitik + 2050 Lab)' },
+      { amount: '100%', icon: 'tabler:brand-tabler', title: 'Gestión en Luma' },
+    ]}
+  />
+
+  <Features3
+    id="ejes"
+    title="Ejes Temáticos Fundamentales"
+    subtitle="El historial de sesiones se articula en dos grandes vertientes analíticas para comprender el presente y anticipar el futuro."
+    tagline="Nuestras Líneas de Discusión"
+    columns={2}
+    items={[
+      {
+        title: 'Geopolítica y Sistema Internacional (FunPolitik)',
+        description: 'Análisis crítico de la competencia China-EE.UU., guerra tecnológica, dinámicas en el Sudeste Asiático, Oriente Medio y la política exterior en América Latina.',
+        icon: 'tabler:world-latitude',
+      },
+      {
+        title: 'Prospectiva y Diseños de Futuro (2050 Lab)',
+        description: 'Exploración de tecnologías emergentes, el impacto del Estado frente a la IA, el fin del trabajo, ciudades del futuro y narrativas visuales de poder.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Cultura, Formación y Capacidades',
+        description: 'Sesiones de formación continua, aprendizaje de Chino Mandarín, preparación para la carrera diplomática (MRE) y transferencia de capacidades.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Innovación Periférica y Autonomía',
+        description: 'Rutas protopianas, análisis de talento regional y marcos conceptuales para fortalecer la presencia colectiva del Sur Global.',
+        icon: 'tabler:shield-check',
+      },
+    ]}
+  />
+
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'Competencia Global y Tecnología',
+        description: 'Análisis profundo sobre la guerra tecnológica EE.UU.-China (2012-2025) y la Franja y la Ruta.',
+        icon: 'tabler:cpu',
+      },
+      {
+        title: 'Escenarios Regionales y Seguridad',
+        description: 'Evaluación de coyunturas clave: desde el mapa del narco en México hasta reconfiguraciones en América Latina.',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Análisis de Crisis Internacionales',
+        description: 'Encuentros sobre el equilibrio en Oriente Medio (Israel/Líbano, Irán) y transiciones del poder global.',
+        icon: 'tabler:news',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Sesiones de FunPolitik',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Destacados: FunPolitik</h3>
+      <p class="text-muted dark:text-slate-400 mb-4">
+        Enfoque en relaciones internacionales, geopolítica aplicada y análisis estratégico del sistema internacional.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Content
+    items={[
+      {
+        title: 'El Estado frente a la Inteligencia Artificial',
+        description: 'Debates sobre regulación, soberanía tecnológica y gobernanza pública de algoritmos.',
+        icon: 'tabler:building-bank',
+      },
+      {
+        title: 'Narrativas de Poder y Presencia Colectiva',
+        description: 'Sesiones colaborativas como "Visual Power Narratives" y "Our Own Patterns" junto a redactores y strategists.',
+        icon: 'tabler:palette',
+      },
+      {
+        title: 'Tendencias & Innovación 2026-2030',
+        description: 'Modelado de futuros urbanos, transformación del empleo y construcción de trayectorias protopianas.',
+        icon: 'tabler:timeline',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Sesiones de 2050 Futures Lab',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Destacados: 2050 Futures Lab</h3>
+      <p class="text-muted dark:text-slate-400 mb-4">
+        Espacios de pensamiento prospectivo, diseño de escenarios y exploración de fronteras tecnológicas.
+      </p>
+    </Fragment>
+  </Content>
+
+  <FAQs
+    title="Preguntas Frecuentes sobre las Sesiones"
+    items={[
+      {
+        title: '¿Dónde se gestionan las inscripciones?',
+        description: 'Todos los eventos se registran y gestionan de forma centralizada a través de la plataforma Luma.',
+      },
+      {
+        title: '¿Las sesiones son grabadas o públicas?',
+        description: 'La mayoría de webinars abiertos cuentan con resúmenes ejecutivos e insumos que alimentan los artículos de investigación.',
+      },
+      {
+        title: '¿Cómo puedo proponer una sesión o co-organizar un evento?',
+        description: 'A través de nuestro formulario de contacto o participando directamente en las dinámicas de la red de Fellows & Strategists.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    id="registro"
+    title="Participa en los Próximos Encuentros"
+    subtitle="Suscríbete a nuestras comunidades en Luma para recibir invitaciones a los siguientes talleres, charlas y webinars."
+  >
+    <div slot="actions" class="flex flex-col sm:flex-row max-w-md gap-4 justify-center">
+      <Button variant="primary" href="https://luma.com/user/FunPolitik" target="_blank" icon="tabler:calendar">
+        Ver FunPolitik en Luma
+      </Button>
+      <Button variant="primary" href="https://luma.com/user/2050lab" target="_blank" icon="tabler:calendar">
+        Ver 2050 Lab en Luma
+      </Button>
+    </div>
+  </CallToAction>
 </Layout>

@@ -2,28 +2,34 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Monitor Latam-Asia — OpenAndes',
+  title: 'Monitor LatAm-Asia — OpenAndes',
 };
 ---
 
 <Layout metadata={metadata}>
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-6">Monitor Latam-Asia</h1>
-    <p class="text-lg text-muted mb-8">Seguimiento de las relaciones entre América Latina y Asia-Pacífico.</p>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="p-4 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] text-center">
-        <h3 class="font-bold">Flujos Comerciales</h3>
-        <p class="text-sm text-muted">Análisis de intercambios comerciales y acuerdos bilaterales.</p>
+  <div class="min-h-screen py-16 px-4 sm:px-6 mx-auto max-w-4xl">
+    <div class="mb-12 border-b border-[#e8e0d0] dark:border-[#2a2a2a] pb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-3 h-3 bg-[#1a4b8c] inline-block rounded-full"></span>
+        <span class="text-xs font-mono-tech font-bold tracking-widest uppercase text-[#1a4b8c] dark:text-[#2b6cb5]">
+          Monitoreo
+        </span>
       </div>
-      <div class="p-4 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] text-center">
-        <h3 class="font-bold">Inversiones</h3>
-        <p class="text-sm text-muted">Monitoreo de flujos de inversión y cooperación económica.</p>
-      </div>
-      <div class="p-4 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] text-center">
-        <h3 class="font-bold">Cooperación</h3>
-        <p class="text-sm text-muted">Seguimiento de acuerdos estratégicos y alianzas.</p>
-      </div>
+      <h1 class="text-4xl sm:text-5xl font-display font-bold tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
+        Monitor LatAm-Asia
+      </h1>
+      <p class="text-[#4a4038] dark:text-[#c8c0b4] text-base sm:text-lg mt-3 max-w-3xl leading-relaxed font-sans">
+        Seguimiento de flujos financieros, acuerdos bilaterales y exposición geopolítica.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-xl bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a]">
+      <p class="text-[#4a4038] dark:text-[#c8c0b4] font-sans leading-relaxed">
+        El Monitor LatAm-Asia es un recurso dinámico de seguimiento de las relaciones económicas y políticas entre América Latina y la Cuenca del Pacífico.
+      </p>
+      <p class="text-[#4a4038] dark:text-[#c8c0b4] font-sans leading-relaxed mt-4">
+        Próximamente: visualización de datos e indicadores clave.
+      </p>
     </div>
   </div>
 </Layout>

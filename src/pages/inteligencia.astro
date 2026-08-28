@@ -7,19 +7,35 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-6">Inteligencia Estratégica</h1>
-    <p class="text-lg text-muted mb-8">Analizamos el entorno geopolítico y geoeconómico para anticipar escenarios y tomar decisiones con certidumbre.</p>
+  <div class="font-sans text-slate-900 dark:text-slate-100 max-w-7xl mx-auto px-4 py-12">
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
-        <h2 class="text-xl font-bold mb-2">Monitoreo de Riesgos</h2>
-        <p class="text-muted">Seguimiento continuo de variables políticas, económicas y sociales que afectan la región.</p>
-      </div>
-      <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
-        <h2 class="text-xl font-bold mb-2">Análisis Prospectivo</h2>
-        <p class="text-muted">Construcción de escenarios futuros para anticipar tendencias y oportunidades.</p>
-      </div>
+    <div class="mb-8 border-b border-[#e8e0d0] dark:border-[#2a2a2a] pb-6">
+      <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs uppercase px-2.5 py-1 rounded w-max font-sans tracking-wide mb-3">
+        Terminal Analítica
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white font-sans tracking-tight">
+        Inteligencia Estratégica & Mercados
+      </h1>
+      <p style="color:#1a4b8c;font-weight:600;text-transform:uppercase;font-size:13px;letter-spacing:1px;margin-top:8px">
+        Monitoreo Estratégico LatAm-Asia • Eje del Pacífico & Activos Críticos
+      </p>
     </div>
+
+    <h3 style="color:#0d1117;font-size:15px;font-weight:700;text-transform:uppercase;margin-bottom:15px">
+      <span style="color:#1a4b8c">●</span> Ticker de Mercados y Activos Globales
+    </h3>
+    
+    <div class="tradingview-widget-container" style="margin:20px 0;border-top:3px solid #1a4b8c;border-bottom:3px solid #1a4b8c">
+      <div class="tradingview-widget-container__widget"></div>
+      <iframe src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=es#{%22symbols%22:[{%22proName%22:%22TVC:UKOIL%22,%22title%22:%22Brent%20Oil%22},{%22proName%22:%22TVC:USOIL%22,%22title%22:%22WTI%20Oil%22},{%22proName%22:%22TVC:GOLD%22,%22title%22:%22Oro%22},{%22proName%22:%22NYSE:TSM%22,%22title%22:%22TSMC%22},{%22proName%22:%22NYSE:VALE%22,%22title%22:%22Vale%22},{%22proName%22:%22NYSE:BHP%22,%22title%22:%22BHP%22},{%22proName%22:%22NYSE:SCCO%22,%22title%22:%22Southern%20Copper%22},{%22proName%22:%22FOREXCOM:SPXUSD%22,%22title%22:%22S%26P%20500%22},{%22proName%22:%22BITSTAMP:BTCUSD%22,%22title%22:%22Bitcoin%22}],%22showSymbolLogo%22:true,%22colorTheme%22:%22light%22,%22isTransparent%22:false,%22displayMode%22:%22adaptive%22}" width="100%" height="46" frameborder="0" style="border:0; box-sizing:border-box;"></iframe>
+    </div>
+
+    <div style="background-color:#f8fafc;border:1px solid #e2e8f0;padding:25px;margin:30px 0;border-radius:4px">
+      <p style="color:#1a1410;font-size:15px;line-height:1.6;margin-bottom:0">
+        <strong style="color:#1a4b8c">Bienvenido, Consejero.</strong> Está accediendo a la <strong>Terminal de Inteligencia de OpenAndes</strong>. Esta interfaz integra flujos de datos en tiempo real con indicadores prospectivos para respaldar la toma de decisiones en geopolítica, infraestructura y finanzas transpacíficas.<br><br>
+        <span style="font-style:italic;color:#475569">Utilice las herramientas interactivas para supervisar la volatilidad en la Cuenca del Pacífico.</span>
+      </p>
+    </div>
+
   </div>
 </Layout>
