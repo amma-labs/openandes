@@ -1,0 +1,25 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Inteligencia — OpenAndes',
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-6">Inteligencia Estratégica</h1>
+    <p class="text-lg text-muted mb-8">Analizamos el entorno geopolítico y geoeconómico para anticipar escenarios y tomar decisiones con certidumbre.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
+        <h2 class="text-xl font-bold mb-2">Monitoreo de Riesgos</h2>
+        <p class="text-muted">Seguimiento continuo de variables políticas, económicas y sociales que afectan la región.</p>
+      </div>
+      <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
+        <h2 class="text-xl font-bold mb-2">Análisis Prospectivo</h2>
+        <p class="text-muted">Construcción de escenarios futuros para anticipar tendencias y oportunidades.</p>
+      </div>
+    </div>
+  </div>
+</Layout>
