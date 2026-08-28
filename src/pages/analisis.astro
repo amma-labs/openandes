@@ -1,41 +1,40 @@
 ---
-import Layout from "~/layouts/PageLayout.astro";
-import BlogLatestPosts from "~/components/widgets/BlogLatestPosts.astro";
+import Layout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import BlogPagination from '~/components/blog/Pagination.astro';
+import { getBlogEntries } from '~/utils/blog';
+
+export async function getStaticPaths() {
+  const posts = await getBlogEntries();
+  const totalPages = Math.ceil(posts.length / 10);
+  const paths = [];
+  for (let i = 1; i <= totalPages; i++) {
+    paths.push({ params: { page: i } });
+  }
+  return paths;
+}
+
+const { page } = Astro.params;
+const currentPage = parseInt(page) || 1;
+const postsPerPage = 10;
+const allPosts = await getBlogEntries();
+const totalPages = Math.ceil(allPosts.length / postsPerPage);
+const paginatedPosts = allPosts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
 
 const metadata = {
-  title: "Perspectivas | OpenAndes",
-  description: "Ensayos de análisis estratégico y reencuadre geopolítico mediante metodología Narrative-Driven Analysis (NDA).",
+  title: 'Análisis | OpenAndes',
+  description: 'Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA).',
 };
 ---
 
 <Layout metadata={metadata}>
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
     <div class="mb-8 md:mb-12 text-center max-w-3xl mx-auto">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight font-heading text-slate-900 dark:text-white mb-4">Perspectivas</h1>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight font-heading text-slate-900 dark:text-white mb-4">Análisis</h1>
       <p class="text-xl text-muted dark:text-slate-400">Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA). Ensayos orientados a exponer las inercias de poder en América Latina.</p>
     </div>
 
-    <BlogLatestPosts />
-
-    <div class="mt-16">
-      <section class="relative not-prose scroll-mt-[72px]">
-        <div class="absolute inset-0 pointer-events-none -z-[1]" aria-hidden="true">
-          <div class="absolute inset-0"></div>
-        </div>
-        <div class="relative px-4 md:px-6 py-12 md:py-16 lg:py-20 text-default intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade max-w-6xl mx-auto">
-          <div class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600">
-            <div class="md:mx-auto text-center mb-0 md:mb-0">
-              <h2 class="leading-tighter text-heading text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading">Escribir para Open Andes</h2>
-              <p class="mt-4 text-xl text-muted dark:text-slate-400">Evaluamos contribuciones bajo el estándar NDA: ensayos de hasta 1,200 palabras con hipótesis falsables y foco en la sala de máquinas del poder.</p>
-            </div>
-            <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-              <div class="flex w-full sm:w-auto">
-                <a class="btn-primary w-full sm:mb-0" href="/contact">Contacto Editorial</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    <BlogList posts={paginatedPosts} />
+    <BlogPagination currentPage={currentPage} totalPages={totalPages} baseUrl="/analisis" />
   </section>
 </Layout>
