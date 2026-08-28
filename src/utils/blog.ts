@@ -19,9 +19,22 @@ export const getStaticPathsBlogPost = async () => {
   }));
 };
 
-export const blogPostRobots = () => {
-  return 'index, follow';
+export const getStaticPathsBlogCategory = async () => {
+  const posts = await getCollection('post');
+  const categories = new Set();
+  posts.forEach(post => {
+    if (post.data.categories) {
+      post.data.categories.forEach(cat => categories.add(cat));
+    }
+  });
+  return Array.from(categories).map(category => ({
+    params: { category },
+  }));
 };
+
+export const blogPostRobots = () => 'index, follow';
+export const blogCategoryRobots = () => 'index, follow';
+export const blogTagRobots = () => 'index, follow';
 
 export const fetchPosts = async () => {
   const posts = await getCollection('post');
