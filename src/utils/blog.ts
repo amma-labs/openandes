@@ -82,3 +82,8 @@ export const getRelatedPosts = async (slug: string, limit: number = 3) => {
     .filter((_, index) => index !== currentIndex)
     .slice(0, limit);
 };
+
+export const findLatestPosts = async (count: number = 5) => {
+  const posts = await getBlogEntries();
+  return posts.slice(0, count);
+};
