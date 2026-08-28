@@ -4,13 +4,79 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Expertos — OpenAndes',
 };
+
+const experts = [
+  {
+    name: 'Benyi Barros Rojas',
+    role: 'Director Ejecutivo',
+    spec: 'Análisis geopolítico, política internacional, diplomacia interregional y estudios asiáticos.',
+    bio: 'Politólogo y analista internacional especializado en geopolítica, política internacional y estudios asiáticos por la Universidad Nacional Mayor de San Marcos. Fundador y Director General de Fun Politik y del Centro Internacional de Estudios Asiáticos. Cuenta con trayectoria profesional en la Sociedad Peruana de Derecho Internacional (SPDI) y en el Ministerio de Relaciones Exteriores del Perú. Lidera la visión estratégica y las relaciones interregionales de Open Andes.',
+    email: 'benyi.barros@openandes.org',
+    image: '',
+  },
+  {
+    name: 'Valeria Lavalle',
+    role: 'Directora de Desarrollo Institucional',
+    spec: 'Arquitectura de alianzas multilaterales, inserción en redes diplomáticas y políticas públicas.',
+    bio: 'Bachiller en Relaciones Internacionales por la Universidad San Ignacio de Loyola, con especialización en Diplomacia Internacional y Derecho Espacial. Cofundadora de la Asociación Juvenil Potencia, iniciativa enfocada en fortalecer las capacidades de estudiantes de secundaria. Formó parte del Equipo de Formación Profesional de Junior Achievement Perú y voluntaria en la Academia Into Space. Se desempeña como Directora del Área de Eventos y Cursos en Fun Politik.',
+    email: 'brissacg12@gmail.com',
+    image: '',
+  },
+  {
+    name: 'Maira Nahiara Oberstar',
+    role: 'Directora de Comunicaciones',
+    spec: 'Narrativa geopolítica, escritura estratégica, conflictos globales y derechos humanos.',
+    bio: 'Especialista en narrativa geopolítica y estrategia editorial. Directora de Comunicaciones en Open Andes y responsable del Área de Redacción en Fun Politik, donde diseña estrategias de análisis y comunicación sobre dinámica internacional, conflictos globales y derechos humanos. Su trabajo enfoca la escritura estratégica y el análisis trilingüe (español, inglés, portugués) como herramientas clave para la prospectiva diplomática y el entendimiento intercultural en la Cuenca del Pacífico y América Latina.',
+    email: '',
+    image: '',
+  },
+  {
+    name: 'Joaquín Vigueras',
+    role: 'Coordinador Operativo & Estrategia',
+    spec: 'Arquitectura operativa, modelos analíticos e inteligencia para redes geoeconómicas.',
+    bio: 'Especialista en inteligencia para mercados emergentes y exposición a riesgos globales. Research Analyst en 2050 Futures Lab, donde produce escenarios de riesgo país, modelos electorales y notas de crisis para inversión y planificación estratégica. Aplica metodologías estructuradas de planificación de escenarios, seguimiento de señales y análisis político comparado para anticipar disrupciones y apoyar la asignación de capital. Cuenta con experiencia previa como analista financiero y de riesgo en Banco BICE y Banco de Chile.',
+    email: 'jvigueras@openandes.org',
+    image: '',
+  },
+  {
+    name: 'Anthony Medina Rivas Plata',
+    role: 'Asociado Distinguido',
+    spec: 'Relaciones internacionales, historia económica, políticas públicas y gobernanza.',
+    bio: 'Doctorando en Relaciones Internacionales de la Universidad Nacional de La Plata y Segunda Especialidad en Historia Económica en la Universidad de Buenos Aires (Argentina). Ex Director de la Escuela de Ciencia Política y Gobierno de la Universidad Católica de Santa María (Arequipa). Licenciado en Ciencia Política por la Universidad Nacional Mayor de San Marcos y Doble Máster en Políticas Públicas, Gobernanza y Desarrollo por la Erasmus Rotterdam University-ISS (Holanda) y la University of York (Reino Unido).',
+    email: 'amedinar@unmsm.edu.pe',
+    image: '',
+  },
+  {
+    name: 'Esteban Silva Navarro',
+    role: 'Asociado Distinguido',
+    spec: 'Estudios migratorios, relaciones internacionales y análisis de estudios estratégicos.',
+    bio: 'Politólogo por la Universidad Nacional Mayor de San Marcos, Master of Arts en Estudios Migratorios por la Universidad de Tel Aviv (Israel). Especialidad en Relaciones Internacionales en la Universidad de Chile. Estudios de Desarrollo en la Justus-Liebig Universität Giessen (Alemania), Administración Pública en la Universidad San Sebastián (Chile) y Estudios Estratégicos en la Universidad Federal Fluminense (Brasil). Director General Adjunto del Instituto de Estudios Políticos Andinos. Vicepresidente del Comité Ejecutivo de la International Association for Political Science Students (IAPSS) – Latin America.',
+    email: 'esilva@iepa.org.pe',
+    image: '',
+  },
+  {
+    name: 'Francisco Javier Covarrubias Rojas',
+    role: 'Líder de Investigación',
+    spec: 'Seguridad internacional, diplomacia, cooperación internacional y análisis histórico de relaciones exteriores.',
+    bio: 'Cientista Político de la Universidad Diego Portales con minor en Historia y Ciencias Sociales. Magíster en Desarrollo y Cooperación Internacional del Instituto de Estudios Internacionales de la Universidad de Chile. Actualmente candidato a Magíster en Seguridad, Defensa y Relaciones Internacionales de la Academia Nacional de Estudios Políticos y Estratégicos del Ministerio de Defensa Nacional de Chile. Cuenta con experiencia como practicante en la Dirección de Seguridad Internacional y Humana (DISIN) del Ministerio de Relaciones Exteriores, pasante del área internacional de IdeaPaís y asistente de investigación en la Universidad de las Américas como parte del Proyecto FONDECYT titulado "Herencia indeseada y diplomacia en transición: Una nueva historia diplomática de la larga Crisis de las Uvas (1989-1995)".',
+    email: 'franciscocovarrubias24@gmail.com',
+    image: '',
+  },
+  {
+    name: 'Jimena Valenzuela',
+    role: 'Líder de Investigación',
+    spec: 'Seguridad internacional, ciberseguridad, cooperación tecnológica y estudios asiáticos.',
+    bio: 'Cientista Político de la Pontificia Universidad Católica de Chile, con mención en Relaciones Internacionales, y actualmente cursa un Magíster en Estudios sobre Asia en la Universidad de Chile. Cuenta con un diplomado en Seguridad Internacional de la Universidad de Chile y un diplomado en Traducción de la PUC. Tiene experiencia profesional en la División de Seguridad Internacional y Humana del Ministerio de Relaciones Exteriores de Chile, donde participó en el análisis de política exterior en materias de ciberseguridad y cooperación tecnológica.',
+    email: 'jivalenzuelagarrido@gmail.com',
+    image: '',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
   <div class="font-sans text-[#1a1410] dark:text-[#f0ece4] min-h-screen">
     <section class="py-16 px-4 sm:px-6 mx-auto max-w-7xl">
       
-      <!-- ENCABEZADO -->
       <div class="mb-12 border-b border-[#e8e0d0] dark:border-[#2a2a2a] pb-8">
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 bg-[#1a4b8c] inline-block rounded-full"></span>
@@ -26,11 +92,59 @@ const metadata = {
         </p>
       </div>
 
-      <!-- REJILLA DE EXPERTOS -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        <!-- Aquí va el contenido de los expertos extraído -->
-        ${cat /tmp/expertos-content.txt | grep -A100 "const experts = \[" | head -200}
+        {experts.map((expert) => (
+          <article class="flex flex-col sm:flex-row gap-5 p-5 rounded-xl bg-white/60 dark:bg-[#1a1a1a]/40 border border-[#e8e0d0] dark:border-[#2a2a2a] shadow-sm hover:shadow-md hover:border-[#1a4b8c]/30 dark:hover:border-[#2b6cb5]/30 transition-all duration-300">
+            
+            <div class="w-28 h-36 shrink-0 bg-[#f8f4ea] dark:bg-[#1a1a1a] rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] flex flex-col items-center justify-center overflow-hidden mx-auto sm:mx-0">
+              {expert.image ? (
+                <img src={expert.image} alt={expert.name} class="w-full h-full object-cover" />
+              ) : (
+                <div class="text-center p-2">
+                  <svg class="w-10 h-10 text-[#d5ccb8] dark:text-[#3a3a3a] mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  <span class="text-[8px] font-mono uppercase text-[#d5ccb8] dark:text-[#3a3a3a] mt-1 block">Perfil</span>
+                </div>
+              )}
+            </div>
+
+            <div class="flex flex-col justify-between flex-grow">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-[#1a4b8c]/10 dark:bg-[#2b6cb5]/10 text-[#1a4b8c] dark:text-[#2b6cb5] border border-[#1a4b8c]/20 dark:border-[#2b6cb5]/20">
+                    {expert.role}
+                  </span>
+                </div>
+                <h2 class="text-xl font-display font-bold text-[#1a1410] dark:text-[#f0ece4] tracking-tight mb-2">
+                  {expert.name}
+                </h2>
+                <p class="text-xs text-[#4a4038] dark:text-[#c8c0b4] leading-relaxed font-sans mb-3">
+                  {expert.spec}
+                </p>
+              </div>
+
+              <details class="group pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a] mt-2">
+                <summary class="cursor-pointer text-xs font-semibold tracking-wide text-[#1a4b8c] dark:text-[#2b6cb5] flex items-center justify-between list-none select-none py-1 hover:opacity-80 transition-opacity font-sans">
+                  <span>Ver perfil y trayectoria</span>
+                  <span class="transition-transform duration-200 group-open:rotate-180 text-[10px]">▼</span>
+                </summary>
+                <div class="text-xs text-[#4a4038] dark:text-[#c8c0b4] leading-relaxed mt-3 pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a] space-y-3 font-serif">
+                  <p>{expert.bio}</p>
+                  {expert.email && (
+                    <p class="font-mono text-[11px] pt-1">
+                      <a href={`mailto:${expert.email}`} class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline flex items-center gap-1">
+                        <span>✉</span> {expert.email}
+                      </a>
+                    </p>
+                  )}
+                </div>
+              </details>
+            </div>
+          </article>
+        ))}
       </div>
+
     </section>
   </div>
 </Layout>
