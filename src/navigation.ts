@@ -20,7 +20,7 @@ export const headerData = {
     },
     {
       text: 'Análisis',
-      href: getPermalink('/perspectivas'),
+      href: getPermalink('/analisis'),
     },
     {
       text: 'Blogs',
