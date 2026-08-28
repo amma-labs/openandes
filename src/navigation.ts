@@ -20,11 +20,11 @@ export const headerData = {
     },
     {
       text: 'Análisis',
-      links: [
-        { text: 'Perspectivas', href: getBlogPermalink() },
-        { text: 'FunPolitik', href: 'https://funpolitik.substack.com', target: '_blank' },
-        { text: 'Futures Lab', href: 'https://2050lab.org', target: '_blank' },
-      ],
+      href: getPermalink('/perspectivas'),
+    },
+    {
+      text: 'Blogs',
+      href: getPermalink('/blogs'),
     },
     {
       text: 'Eventos',
