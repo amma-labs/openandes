@@ -1,33 +1,37 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import TradingViewTicker from '~/components/widgets/TradingViewTicker.astro';
 
 const metadata = {
   title: 'Inteligencia | OpenAndes',
-  description: 'Terminal de inteligencia estratégica global. Monitoreo en tiempo real de mercados, energía y riesgos geopolíticos.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <div class="font-sans text-[#1a1410] dark:text-[#f0ece4] max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    
-    <div class="text-center mb-10 pb-5 border-b-2 border-[#1a4b8c] dark:border-[#2b6cb5]">
-      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
-        Global Intelligence Terminal
-      </h1>
-      <p class="text-[#1a4b8c] dark:text-[#2b6cb5] font-semibold uppercase text-sm tracking-wider mt-2">
-        Monitoreo Estratégico en Tiempo Real • OpenAndes Proprietary Data
-      </p>
-    </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+    <h1 class="text-3xl font-bold mb-6">Inteligencia Estratégica</h1>
+    <p class="text-lg text-muted mb-8">Monitoreo de mercados y activos globales en tiempo real.</p>
 
-    <div class="bg-[#f8fafc] dark:bg-[#1a1a1a] border border-[#e2e8f0] dark:border-[#2a2a2a] p-6 rounded-lg my-8">
-      <p class="text-[#1a1410] dark:text-[#f0ece4] text-base leading-relaxed">
-        <strong class="text-[#1a4b8c] dark:text-[#2b6cb5]">Bienvenido, Consejero.</strong> Está accediendo a la 
-        <strong>Terminal de Inteligencia de OpenAndes</strong>. Esta interfaz integra flujos de datos en tiempo real con indicadores prospectivos para respaldar la toma de decisiones en geopolítica, infraestructura y finanzas transpacíficas.
-      </p>
+    <!-- TradingView Widget -->
+    <div class="tradingview-widget-container" style="border-top: 3px solid #1a4b8c; border-bottom: 3px solid #1a4b8c; margin: 20px 0; padding: 10px 0;">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {
+        "symbols": [
+          { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+          { "proName": "TVC:UKOIL", "title": "Brent Oil" },
+          { "proName": "TVC:USOIL", "title": "WTI Oil" },
+          { "proName": "TVC:GOLD", "title": "Oro" },
+          { "proName": "NYSE:TSM", "title": "TSMC" },
+          { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
+        ],
+        "showSymbolLogo": true,
+        "colorTheme": "light",
+        "isTransparent": false,
+        "displayMode": "adaptive",
+        "locale": "es"
+      }
+      </script>
     </div>
-
-    <TradingViewTicker />
 
   </div>
 </Layout>
