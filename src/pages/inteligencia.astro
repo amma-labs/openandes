@@ -2,39 +2,143 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Inteligencia — OpenAndes',
+  title: 'Inteligencia | OpenAndes',
+  description: 'Terminal de inteligencia estratégica global. Monitoreo en tiempo real de mercados, energía y riesgos geopolíticos.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <div class="font-sans text-slate-900 dark:text-slate-100 max-w-7xl mx-auto px-4 py-12">
+  <div class="font-sans text-[#1a1410] dark:text-[#f0ece4] max-w-7xl mx-auto px-4 sm:px-6 py-8">
     
-    <div class="mb-8 border-b border-[#e8e0d0] dark:border-[#2a2a2a] pb-6">
-      <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs uppercase px-2.5 py-1 rounded w-max font-sans tracking-wide mb-3">
-        Terminal Analítica
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white font-sans tracking-tight">
-        Inteligencia Estratégica & Mercados
+    <!-- TÍTULO -->
+    <div class="text-center mb-10 pb-5 border-b-2 border-[#1a4b8c] dark:border-[#2b6cb5]">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
+        Global Intelligence Terminal
       </h1>
-      <p style="color:#1a4b8c;font-weight:600;text-transform:uppercase;font-size:13px;letter-spacing:1px;margin-top:8px">
-        Monitoreo Estratégico LatAm-Asia • Eje del Pacífico & Activos Críticos
+      <p class="text-[#1a4b8c] dark:text-[#2b6cb5] font-semibold uppercase text-sm tracking-wider mt-2">
+        Monitoreo Estratégico en Tiempo Real • OpenAndes Proprietary Data
       </p>
     </div>
 
-    <h3 style="color:#0d1117;font-size:15px;font-weight:700;text-transform:uppercase;margin-bottom:15px">
-      <span style="color:#1a4b8c">●</span> Ticker de Mercados y Activos Globales
-    </h3>
-    
-    <div class="tradingview-widget-container" style="margin:20px 0;border-top:3px solid #1a4b8c;border-bottom:3px solid #1a4b8c">
-      <div class="tradingview-widget-container__widget"></div>
-      <iframe src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=es#{%22symbols%22:[{%22proName%22:%22TVC:UKOIL%22,%22title%22:%22Brent%20Oil%22},{%22proName%22:%22TVC:USOIL%22,%22title%22:%22WTI%20Oil%22},{%22proName%22:%22TVC:GOLD%22,%22title%22:%22Oro%22},{%22proName%22:%22NYSE:TSM%22,%22title%22:%22TSMC%22},{%22proName%22:%22NYSE:VALE%22,%22title%22:%22Vale%22},{%22proName%22:%22NYSE:BHP%22,%22title%22:%22BHP%22},{%22proName%22:%22NYSE:SCCO%22,%22title%22:%22Southern%20Copper%22},{%22proName%22:%22FOREXCOM:SPXUSD%22,%22title%22:%22S%26P%20500%22},{%22proName%22:%22BITSTAMP:BTCUSD%22,%22title%22:%22Bitcoin%22}],%22showSymbolLogo%22:true,%22colorTheme%22:%22light%22,%22isTransparent%22:false,%22displayMode%22:%22adaptive%22}" width="100%" height="46" frameborder="0" style="border:0; box-sizing:border-box;"></iframe>
+    <!-- 1. TICKER TAPE -->
+    <div class="mb-6">
+      <h3 class="text-[#1a1410] dark:text-[#f0ece4] font-bold uppercase text-sm mb-4">
+        <span class="text-[#1a4b8c] dark:text-[#2b6cb5]">●</span> Strategic Asset Ticker
+      </h3>
+      <div class="tradingview-widget-container border-t-2 border-b-2 border-[#1a4b8c] dark:border-[#2b6cb5] py-4">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {
+          "symbols": [
+            { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+            { "proName": "TVC:UKOIL", "title": "Brent Oil" },
+            { "proName": "TVC:USOIL", "title": "WTI Oil" },
+            { "proName": "TVC:GOLD", "title": "Oro" },
+            { "proName": "NYSE:TSM", "title": "TSMC" },
+            { "proName": "NYSE:VALE", "title": "Vale" },
+            { "proName": "NYSE:BHP", "title": "BHP" },
+            { "proName": "NYSE:SCCO", "title": "Southern Copper" },
+            { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+            { "proName": "NASDAQ:IXIC", "title": "Nasdaq" },
+            { "proName": "NYSE:NKE", "title": "Nike" },
+            { "proName": "NYSE:JPM", "title": "JP Morgan" },
+            { "proName": "NYSE:XOM", "title": "ExxonMobil" }
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "light",
+          "isTransparent": false,
+          "displayMode": "adaptive",
+          "locale": "es"
+        }
+        </script>
+      </div>
     </div>
 
-    <div style="background-color:#f8fafc;border:1px solid #e2e8f0;padding:25px;margin:30px 0;border-radius:4px">
-      <p style="color:#1a1410;font-size:15px;line-height:1.6;margin-bottom:0">
-        <strong style="color:#1a4b8c">Bienvenido, Consejero.</strong> Está accediendo a la <strong>Terminal de Inteligencia de OpenAndes</strong>. Esta interfaz integra flujos de datos en tiempo real con indicadores prospectivos para respaldar la toma de decisiones en geopolítica, infraestructura y finanzas transpacíficas.<br><br>
-        <span style="font-style:italic;color:#475569">Utilice las herramientas interactivas para supervisar la volatilidad en la Cuenca del Pacífico.</span>
+    <!-- 2. MENSAJE DE BIENVENIDA -->
+    <div class="bg-[#f8fafc] dark:bg-[#1a1a1a] border border-[#e2e8f0] dark:border-[#2a2a2a] p-6 rounded-lg my-8">
+      <p class="text-[#1a1410] dark:text-[#f0ece4] text-base leading-relaxed">
+        <strong class="text-[#1a4b8c] dark:text-[#2b6cb5]">Bienvenido, Consejero.</strong> Está accediendo a la 
+        <strong>Terminal de Inteligencia de OpenAndes</strong>. Esta interfaz integra flujos de datos en tiempo real con indicadores prospectivos para respaldar la toma de decisiones en geopolítica, infraestructura y finanzas transpacíficas.
       </p>
+    </div>
+
+    <!-- 3. MARKET QUOTES (Energía y Metales) -->
+    <div class="mb-8">
+      <h3 class="text-[#1a1410] dark:text-[#f0ece4] font-bold uppercase text-sm mb-4">
+        <span class="text-[#1a4b8c] dark:text-[#2b6cb5]">●</span> Commodities & Markets
+      </h3>
+      <div class="tradingview-widget-container border border-[#e8e0d0] dark:border-[#2a2a2a] rounded-lg p-4">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+        {
+          "width": "100%",
+          "height": "300",
+          "symbolsGroups": [
+            {
+              "name": "Energía",
+              "symbols": [
+                { "name": "TVC:UKOIL", "displayName": "Brent Crude" },
+                { "name": "TVC:USOIL", "displayName": "WTI Crude" },
+                { "name": "TVC:NG1!", "displayName": "Natural Gas" }
+              ]
+            },
+            {
+              "name": "Metales",
+              "symbols": [
+                { "name": "TVC:GOLD", "displayName": "Gold" },
+                { "name": "TVC:SILVER", "displayName": "Silver" },
+                { "name": "TVC:COPPER", "displayName": "Copper" }
+              ]
+            }
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "light",
+          "isTransparent": false,
+          "locale": "es"
+        }
+        </script>
+      </div>
+    </div>
+
+    <!-- 4. ECONOMIC CALENDAR -->
+    <div class="mb-8">
+      <h3 class="text-[#1a1410] dark:text-[#f0ece4] font-bold uppercase text-sm mb-4">
+        <span class="text-[#1a4b8c] dark:text-[#2b6cb5]">●</span> Economic Calendar
+      </h3>
+      <div class="tradingview-widget-container border border-[#e8e0d0] dark:border-[#2a2a2a] rounded-lg p-4">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+        {
+          "colorTheme": "light",
+          "isTransparent": false,
+          "width": "100%",
+          "height": "400",
+          "locale": "es",
+          "importanceFilter": "-1,0,1"
+        }
+        </script>
+      </div>
+    </div>
+
+    <!-- 5. TIMELINE (News Feed) -->
+    <div class="mb-8">
+      <h3 class="text-[#1a1410] dark:text-[#f0ece4] font-bold uppercase text-sm mb-4">
+        <span class="text-[#1a4b8c] dark:text-[#2b6cb5]">●</span> Global Intelligence Feed
+      </h3>
+      <div class="tradingview-widget-container border border-[#e8e0d0] dark:border-[#2a2a2a] rounded-lg p-4">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+        {
+          "feedMode": "all_symbols",
+          "isTransparent": false,
+          "displayMode": "regular",
+          "width": "100%",
+          "height": "500",
+          "colorTheme": "light",
+          "locale": "es"
+        }
+        </script>
+      </div>
     </div>
 
   </div>
