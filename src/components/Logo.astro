@@ -3,22 +3,12 @@ import { getHomePermalink } from '~/utils/permalinks';
 ---
 
 <a class="flex items-center shrink-0" href={getHomePermalink()}>
-  <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold whitespace-nowrap flex items-center">
+  <span class="inline-flex items-center gap-2 font-display font-bold text-2xl tracking-wider text-[#1a1410] dark:text-[#f0ece4] uppercase">
     <img 
-      src="/images/logo.svg" 
+      src="/favicon.ico" 
       alt="OpenAndes" 
-      class="h-10 md:h-12 w-auto max-w-[200px] object-contain block dark:hidden" 
-      width="180" 
-      height="60" 
-      loading="eager"
+      class="h-6 w-6"
     />
-    <img 
-      src="/images/logo-dark.svg" 
-      alt="OpenAndes" 
-      class="h-10 md:h-12 w-auto max-w-[200px] object-contain hidden dark:block" 
-      width="180" 
-      height="60" 
-      loading="eager"
-    />
+    OPEN ANDES
   </span>
 </a>
