@@ -1,104 +1,86 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
 
-interface Link {
-  text?: string;
-  href?: string;
-  ariaLabel?: string;
-  icon?: string;
-}
-
-interface Links {
-  title?: string;
-  links: Array<Link>;
-}
-
 export interface Props {
-  links: Array<Links>;
-  secondaryLinks: Array<Link>;
-  socialLinks: Array<Link>;
-  footNote?: string;
   theme?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const { theme = 'dark' } = Astro.props;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div
-    class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-  >
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
+<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-[#e8e0d0] dark:border-[#2a2a2a] bg-page not-prose font-sans']}>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 text-[#1a1410] dark:text-[#f0ece4]">
+    
+    <!-- Bloque Principal -->
+    <div class="grid grid-cols-12 gap-8 py-12 items-start">
+      
+      <!-- Columna Izquierda: Logo + Newsletter -->
+      <div class="col-span-12 lg:col-span-5 flex flex-col justify-between">
+        <div>
+          <a class="inline-flex items-center gap-2 font-display font-bold text-2xl tracking-wider text-[#1a1410] dark:text-[#f0ece4] mb-4 uppercase" href={getHomePermalink()}>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#1a4b8c] dark:bg-[#2b6cb5]"></span>
+            OPEN ANDES
+          </a>
         </div>
-        <div class="text-sm text-muted flex gap-1">
-          {
-            secondaryLinks.map(({ text, href }, index) => (
-              <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
-              </>
-            ))
-          }
-        </div>
-      </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
-                <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                  aria-label={ariaLabel}
-                  href={href}
-                >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )
-      }
 
-      <div class="text-sm mr-4 dark:text-muted">
-        <Fragment set:html={footNote} />
+        <!-- Newsletter -->
+        <div class="mt-6">
+          <p class="text-xs text-[#4a4038] dark:text-[#c8c0b4] mb-3 font-sans">Suscríbete a nuestro newsletter</p>
+          <form class="flex gap-2 max-w-md">
+            <input 
+              type="email" 
+              placeholder="tu@email.com" 
+              class="flex-1 px-3 py-2 text-sm bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] rounded-md focus:outline-none focus:border-[#1a4b8c] dark:focus:border-[#2b6cb5] transition-colors font-sans text-[#1a1410] dark:text-[#f0ece4]"
+            />
+            <button 
+              type="submit" 
+              class="px-4 py-2 text-sm font-mono-tech font-semibold bg-[#1a4b8c] hover:bg-[#0d2b4f] dark:bg-[#2b6cb5] dark:hover:bg-[#1a4b8c] text-white rounded-md transition-colors"
+            >
+              Enviar
+            </button>
+          </form>
+          <p class="text-[10px] text-[#4a4038]/60 dark:text-[#c8c0b4]/60 mt-2 font-sans">Sin spam. Puedes darte de baja cuando quieras.</p>
+        </div>
+
+        <!-- Coordinación Regional -->
+        <div class="space-y-1 text-xs text-[#4a4038] dark:text-[#c8c0b4] mt-6">
+          <p class="font-semibold text-[#1a1410] dark:text-[#f0ece4]">Coordinación Regional:</p>
+          <p>Santiago, Chile · Lima, Perú</p>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Manifiesto -->
+      <div class="col-span-12 lg:col-span-7 lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8">
+        <p class="text-lg sm:text-xl lg:text-2xl font-display font-medium leading-relaxed text-[#1a1410] dark:text-[#f0ece4]">
+          Mirando el pasado y el futuro, caminamos con confianza en el presente. Somos un nodo modular de inteligencia estratégica y consultoría dedicada al análisis de riesgos políticos, tendencias geoeconómicas y escenarios prospectivos en América Latina. Articulamos conocimiento crítico para anticipar el cambio y tomar decisiones con certidumbre.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Barra Inferior -->
+    <div class="md:flex md:items-center md:justify-between py-6 border-t border-[#e8e0d0] dark:border-[#2a2a2a] text-xs text-[#4a4038] dark:text-[#c8c0b4] font-sans">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <span>© 2026 OPEN ANDES. Todos los derechos reservados.</span>
+        <span class="hidden sm:inline text-[#4a4038]/30 dark:text-[#c8c0b4]/30">|</span>
+        <span class="text-[10px] text-[#4a4038]/60 dark:text-[#c8c0b4]/60">2050 Futures Lab · FunPolitik</span>
+      </div>
+
+      <div class="flex items-center gap-5 mt-4 md:mt-0">
+        <a href="https://www.linkedin.com/company/openandes/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors">
+          LinkedIn
+        </a>
+        <a href="https://www.instagram.com/open.andes/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors">
+          Instagram
+        </a>
+        <a href="mailto:contacto@openandes.org" class="hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors font-medium">
+          contacto@openandes.org
+        </a>
+        <a href="/rss.xml" class="hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors font-mono-tech text-[10px] uppercase tracking-wider">
+          RSS
+        </a>
       </div>
     </div>
+
   </div>
 </footer>
