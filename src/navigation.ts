@@ -4,10 +4,11 @@ export const headerData = {
   links: [
     {
       text: 'Nosotros',
-      links: [
-        { text: 'Enfoque', href: getPermalink('/enfoques') },
-        { text: 'Expertos', href: getPermalink('/expertos') },
-      ],
+      href: getPermalink('/enfoques'),
+    },
+    {
+      text: 'Expertos',
+      href: getPermalink('/expertos'),
     },
     {
       text: 'Advisory',
@@ -32,6 +33,4 @@ export const headerData = {
   ],
 };
 
-export const footerData = {
-  // El footer ya tiene sus propios datos
-};
+export const footerData = {};
