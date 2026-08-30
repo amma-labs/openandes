@@ -1,6 +1,5 @@
 ---
 // Este componente obtiene el último post de Fun Politik y 2050lab desde sus feeds RSS
-// y muestra la imagen destacada y el contenido
 
 const parseRSS = (xml) => {
   const items = [];
@@ -9,14 +8,18 @@ const parseRSS = (xml) => {
   
   while ((match = itemRegex.exec(xml)) !== null) {
     const itemXml = match[1];
-    const title = itemXml.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'Sin título';
+    // Limpiar CDATA de los títulos
+    let title = itemXml.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'Sin título';
+    title = title.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim();
+    
+    let description = itemXml.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
+    description = description.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim();
+    
     const link = itemXml.match(/<link>([\s\S]*?)<\/link>/)?.[1] || '';
     const pubDate = itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/)?.[1] || '';
-    const description = itemXml.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
     const enclosure = itemXml.match(/<enclosure url="([^"]+)"/)?.[1] || '';
     const content = itemXml.match(/<content:encoded><\!\[CDATA\[([\s\S]*?)\]\]><\/content:encoded>/)?.[1] || '';
     
-    // Extraer la primera imagen del contenido
     let imageUrl = enclosure;
     if (!imageUrl) {
       const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
@@ -24,10 +27,10 @@ const parseRSS = (xml) => {
     }
     
     items.push({
-      title: title.replace(/<[^>]*>/g, '').trim(),
+      title: title,
       link: link.trim(),
       pubDate: pubDate.trim(),
-      description: description.replace(/<[^>]*>/g, '').trim(),
+      description: description,
       image: imageUrl,
       content: content
     });
@@ -38,7 +41,6 @@ const parseRSS = (xml) => {
 let funPolitikPosts = [];
 let futuresLabPosts = [];
 
-// Función para obtener feed con reintentos
 const fetchFeed = async (url) => {
   try {
     const response = await fetch(url, {
@@ -54,7 +56,6 @@ const fetchFeed = async (url) => {
   }
 };
 
-// Obtener ambos feeds
 const funPolitikXml = await fetchFeed('https://funpolitik.substack.com/feed');
 if (funPolitikXml) {
   funPolitikPosts = parseRSS(funPolitikXml);
