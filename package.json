@@ -74,3 +74,10 @@
     }
   }
 }
+
+  "overrides": {
+    "astro": "^7.2.0"
+  },
+  "resolutions": {
+    "astro": "^7.2.0"
+  }
