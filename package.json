@@ -81,3 +81,7 @@
   "resolutions": {
     "astro": "^7.2.0"
   }
+,
+  "engines": {
+    "node": ">=22.12.0"
+  }
