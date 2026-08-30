@@ -7,9 +7,105 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- CONTENIDO REAL DE OANDES -->
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <!-- Aquí va el contenido completo de enfoques.astro de OAndes -->
-    <!-- Se copiará en el siguiente paso -->
-  </div>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="max-w-5xl mx-auto px-4 py-16 sm:py-24">
+      <div class="text-center">
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+          Pensamiento estratégico para un<br />
+          <span class="text-blue-600 dark:text-blue-400">orden global en transformación</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Open Andes es un think tank y centro de análisis independiente dedicado a la geopolítica, 
+          la geoeconomía y la prospectiva de largo plazo. Investigamos las dinámicas de poder global, 
+          la seguridad, las cadenas de valor y la tecnología para ofrecer contexto crítico 
+          e inteligencia estratégica desde y para la región.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pilares / Enfoque -->
+  <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="font-serif text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
+        Nuestro Enfoque
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-blue-600 dark:text-blue-400 text-4xl mb-4">🌍</div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Análisis Geopolítico &amp; Geoeconómico</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Evaluación de riesgos globales, política exterior, comercio e impacto de los conflictos 
+            internacionales en América Latina.
+          </p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-blue-600 dark:text-blue-400 text-4xl mb-4">🔮</div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Prospectiva &amp; Escenarios Futuros</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Modelado de tendencias a mediano y largo plazo (2035–2050) sobre reordenamiento sistémico, 
+            defensa y recursos estratégicos.
+          </p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-blue-600 dark:text-blue-400 text-4xl mb-4">🧠</div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Inteligencia &amp; Redes de Conocimiento</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Espacio de encuentro entre académicos, analistas y tomadores de decisión mediante publicaciones, 
+            mesas de discusión y reportes temáticos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- La Red / Ecosistema -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 sm:p-12 shadow-md">
+        <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          Un ecosistema de investigación modular
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          A través de plataformas especializadas como <strong class="text-blue-600 dark:text-blue-400">Fun Politik</strong> 
+          (análisis de coyuntura e internacional) y <strong class="text-blue-600 dark:text-blue-400">2050 Futures Lab</strong> 
+          (estudios prospectivos y tecnológicos), abarcamos desde la respuesta analítica en tiempo real 
+          hasta la investigación de largo aliento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultoría & Servicios -->
+  <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="font-serif text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
+        Consultoría &amp; Servicios
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+          <div class="text-4xl mb-4">📋</div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Asesoría Estratégica</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Análisis de riesgo geopolítico y regulatorio para instituciones y empresas.
+          </p>
+        </div>
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+          <div class="text-4xl mb-4">📊</div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Informes a Medida</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Reportes de inteligencia sobre cadenas de suministro, defensa y dinámica tecnológica.
+          </p>
+        </div>
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Briefings Ejecutivos</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Sesiones de trabajo y análisis de escenario para equipos directivos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
