@@ -1,5 +1,9 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+// Importar imagen para el hero
+import heroImage from '~/assets/images/19-the-time-between-2500.jpg';
 
 const metadata = {
   title: 'Expertos — OpenAndes',
@@ -51,7 +55,7 @@ const experts = [
     role: 'Asociado Distinguido',
     spec: 'Estudios migratorios, relaciones internacionales y análisis de estudios estratégicos.',
     bio: 'Politólogo por la Universidad Nacional Mayor de San Marcos, Master of Arts en Estudios Migratorios por la Universidad de Tel Aviv (Israel). Especialidad en Relaciones Internacionales en la Universidad de Chile. Estudios de Desarrollo en la Justus-Liebig Universität Giessen (Alemania), Administración Pública en la Universidad San Sebastián (Chile) y Estudios Estratégicos en la Universidad Federal Fluminense (Brasil). Director General Adjunto del Instituto de Estudios Políticos Andinos. Vicepresidente del Comité Ejecutivo de la International Association for Political Science Students (IAPSS) – Latin America.',
-    email: 'esilva@iepa.org.pe',
+    email: 'esteban.silva.n@openandes.org',
     image: '',
   },
   {
@@ -59,7 +63,7 @@ const experts = [
     role: 'Líder de Investigación',
     spec: 'Seguridad internacional, diplomacia, cooperación internacional y análisis histórico de relaciones exteriores.',
     bio: 'Cientista Político de la Universidad Diego Portales con minor en Historia y Ciencias Sociales. Magíster en Desarrollo y Cooperación Internacional del Instituto de Estudios Internacionales de la Universidad de Chile. Actualmente candidato a Magíster en Seguridad, Defensa y Relaciones Internacionales de la Academia Nacional de Estudios Políticos y Estratégicos del Ministerio de Defensa Nacional de Chile. Cuenta con experiencia como practicante en la Dirección de Seguridad Internacional y Humana (DISIN) del Ministerio de Relaciones Exteriores, pasante del área internacional de IdeaPaís y asistente de investigación en la Universidad de las Américas como parte del Proyecto FONDECYT titulado "Herencia indeseada y diplomacia en transición: Una nueva historia diplomática de la larga Crisis de las Uvas (1989-1995)".',
-    email: 'franciscocovarrubias24@gmail.com',
+    email: '',
     image: '',
   },
   {
@@ -67,7 +71,7 @@ const experts = [
     role: 'Líder de Investigación',
     spec: 'Seguridad internacional, ciberseguridad, cooperación tecnológica y estudios asiáticos.',
     bio: 'Cientista Político de la Pontificia Universidad Católica de Chile, con mención en Relaciones Internacionales, y actualmente cursa un Magíster en Estudios sobre Asia en la Universidad de Chile. Cuenta con un diplomado en Seguridad Internacional de la Universidad de Chile y un diplomado en Traducción de la PUC. Tiene experiencia profesional en la División de Seguridad Internacional y Humana del Ministerio de Relaciones Exteriores de Chile, donde participó en el análisis de política exterior en materias de ciberseguridad y cooperación tecnológica.',
-    email: 'jivalenzuelagarrido@gmail.com',
+    email: '',
     image: '',
   },
   {
@@ -107,7 +111,7 @@ const experts = [
     role: 'Investigadora Asociada',
     spec: 'Relaciones internacionales, análisis de política global y asistencia en investigación.',
     bio: 'Tesista de Relaciones Internacionales por la Universidad Nacional de San Martín. Cuenta con experiencia como secretaria de recepción en consultorio médico privado, desarrollando habilidades en asistencia administrativa, recepción telefónica y gestión de oficinas. Actualmente se desempeña como analista y redactora de política global, con interés en la investigación académica y el análisis de coyuntura internacional.',
-    email: 'ladelgado@estudiantes.unsam.edu.ar',
+    email: '',
     image: '',
   },
   {
@@ -117,14 +121,13 @@ const experts = [
     bio: 'Licenciado en Relaciones Internacionales y estudiante de Economía en la Universidad de la República (Udelar). Sus áreas de interés se encuentran en la intersección entre la economía, las relaciones internacionales y el análisis político, con especial interés en América Latina y los desafíos del desarrollo económico de la región.',
     email: '',
     image: '',
-    linkedin: 'https://www.linkedin.com/in/aldo-andres-r-5a8626194/',
   },
   {
     name: 'Christian Ardila',
     role: 'Investigador Asociado',
     spec: 'Crimen organizado, narcotráfico transnacional, seguridad internacional e inteligencia criminal.',
     bio: 'Licenciado en Relaciones Internacionales y estudiante avanzado de Ciencia Política por la Universidad de Palermo. Especialización en Análisis de Crimen Organizado y Seguridad Internacional por FLACSO Ecuador. Cuenta con experiencia como pasante de investigación en InSight Crime y redactor en Refugio Latinoamericano. Ha publicado artículos sobre crimen organizado, narcotráfico transnacional y seguridad internacional en América Latina. Certificado en inglés C2 y diplomacia global.',
-    email: 'christianardila03ar@gmail.com',
+    email: '',
     image: '',
   },
   {
@@ -132,91 +135,82 @@ const experts = [
     role: 'Investigador Asociado',
     spec: 'Estrategia militar, geopolítica, liderazgo institucional y análisis de conflictos armados.',
     bio: 'Oficial de artillería del Ejército de Chile en condición de retiro con más de 20 años de experiencia en liderazgo estratégico, gestión operativa y asesoría institucional en contextos de alta exigencia. Ha participado en misiones de paz internacionales (EUFOR en Bosnia y Herzegovina, 2011 y 2018), estados de emergencia por catástrofes naturales, crisis sociales y operaciones logísticas durante la pandemia. Magíster en Ciencia Política y en Liderazgo Organizacional. Fundador de Rooster Think Tank. Ejerce como docente universitario y columnista en temas de estrategia, ciencia política y cultura institucional.',
-    email: 'ralcaman@hotmail.com',
+    email: '',
     image: '',
   },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <div class="font-sans text-[#1a1410] dark:text-[#f0ece4] min-h-screen">
-    <section class="py-16 px-4 sm:px-6 mx-auto max-w-7xl">
-      
-      <div class="mb-12 border-b border-[#e8e0d0] dark:border-[#2a2a2a] pb-8">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="w-3 h-3 bg-[#1a4b8c] inline-block rounded-full"></span>
-          <span class="text-xs font-mono font-bold tracking-widest uppercase text-[#1a4b8c] dark:text-[#2b6cb5]">
-            Directorio Institucional
-          </span>
-        </div>
-        <h1 class="text-4xl sm:text-5xl font-display font-bold tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
+  <!-- Hero Section con imagen de fondo -->
+  <section class="relative min-h-[450px] flex items-center overflow-hidden">
+    <!-- Imagen de fondo -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src={heroImage.src} 
+        alt="Expertos y analistas - Open Andes" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+    </div>
+    
+    <!-- Línea decorativa superior -->
+    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"></div>
+    
+    <!-- Contenido del hero -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
+      <div class="max-w-3xl">
+        <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
+          Red Global
+        </span>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-5xl font-bold text-white leading-tight">
           Expertos y Analistas
         </h1>
-        <p class="text-[#4a4038] dark:text-[#c8c0b4] text-base sm:text-lg mt-3 max-w-3xl leading-relaxed font-sans">
-          Red global de investigadores, directores y especialistas dedicados al análisis estratégico y la prospectiva geopolítica en América.
+        <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
+          Investigadores, directores y especialistas dedicados al análisis estratégico y la prospectiva geopolítica en América.
         </p>
       </div>
+    </div>
+  </section>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        {experts.map((expert) => (
-          <article class="flex flex-col sm:flex-row gap-5 p-5 rounded-xl bg-white/60 dark:bg-[#1a1a1a]/40 border border-[#e8e0d0] dark:border-[#2a2a2a] shadow-sm hover:shadow-md hover:border-[#1a4b8c]/30 dark:hover:border-[#2b6cb5]/30 transition-all duration-300">
-            
-            <div class="w-28 h-36 shrink-0 bg-[#f8f4ea] dark:bg-[#1a1a1a] rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] flex flex-col items-center justify-center overflow-hidden mx-auto sm:mx-0">
-              {expert.image ? (
-                <img src={expert.image} alt={expert.name} class="w-full h-full object-cover" />
-              ) : (
-                <div class="text-center p-2">
-                  <svg class="w-10 h-10 text-[#d5ccb8] dark:text-[#3a3a3a] mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                  <span class="text-[8px] font-mono uppercase text-[#d5ccb8] dark:text-[#3a3a3a] mt-1 block">Perfil</span>
-                </div>
-              )}
+  <!-- Contenido de expertos -->
+  <div class="max-w-5xl mx-auto px-4 py-16">
+    <!-- Grid de expertos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {experts.map((expert, index) => (
+        <div key={index} class="group p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400">
+              {expert.name.charAt(0)}
             </div>
-
-            <div class="flex flex-col justify-between flex-grow">
-              <div>
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-[#1a4b8c]/10 dark:bg-[#2b6cb5]/10 text-[#1a4b8c] dark:text-[#2b6cb5] border border-[#1a4b8c]/20 dark:border-[#2b6cb5]/20">
-                    {expert.role}
-                  </span>
-                </div>
-                <h2 class="text-xl font-display font-bold text-[#1a1410] dark:text-[#f0ece4] tracking-tight mb-2">
-                  {expert.name}
-                </h2>
-                <p class="text-xs text-[#4a4038] dark:text-[#c8c0b4] leading-relaxed font-sans mb-3">
-                  {expert.spec}
-                </p>
-              </div>
-
-              <details class="group pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a] mt-2">
-                <summary class="cursor-pointer text-xs font-semibold tracking-wide text-[#1a4b8c] dark:text-[#2b6cb5] flex items-center justify-between list-none select-none py-1 hover:opacity-80 transition-opacity font-sans">
-                  <span>Ver perfil y trayectoria</span>
-                  <span class="transition-transform duration-200 group-open:rotate-180 text-[10px]">▼</span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {expert.name}
+              </h3>
+              <p class="text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">
+                {expert.role}
+              </p>
+              <p class="text-sm text-slate-600 dark:text-slate-300">
+                {expert.spec}
+              </p>
+              <details class="mt-3">
+                <summary class="text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">
+                  Ver perfil y trayectoria ▼
                 </summary>
-                <div class="text-xs text-[#4a4038] dark:text-[#c8c0b4] leading-relaxed mt-3 pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a] space-y-3 font-serif">
-                  <p>{expert.bio}</p>
-                  {expert.email && (
-                    <p class="font-mono text-[11px] pt-1">
-                      <a href={`mailto:${expert.email}`} class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline flex items-center gap-1">
-                        <span>✉</span> {expert.email}
-                      </a>
-                    </p>
-                  )}
-                  {expert.linkedin && (
-                    <p class="font-mono text-[11px] pt-1">
-                      <a href={expert.linkedin} target="_blank" rel="noopener noreferrer" class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline flex items-center gap-1">
-                        <span>🔗</span> LinkedIn
-                      </a>
-                    </p>
-                  )}
-                </div>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {expert.bio}
+                </p>
+                {expert.email && (
+                  <a href={`mailto:${expert.email}`} class="inline-block mt-2 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                    {expert.email}
+                  </a>
+                )}
               </details>
             </div>
-          </article>
-        ))}
-      </div>
-
-    </section>
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 </Layout>
