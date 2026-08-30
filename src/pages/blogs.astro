@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import LastPosts from '~/components/blogs/LastPosts.astro';
 
 const metadata = {
   title: 'Blogs — OpenAndes',
@@ -14,7 +15,10 @@ const metadata = {
       Open Andes reúne plataformas de análisis, investigación y prospectiva orientadas a comprender las transformaciones globales y su impacto en la región. A través de nuestros espacios editoriales asociados, abordamos la coyuntura internacional y los escenarios de largo plazo desde distintos ángulos metodológicos.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Últimas publicaciones -->
+    <LastPosts />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
       
       <!-- Fun Politik -->
       <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
@@ -25,10 +29,10 @@ const metadata = {
           </a>
         </p>
         <p class="text-muted text-sm mb-3">
-          <strong>Enfoque:</strong> Análisis de coyuntura sobre geopolítica, economía política y diplomacia global. Un espacio enfocado en interpretar los movimientos del tablero internacional con rapidez, rigor y una lectura crítica de la actualidad.
+          <strong>Enfoque:</strong> Análisis de coyuntura sobre geopolítica, economía política y diplomacia global.
         </p>
         <p class="text-muted text-sm">
-          <strong>Líneas de análisis:</strong> Política exterior, geoeconomía, conflictos globales y dinámicas de poder.
+          <strong>Líneas:</strong> Política exterior, geoeconomía, conflictos globales y dinámicas de poder.
         </p>
       </div>
 
@@ -41,10 +45,10 @@ const metadata = {
           </a>
         </p>
         <p class="text-muted text-sm mb-3">
-          <strong>Enfoque:</strong> Laboratorio de investigación y prospectiva dedicado al estudio de escenarios complejos a mediano y largo plazo. Centrado en la intersección entre seguridad, tecnología y reordenamiento sistémico.
+          <strong>Enfoque:</strong> Laboratorio de investigación y prospectiva para escenarios complejos a mediano y largo plazo.
         </p>
         <p class="text-muted text-sm">
-          <strong>Líneas de análisis:</strong> Cadenas globales de suministro, tecnologías emergentes, defensa y arquitectura estratégica 2035-2050.
+          <strong>Líneas:</strong> Cadenas globales, tecnologías emergentes, defensa y arquitectura estratégica 2035-2050.
         </p>
       </div>
 

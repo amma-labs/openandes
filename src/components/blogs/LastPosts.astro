@@ -1,0 +1,99 @@
+---
+// Este componente obtiene los últimos posts de cada blog
+// Los posts deben estar en src/data/post/ con el formato adecuado
+
+import { getCollection } from 'astro:content';
+
+// Obtener todos los posts
+const allPosts = await getCollection('post');
+
+// Función para agrupar por blog (usando la categoría o tag)
+const groupByBlog = (posts) => {
+  const blogs = {
+    'fun-politik': { name: 'Fun Politik', icon: '📰', posts: [] },
+    'futures-lab': { name: '2050 Futures Lab', icon: '🔬', posts: [] },
+  };
+
+  posts.forEach(post => {
+    // Asignar a un blog según categoría o tag
+    const isFunPolitik = post.data.categories?.includes('fun-politik') || 
+                         post.data.tags?.includes('fun-politik');
+    const isFuturesLab = post.data.categories?.includes('futures-lab') || 
+                         post.data.tags?.includes('futures-lab');
+    
+    if (isFunPolitik) {
+      blogs['fun-politik'].posts.push(post);
+    } else if (isFuturesLab) {
+      blogs['futures-lab'].posts.push(post);
+    }
+  });
+
+  // Ordenar y tomar el último de cada blog
+  const result = {};
+  Object.keys(blogs).forEach(key => {
+    const sorted = blogs[key].posts.sort((a, b) => 
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+    );
+    result[key] = {
+      ...blogs[key],
+      lastPost: sorted.length > 0 ? sorted[0] : null,
+      count: sorted.length
+    };
+  });
+
+  return result;
+};
+
+const blogData = groupByBlog(allPosts);
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+  {
+    Object.keys(blogData).map(key => {
+      const blog = blogData[key];
+      return (
+        <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">{blog.icon}</span>
+            <h3 class="text-xl font-bold">{blog.name}</h3>
+            <span class="text-xs text-muted ml-auto">{blog.count} publicaciones</span>
+          </div>
+          
+          {blog.lastPost ? (
+            <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3 mt-1">
+              <p class="text-xs text-muted mb-1">
+                {new Date(blog.lastPost.data.pubDate).toLocaleDateString('es-ES', { 
+                  day: 'numeric', month: 'long', year: 'numeric' 
+                })}
+              </p>
+              <a 
+                href={`/blog/${blog.lastPost.slug}`} 
+                class="font-medium text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-sm"
+              >
+                {blog.lastPost.data.title}
+              </a>
+              <p class="text-xs text-muted mt-1 line-clamp-2">
+                {blog.lastPost.data.description}
+              </p>
+            </div>
+          ) : (
+            <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3 mt-1">
+              <p class="text-sm text-muted">Próximamente...</p>
+            </div>
+          )}
+          
+          <div class="mt-4 pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+            <a 
+              href={key === 'fun-politik' ? 'https://funpolitik.substack.com' : 'https://2050lab.org'}
+              target="_blank" 
+              rel="noopener"
+              class="text-xs text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline"
+            >
+              Ver todas las publicaciones →
+            </a>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
