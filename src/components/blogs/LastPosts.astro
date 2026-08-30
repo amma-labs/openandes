@@ -8,7 +8,6 @@ const parseRSS = (xml) => {
   
   while ((match = itemRegex.exec(xml)) !== null) {
     const itemXml = match[1];
-    // Limpiar CDATA de los títulos
     let title = itemXml.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'Sin título';
     title = title.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim();
     
@@ -81,7 +80,11 @@ const lastFuturesLab = getLastPost(futuresLabPosts);
   <!-- Fun Politik -->
   <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
     <div class="flex items-center gap-2 mb-3">
-      <span class="text-2xl">📰</span>
+      <img 
+        src="https://substackcdn.com/image/fetch/$s_!IeqO!,w_48,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Ffunpolitik.substack.com%2Fimg%2Fsubstack.png" 
+        alt="Fun Politik"
+        class="w-6 h-6 rounded"
+      />
       <h3 class="text-xl font-bold">Fun Politik</h3>
       <span class="text-xs text-muted ml-auto">{funPolitikPosts?.length || 0} publicaciones</span>
     </div>
@@ -154,7 +157,11 @@ const lastFuturesLab = getLastPost(futuresLabPosts);
   <!-- 2050 Futures Lab -->
   <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
     <div class="flex items-center gap-2 mb-3">
-      <span class="text-2xl">🔬</span>
+      <img 
+        src="https://substackcdn.com/image/fetch/$s_!qnb5!,w_48,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7d01f6a5-7f87-497b-aa94-bd8d7a6b956f_270x270.png" 
+        alt="2050 Futures Lab"
+        class="w-6 h-6 rounded"
+      />
       <h3 class="text-xl font-bold">2050 Futures Lab</h3>
       <span class="text-xs text-muted ml-auto">{futuresLabPosts?.length || 0} publicaciones</span>
     </div>
