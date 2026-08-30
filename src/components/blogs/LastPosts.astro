@@ -13,12 +13,23 @@ const parseRSS = (xml) => {
     const link = itemXml.match(/<link>([\s\S]*?)<\/link>/)?.[1] || '';
     const pubDate = itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/)?.[1] || '';
     const description = itemXml.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
+    const enclosure = itemXml.match(/<enclosure url="([^"]+)"/)?.[1] || '';
+    const content = itemXml.match(/<content:encoded><\!\[CDATA\[([\s\S]*?)\]\]><\/content:encoded>/)?.[1] || '';
+    
+    // Extraer la primera imagen del contenido
+    let imageUrl = enclosure;
+    if (!imageUrl) {
+      const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+      if (imgMatch) imageUrl = imgMatch[1];
+    }
     
     items.push({
       title: title.replace(/<[^>]*>/g, '').trim(),
       link: link.trim(),
       pubDate: pubDate.trim(),
-      description: description.replace(/<[^>]*>/g, '').trim().substring(0, 200),
+      description: description.replace(/<[^>]*>/g, '').trim(),
+      image: imageUrl,
+      content: content
     });
   }
   return items;
@@ -54,6 +65,16 @@ const lastPost = funPolitikPosts.length > 0
     
     {lastPost ? (
       <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
+        {lastPost.image && (
+          <div class="overflow-hidden rounded mb-3">
+            <img 
+              src={lastPost.image} 
+              alt={lastPost.title}
+              class="w-full h-48 object-cover"
+              loading="lazy"
+            />
+          </div>
+        )}
         <p class="text-xs text-muted mb-1">
           {new Date(lastPost.pubDate).toLocaleDateString('es-ES', { 
             day: 'numeric', month: 'long', year: 'numeric' 
@@ -67,9 +88,19 @@ const lastPost = funPolitikPosts.length > 0
         >
           {lastPost.title}
         </a>
-        <p class="text-xs text-muted mt-1 line-clamp-2">
+        <p class="text-xs text-muted mt-1 line-clamp-3">
           {lastPost.description}
         </p>
+        <div class="mt-3 pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+          <a 
+            href={lastPost.link}
+            target="_blank" 
+            rel="noopener"
+            class="text-xs text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline font-medium"
+          >
+            Leer artículo completo →
+          </a>
+        </div>
       </div>
     ) : (
       <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
