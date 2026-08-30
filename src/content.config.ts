@@ -30,15 +30,12 @@ const funPolitik = defineCollection({
   }),
 });
 
+// Deshabilitado temporalmente por problemas SSL
+// El feed de 2050lab.org tiene certificado inválido
+/*
 const futureLab = defineCollection({
   loader: feedLoader({
-    url: 'http://2050lab.org/rss.xml', // Cambiado de https a http
-    fetchOptions: {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; Astro/7.0)',
-      },
-      rejectUnauthorized: false, // Ignorar error SSL
-    },
+    url: 'https://2050lab.org/rss.xml',
   }),
   schema: z.object({
     title: z.string(),
@@ -49,9 +46,10 @@ const futureLab = defineCollection({
     categories: z.array(z.string()).default([]),
   }),
 });
+*/
 
 export const collections = {
   blog: blog,
   'fun-politik': funPolitik,
-  'future-lab': futureLab,
+  // 'future-lab': futureLab,
 };
