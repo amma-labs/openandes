@@ -1,40 +1,208 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+// Importar imagen para el hero
+import heroImage from '~/assets/images/46-chasing-climate-change-in-the-arctic-2800.jpg';
+
 const metadata = {
   title: 'Estrategia — OpenAndes',
 };
 ---
 
 <Layout metadata={metadata}>
-  <div class="min-h-screen py-16 px-4 sm:px-6 mx-auto max-w-4xl">
-    <div class="mb-12 border-b border-[#e8e0d0] dark:border-[#2a2a2a] pb-8">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-3 h-3 bg-[#1a4b8c] inline-block rounded-full"></span>
-        <span class="text-xs font-mono-tech font-bold tracking-widest uppercase text-[#1a4b8c] dark:text-[#2b6cb5]">
-          Estrategia
+  <!-- Hero Section con imagen de fondo -->
+  <section class="relative min-h-[450px] flex items-center overflow-hidden">
+    <!-- Imagen de fondo -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src={heroImage.src} 
+        alt="Consultoría estratégica - Open Andes" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+    </div>
+    
+    <!-- Línea decorativa superior -->
+    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"></div>
+    
+    <!-- Contenido del hero -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
+      <div class="max-w-3xl">
+        <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
+          Consultoría Estratégica
         </span>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-5xl font-bold text-white leading-tight">
+          Consultoría Estratégica
+        </h1>
+        <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
+          Inteligencia de riesgo y prospectiva para la toma de decisiones en América Latina.
+        </p>
       </div>
-      <h1 class="text-4xl sm:text-5xl font-display font-bold tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
-        Advisory Estratégico
-      </h1>
-      <p class="text-[#4a4038] dark:text-[#c8c0b4] text-base sm:text-lg mt-3 max-w-3xl leading-relaxed font-sans">
-        Asesoramiento para la toma de decisiones en entornos de alta incertidumbre.
-      </p>
+    </div>
+  </section>
+
+  <!-- Contenido -->
+  <div class="max-w-5xl mx-auto px-4 py-16">
+    
+    <!-- Servicios -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Servicio 1 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Monitor de Riesgo LatAm – Asia</h3>
+            <p class="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2">Suscripción B2B</p>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">
+              <strong>Qué incluye:</strong> Tableros de control paramétricos y mapas de calor regulatorio actualizados continuamente.
+            </p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+              <strong>Para qué sirve:</strong> Auditar el impacto de inversiones transpacíficas, cuellos de botella logísticos, costos de flete y riesgo soberano.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicio 2 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Análisis de Riesgo Geofinanciero &amp; Regulatorio</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">
+              <strong>Qué incluye:</strong> Evaluaciones técnicas sobre leyes de concesión, regulación ambiental, soberanía digital y aduanas.
+            </p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+              <strong>Para qué sirve:</strong> Proyectar cambios normativos y blindar inversiones en infraestructura, energía y tecnología.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicio 3 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Riesgo Político &amp; Ciclos Electorales</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">
+              <strong>Qué incluye:</strong> Mapeo de perfiles gubernamentales, proyecciones de gobernabilidad y análisis de sesgo ideológico en políticas públicas.
+            </p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+              <strong>Para qué sirve:</strong> Anticipar el impacto de cambios de gobierno en contratos, regulaciones y clima de negocios.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicio 4 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-600 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Prospectiva de Escenarios &amp; Cisnes Negros</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">
+              <strong>Qué incluye:</strong> Modelado de escenarios de incertidumbre a mediano y largo plazo (2035–2050).
+            </p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+              <strong>Para qué sirve:</strong> Evaluar riesgos ante reordenamientos globales, tecnologías disruptivas y dinámicas de seguridad regional.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicio 5 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 md:col-span-2">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Briefings Ejecutivos &amp; Reportes Ad-Hoc</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">
+              <strong>Qué incluye:</strong> Sesiones privadas de trabajo y reportes a medida ante coyunturas específicas.
+            </p>
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+              <strong>Para qué sirve:</strong> Apoyo directo a directorios e inversionistas en momentos clave de asignación de capital.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="prose prose-slate dark:prose-invert max-w-none">
-      <p class="font-sans text-[#4a4038] dark:text-[#c8c0b4] leading-relaxed">
-        Open Andes ofrece servicios de inteligencia estratégica y análisis de riesgo para organizaciones públicas y privadas con intereses en América Latina y la Cuenca del Pacífico.
-      </p>
-      
-      <h2 class="font-display text-2xl font-bold text-[#1a1410] dark:text-[#f0ece4] mt-8">Nuestros Servicios</h2>
-      <ul class="font-sans text-[#4a4038] dark:text-[#c8c0b4]">
-        <li>Análisis de riesgo geofinanciero</li>
-        <li>Prospectiva y escenarios</li>
-        <li>Inteligencia competitiva</li>
-        <li>Asesoría en relaciones internacionales</li>
-      </ul>
+    <!-- Entregables -->
+    <div class="mt-16 p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Entregables</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white">Data-Driven Visuals</h3>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Gráficos, mapas y esquemas diseñados para entender el impacto de negocio en segundos.</p>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white">Firma Humana</h3>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Análisis técnico empírico y desprovisto de especulación o IA generativa.</p>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white">Neutralidad</h3>
+          </div>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Análisis riguroso, independiente y agnóstico ideológicamente.</p>
+        </div>
+      </div>
     </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">¿Listo para evaluar sus escenarios de riesgo?</h2>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/contact" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full transition-colors duration-200">
+          Solicitar Briefing Ejecutivo
+        </a>
+        <a href="/contact" class="px-8 py-3 border border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-medium rounded-full transition-colors duration-200">
+          Cotizar Monitor LatAm-Asia
+        </a>
+      </div>
+    </div>
+
   </div>
 </Layout>
