@@ -1,99 +1,133 @@
 ---
-// Este componente obtiene los últimos posts de cada blog
-// Los posts deben estar en src/data/post/ con el formato adecuado
+// Este componente obtiene el último post de Fun Politik desde su feed RSS
+// y muestra un enlace a 2050lab
 
-import { getCollection } from 'astro:content';
-
-// Obtener todos los posts
-const allPosts = await getCollection('post');
-
-// Función para agrupar por blog (usando la categoría o tag)
-const groupByBlog = (posts) => {
-  const blogs = {
-    'fun-politik': { name: 'Fun Politik', icon: '📰', posts: [] },
-    'futures-lab': { name: '2050 Futures Lab', icon: '🔬', posts: [] },
-  };
-
-  posts.forEach(post => {
-    // Asignar a un blog según categoría o tag
-    const isFunPolitik = post.data.categories?.includes('fun-politik') || 
-                         post.data.tags?.includes('fun-politik');
-    const isFuturesLab = post.data.categories?.includes('futures-lab') || 
-                         post.data.tags?.includes('futures-lab');
+const parseRSS = (xml) => {
+  const items = [];
+  const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+  let match;
+  
+  while ((match = itemRegex.exec(xml)) !== null) {
+    const itemXml = match[1];
+    const title = itemXml.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'Sin título';
+    const link = itemXml.match(/<link>([\s\S]*?)<\/link>/)?.[1] || '';
+    const pubDate = itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/)?.[1] || '';
+    const description = itemXml.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
     
-    if (isFunPolitik) {
-      blogs['fun-politik'].posts.push(post);
-    } else if (isFuturesLab) {
-      blogs['futures-lab'].posts.push(post);
-    }
-  });
-
-  // Ordenar y tomar el último de cada blog
-  const result = {};
-  Object.keys(blogs).forEach(key => {
-    const sorted = blogs[key].posts.sort((a, b) => 
-      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-    );
-    result[key] = {
-      ...blogs[key],
-      lastPost: sorted.length > 0 ? sorted[0] : null,
-      count: sorted.length
-    };
-  });
-
-  return result;
+    items.push({
+      title: title.replace(/<[^>]*>/g, '').trim(),
+      link: link.trim(),
+      pubDate: pubDate.trim(),
+      description: description.replace(/<[^>]*>/g, '').trim().substring(0, 200),
+    });
+  }
+  return items;
 };
 
-const blogData = groupByBlog(allPosts);
+let funPolitikPosts = [];
+
+try {
+  const response = await fetch('https://funpolitik.substack.com/feed', {
+    headers: { 'User-Agent': 'Mozilla/5.0' }
+  });
+  if (response.ok) {
+    const xml = await response.text();
+    funPolitikPosts = parseRSS(xml);
+  }
+} catch (error) {
+  console.error('Error loading Fun Politik feed:', error);
+}
+
+const lastPost = funPolitikPosts.length > 0 
+  ? funPolitikPosts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime())[0]
+  : null;
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-  {
-    Object.keys(blogData).map(key => {
-      const blog = blogData[key];
-      return (
-        <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="text-2xl">{blog.icon}</span>
-            <h3 class="text-xl font-bold">{blog.name}</h3>
-            <span class="text-xs text-muted ml-auto">{blog.count} publicaciones</span>
-          </div>
-          
-          {blog.lastPost ? (
-            <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3 mt-1">
-              <p class="text-xs text-muted mb-1">
-                {new Date(blog.lastPost.data.pubDate).toLocaleDateString('es-ES', { 
-                  day: 'numeric', month: 'long', year: 'numeric' 
-                })}
-              </p>
-              <a 
-                href={`/blog/${blog.lastPost.slug}`} 
-                class="font-medium text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-sm"
-              >
-                {blog.lastPost.data.title}
-              </a>
-              <p class="text-xs text-muted mt-1 line-clamp-2">
-                {blog.lastPost.data.description}
-              </p>
-            </div>
-          ) : (
-            <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3 mt-1">
-              <p class="text-sm text-muted">Próximamente...</p>
-            </div>
-          )}
-          
-          <div class="mt-4 pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
-            <a 
-              href={key === 'fun-politik' ? 'https://funpolitik.substack.com' : 'https://2050lab.org'}
-              target="_blank" 
-              rel="noopener"
-              class="text-xs text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline"
-            >
-              Ver todas las publicaciones →
-            </a>
-          </div>
-        </div>
-      );
-    })
-  }
+  <!-- Fun Politik -->
+  <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-2xl">📰</span>
+      <h3 class="text-xl font-bold">Fun Politik</h3>
+      <span class="text-xs text-muted ml-auto">{funPolitikPosts?.length || 0} publicaciones</span>
+    </div>
+    
+    {lastPost ? (
+      <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
+        <p class="text-xs text-muted mb-1">
+          {new Date(lastPost.pubDate).toLocaleDateString('es-ES', { 
+            day: 'numeric', month: 'long', year: 'numeric' 
+          })}
+        </p>
+        <a 
+          href={lastPost.link}
+          target="_blank" 
+          rel="noopener"
+          class="font-medium text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-sm"
+        >
+          {lastPost.title}
+        </a>
+        <p class="text-xs text-muted mt-1 line-clamp-2">
+          {lastPost.description}
+        </p>
+      </div>
+    ) : (
+      <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
+        <p class="text-sm text-muted">No se pudo cargar el feed</p>
+        <a 
+          href="https://funpolitik.substack.com"
+          target="_blank" 
+          rel="noopener"
+          class="text-xs text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline"
+        >
+          Ver en Substack →
+        </a>
+      </div>
+    )}
+    
+    <div class="mt-4 pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+      <a 
+        href="https://funpolitik.substack.com"
+        target="_blank" 
+        rel="noopener"
+        class="text-xs text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline"
+      >
+        Ver todas las publicaciones →
+      </a>
+    </div>
+  </div>
+
+  <!-- 2050 Futures Lab -->
+  <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-2xl">🔬</span>
+      <h3 class="text-xl font-bold">2050 Futures Lab</h3>
+      <span class="text-xs text-muted ml-auto">Substack</span>
+    </div>
+    
+    <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
+      <p class="text-sm text-muted mb-2">
+        Suscríbete al newsletter de 2050 Futures Lab en Substack
+      </p>
+      <a 
+        href="https://2050lab.substack.com"
+        target="_blank" 
+        rel="noopener"
+        class="font-medium text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-sm"
+      >
+        Visitar 2050lab.substack.com →
+      </a>
+    </div>
+    
+    <div class="mt-4 pt-3 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+      <a 
+        href="https://2050lab.substack.com"
+        target="_blank" 
+        rel="noopener"
+        class="text-xs text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline"
+      >
+        Ver todas las publicaciones →
+      </a>
+    </div>
+  </div>
 </div>
