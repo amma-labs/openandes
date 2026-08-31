@@ -27,7 +27,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  output: 'hybrid', // Cambiar de 'static' a 'hybrid' para permitir endpoints dinámicos
+  output: .static., // Cambiar de 'static' a 'hybrid' para permitir endpoints dinámicos
 
   adapter: vercel(), // Agregar el adaptador de Vercel
 
