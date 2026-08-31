@@ -1,35 +1,130 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+// Importar imagen para el hero
+import heroImage from '~/assets/images/46-chasing-climate-change-in-the-arctic-2800.jpg';
+
 const metadata = {
   title: 'Monitor LatAm-Asia — OpenAndes',
 };
 ---
 
 <Layout metadata={metadata}>
-  <div class="min-h-screen py-16 px-4 sm:px-6 mx-auto max-w-4xl">
-    <div class="mb-12 border-b border-[#e8e0d0] dark:border-[#2a2a2a] pb-8">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-3 h-3 bg-[#1a4b8c] inline-block rounded-full"></span>
-        <span class="text-xs font-mono-tech font-bold tracking-widest uppercase text-[#1a4b8c] dark:text-[#2b6cb5]">
+  <!-- Hero Section con imagen de fondo -->
+  <section class="relative min-h-[450px] flex items-center overflow-hidden">
+    <!-- Imagen de fondo -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src={heroImage.src} 
+        alt="Monitor LatAm-Asia - Open Andes" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+    </div>
+    
+    <!-- Línea decorativa superior -->
+    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"></div>
+    
+    <!-- Contenido del hero -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
+      <div class="max-w-3xl">
+        <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
           Monitoreo
         </span>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-5xl font-bold text-white leading-tight">
+          Monitor LatAm-Asia
+        </h1>
+        <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
+          Infraestructura, Geopolítica y Flujos de Capital en el Pacífico Sur
+        </p>
       </div>
-      <h1 class="text-4xl sm:text-5xl font-display font-bold tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
-        Monitor LatAm-Asia
-      </h1>
-      <p class="text-[#4a4038] dark:text-[#c8c0b4] text-base sm:text-lg mt-3 max-w-3xl leading-relaxed font-sans">
-        Seguimiento de flujos financieros, acuerdos bilaterales y exposición geopolítica.
+    </div>
+  </section>
+
+  <!-- Contenido -->
+  <div class="max-w-5xl mx-auto px-4 py-16">
+    
+    <!-- Descripción -->
+    <div class="mb-16 p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+      <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+        El Monitor LatAm-Asia es una iniciativa de investigación aplicada de Open Andes dedicada al análisis geoeconómico, logístico y financiero de las relaciones entre América Latina y la Cuenca del Indo-Pacífico.
       </p>
     </div>
 
-    <div class="p-6 rounded-xl bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a]">
-      <p class="text-[#4a4038] dark:text-[#c8c0b4] font-sans leading-relaxed">
-        El Monitor LatAm-Asia es un recurso dinámico de seguimiento de las relaciones económicas y políticas entre América Latina y la Cuenca del Pacífico.
+    <!-- Líneas de Investigación -->
+    <h2 class="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-12 text-center">
+      Líneas de Investigación
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      
+      <!-- Línea 1 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Geofinanzas e Inversión Estratégica</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          Mapeo de flujos de capital transpacífico en infraestructura crítica, matriz energética y cadenas de valor de minerales clave.
+        </p>
+      </div>
+
+      <!-- Línea 2 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Conectividad y Rediseño Logístico</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          Evaluación del impacto de la nueva infraestructura portuaria en los tiempos de tránsito, costos de flete y resiliencia de las cadenas de suministro.
+        </p>
+      </div>
+
+      <!-- Línea 3 -->
+      <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Riesgo Político y Gobernanza Regional</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          Análisis de vulnerabilidades marítimas, seguridad en infraestructura y marcos de integración comercial en el Pacífico Sur.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Publicaciones -->
+    <div class="mb-16 p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Publicaciones</h2>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        A través de análisis de datos y reportes ejecutivos, el Monitor provee inteligencia estratégica para la toma de decisiones.
       </p>
-      <p class="text-[#4a4038] dark:text-[#c8c0b4] font-sans leading-relaxed mt-4">
-        Próximamente: visualización de datos e indicadores clave.
+      <a 
+        href="#" 
+        class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full transition-colors duration-200"
+      >
+        Descargar Policy Brief (PDF)
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+      </a>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-4">
+        Síntesis ejecutiva sobre los objetivos, alcance y líneas de análisis del Monitor.
       </p>
     </div>
+
   </div>
 </Layout>
