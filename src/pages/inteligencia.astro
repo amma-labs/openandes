@@ -13,29 +13,43 @@ const metadata = {
 
     <div class="tradingview-widget-container" style="border-top: 3px solid #1a4b8c; border-bottom: 3px solid #1a4b8c; margin: 20px 0; padding: 10px 0;">
       <div class="tradingview-widget-container__widget"></div>
-      <script is:inline>
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
-        script.async = true;
-        script.innerHTML = JSON.stringify({
-          "symbols": [
-            { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
-            { "proName": "TVC:UKOIL", "title": "Brent Oil" },
-            { "proName": "TVC:USOIL", "title": "WTI Oil" },
-            { "proName": "TVC:GOLD", "title": "Oro" },
-            { "proName": "NYSE:TSM", "title": "TSMC" },
-            { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
-          ],
-          "showSymbolLogo": true,
-          "colorTheme": "light",
-          "isTransparent": false,
-          "displayMode": "adaptive",
-          "locale": "es"
-        });
-        document.currentScript.parentNode.appendChild(script);
-      </script>
     </div>
 
   </div>
 </Layout>
+
+<script>
+  // Script de TradingView cargado después de que la página esté lista
+  function loadTradingView() {
+    const container = document.querySelector('.tradingview-widget-container__widget');
+    if (!container) return;
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      "symbols": [
+        { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+        { "proName": "TVC:UKOIL", "title": "Brent Oil" },
+        { "proName": "TVC:USOIL", "title": "WTI Oil" },
+        { "proName": "TVC:GOLD", "title": "Oro" },
+        { "proName": "NYSE:TSM", "title": "TSMC" },
+        { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
+      ],
+      "showSymbolLogo": true,
+      "colorTheme": "light",
+      "isTransparent": false,
+      "displayMode": "adaptive",
+      "locale": "es"
+    });
+    container.appendChild(script);
+  }
+
+  // Cargar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadTradingView);
+  } else {
+    loadTradingView();
+  }
+</script>
