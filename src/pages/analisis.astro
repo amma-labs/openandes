@@ -1,11 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import BlogList from '~/components/blog/List.astro';
+import BlogGrid from '~/components/blog/Grid.astro';
 import BlogPagination from '~/components/blog/Pagination.astro';
 import { fetchPosts } from '~/utils/blog';
 
 const posts = await fetchPosts();
-const postsPerPage = 10;
+const postsPerPage = 6;
 const currentPage = 1;
 const totalPages = Math.ceil(posts.length / postsPerPage);
 const paginatedPosts = posts.slice(0, postsPerPage);
@@ -17,13 +17,13 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <div class="mb-8 md:mb-12 text-center max-w-3xl mx-auto">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight font-heading text-slate-900 dark:text-white mb-4">Análisis</h1>
-      <p class="text-xl text-muted dark:text-slate-400">Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA). Ensayos orientados a exponer las inercias de poder en América Latina.</p>
-    </div>
+  <section class="mx-auto max-w-4xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <header class="mx-auto mb-8 max-w-3xl text-center md:mb-16">
+      <h1 class="text-4xl font-bold font-heading leading-tighter tracking-tighter md:text-5xl">Análisis</h1>
+      <div class="mt-2 text-xl font-medium text-gray-500 dark:text-slate-400 md:mt-3">Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA). Ensayos orientados a exponer las inercias de poder en América Latina.</div>
+    </header>
 
-    <BlogList posts={paginatedPosts} />
+    <BlogGrid posts={paginatedPosts} />
     <BlogPagination currentPage={currentPage} totalPages={totalPages} baseUrl="/analisis" />
   </section>
 </Layout>
