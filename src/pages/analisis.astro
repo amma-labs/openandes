@@ -28,10 +28,15 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="mx-auto max-w-4xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
-    <header class="mx-auto mb-8 max-w-3xl text-center md:mb-16">
-      <h1 class="text-4xl font-bold font-heading leading-tighter tracking-tighter md:text-5xl">Análisis</h1>
-      <div class="mt-2 text-xl font-medium text-gray-500 dark:text-slate-400 md:mt-3">
+  <section class="mx-auto max-w-5xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <header class="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+      <span class="text-sm font-medium tracking-widest uppercase text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 px-3 py-1 rounded-full">
+        Open Andes
+      </span>
+      <h1 class="text-4xl font-serif font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
+        Análisis
+      </h1>
+      <div class="mt-4 text-lg font-medium text-slate-600 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
         Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA). Ensayos orientados a exponer las inercias de poder en América Latina.
       </div>
     </header>
@@ -39,25 +44,64 @@ const metadata = {
     {sortedPosts.length === 0 ? (
       <p class="text-center text-gray-500 dark:text-slate-400">No hay publicaciones aún.</p>
     ) : (
-      <div class="grid gap-8">
-        {sortedPosts.map((post) => (
-          <article class="border-b border-gray-200 dark:border-slate-700 pb-8 last:border-0">
-            <a href={post.url} class="block hover:opacity-80 transition">
-              <h2 class="text-2xl font-bold font-heading mb-2">{post.frontmatter?.title || 'Sin título'}</h2>
-              {post.frontmatter?.excerpt && (
-                <p class="text-gray-600 dark:text-slate-400">{post.frontmatter.excerpt}</p>
-              )}
-              <div class="text-sm text-gray-500 dark:text-slate-500 mt-2">
-                {post.frontmatter?.publishDate && (
-                  <time>{new Date(post.frontmatter.publishDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-                )}
-                {post.frontmatter?.author && (
-                  <span class="ml-2">por {post.frontmatter.author}</span>
-                )}
-              </div>
-            </a>
-          </article>
-        ))}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {sortedPosts.map((post) => {
+          const image = post.frontmatter?.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80';
+          return (
+            <article class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700">
+              <a href={post.url} class="block">
+                <div class="relative h-48 overflow-hidden">
+                  <img 
+                    src={image} 
+                    alt={post.frontmatter?.title || 'Artículo'}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  {post.frontmatter?.category && (
+                    <span class="absolute top-3 left-3 text-xs font-medium bg-blue-600/90 text-white px-3 py-1 rounded-full backdrop-blur-sm">
+                      {post.frontmatter.category}
+                    </span>
+                  )}
+                </div>
+                <div class="p-6">
+                  <h2 class="text-xl font-bold font-heading mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {post.frontmatter?.title || 'Sin título'}
+                  </h2>
+                  {post.frontmatter?.excerpt && (
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
+                      {post.frontmatter.excerpt}
+                    </p>
+                  )}
+                  <div class="flex items-center justify-between mt-4 text-xs text-slate-500 dark:text-slate-400">
+                    <div class="flex items-center gap-2">
+                      {post.frontmatter?.author && (
+                        <span class="font-medium">{post.frontmatter.author}</span>
+                      )}
+                    </div>
+                    {post.frontmatter?.publishDate && (
+                      <time class="text-slate-400 dark:text-slate-500">
+                        {new Date(post.frontmatter.publishDate).toLocaleDateString('es-ES', { 
+                          year: 'numeric', 
+                          month: 'short', 
+                          day: 'numeric' 
+                        })}
+                      </time>
+                    )}
+                  </div>
+                  {post.frontmatter?.tags && post.frontmatter.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1 mt-3">
+                      {post.frontmatter.tags.slice(0, 3).map((tag) => (
+                        <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-full text-slate-600 dark:text-slate-300">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </a>
+            </article>
+          );
+        })}
       </div>
     )}
   </section>
