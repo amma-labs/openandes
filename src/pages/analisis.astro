@@ -1,17 +1,25 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-// Leer archivos directamente del sistema de archivos
-const posts = Object.values(import.meta.glob('../content/post/*.mdx', { eager: true }))
-  .map((post: any) => ({
-    ...post,
-    url: post.url || `/analisis/${post.file?.split('/').pop()?.replace('.mdx', '') || ''}`
-  }))
-  .sort((a, b) => {
-    const dateA = new Date(a.frontmatter?.pubDate || a.frontmatter?.publishDate || '1970-01-01');
-    const dateB = new Date(b.frontmatter?.pubDate || b.frontmatter?.publishDate || '1970-01-01');
-    return dateB - dateA;
-  });
+// Obtener todos los archivos MDX de la carpeta content/post
+const posts = await Promise.all(
+  Object.entries(import.meta.glob('../content/post/*.mdx')).map(async ([path, load]) => {
+    const post = await load();
+    const slug = path.split('/').pop().replace('.mdx', '');
+    return {
+      ...post,
+      slug,
+      url: `/analisis/${slug}`
+    };
+  })
+);
+
+// Ordenar por fecha
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = new Date(a.frontmatter?.pubDate || a.frontmatter?.publishDate || '1970-01-01');
+  const dateB = new Date(b.frontmatter?.pubDate || b.frontmatter?.publishDate || '1970-01-01');
+  return dateB - dateA;
+});
 
 const metadata = {
   title: 'Análisis | OpenAndes',
@@ -24,15 +32,15 @@ const metadata = {
     <header class="mx-auto mb-8 max-w-3xl text-center md:mb-16">
       <h1 class="text-4xl font-bold font-heading leading-tighter tracking-tighter md:text-5xl">Análisis</h1>
       <div class="mt-2 text-xl font-medium text-gray-500 dark:text-slate-400 md:mt-3">
-        Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA).
+        Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA). Ensayos orientados a exponer las inercias de poder en América Latina.
       </div>
     </header>
 
-    {posts.length === 0 ? (
+    {sortedPosts.length === 0 ? (
       <p class="text-center text-gray-500 dark:text-slate-400">No hay publicaciones aún.</p>
     ) : (
       <div class="grid gap-8">
-        {posts.map((post) => (
+        {sortedPosts.map((post) => (
           <article class="border-b border-gray-200 dark:border-slate-700 pb-8 last:border-0">
             <a href={post.url} class="block hover:opacity-80 transition">
               <h2 class="text-2xl font-bold font-heading mb-2">{post.frontmatter?.title || 'Sin título'}</h2>
