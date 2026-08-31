@@ -1,11 +1,10 @@
 import type { APIRoute } from 'astro';
 
-// Forzar que este endpoint sea dinámico (no estático)
-export const prerender = false;
-
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { email } = await request.json();
+    // Leer el body una sola vez
+    const body = await request.json();
+    const { email } = body;
     
     if (!email) {
       return new Response(JSON.stringify({ error: 'Email es requerido' }), { status: 400 });
@@ -15,7 +14,6 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: 'Email inválido' }), { status: 400 });
     }
 
-    // Obtener variables de entorno
     const MAILCHIMP_API_KEY = import.meta.env.MAILCHIMP_API_KEY;
     const MAILCHIMP_LIST_ID = import.meta.env.MAILCHIMP_LIST_ID;
     const MAILCHIMP_DATACENTER = import.meta.env.MAILCHIMP_DATACENTER;
@@ -51,11 +49,13 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     if (!response.ok) {
-      console.error('Error de Mailchimp:', await response.text());
+      const errorText = await response.text();
+      console.error('Error de Mailchimp:', errorText);
       return new Response(JSON.stringify({ error: 'Error al suscribir' }), { status: 500 });
     }
 
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+    const data = await response.json();
+    return new Response(JSON.stringify({ success: true, data }), { status: 200 });
   } catch (error) {
     console.error('Error en el endpoint:', error);
     return new Response(JSON.stringify({ error: 'Error al suscribir' }), { status: 500 });
