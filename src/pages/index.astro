@@ -2,6 +2,28 @@
 import Layout from '~/layouts/PageLayout.astro';
 import RadarWidget from '~/components/widgets/RadarWidget.astro';
 
+// Importar posts de Análisis
+const posts = await Promise.all(
+  Object.entries(import.meta.glob('../data/post/*.{md,mdx}')).map(async ([path, load]) => {
+    const post = await load();
+    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
+    return {
+      ...post,
+      slug,
+      url: `/analisis/${slug}`
+    };
+  })
+);
+
+// Ordenar por fecha y obtener el más reciente
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
+  const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
+  return dateB - dateA;
+});
+
+const mainPost = sortedPosts[0] || null;
+
 const metadata = {
   title: 'OPEN ANDES — Inteligencia Estratégica y Riesgo Geofinanciero LatAm-Asia',
   ignoreTitleTemplate: true,
@@ -17,28 +39,44 @@ const metadata = {
     <section class="py-8 px-4 sm:px-6 mx-auto max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
-        <article class="lg:col-span-8 flex flex-col gap-4 font-sans opacity-70">
+        <article class="lg:col-span-8 flex flex-col gap-4 font-sans">
           <div class="flex items-center gap-3">
             <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-xs uppercase px-2.5 py-1 rounded w-max tracking-wide">
-              Informe Principal &bull; Próximo Lanzamiento
+              {mainPost ? mainPost.frontmatter?.category || 'Análisis' : 'Informe Principal'}
             </span>
-            <span class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">
-              Estreno: Lunes 24 Ago
-            </span>
+            {mainPost?.frontmatter?.pubDate && (
+              <span class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">
+                {new Date(mainPost.frontmatter.pubDate).toLocaleDateString('es-ES', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </span>
+            )}
           </div>
           <div class="overflow-hidden rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
             <img 
-              src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-              alt="Análisis Principal En Preparación" 
-              class="w-full h-[360px] sm:h-[400px] object-cover grayscale opacity-80"
+              src={mainPost?.frontmatter?.image || 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'} 
+              alt={mainPost?.frontmatter?.title || 'Análisis Principal'} 
+              class="w-full h-[360px] sm:h-[400px] object-cover"
             />
           </div>
-          <h1 class="text-3xl sm:text-4xl font-display font-semibold tracking-tight text-slate-500 dark:text-slate-400 leading-tight italic">
-            Título del Informe Principal en preparación...
+          <h1 class="text-3xl sm:text-4xl font-display font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+            {mainPost?.frontmatter?.title || 'Título del Informe Principal en preparación...'}
           </h1>
-          <p class="font-sans text-base text-slate-500 dark:text-slate-400 leading-relaxed italic">
-            El equipo analítico de Open Andes se encuentra redactando la evaluación estratégica de esta entrega. Estará disponible públicamente en la fecha programada.
+          <div class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+            {mainPost?.frontmatter?.author && (
+              <span class="font-medium">Por {mainPost.frontmatter.author}</span>
+            )}
+          </div>
+          <p class="font-sans text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            {mainPost?.frontmatter?.excerpt || 'El equipo analítico de Open Andes se encuentra redactando la evaluación estratégica de esta entrega. Estará disponible públicamente en la fecha programada.'}
           </p>
+          {mainPost && (
+            <a href={mainPost.url} class="inline-flex items-center gap-2 text-[#1a4b8c] dark:text-[#2b6cb5] font-medium hover:underline">
+              Leer artículo completo →
+            </a>
+          )}
         </article>
 
         <aside class="lg:col-span-4 flex flex-col justify-between lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
