@@ -5,21 +5,16 @@ const metadata = {
   title: 'Inteligencia | OpenAndes',
 };
 
-// Commodities organizados por región
 const commodities = [
-  // América Latina
   { symbol: 'HG=F', name: 'Cobre', region: 'LatAm' },
   { symbol: 'LIT', name: 'Litio', region: 'LatAm' },
   { symbol: 'ZS=F', name: 'Soja', region: 'LatAm' },
   { symbol: 'SI=F', name: 'Plata', region: 'LatAm' },
-  // Global
   { symbol: 'BZ=F', name: 'Brent', region: 'Global' },
   { symbol: 'GC=F', name: 'Oro', region: 'Global' },
-  // Asia
   { symbol: '000001.SS', name: 'Shanghai', region: 'Asia' },
   { symbol: '^HSI', name: 'Hang Seng', region: 'Asia' },
   { symbol: '^N225', name: 'Nikkei', region: 'Asia' },
-  // Inversión
   { symbol: 'DX-Y.NYB', name: 'Dólar Index', region: 'Inversión' },
 ];
 
@@ -78,7 +73,6 @@ const groups = {
     ))}
 
     <script is:inline>
-      // Cargar Chart.js desde CDN
       const chartScript = document.createElement('script');
       chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
       chartScript.onload = initCharts;
@@ -87,11 +81,10 @@ const groups = {
       let charts = {};
       const symbols = ['HG=F', 'LIT', 'ZS=F', 'SI=F', 'BZ=F', 'GC=F', '000001.SS', '^HSI', '^N225', 'DX-Y.NYB'];
 
-      // Función para obtener datos de Yahoo Finance
+      // Usar el proxy de nuestro servidor
       async function fetchYahooData(symbol) {
         try {
-          const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}`;
-          const response = await fetch(url);
+          const response = await fetch(`/api/yahoo.json?symbol=${symbol}`);
           const data = await response.json();
           
           if (data.chart && data.chart.result && data.chart.result.length > 0) {
@@ -99,15 +92,9 @@ const groups = {
             const meta = result.meta;
             const quotes = result.indicators.quote[0];
             
-            // Precio actual
             const currentPrice = meta.regularMarketPrice || meta.previousClose || 0;
-            
-            // Cambio porcentual
             const change = meta.regularMarketChangePercent || 0;
-            
-            // Datos históricos (cierre)
             const closes = quotes.close || [];
-            const timestamps = result.timestamp || [];
             
             return {
               price: currentPrice,
@@ -124,7 +111,6 @@ const groups = {
       }
 
       function initCharts() {
-        // Crear gráficos vacíos
         for (const symbol of symbols) {
           const canvas = document.getElementById(`chart-${symbol}`);
           if (!canvas) continue;
@@ -160,9 +146,15 @@ const groups = {
       async function updateAll() {
         for (const symbol of symbols) {
           const data = await fetchYahooData(symbol);
-          if (!data) continue;
+          if (!data) {
+            const statusEl = document.getElementById(`status-${symbol}`);
+            if (statusEl) {
+              statusEl.textContent = 'Error';
+              statusEl.className = 'text-xs text-red-600 dark:text-red-400';
+            }
+            continue;
+          }
 
-          // Actualizar precio
           const priceEl = document.getElementById(`price-${symbol}`);
           const changeEl = document.getElementById(`change-${symbol}`);
           const statusEl = document.getElementById(`status-${symbol}`);
@@ -185,7 +177,6 @@ const groups = {
             statusEl.className = 'text-xs text-green-600 dark:text-green-400';
           }
 
-          // Actualizar gráfico
           if (charts[symbol] && data.history && data.history.length > 0) {
             const prices = data.history;
             const color = prices[prices.length - 1] > prices[0] ? '#22c55e' : '#ef4444';
