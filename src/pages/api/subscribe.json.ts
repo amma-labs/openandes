@@ -1,5 +1,8 @@
 import type { APIRoute } from 'astro';
 
+// Forzar que este endpoint sea dinámico (no estático)
+export const prerender = false;
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const { email } = await request.json();
@@ -32,7 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
         },
         body: JSON.stringify({
           email_address: email,
-          status: 'pending', // Envía un email de confirmación
+          status: 'pending',
         }),
       }
     );
