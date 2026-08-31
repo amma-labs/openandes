@@ -8,6 +8,11 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Button from '~/components/ui/Button.astro';
 
+// Importar imágenes locales
+import heroImage from '~/assets/images/Religiones del mundo999.png';
+import funPolitikImage from '~/assets/images/Screenshot 2026-08-30 at 6.59.14 PM.png';
+import futureLabImage from '~/assets/images/default.png';
+
 const metadata = {
   title: 'Eventos — OpenAndes',
 };
@@ -17,7 +22,7 @@ const metadata = {
   <Hero2
     tagline="Eventos & Encuentros"
     image={{
-      src: '/images/Religiones del mundo999.png',
+      src: heroImage.src,
       alt: 'Encuentros y Diálogos OpenAndes',
     }}
   >
@@ -99,7 +104,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: '/images/Screenshot 2026-08-30 at 6.59.14 PM.png',
+      src: funPolitikImage.src,
       alt: 'Sesiones de FunPolitik',
     }}
   >
@@ -130,7 +135,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: '/images/default.png',
+      src: futureLabImage.src,
       alt: 'Sesiones de 2050 Futures Lab',
     }}
   >
