@@ -28,6 +28,7 @@
     "@astro-community/astro-embed-youtube": "^0.5.10",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^11.0.8",
     "astro": "^7.2.0",
     "astro-icon": "^1.1.5",
     "astro-seo": "^1.1.0",
