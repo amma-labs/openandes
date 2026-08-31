@@ -44,6 +44,15 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
+      name: 'Montserrat',
+      cssVariable: '--font-montserrat',
+      weights: ['400 900'],
+      styles: ['normal'],
+      subsets: ['latin'],
+      fallbacks: ['sans-serif'],
+    },
+    {
+      provider: fontProviders.fontsource(),
       name: 'Inter',
       cssVariable: '--font-inter',
       weights: ['100 900'],
