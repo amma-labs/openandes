@@ -2,10 +2,11 @@ import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // Leer el body una sola vez
+    // Leer el body correctamente
     const body = await request.json();
     const { email } = body;
-    
+
+    // Validaciones
     if (!email) {
       return new Response(JSON.stringify({ error: 'Email es requerido' }), { status: 400 });
     }
@@ -14,15 +15,18 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: 'Email inválido' }), { status: 400 });
     }
 
+    // Obtener variables de entorno
     const MAILCHIMP_API_KEY = import.meta.env.MAILCHIMP_API_KEY;
     const MAILCHIMP_LIST_ID = import.meta.env.MAILCHIMP_LIST_ID;
     const MAILCHIMP_DATACENTER = import.meta.env.MAILCHIMP_DATACENTER;
 
+    // Verificar que existan
     if (!MAILCHIMP_API_KEY || !MAILCHIMP_LIST_ID || !MAILCHIMP_DATACENTER) {
       console.error('Faltan variables de entorno de Mailchimp');
       return new Response(JSON.stringify({ error: 'Error de configuración del servidor' }), { status: 500 });
     }
 
+    // Llamar a la API de Mailchimp
     const response = await fetch(
       `https://${MAILCHIMP_DATACENTER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST_ID}/members`,
       {
@@ -38,12 +42,13 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
 
+    // Manejar errores de Mailchimp
     if (response.status === 400) {
       const data = await response.json();
       if (data.title === 'Member Exists') {
-        return new Response(JSON.stringify({ 
+        return new Response(JSON.stringify({
           error: 'Este email ya está suscrito',
-          exists: true 
+          exists: true
         }), { status: 400 });
       }
     }
@@ -55,7 +60,8 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const data = await response.json();
-    return new Response(JSON.stringify({ success: true, data }), { status: 200 });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+
   } catch (error) {
     console.error('Error en el endpoint:', error);
     return new Response(JSON.stringify({ error: 'Error al suscribir' }), { status: 500 });
