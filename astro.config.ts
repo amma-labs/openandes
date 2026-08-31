@@ -18,7 +18,7 @@ import astrowind from './vendor/integration';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter';
 
 // Importar el adaptador de Vercel
-import vercel from '@astrojs/vercel/serverless';
+import vercel from .@astrojs/vercel.;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
