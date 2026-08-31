@@ -1,37 +1,18 @@
-import { getRssString } from '@astrojs/rss';
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
 
-import { SITE, METADATA, APP_BLOG } from 'astrowind:config';
-import { fetchPosts } from '~/utils/blog';
-import { getPermalink } from '~/utils/permalinks';
-
-export const GET = async () => {
-  if (!APP_BLOG.isEnabled) {
-    return new Response(null, {
-      status: 404,
-      statusText: 'Not found',
-    });
-  }
-
-  const posts = await fetchPosts();
-
-  const rss = await getRssString({
-    title: `${SITE.name}’s Blog`,
-    description: METADATA?.description || '',
-    site: import.meta.env.SITE,
-
+export async function GET(context) {
+  const posts = await getCollection('blog');
+  return rss({
+    title: 'Open Andes — Inteligencia Estratégica',
+    description: 'Análisis geopolítico, geoeconómico y prospectiva desde América Latina para el mundo.',
+    site: context.site,
     items: posts.map((post) => ({
-      link: getPermalink(post.permalink, 'post'),
-      title: post.title,
-      description: post.excerpt,
-      pubDate: post.publishDate,
+      title: post.data.title,
+      pubDate: post.data.pubDate,
+      description: post.data.excerpt || post.data.description || '',
+      link: `/blog/${post.slug}/`,
     })),
-
-    trailingSlash: SITE.trailingSlash,
+    customData: `<language>es</language>`,
   });
-
-  return new Response(rss, {
-    headers: {
-      'Content-Type': 'application/xml',
-    },
-  });
-};
+}
