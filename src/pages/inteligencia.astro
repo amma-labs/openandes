@@ -8,52 +8,54 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    
-    <!-- Título -->
-    <div class="mb-6">
-      <h1 class="text-3xl font-bold text-slate-900 dark:text-white">Inteligencia Estratégica</h1>
-      <p class="text-lg text-slate-600 dark:text-slate-400">Monitoreo de mercados, commodities y activos globales en tiempo real.</p>
-    </div>
+    <h1 class="text-3xl font-bold mb-6">Inteligencia Estratégica</h1>
+    <p class="text-lg text-muted mb-8">Monitoreo de mercados y activos globales en tiempo real.</p>
 
-    <!-- 1. Ticker Tape -->
+    <!-- Ticker Tape -->
     <div class="tradingview-widget-container" style="border-top: 3px solid #1a4b8c; border-bottom: 3px solid #1a4b8c; margin: 20px 0; padding: 10px 0;">
       <div class="tradingview-widget-container__widget"></div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-      {
-        "symbols": [
-          { "proName": "TVC:UKOIL", "title": "Brent Oil" },
-          { "proName": "TVC:USOIL", "title": "WTI Oil" },
-          { "proName": "TVC:GOLD", "title": "Oro" },
-          { "proName": "TVC:SILVER", "title": "Plata" },
-          { "proName": "TVC:COPPER", "title": "Cobre" },
-          { "proName": "TVC:NG1!", "title": "Gas Natural" },
-          { "proName": "TVC:SGX", "title": "Singapore" },
-          { "proName": "TVC:HSI", "title": "Hong Kong" },
-          { "proName": "TVC:SSE", "title": "Shanghai" },
-          { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
-          { "proName": "NASDAQ:IXIC", "title": "Nasdaq" },
-          { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
-        ],
-        "showSymbolLogo": true,
-        "colorTheme": "light",
-        "isTransparent": false,
-        "displayMode": "adaptive",
-        "locale": "es"
-      }
+      <script is:inline>
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+        script.async = true;
+        script.innerHTML = JSON.stringify({
+          "symbols": [
+            { "proName": "TVC:UKOIL", "title": "Brent Oil" },
+            { "proName": "TVC:USOIL", "title": "WTI Oil" },
+            { "proName": "TVC:GOLD", "title": "Oro" },
+            { "proName": "TVC:SILVER", "title": "Plata" },
+            { "proName": "TVC:COPPER", "title": "Cobre" },
+            { "proName": "TVC:NG1!", "title": "Gas Natural" },
+            { "proName": "TVC:SGX", "title": "Singapore" },
+            { "proName": "TVC:HSI", "title": "Hong Kong" },
+            { "proName": "TVC:SSE", "title": "Shanghai" },
+            { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+            { "proName": "NASDAQ:IXIC", "title": "Nasdaq" },
+            { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "light",
+          "isTransparent": false,
+          "displayMode": "adaptive",
+          "locale": "es"
+        });
+        document.currentScript.parentNode.appendChild(script);
       </script>
     </div>
 
-    <!-- 2. Heatmap + Commodities -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-      
-      <!-- Heatmap -->
-      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
-        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Mapa de Calor - S&P 500</span>
-        </div>
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-        {
+    <!-- Heatmap -->
+    <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c; margin-top: 20px;">
+      <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Mapa de Calor - S&P 500</span>
+      </div>
+      <div class="tradingview-widget-container__widget"></div>
+      <script is:inline>
+        const script2 = document.createElement('script');
+        script2.type = 'text/javascript';
+        script2.src = 'https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js';
+        script2.async = true;
+        script2.innerHTML = JSON.stringify({
           "exchanges": [],
           "dataSource": "S&P500",
           "grouping": "sector",
@@ -63,18 +65,23 @@ const metadata = {
           "colorTheme": "light",
           "width": "100%",
           "height": "400"
-        }
-        </script>
-      </div>
+        });
+        document.currentScript.parentNode.appendChild(script2);
+      </script>
+    </div>
 
-      <!-- Commodities -->
-      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
-        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Commodities</span>
-        </div>
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-        {
+    <!-- Commodities -->
+    <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c; margin-top: 20px;">
+      <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Commodities</span>
+      </div>
+      <div class="tradingview-widget-container__widget"></div>
+      <script is:inline>
+        const script3 = document.createElement('script');
+        script3.type = 'text/javascript';
+        script3.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js';
+        script3.async = true;
+        script3.innerHTML = JSON.stringify({
           "width": "100%",
           "height": "400",
           "symbolsGroups": [
@@ -107,49 +114,23 @@ const metadata = {
           "colorTheme": "light",
           "isTransparent": false,
           "locale": "es"
-        }
-        </script>
-      </div>
-
+        });
+        document.currentScript.parentNode.appendChild(script3);
+      </script>
     </div>
 
-    <!-- 3. Chart Brent Oil -->
-    <div class="mt-8">
-      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
-        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Brent Oil - Análisis Técnico</span>
-        </div>
-        <div style="height:500px;">
-          <div id="terminal_chart" style="height:100%;"></div>
-        </div>
-        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-        <script type="text/javascript">
-          new TradingView.widget({
-            "autosize": true,
-            "symbol": "TVC:UKOIL",
-            "interval": "D",
-            "timezone": "Etc/UTC",
-            "theme": "light",
-            "style": "1",
-            "locale": "es",
-            "toolbar_bg": "#f1f3f6",
-            "enable_publishing": false,
-            "allow_symbol_change": true,
-            "container_id": "terminal_chart"
-          });
-        </script>
+    <!-- Economic Calendar Asia-Pacífico -->
+    <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c; margin-top: 20px;">
+      <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Calendario Económico - Asia Pacífico</span>
       </div>
-    </div>
-
-    <!-- 4. Economic Calendar Asia-Pacífico -->
-    <div class="mt-8">
-      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
-        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Calendario Económico - Asia Pacífico</span>
-        </div>
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-        {
+      <div class="tradingview-widget-container__widget"></div>
+      <script is:inline>
+        const script4 = document.createElement('script');
+        script4.type = 'text/javascript';
+        script4.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
+        script4.async = true;
+        script4.innerHTML = JSON.stringify({
           "colorTheme": "light",
           "isTransparent": false,
           "width": "100%",
@@ -157,9 +138,9 @@ const metadata = {
           "locale": "es",
           "importanceFilter": "-1,0,1",
           "countryFilter": "China,Japan,India,South Korea,Singapore,Indonesia,Taiwan"
-        }
-        </script>
-      </div>
+        });
+        document.currentScript.parentNode.appendChild(script4);
+      </script>
     </div>
 
   </div>
