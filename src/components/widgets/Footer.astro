@@ -93,7 +93,9 @@ const { theme = 'dark' } = Astro.props;
           'Content-Type': 'application/json',
           'Authorization': `Token ${API_KEY}`
         },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ 
+          email_address: email  // Cambiado de 'email' a 'email_address'
+        })
       });
 
       if (response.status === 409) {
