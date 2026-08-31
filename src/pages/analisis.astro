@@ -1,11 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-// Obtener todos los archivos MDX de la carpeta content/post
+// Buscar posts en src/data/post/
 const posts = await Promise.all(
-  Object.entries(import.meta.glob('../content/post/*.mdx')).map(async ([path, load]) => {
+  Object.entries(import.meta.glob('../data/post/*.{md,mdx}')).map(async ([path, load]) => {
     const post = await load();
-    const slug = path.split('/').pop().replace('.mdx', '');
+    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
     return {
       ...post,
       slug,
@@ -16,8 +16,8 @@ const posts = await Promise.all(
 
 // Ordenar por fecha
 const sortedPosts = posts.sort((a, b) => {
-  const dateA = new Date(a.frontmatter?.pubDate || a.frontmatter?.publishDate || '1970-01-01');
-  const dateB = new Date(b.frontmatter?.pubDate || b.frontmatter?.publishDate || '1970-01-01');
+  const dateA = new Date(a.frontmatter?.publishDate || '1970-01-01');
+  const dateB = new Date(b.frontmatter?.publishDate || '1970-01-01');
   return dateB - dateA;
 });
 
@@ -44,12 +44,12 @@ const metadata = {
           <article class="border-b border-gray-200 dark:border-slate-700 pb-8 last:border-0">
             <a href={post.url} class="block hover:opacity-80 transition">
               <h2 class="text-2xl font-bold font-heading mb-2">{post.frontmatter?.title || 'Sin título'}</h2>
-              {post.frontmatter?.description && (
-                <p class="text-gray-600 dark:text-slate-400">{post.frontmatter.description}</p>
+              {post.frontmatter?.excerpt && (
+                <p class="text-gray-600 dark:text-slate-400">{post.frontmatter.excerpt}</p>
               )}
               <div class="text-sm text-gray-500 dark:text-slate-500 mt-2">
-                {post.frontmatter?.pubDate && (
-                  <time>{new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+                {post.frontmatter?.publishDate && (
+                  <time>{new Date(post.frontmatter.publishDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                 )}
                 {post.frontmatter?.author && (
                   <span class="ml-2">por {post.frontmatter.author}</span>
