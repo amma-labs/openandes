@@ -13,7 +13,6 @@ export const headerData = {
     {
       text: 'Advisory',
       links: [
-        { text: 'Inteligencia', href: getPermalink('/inteligencia') },
         { text: 'Estrategia', href: getPermalink('/estrategia') },
         { text: 'Monitor Latam-Asia', href: getPermalink('/monitor') },
       ],
