@@ -1,0 +1,29 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import BlogGrid from '~/components/blog/Grid.astro';
+import BlogPagination from '~/components/blog/Pagination.astro';
+import { fetchPosts } from '~/utils/blog';
+
+const posts = await fetchPosts();
+const postsPerPage = 6;
+const currentPage = 1;
+const totalPages = Math.ceil(posts.length / postsPerPage);
+const paginatedPosts = posts.slice(0, postsPerPage);
+
+const metadata = {
+  title: 'Análisis | OpenAndes',
+  description: 'Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA).',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="mx-auto max-w-4xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <header class="mx-auto mb-8 max-w-3xl text-center md:mb-16">
+      <h1 class="text-4xl font-bold font-heading leading-tighter tracking-tighter md:text-5xl">Análisis</h1>
+      <div class="mt-2 text-xl font-medium text-gray-500 dark:text-slate-400 md:mt-3">Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA). Ensayos orientados a exponer las inercias de poder en América Latina.</div>
+    </header>
+
+    <BlogGrid posts={paginatedPosts} />
+    <BlogPagination currentPage={currentPage} totalPages={totalPages} baseUrl="/analisis" />
+  </section>
+</Layout>
