@@ -81,7 +81,6 @@ const groups = {
       let charts = {};
       const symbols = ['HG=F', 'LIT', 'ZS=F', 'SI=F', 'BZ=F', 'GC=F', '000001.SS', '^HSI', '^N225', 'DX-Y.NYB'];
 
-      // Usar el proxy de nuestro servidor
       async function fetchYahooData(symbol) {
         try {
           const response = await fetch(`/api/yahoo.json?symbol=${symbol}`);
