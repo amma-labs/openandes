@@ -8,48 +8,160 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    <h1 class="text-3xl font-bold mb-6">Inteligencia Estratégica</h1>
-    <p class="text-lg text-muted mb-8">Monitoreo de mercados y activos globales en tiempo real.</p>
+    
+    <!-- Título -->
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold text-slate-900 dark:text-white">Inteligencia Estratégica</h1>
+      <p class="text-lg text-slate-600 dark:text-slate-400">Monitoreo de mercados, commodities y activos globales en tiempo real.</p>
+    </div>
 
+    <!-- 1. Ticker Tape -->
     <div class="tradingview-widget-container" style="border-top: 3px solid #1a4b8c; border-bottom: 3px solid #1a4b8c; margin: 20px 0; padding: 10px 0;">
       <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {
+        "symbols": [
+          { "proName": "TVC:UKOIL", "title": "Brent Oil" },
+          { "proName": "TVC:USOIL", "title": "WTI Oil" },
+          { "proName": "TVC:GOLD", "title": "Oro" },
+          { "proName": "TVC:SILVER", "title": "Plata" },
+          { "proName": "TVC:COPPER", "title": "Cobre" },
+          { "proName": "TVC:NG1!", "title": "Gas Natural" },
+          { "proName": "TVC:SGX", "title": "Singapore" },
+          { "proName": "TVC:HSI", "title": "Hong Kong" },
+          { "proName": "TVC:SSE", "title": "Shanghai" },
+          { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
+          { "proName": "NASDAQ:IXIC", "title": "Nasdaq" },
+          { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
+        ],
+        "showSymbolLogo": true,
+        "colorTheme": "light",
+        "isTransparent": false,
+        "displayMode": "adaptive",
+        "locale": "es"
+      }
+      </script>
+    </div>
+
+    <!-- 2. Heatmap + Commodities (2 columnas) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+      
+      <!-- Heatmap -->
+      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
+        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Mapa de Calor - S&P 500</span>
+        </div>
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+        {
+          "exchanges": [],
+          "dataSource": "S&P500",
+          "grouping": "sector",
+          "blockSize": "market_cap",
+          "blockColor": "change",
+          "locale": "es",
+          "colorTheme": "light",
+          "width": "100%",
+          "height": "400"
+        }
+        </script>
+      </div>
+
+      <!-- Commodities -->
+      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
+        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Commodities</span>
+        </div>
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+        {
+          "width": "100%",
+          "height": "400",
+          "symbolsGroups": [
+            {
+              "name": "Energía",
+              "symbols": [
+                { "name": "TVC:UKOIL", "displayName": "Brent Crude" },
+                { "name": "TVC:USOIL", "displayName": "WTI Crude" },
+                { "name": "TVC:NG1!", "displayName": "Natural Gas" }
+              ]
+            },
+            {
+              "name": "Metales",
+              "symbols": [
+                { "name": "TVC:GOLD", "displayName": "Gold" },
+                { "name": "TVC:SILVER", "displayName": "Silver" },
+                { "name": "TVC:COPPER", "displayName": "Copper" }
+              ]
+            },
+            {
+              "name": "Agrícolas",
+              "symbols": [
+                { "name": "TVC:WHEAT", "displayName": "Wheat" },
+                { "name": "TVC:CORN", "displayName": "Corn" },
+                { "name": "TVC:SOYBEAN", "displayName": "Soybean" }
+              ]
+            }
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "light",
+          "isTransparent": false,
+          "locale": "es"
+        }
+        </script>
+      </div>
+
+    </div>
+
+    <!-- 3. Chart (Brent Oil) -->
+    <div class="mt-8">
+      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
+        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Brent Oil - Análisis Técnico</span>
+        </div>
+        <div style="height:500px;">
+          <div id="terminal_chart" style="height:100%;"></div>
+        </div>
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <script type="text/javascript">
+          new TradingView.widget({
+            "autosize": true,
+            "symbol": "TVC:UKOIL",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "light",
+            "style": "1",
+            "locale": "es",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "terminal_chart"
+          });
+        </script>
+      </div>
+    </div>
+
+    <!-- 4. Economic Calendar (con foco Asia-Pacífico) -->
+    <div class="mt-8">
+      <div class="tradingview-widget-container" style="border: 2px solid #1a4b8c;">
+        <div class="p-3 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+          <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Calendario Económico - Asia Pacífico</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Eventos de alto impacto</span>
+        </div>
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+        {
+          "colorTheme": "light",
+          "isTransparent": false,
+          "width": "100%",
+          "height": "400",
+          "locale": "es",
+          "importanceFilter": "-1,0,1",
+          "countryFilter": "China,Japan,India,South Korea,Singapore,Indonesia,Taiwan"
+        }
+        </script>
+      </div>
     </div>
 
   </div>
 </Layout>
-
-<script>
-  // Script de TradingView cargado después de que la página esté lista
-  function loadTradingView() {
-    const container = document.querySelector('.tradingview-widget-container__widget');
-    if (!container) return;
-
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      "symbols": [
-        { "proName": "BITSTAMP:BTCUSD", "title": "Bitcoin" },
-        { "proName": "TVC:UKOIL", "title": "Brent Oil" },
-        { "proName": "TVC:USOIL", "title": "WTI Oil" },
-        { "proName": "TVC:GOLD", "title": "Oro" },
-        { "proName": "NYSE:TSM", "title": "TSMC" },
-        { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
-      ],
-      "showSymbolLogo": true,
-      "colorTheme": "light",
-      "isTransparent": false,
-      "displayMode": "adaptive",
-      "locale": "es"
-    });
-    container.appendChild(script);
-  }
-
-  // Cargar cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadTradingView);
-  } else {
-    loadTradingView();
-  }
-</script>
