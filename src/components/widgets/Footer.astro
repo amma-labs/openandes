@@ -11,10 +11,8 @@ const { theme = 'dark' } = Astro.props;
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-[#e8e0d0] dark:border-[#2a2a2a] bg-page not-prose font-sans']}>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 text-[#1a1410] dark:text-[#f0ece4]">
     
-    <!-- Bloque Principal -->
     <div class="grid grid-cols-12 gap-8 py-12 items-start">
       
-      <!-- Columna Izquierda: Logo + Newsletter -->
       <div class="col-span-12 lg:col-span-5 flex flex-col justify-between">
         <div>
           <a class="inline-flex items-center gap-2 font-display font-bold text-2xl tracking-wider text-[#1a1410] dark:text-[#f0ece4] mb-4 uppercase" href={getHomePermalink()}>
@@ -23,30 +21,20 @@ const { theme = 'dark' } = Astro.props;
           </a>
         </div>
 
-        <!-- Newsletter -->
         <div class="mt-6">
           <p class="text-xs text-[#4a4038] dark:text-[#c8c0b4] mb-3 font-sans">Suscríbete a nuestro newsletter</p>
-          <form action="https://openandes.us16.list-manage.com/subscribe/post?u=390c2a7804794544de109dddd&amp;id=dc452052bd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="flex flex-col gap-2 max-w-md">
-            <div class="flex gap-2">
-              <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="tu@email.com" required class="flex-1 px-3 py-2 text-sm bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] rounded-md focus:outline-none focus:border-[#1a4b8c] dark:focus:border-[#2b6cb5] transition-colors font-sans text-[#1a1410] dark:text-[#f0ece4]" />
-              <button type="submit" id="mc-embedded-subscribe" class="px-4 py-2 text-sm font-mono-tech font-semibold bg-[#1a4b8c] hover:bg-[#0d2b4f] dark:bg-[#2b6cb5] dark:hover:bg-[#1a4b8c] text-white rounded-md transition-colors">Enviar</button>
-            </div>
-            <div id="mce-responses" class="clear">
-              <div class="response text-xs font-sans" id="mce-error-response" style="display:none; color: #dc2626;"></div>
-              <div class="response text-xs font-sans" id="mce-success-response" style="display:none; color: #16a34a;"></div>
-            </div>
-          </form>
+          <a href="https://openandes.us16.list-manage.com/subscribe?u=390c2a7804794544de109dddd&id=dc452052bd" target="_blank" class="inline-block px-4 py-2 text-sm font-mono-tech font-semibold bg-[#1a4b8c] hover:bg-[#0d2b4f] dark:bg-[#2b6cb5] dark:hover:bg-[#1a4b8c] text-white rounded-md transition-colors">
+            Suscribirse →
+          </a>
           <p class="text-[10px] text-[#4a4038]/60 dark:text-[#c8c0b4]/60 mt-2 font-sans">Sin spam. Puedes darte de baja cuando quieras.</p>
         </div>
 
-        <!-- Coordinación Regional -->
         <div class="space-y-1 text-xs text-[#4a4038] dark:text-[#c8c0b4] mt-6">
           <p class="font-semibold text-[#1a1410] dark:text-[#f0ece4]">Coordinación Regional:</p>
           <p>Santiago, Chile · Lima, Perú</p>
         </div>
       </div>
 
-      <!-- Columna Derecha: Manifiesto -->
       <div class="col-span-12 lg:col-span-7 lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8">
         <p class="text-lg sm:text-xl lg:text-2xl font-display font-medium leading-relaxed text-[#1a1410] dark:text-[#f0ece4]">
           Mirando el pasado y el futuro, caminamos con confianza en el presente. Somos un nodo modular de inteligencia estratégica y consultoría dedicada al análisis de riesgos políticos, tendencias geoeconómicas y escenarios prospectivos en América Latina. Articulamos conocimiento crítico para anticipar el cambio y tomar decisiones con certidumbre.
@@ -55,7 +43,6 @@ const { theme = 'dark' } = Astro.props;
 
     </div>
 
-    <!-- Barra Inferior -->
     <div class="md:flex md:items-center md:justify-between py-6 border-t border-[#e8e0d0] dark:border-[#2a2a2a] text-xs text-[#4a4038] dark:text-[#c8c0b4] font-sans">
       <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
         <span>© 2026 OPEN ANDES. Todos los derechos reservados.</span>
@@ -73,25 +60,3 @@ const { theme = 'dark' } = Astro.props;
 
   </div>
 </footer>
-
-<!-- Script de Mailchimp -->
-<script type="text/javascript" src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-<script type="text/javascript">
-  (function($) {
-    window.fnames = new Array();
-    window.ftypes = new Array();
-    fnames[0]='EMAIL';
-    ftypes[0]='email';
-    fnames[1]='FNAME';
-    ftypes[1]='text';
-    fnames[2]='LNAME';
-    ftypes[2]='text';
-    fnames[3]='ADDRESS';
-    ftypes[3]='address';
-    fnames[4]='PHONE';
-    ftypes[4]='phone';
-    fnames[5]='BIRTHDAY';
-    ftypes[5]='birthday';
-  }(jQuery));
-  var $mcj = jQuery.noConflict(true);
-</script>
