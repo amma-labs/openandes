@@ -5,7 +5,6 @@ const metadata = {
   title: 'Inteligencia | OpenAndes',
 };
 
-// Lista de símbolos de commodities en Twelve Data
 const commodities = [
   { symbol: 'BCO/USD', name: 'Brent Oil' },
   { symbol: 'WTI/USD', name: 'WTI Oil' },
@@ -19,22 +18,20 @@ const commodities = [
 <Layout metadata={metadata}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
     
-    <!-- Título -->
     <div class="mb-8">
       <span class="text-sm font-medium tracking-widest uppercase text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 px-3 py-1 rounded-full">
         Inteligencia de Mercados
       </span>
       <h1 class="text-3xl font-bold text-slate-900 dark:text-white mt-3">Commodities</h1>
-      <p class="text-lg text-slate-600 dark:text-slate-400">Monitoreo de precios y tendencias de materias primas clave en tiempo real.</p>
+      <p class="text-lg text-slate-600 dark:text-slate-400">Monitoreo de precios y tendencias de materias primas clave.</p>
     </div>
 
-    <!-- Grid de Commodities -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {commodities.map((item) => (
         <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm hover:shadow-md transition-all duration-200">
           <div class="flex items-center justify-between">
             <div>
-              <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase">{item.symbol}</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase">{item.name}</span>
               <div class="text-xl font-bold text-slate-900 dark:text-white mt-1" id={`price-${item.symbol}`}>
                 Cargando...
               </div>
@@ -44,74 +41,63 @@ const commodities = [
             </div>
           </div>
           <div class="mt-4 h-10 w-full bg-slate-50 dark:bg-slate-700/30 rounded flex items-center justify-center">
-            <span class="text-xs text-slate-400 dark:text-slate-500">Cargando gráfico...</span>
+            <span class="text-xs text-slate-400 dark:text-slate-500" id={`status-${item.symbol}`}>
+              Conectando...
+            </span>
           </div>
         </div>
       ))}
     </div>
 
-    <!-- Script para cargar datos -->
     <script is:inline>
-      const API_KEY = 'dc14585ecedf420d8b6cb22aa12f3a34';
-      const symbols = [
-        'BCO/USD', 'WTI/USD', 'XAU/USD', 'XAG/USD', 'HG/USD', 'NG/USD'
-      ];
+      const symbols = ['BCO/USD', 'WTI/USD', 'XAU/USD', 'XAG/USD', 'HG/USD', 'NG/USD'];
 
-      async function fetchPrice(symbol) {
+      async function fetchAllData() {
         try {
-          const response = await fetch(
-            `https://api.twelvedata.com/price?symbol=${symbol}&apikey=${API_KEY}`
-          );
+          const symbolsString = symbols.join(',');
+          const response = await fetch(`/api/commodity.json?symbols=${symbolsString}`);
           const data = await response.json();
-          return data.price;
-        } catch (error) {
-          console.error('Error fetching price:', error);
-          return null;
-        }
-      }
-
-      async function fetchChange(symbol) {
-        try {
-          const response = await fetch(
-            `https://api.twelvedata.com/quote?symbol=${symbol}&apikey=${API_KEY}`
-          );
-          const data = await response.json();
-          return {
-            change: data.percent_change || 0,
-            change_direction: data.change_direction || 'flat'
-          };
-        } catch (error) {
-          console.error('Error fetching change:', error);
-          return null;
-        }
-      }
-
-      async function updateAll() {
-        for (const symbol of symbols) {
-          const price = await fetchPrice(symbol);
-          const changeData = await fetchChange(symbol);
           
-          const priceElement = document.getElementById(`price-${symbol}`);
-          const changeElement = document.getElementById(`change-${symbol}`);
-          
-          if (priceElement && price !== null) {
-            priceElement.textContent = `$${parseFloat(price).toFixed(2)}`;
+          for (const symbol of symbols) {
+            const itemData = data[symbol];
+            if (!itemData) continue;
+
+            const priceElement = document.getElementById(`price-${symbol}`);
+            const changeElement = document.getElementById(`change-${symbol}`);
+            const statusElement = document.getElementById(`status-${symbol}`);
+            
+            if (itemData.price && priceElement) {
+              priceElement.textContent = `$${parseFloat(itemData.price).toFixed(2)}`;
+            }
+            
+            if (itemData.change !== undefined && changeElement) {
+              const change = parseFloat(itemData.change);
+              const direction = itemData.change_direction || 'flat';
+              const color = direction === 'up' ? 'text-green-600' : direction === 'down' ? 'text-red-600' : 'text-slate-400';
+              const sign = direction === 'up' ? '+' : '';
+              changeElement.className = `text-sm font-semibold ${color}`;
+              changeElement.textContent = `${sign}${change.toFixed(2)}%`;
+            }
+            
+            if (statusElement) {
+              statusElement.textContent = 'Actualizado';
+              statusElement.className = 'text-xs text-green-600 dark:text-green-400';
+            }
           }
-          
-          if (changeElement && changeData) {
-            const change = parseFloat(changeData.change);
-            const direction = changeData.change_direction;
-            const color = direction === 'up' ? 'text-green-600' : direction === 'down' ? 'text-red-600' : 'text-slate-400';
-            const sign = direction === 'up' ? '+' : '';
-            changeElement.className = `text-sm font-semibold ${color}`;
-            changeElement.textContent = `${sign}${change.toFixed(2)}%`;
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          for (const symbol of symbols) {
+            const statusElement = document.getElementById(`status-${symbol}`);
+            if (statusElement) {
+              statusElement.textContent = 'Error al cargar';
+              statusElement.className = 'text-xs text-red-600 dark:text-red-400';
+            }
           }
         }
       }
 
-      // Actualizar inmediatamente y luego cada 30 segundos
-      updateAll();
-      setInterval(updateAll, 30000);
+      fetchAllData();
+      setInterval(fetchAllData, 120000);
     </script>
 
   </div>
