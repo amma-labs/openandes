@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = import.meta.glob('../../data/vision-experta/*.{md,mdx}');
+  const paths = [];
+  
+  for (const path in posts) {
+    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
+    paths.push({ params: { slug } });
+  }
+  
+  return paths;
+}
+
+const { slug } = Astro.params;
+const post = await import(`../../data/vision-experta/${slug}.mdx`);
+
+const metadata = {
+  title: `${post.frontmatter?.title || 'Artículo'} | OpenAndes`,
+  description: post.frontmatter?.excerpt || '',
+};
+---
+
+<Layout metadata={metadata}>
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <header class="mb-10">
+      <a href="/vision-experta" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">&larr; Volver a Visión Experta</a>
+      <h1 class="text-4xl font-serif font-bold mt-6 text-slate-900 dark:text-white leading-tight">
+        {post.frontmatter?.title || 'Sin título'}
+      </h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-slate-500 dark:text-slate-400">
+        {post.frontmatter?.author && (
+          <span class="font-medium">Por {post.frontmatter.author}</span>
+        )}
+        {post.frontmatter?.pubDate && (
+          <time>
+            {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+          </time>
+        )}
+      </div>
+    </header>
+    
+    <div class="prose prose-lg prose-slate dark:prose-invert max-w-none 
+      prose-headings:font-serif 
+      prose-headings:text-slate-900 dark:prose-headings:text-white 
+      prose-headings:font-bold 
+      prose-p:text-slate-700 dark:prose-p:text-slate-300 
+      prose-p:leading-relaxed 
+      prose-p:text-[18px] 
+      prose-p:mb-6 
+      prose-a:text-blue-600 dark:prose-a:text-blue-400 
+      prose-a:no-underline hover:prose-a:underline 
+      prose-strong:text-slate-900 dark:prose-strong:text-white 
+      prose-img:rounded-xl prose-img:shadow-md 
+      prose-figure:my-8 
+      prose-figcaption:text-center prose-figcaption:text-sm prose-figcaption:text-slate-500 dark:prose-figcaption:text-slate-400">
+      <post.Content />
+    </div>
+  </article>
+</Layout>

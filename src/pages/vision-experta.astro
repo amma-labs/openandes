@@ -1,0 +1,91 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+// Buscar posts en src/data/vision-experta/
+const posts = await Promise.all(
+  Object.entries(import.meta.glob('../data/vision-experta/*.{md,mdx}')).map(async ([path, load]) => {
+    const post = await load();
+    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
+    return {
+      ...post,
+      slug,
+      url: `/vision-experta/${slug}`
+    };
+  })
+);
+
+// Ordenar por fecha (más reciente primero)
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
+  const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
+  return dateB - dateA;
+});
+
+const metadata = {
+  title: 'Visión Experta | OpenAndes',
+  description: 'Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="mx-auto max-w-5xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <header class="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+      <span class="text-sm font-medium tracking-widest uppercase text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 px-3 py-1 rounded-full">
+        Open Andes
+      </span>
+      <h1 class="text-4xl font-serif font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
+        Visión Experta
+      </h1>
+      <div class="mt-4 text-lg font-medium text-slate-600 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
+        Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.
+      </div>
+    </header>
+
+    {sortedPosts.length === 0 ? (
+      <p class="text-center text-gray-500 dark:text-slate-400">No hay publicaciones aún.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {sortedPosts.map((post) => {
+          const image = post.frontmatter?.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80';
+          return (
+            <article class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700">
+              <a href={post.url} class="block">
+                <div class="relative h-48 overflow-hidden">
+                  <img 
+                    src={image} 
+                    alt={post.frontmatter?.title || 'Artículo'}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-3 left-3 text-xs font-medium bg-[#1a4b8c] text-white px-3 py-1 rounded-full">
+                    Visión Experta
+                  </span>
+                </div>
+                <div class="p-6">
+                  <h2 class="text-xl font-bold font-heading mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {post.frontmatter?.title || 'Sin título'}
+                  </h2>
+                  <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
+                    {post.frontmatter?.excerpt || ''}
+                  </p>
+                  <div class="flex items-center justify-between mt-4 text-xs text-slate-500 dark:text-slate-400">
+                    <span class="font-medium">{post.frontmatter?.author || ''}</span>
+                    {post.frontmatter?.pubDate && (
+                      <time>
+                        {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', { 
+                          year: 'numeric', 
+                          month: 'short', 
+                          day: 'numeric' 
+                        })}
+                      </time>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    )}
+  </section>
+</Layout>
