@@ -24,24 +24,8 @@ const sortedPosts = posts.sort((a, b) => {
 
 const mainPost = sortedPosts[0] || null;
 
-// Array de Comentarios & Briefs ordenados explícitamente de más nuevo a más viejo
+// Array de Comentarios & Briefs reales (ordenados de más nuevo a más viejo)
 const briefs = [
-  {
-    title: "Informe táctico en redacción...",
-    date: "2026-09-18",
-    displayDate: "18 Sep 2026",
-    category: "GEO2035+",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    published: false
-  },
-  {
-    title: "Informe táctico en redacción...",
-    date: "2026-09-10",
-    displayDate: "10 Sep 2026",
-    category: "Regulación",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    published: false
-  },
   {
     title: "El petróleo saudí sin su doble salida",
     author: "Sabrina Langer",
@@ -181,35 +165,22 @@ const metadata = {
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {briefs.map((brief) => (
-          brief.published ? (
-            <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
-              <a href={brief.url}>
-                <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
-                  <img src={brief.image} alt={brief.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-              </a>
-              <div class="flex items-center justify-between text-xs">
-                <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
-                <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">{brief.displayDate}</span>
-              </div>
-              <a href={brief.url} class="hover:underline">
-                <h3 class="text-base font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
-              </a>
-              <p class="text-xs text-slate-500 dark:text-slate-400 italic">Por {brief.author}</p>
-              <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3">{brief.excerpt}</p>
-            </article>
-          ) : (
-            <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] opacity-70">
+          <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
+            <a href={brief.url}>
               <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
-                <img src={brief.image} alt="Próximamente" class="w-full h-full object-cover grayscale" />
+                <img src={brief.image} alt={brief.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
               </div>
-              <div class="flex items-center justify-between text-xs">
-                <span class="bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
-                <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">{brief.displayDate}</span>
-              </div>
-              <h3 class="text-base font-display font-medium text-slate-500 dark:text-slate-400 italic">{brief.title}</h3>
-            </article>
-          )
+            </a>
+            <div class="flex items-center justify-between text-xs">
+              <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
+              <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">{brief.displayDate}</span>
+            </div>
+            <a href={brief.url} class="hover:underline">
+              <h3 class="text-base font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
+            </a>
+            <p class="text-xs text-slate-500 dark:text-slate-400 italic">Por {brief.author}</p>
+            <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3">{brief.excerpt}</p>
+          </article>
         ))}
       </div>
     </section>
