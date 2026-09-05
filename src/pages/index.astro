@@ -61,17 +61,25 @@ const metadata = {
               class="w-full h-[360px] sm:h-[400px] object-cover"
             />
           </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+          {mainPost && (
+            <a href={mainPost.url} class="hover:underline">
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
             {mainPost?.frontmatter?.title || 'Título del Informe Principal en preparación...'}
           </h1>
+            </a>
+          )}
           <div class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
             {mainPost?.frontmatter?.author && (
               <span class="font-medium">Por {mainPost.frontmatter.author}</span>
             )}
           </div>
-          <p class="font-sans text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {mainPost && (
+            <a href={mainPost.url} class="hover:underline">
+              <p class="font-sans text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
             {mainPost?.frontmatter?.excerpt || 'El equipo analítico de Open Andes se encuentra redactando la evaluación estratégica de esta entrega. Estará disponible públicamente en la fecha programada.'}
           </p>
+            </a>
+          )}
         </article>
 
         <aside class="lg:col-span-4 flex flex-col justify-between lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
