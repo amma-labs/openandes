@@ -24,6 +24,48 @@ const sortedPosts = posts.sort((a, b) => {
 
 const mainPost = sortedPosts[0] || null;
 
+// Array de Comentarios & Briefs ordenados explícitamente de más nuevo a más viejo
+const briefs = [
+  {
+    title: "Informe táctico en redacción...",
+    date: "2026-09-18",
+    displayDate: "18 Sep 2026",
+    category: "GEO2035+",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    published: false
+  },
+  {
+    title: "Informe táctico en redacción...",
+    date: "2026-09-10",
+    displayDate: "10 Sep 2026",
+    category: "Regulación",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    published: false
+  },
+  {
+    title: "El petróleo saudí sin su doble salida",
+    author: "Sabrina Langer",
+    date: "2026-09-05",
+    displayDate: "5 Sep 2026",
+    category: "Visión Experta",
+    image: "/images/posts/1750905_0.png.webp",
+    url: "/vision-experta/petroleo-saudi-sin-doble-salida",
+    excerpt: "El colapso de los corredores saudíes expone cómo la especialización extrema de las cadenas de suministro dejó al descubierto la fragilidad del comercio mundial.",
+    published: true
+  },
+  {
+    title: "El Milagro Chino de Zhou Qunfei",
+    author: "Nicolás H. Pinzón",
+    date: "2026-08-31",
+    displayDate: "31 Ago 2026",
+    category: "Visión Experta",
+    image: "/images/posts/a836391ed7c366d38ded99b0b42c038f5673d784-1480x833.jpg",
+    url: "/vision-experta/milagro-chino-zhou-qunfei",
+    excerpt: "La historia de la niña pobre del campo que se convirtió en la mujer hecha a sí misma más rica del mundo, fundadora de Lens Technology y símbolo del desarrollo industrial chino.",
+    published: true
+  }
+];
+
 const metadata = {
   title: 'OPEN ANDES — Inteligencia Estratégica y Riesgo Geofinanciero LatAm-Asia',
   ignoreTitleTemplate: true,
@@ -34,7 +76,7 @@ const metadata = {
   <div class="font-sans text-[#1a1410] dark:text-[#f0ece4]">
 
     <!-- ============================================ -->
-    <!-- HERO / MAIN GRID                              -->
+    <!-- HERO / MAIN GRID                             -->
     <!-- ============================================ -->
     <section class="py-8 px-4 sm:px-6 mx-auto max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -128,7 +170,7 @@ const metadata = {
     </section>
 
     <!-- ============================================ -->
-    <!-- ANÁLISIS & INFORMES TÁCTICOS                  -->
+    <!-- ANÁLISIS & INFORMES TÁCTICOS                 -->
     <!-- ============================================ -->
     <section class="py-12 px-4 sm:px-6 mx-auto max-w-7xl border-b border-[#e8e0d0] dark:border-[#2a2a2a] font-sans">
       <div class="mb-8">
@@ -138,62 +180,37 @@ const metadata = {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Artículo: El Milagro Chino de Zhou Qunfei -->
-        <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
-          <a href="/vision-experta/milagro-chino-zhou-qunfei">
-          <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
-            <img src="/images/posts/a836391ed7c366d38ded99b0b42c038f5673d784-1480x833.jpg" alt="El Milagro Chino de Zhou Qunfei" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
-          </div>
-        </a>
-          <div class="flex items-center justify-between text-xs">
-            <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">Visión Experta</span>
-            <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">31 Ago 2026</span>
-          </div>
-          <a href="/vision-experta/milagro-chino-zhou-qunfei" class="hover:underline"><h3 class="text-base font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">El Milagro Chino de Zhou Qunfei</h3></a>
-          <p class="text-xs text-slate-500 dark:text-slate-400 italic">Por Nicolás H. Pinzón</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3">La historia de la niña pobre del campo que se convirtió en la mujer hecha a sí misma más rica del mundo, fundadora de Lens Technology y símbolo del desarrollo industrial chino.</p>
-        </article>
-        
-        
-
-        <!-- Artículo: El petróleo saudí sin su doble salida -->
-        <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
-          <a href="/vision-experta/petroleo-saudi-sin-doble-salida">
-          <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
-            <img src="/images/posts/1750905_0.png.webp" alt="El petróleo saudí sin su doble salida" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
-          </div>
-        </a>
-          <div class="flex items-center justify-between text-xs">
-            <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">Visión Experta</span>
-            <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">5 Sep 2026</span>
-          </div>
-          <a href="/vision-experta/petroleo-saudi-sin-doble-salida" class="hover:underline"><h3 class="text-base font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">El petróleo saudí sin su doble salida</h3></a>
-          <p class="text-xs text-slate-500 dark:text-slate-400 italic">Por Sabrina Langer</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3">El colapso de los corredores saudíes expone cómo la especialización extrema de las cadenas de suministro dejó al descubierto la fragilidad del comercio mundial.</p>
-        </article>
-
-        <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] opacity-70">
-          <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Próximamente" class="w-full h-full object-cover grayscale" />
-          </div>
-          <div class="flex items-center justify-between text-xs">
-            <span class="bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold px-2 py-0.5 rounded uppercase">Regulación</span>
-            <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">10 Sep 2026</span>
-          </div>
-          <h3 class="text-base font-display font-medium text-slate-500 dark:text-slate-400 italic">Informe táctico en redacción...</h3>
-        </article>
-
-        <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] opacity-70">
-          <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Próximamente" class="w-full h-full object-cover grayscale" />
-          </div>
-          <div class="flex items-center justify-between text-xs">
-            <span class="bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold px-2 py-0.5 rounded uppercase">GEO2035+</span>
-            <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">18 Sep 2026</span>
-          </div>
-          <h3 class="text-base font-display font-medium text-slate-500 dark:text-slate-400 italic">Informe táctico en redacción...</h3>
-        </article>
-
+        {briefs.map((brief) => (
+          brief.published ? (
+            <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
+              <a href={brief.url}>
+                <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
+                  <img src={brief.image} alt={brief.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                </div>
+              </a>
+              <div class="flex items-center justify-between text-xs">
+                <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
+                <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">{brief.displayDate}</span>
+              </div>
+              <a href={brief.url} class="hover:underline">
+                <h3 class="text-base font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
+              </a>
+              <p class="text-xs text-slate-500 dark:text-slate-400 italic">Por {brief.author}</p>
+              <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3">{brief.excerpt}</p>
+            </article>
+          ) : (
+            <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] opacity-70">
+              <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
+                <img src={brief.image} alt="Próximamente" class="w-full h-full object-cover grayscale" />
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
+                <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">{brief.displayDate}</span>
+              </div>
+              <h3 class="text-base font-display font-medium text-slate-500 dark:text-slate-400 italic">{brief.title}</h3>
+            </article>
+          )
+        ))}
       </div>
     </section>
 
