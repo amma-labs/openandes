@@ -181,12 +181,12 @@ for (let i = 0; i < 4; i++) {
                     {item.category}
                   </span>
                   <a href={item.url} class={item.isPlaceholder ? "pointer-events-none" : "hover:underline"}>
-                    <h3 class={`text-xl font-display leading-snug ${item.isPlaceholder ? "font-medium text-slate-500 dark:text-slate-400 italic" : "font-medium text-slate-900 dark:text-white"}`}>
+                    <h3 class={`text-lg font-display leading-snug ${item.isPlaceholder ? "font-medium text-slate-500 dark:text-slate-400 italic" : "font-medium text-slate-900 dark:text-white"}`}>
                       {item.title}
                     </h3>
                   </a>
                   {item.author && (
-                    <p class="text-sm text-slate-500 dark:text-slate-400 italic font-medium">{item.isPlaceholder ? item.author : ("Por " + item.author)}</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 italic">{item.isPlaceholder ? item.author : ("Por " + item.author)}</p>
                   )}
                   <div class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight mt-0.5">
                     {item.dateStr}
@@ -234,7 +234,7 @@ for (let i = 0; i < 4; i++) {
             <a href={brief.url} class="hover:underline">
               <h3 class="text-lg font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
             </a>
-            <p class="text-sm text-slate-500 dark:text-slate-400 italic font-medium">Por {brief.author}</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 italic">Por {brief.author}</p>
           </article>
         ))}
       </div>
