@@ -110,51 +110,32 @@ const metadata = {
 
         <aside class="lg:col-span-4 flex flex-col justify-between lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
           <div class="flex flex-col justify-between h-full gap-5">
-            
-            <article class="grid grid-cols-12 gap-3 pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a] items-center opacity-70">
-              <div class="col-span-8 flex flex-col gap-1">
-                <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">Defensa</span>
-                <h3 class="text-sm font-display font-medium leading-snug text-slate-500 dark:text-slate-400 italic">Análisis en preparación...</h3>
-                <div class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">Estreno: Jueves 8 Sep</div>
-              </div>
-              <div class="col-span-4 overflow-hidden rounded">
-                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="En espera" class="w-full h-20 object-cover grayscale" />
-              </div>
-            </article>
-
-            <article class="grid grid-cols-12 gap-3 pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a] items-center opacity-70">
-              <div class="col-span-8 flex flex-col gap-1">
-                <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">Geoeconomía</span>
-                <h3 class="text-sm font-display font-medium leading-snug text-slate-500 dark:text-slate-400 italic">Análisis en preparación...</h3>
-                <div class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">Estreno: Lunes 15 Sep</div>
-              </div>
-              <div class="col-span-4 overflow-hidden rounded">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="En espera" class="w-full h-20 object-cover grayscale" />
-              </div>
-            </article>
-
-            <article class="grid grid-cols-12 gap-3 pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a] items-center opacity-70">
-              <div class="col-span-8 flex flex-col gap-1">
-                <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">Tecnología</span>
-                <h3 class="text-sm font-display font-medium leading-snug text-slate-500 dark:text-slate-400 italic">Análisis en preparación...</h3>
-                <div class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">Estreno: Jueves 22 Sep</div>
-              </div>
-              <div class="col-span-4 overflow-hidden rounded">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="En espera" class="w-full h-20 object-cover grayscale" />
-              </div>
-            </article>
-
-            <article class="grid grid-cols-12 gap-3 items-center opacity-70">
-              <div class="col-span-8 flex flex-col gap-1">
-                <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">Escenarios</span>
-                <h3 class="text-sm font-display font-medium leading-snug text-slate-500 dark:text-slate-400 italic">Análisis en preparación...</h3>
-                <div class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">Estreno: Lunes 29 Sep</div>
-              </div>
-              <div class="col-span-4 overflow-hidden rounded">
-                <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="En espera" class="w-full h-20 object-cover grayscale" />
-              </div>
-            </article>
-
+            {sortedPosts.slice(1, 4).map((post, index, arr) => (
+              <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a]" : ""} items-center`}>
+                <div class="col-span-8 flex flex-col gap-1">
+                  {post.frontmatter?.category && (
+                    <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">
+                      {post.frontmatter.category}
+                    </span>
+                  )}
+                  <a href={post.url} class="hover:underline">
+                    <h3 class="text-sm font-display font-medium leading-snug text-slate-900 dark:text-white">
+                      {post.frontmatter?.title}
+                    </h3>
+                  </a>
+                  {post.frontmatter?.pubDate && (
+                    <div class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">
+                      {new Date(post.frontmatter.pubDate).toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" })}
+                    </div>
+                  )}
+                </div>
+                <div class="col-span-4 overflow-hidden rounded">
+                  <a href={post.url}>
+                    <img src={post.frontmatter?.image || "https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"} alt={post.frontmatter?.title || "Miniatura"} class="w-full h-20 object-cover hover:scale-105 transition-transform duration-300" />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </aside>
 
