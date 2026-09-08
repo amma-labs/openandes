@@ -56,7 +56,7 @@ const metadata = {
 };
 
 // Preparar elementos de la barra lateral (posts del 2 al 4, rellenados con placeholders si faltan)
-const dynamicPosts = sortedPosts.slice(1, 4);
+const dynamicPosts = sortedPosts.slice(1, 5);
 const placeholders = [
   {
     title: "Análisis en preparación...",
@@ -78,11 +78,18 @@ const placeholders = [
     dateStr: "Estreno: Jueves 22 Sep",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     url: "#"
+  },
+  {
+    title: "Análisis en preparación...",
+    category: "Escenarios",
+    dateStr: "Estreno: Lunes 29 Sep",
+    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    url: "#"
   }
 ];
 
 const sidebarItems = [];
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 4; i++) {
   if (dynamicPosts[i]) {
     sidebarItems.push({
       title: dynamicPosts[i].frontmatter?.title,
