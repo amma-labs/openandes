@@ -161,7 +161,7 @@ for (let i = 0; i < 4; i++) {
 
           <div class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
             {mainPost?.frontmatter?.author && (
-              <span class="font-medium not-italic">Por {mainPost.frontmatter.author}</span>
+              <span class="font-medium not-italic">por {mainPost.frontmatter.author}</span>
             )}
           </div>
 
@@ -186,7 +186,7 @@ for (let i = 0; i < 4; i++) {
                     </h3>
                   </a>
                   {item.author && (
-                    <p class="text-sm text-slate-500 dark:text-slate-400 italic font-medium">{item.isPlaceholder ? item.author : ("Por " + item.author)}</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 italic font-medium">{item.isPlaceholder ? item.author : ("por " + item.author)}</p>
                   )}
                   <div class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight mt-0.5">
                     {item.dateStr}
@@ -234,7 +234,7 @@ for (let i = 0; i < 4; i++) {
             <a href={brief.url} class="hover:underline">
               <h3 class="text-lg font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
             </a>
-            <p class="text-sm text-slate-500 dark:text-slate-400 italic font-medium">Por {brief.author}</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 italic font-medium">por {brief.author}</p>
           </article>
         ))}
       </div>
