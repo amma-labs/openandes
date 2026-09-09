@@ -75,7 +75,7 @@ const metadata = {
                   <div class="flex items-center justify-between mt-4 text-xs text-slate-500 dark:text-slate-400">
                     <div class="flex items-center gap-2">
                       {post.frontmatter?.author && (
-                        <span class="font-medium">{post.frontmatter.author}</span>
+                        <span class="font-medium uppercase tracking-wide">{post.frontmatter.author.toUpperCase()}</span>
                       )}
                     </div>
                     {post.frontmatter?.publishDate && (
