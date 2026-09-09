@@ -234,7 +234,7 @@ for (let i = 0; i < 4; i++) {
             <a href={brief.url} class="hover:underline">
               <h3 class="text-lg font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
             </a>
-            <p class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">por {brief.author}</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">{brief.author.toUpperCase()}</p>
           </article>
         ))}
       </div>
