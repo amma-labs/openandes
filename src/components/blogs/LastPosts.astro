@@ -1,3 +1,5 @@
+---
+// Este componente obtiene el último post de Fun Politik y 2050lab desde sus feeds RSS
 
 const decodeHTML = (str) => {
   if (!str) return '';
@@ -7,12 +9,21 @@ const decodeHTML = (str) => {
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/&#([0-9]+);/g, (match, dec) => String.fromCharCode(dec))
-    .replace(/&#x([0-9a-fA-F]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
+    .replace(/&#([0-9]+);/g, (match, dec) => {
+      try {
+        return String.fromCharCode(dec);
+      } catch {
+        return match;
+      }
+    })
+    .replace(/&#x([0-9a-fA-F]+);/g, (match, hex) => {
+      try {
+        return String.fromCharCode(parseInt(hex, 16));
+      } catch {
+        return match;
+      }
+    });
 };
-
----
-// Este componente obtiene el último post de Fun Politik y 2050lab desde sus feeds RSS
 
 const parseRSS = (xml) => {
   const items = [];
