@@ -1,3 +1,16 @@
+
+const decodeHTML = (str) => {
+  if (!str) return '';
+  return str
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#([0-9]+);/g, (match, dec) => String.fromCharCode(dec))
+    .replace(/&#x([0-9a-fA-F]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
+};
+
 ---
 // Este componente obtiene el último post de Fun Politik y 2050lab desde sus feeds RSS
 
@@ -9,10 +22,10 @@ const parseRSS = (xml) => {
   while ((match = itemRegex.exec(xml)) !== null) {
     const itemXml = match[1];
     let title = itemXml.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'Sin título';
-    title = title.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim();
+    title = decodeHTML(title.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim());
     
     let description = itemXml.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
-    description = description.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim();
+    description = decodeHTML(description.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim());
     
     const link = itemXml.match(/<link>([\s\S]*?)<\/link>/)?.[1] || '';
     const pubDate = itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/)?.[1] || '';
