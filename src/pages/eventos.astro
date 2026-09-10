@@ -85,67 +85,30 @@ const metadata = {
   />
 
   <Content
-    isReversed
     items={[
-      {
-        title: 'Competencia Global y Tecnología',
-        description: 'Análisis profundo sobre la guerra tecnológica EE.UU.-China (2012-2025) y la Franja y la Ruta.',
-        icon: 'tabler:cpu',
-      },
-      {
-        title: 'Escenarios Regionales y Seguridad',
-        description: 'Evaluación de coyunturas clave: desde el mapa del narco en México hasta reconfiguraciones en América Latina.',
-        icon: 'tabler:map-pin',
-      },
-      {
-        title: 'Análisis de Crisis Internacionales',
-        description: 'Encuentros sobre el equilibrio en Oriente Medio (Israel/Líbano, Irán) y transiciones del poder global.',
-        icon: 'tabler:news',
-      },
+        {
+            title: 'Prospectiva y Diseños de Futuro (2050 Lab)',
+            description: 'Exploración de tecnologías emergentes, el impacto del Estado frente a la IA, el fin del trabajo, ciudades del futuro y narrativas visuales de poder.',
+            icon: 'tabler:rocket',
+        },
+        {
+            title: 'Innovación Periférica y Autonomía',
+            description: 'Rutas protopianas, análisis de talento regional y marcos conceptuales para fortalecer la presencia colectiva del Sur Global.',
+            icon: 'tabler:shield-check',
+        },
     ]}
     image={{
-      src: funPolitikImage.src,
-      alt: 'Sesiones de FunPolitik',
+        src: futureLabImage.src,
+        alt: 'Sesiones de 2050 Futures Lab',
     }}
-  >
+>
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Destacados: FunPolitik</h3>
-      <p class="text-muted dark:text-slate-400 mb-4">
-        Enfoque en relaciones internacionales, geopolítica aplicada y análisis estratégico del sistema internacional.
-      </p>
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">2050 Futures Lab</h3>
+        <p class="text-muted dark:text-slate-400 mb-4">
+            Espacios de pensamiento prospectivo, diseño de escenarios y exploración de fronteras tecnológicas.
+        </p>
     </Fragment>
-  </Content>
-
-  <Content
-    items={[
-      {
-        title: 'El Estado frente a la Inteligencia Artificial',
-        description: 'Debates sobre regulación, soberanía tecnológica y gobernanza pública de algoritmos.',
-        icon: 'tabler:building-bank',
-      },
-      {
-        title: 'Narrativas de Poder y Presencia Colectiva',
-        description: 'Sesiones colaborativas como "Visual Power Narratives" y "Our Own Patterns" junto a redactores y strategists.',
-        icon: 'tabler:palette',
-      },
-      {
-        title: 'Tendencias & Innovación 2026-2030',
-        description: 'Modelado de futuros urbanos, transformación del empleo y construcción de trayectorias protopianas.',
-        icon: 'tabler:timeline',
-      },
-    ]}
-    image={{
-      src: futureLabImage.src,
-      alt: 'Sesiones de 2050 Futures Lab',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Destacados: 2050 Futures Lab</h3>
-      <p class="text-muted dark:text-slate-400 mb-4">
-        Espacios de pensamiento prospectivo, diseño de escenarios y exploración de fronteras tecnológicas.
-      </p>
-    </Fragment>
-  </Content>
+</Content>
 
   <FAQs
     title="Preguntas Frecuentes sobre las Sesiones"
