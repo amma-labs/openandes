@@ -10,7 +10,7 @@ import Button from '~/components/ui/Button.astro';
 
 // Importar imágenes locales
 import heroImage from '~/assets/images/Religiones del mundo999.png';
-import funPolitikImage from '~/assets/images/Screenshot 2026-08-30 at 6.59.14 PM.png';
+import funPolitikImage from '~/assets/images/Screenshot 2026-08-30 at 6.59.14 PM.png';
 import futureLabImage from '~/assets/images/default.png';
 
 const metadata = {
@@ -85,30 +85,57 @@ const metadata = {
   />
 
   <Content
+    isReversed
     items={[
-        {
-            title: 'Prospectiva y Diseños de Futuro (2050 Lab)',
-            description: 'Exploración de tecnologías emergentes, el impacto del Estado frente a la IA, el fin del trabajo, ciudades del futuro y narrativas visuales de poder.',
-            icon: 'tabler:rocket',
-        },
-        {
-            title: 'Innovación Periférica y Autonomía',
-            description: 'Rutas protopianas, análisis de talento regional y marcos conceptuales para fortalecer la presencia colectiva del Sur Global.',
-            icon: 'tabler:shield-check',
-        },
+      {
+        title: 'Geopolítica y Sistema Internacional (FunPolitik)',
+        description: 'Análisis crítico de la competencia China-EE.UU., guerra tecnológica, dinámicas en el Sudeste Asiático, Oriente Medio y la política exterior en América Latina.',
+        icon: 'tabler:world-latitude',
+      },
+      {
+        title: 'Cultura, Formación y Capacidades',
+        description: 'Sesiones de formación continua, aprendizaje de Chino Mandarín, preparación para la carrera diplomática (MRE) y transferencia de capacidades.',
+        icon: 'tabler:school',
+      },
     ]}
     image={{
-        src: futureLabImage.src,
-        alt: 'Sesiones de 2050 Futures Lab',
+      src: funPolitikImage.src,
+      alt: 'Sesiones de FunPolitik',
     }}
->
+  >
     <Fragment slot="content">
-        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">2050 Futures Lab</h3>
-        <p class="text-muted dark:text-slate-400 mb-4">
-            Espacios de pensamiento prospectivo, diseño de escenarios y exploración de fronteras tecnológicas.
-        </p>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">FunPolitik</h3>
+      <p class="text-muted dark:text-slate-400 mb-4">
+        Enfoque en relaciones internacionales, geopolítica aplicada y análisis estratégico del sistema internacional.
+      </p>
     </Fragment>
-</Content>
+  </Content>
+
+  <Content
+    items={[
+      {
+        title: 'Prospectiva y Diseños de Futuro (2050 Lab)',
+        description: 'Exploración de tecnologías emergentes, el impacto del Estado frente a la IA, el fin del trabajo, ciudades del futuro y narrativas visuales de poder.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Innovación Periférica y Autonomía',
+        description: 'Rutas protopianas, análisis de talento regional y marcos conceptuales para fortalecer la presencia colectiva del Sur Global.',
+        icon: 'tabler:shield-check',
+      },
+    ]}
+    image={{
+      src: futureLabImage.src,
+      alt: 'Sesiones de 2050 Futures Lab',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">2050 Futures Lab</h3>
+      <p class="text-muted dark:text-slate-400 mb-4">
+        Espacios de pensamiento prospectivo, diseño de escenarios y exploración de fronteras tecnológicas.
+      </p>
+    </Fragment>
+  </Content>
 
   <FAQs
     title="Preguntas Frecuentes sobre las Sesiones"
