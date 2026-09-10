@@ -194,7 +194,7 @@ for (let i = 1; i < 3; i++) {
                   <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">
                     {item.category}
                   </span>
-                  <a href={item.url} class={item.isPlaceholder ? "pointer-events-none" : "hover:underline"}>
+                  <a href={item.url} class={"hover:underline"}>
                     <h3 class={`text-xl font-display leading-snug ${item.isPlaceholder ? "font-medium text-slate-500 dark:text-slate-400 italic" : "font-medium text-slate-900 dark:text-white"}`}>
                       {item.title}
                     </h3>
@@ -207,7 +207,7 @@ for (let i = 1; i < 3; i++) {
                   </div>
                 </div>
                 <div class="col-span-4 overflow-hidden rounded">
-                  <a href={item.url} class={item.isPlaceholder ? "pointer-events-none" : ""}>
+                  <a href={item.url} class={""}>
                     <img src={item.image} alt={item.title} class={`w-full h-20 object-cover ${item.isPlaceholder ? "" : "hover:scale-105 transition-transform duration-300"}`} />
                   </a>
                 </div>
