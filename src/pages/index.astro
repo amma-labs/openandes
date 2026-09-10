@@ -57,7 +57,35 @@ const metadata = {
 
 // Preparar elementos de la barra lateral (posts del 2 al 4, rellenados con placeholders si faltan)
 const dynamicPosts = sortedPosts.slice(1, 5);
+const placeholders = [
+  {
+    title: "Más allá de Chancay",
+    category: "Geopolitica",
+    dateStr: "Estreno: Martes 15 Sep",
+    image: "/images/posts/Sea-bulk-freight-logistics-hero.jpg",
+    url: "#",
+    author: "JIMENA VALENZUELA G."
+  },
+  {
+    title: "Análisis en preparación...",
+    category: "Geoeconomía",
+    dateStr: "Estreno: Lunes 15 Sep",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    url: "#",
+    author: "Análisis en preparación..."
+  },
+  {
+    title: "Análisis en preparación...",
+    category: "Tecnología",
+    dateStr: "Estreno: Jueves 22 Sep",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    url: "#",
+    author: "Análisis en preparación..."
+  }
+];
+
 const sidebarItems = [];
+
 if (dynamicPosts[0]) {
   sidebarItems.push({
     title: dynamicPosts[0].frontmatter?.title,
@@ -104,7 +132,6 @@ for (let i = 1; i < 3; i++) {
     });
   }
 }
-
 ---
 
 <Layout metadata={metadata}>
