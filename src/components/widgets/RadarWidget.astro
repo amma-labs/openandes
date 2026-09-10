@@ -161,7 +161,7 @@ const radarData = selectBalancedItems(validItems, 6);
 
 <section class="relative mx-auto max-w-7xl font-sans">
   <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-    <h2 class="text-3xl font-display font-bold tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
+    <h2 class="text-3xl font-display font-bold tracking-tight text-[#1a1410] dark:text-[#e2f3ff]">
       {title}
     </h2>
     <div class="flex items-center gap-2">
@@ -175,7 +175,7 @@ const radarData = selectBalancedItems(validItems, 6);
     {
       radarData.length > 0 ? (
         radarData.map((item) => (
-          <article class="flex flex-col justify-between p-5 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e8e0d0] dark:border-[#2a2a2a] rounded-lg hover:border-[#1a4b8c]/30 dark:hover:border-[#2b6cb5]/30 transition-colors font-sans min-h-[220px]">
+          <article class="flex flex-col justify-between p-5 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 border border-[#e2f3ff] dark:border-[#2a2a2a] rounded-lg hover:border-[#1a4b8c]/30 dark:hover:border-[#2b6cb5]/30 transition-colors font-sans min-h-[220px]">
             <div>
               <div class="flex justify-between items-center text-[11px] text-[#4a4038]/70 dark:text-[#c8c0b4]/70 mb-2 gap-2">
                 <span class="font-mono-tech font-bold uppercase tracking-wider text-[#1a4b8c] dark:text-[#2b6cb5]">
@@ -184,7 +184,7 @@ const radarData = selectBalancedItems(validItems, 6);
                 <span class="font-mono-tech font-semibold">{item.date}</span>
               </div>
 
-              <h3 class="font-display font-bold text-[#1a1410] dark:text-[#f0ece4] text-base leading-snug mb-2 line-clamp-2">
+              <h3 class="font-display font-bold text-[#1a1410] dark:text-[#e2f3ff] text-base leading-snug mb-2 line-clamp-2">
                 {item.title}
               </h3>
 
@@ -193,7 +193,7 @@ const radarData = selectBalancedItems(validItems, 6);
               </p>
             </div>
 
-            <div class="pt-4 mt-auto border-t border-[#e8e0d0]/60 dark:border-[#2a2a2a]/60 flex justify-between items-center text-xs">
+            <div class="pt-4 mt-auto border-t border-[#e2f3ff]/60 dark:border-[#2a2a2a]/60 flex justify-between items-center text-xs">
               <span class="font-medium text-[#4a4038]/70 dark:text-[#c8c0b4]/70 font-sans">{item.source}</span>
               <a
                 href={item.url}
