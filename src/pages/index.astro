@@ -57,43 +57,30 @@ const metadata = {
 
 // Preparar elementos de la barra lateral (posts del 2 al 4, rellenados con placeholders si faltan)
 const dynamicPosts = sortedPosts.slice(1, 5);
-const placeholders = [
-  {
-    title: "Más allá de Chancay",
-    category: "Geopolítica",
-    dateStr: "Estreno: Martes 15 Sep",
-    image: "/images/posts/Sea-bulk-freight-logistics-hero.jpg",
-    url: "#",
-    author: "JIMENA VALENZUELA G."
-  },
-  {
-    title: "Análisis en preparación...",
-    category: "Geoeconomía",
-    dateStr: "Estreno: Lunes 15 Sep",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    url: "#",
-    author: "Análisis en preparación..."
-  },
-  {
-    title: "Análisis en preparación...",
-    category: "Tecnología",
-    dateStr: "Estreno: Jueves 22 Sep",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    url: "#",
-    author: "Análisis en preparación..."
-  },
-  {
-    title: "Análisis en preparación...",
-    category: "Escenarios",
-    dateStr: "Estreno: Lunes 29 Sep",
-    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    url: "#",
-    author: "Análisis en preparación..."
-  }
-];
-
 const sidebarItems = [];
-for (let i = 0; i < 4; i++) {
+if (dynamicPosts[0]) {
+  sidebarItems.push({
+    title: dynamicPosts[0].frontmatter?.title,
+    author: dynamicPosts[0].frontmatter?.author,
+    category: dynamicPosts[0].frontmatter?.category || "Análisis",
+    dateStr: new Date(dynamicPosts[0].frontmatter?.pubDate).toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" }),
+    image: dynamicPosts[0].frontmatter?.image || "https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    url: dynamicPosts[0].url,
+    isPlaceholder: false
+  });
+}
+
+sidebarItems.push({
+  title: placeholders[0].title,
+  author: placeholders[0].author,
+  category: placeholders[0].category,
+  dateStr: placeholders[0].dateStr,
+  image: placeholders[0].image,
+  url: placeholders[0].url,
+  isPlaceholder: true
+});
+
+for (let i = 1; i < 3; i++) {
   if (dynamicPosts[i]) {
     sidebarItems.push({
       title: dynamicPosts[i].frontmatter?.title,
@@ -104,7 +91,7 @@ for (let i = 0; i < 4; i++) {
       url: dynamicPosts[i].url,
       isPlaceholder: false
     });
-  } else {
+  } else if (placeholders[i]) {
     const p = placeholders[i];
     sidebarItems.push({
       title: p.title,
