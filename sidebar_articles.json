@@ -1,0 +1,29 @@
+[
+  {
+    "badge": "Geopolítica",
+    "title": "Chile y el Asia-Pacífico: la política exterior frente a la disputa global",
+    "excerpt": "La política exterior frente a la disputa global",
+    "author": "Francisco Covarrubias Rojas",
+    "date": "2026-09-01",
+    "url": "/intelligence/posts/chile-y-el-asia-pacifico",
+    "image": "public/images/posts/LatAm-US-China-Graphic.png"
+  },
+  {
+    "badge": "Logística",
+    "title": "Más allá de Chancay: los cuellos de botella logísticos del Pacífico Sur",
+    "excerpt": "Los cuellos de botella logísticos del Pacífico Sur",
+    "author": "Jimena",
+    "date": "2026-09-15",
+    "url": "/intelligence/posts/mas-alla-de-chancay",
+    "image": "public/images/posts/watermarked_img_12993880756610259728.jpg"
+  },
+  {
+    "badge": "Minerales críticos",
+    "title": "No es el litio, es el corredor",
+    "excerpt": "La geopolítica de la cadena de valor",
+    "author": "Bernardo Muñoz Aguilar",
+    "date": "2026-09-22",
+    "url": "/intelligence/posts/no-es-el-litio-es-el-corredor",
+    "image": "public/images/posts/litio-07-l.jpg"
+  }
+]
