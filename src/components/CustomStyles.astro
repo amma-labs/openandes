@@ -1,31 +1,12 @@
 ---
-// Font family is provided by Astro's native Fonts API (see `fonts` in
-// astro.config.ts and <Font /> in Layout.astro), exposed as `--font-inter`.
-// To switch typefaces, change the `fonts` entry and repoint `--aw-font-*` below.
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
-
 <style is:inline>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap');
+
   :root {
-    --aw-font-sans: var(--font-inter);
-    --aw-font-serif: var(--font-inter);
-    --aw-font-heading: var(--font-inter);
+    --aw-font-sans: 'Montserrat', sans-serif;
+    --aw-font-serif: 'Fraunces', serif;
+    --aw-font-heading: 'Montserrat', sans-serif;
 
     --aw-color-primary: rgb(1 97 239);
     --aw-color-secondary: rgb(1 84 207);
@@ -35,7 +16,6 @@
     --aw-color-text-default: rgb(16 16 16);
     --aw-color-text-muted: rgb(16 16 16 / 66%);
     --aw-color-bg-page: rgb(255 255 255);
-
     --aw-color-bg-page-dark: rgb(3 6 32);
 
     ::selection {
@@ -44,9 +24,9 @@
   }
 
   .dark {
-    --aw-font-sans: var(--font-inter);
-    --aw-font-serif: var(--font-inter);
-    --aw-font-heading: var(--font-inter);
+    --aw-font-sans: 'Montserrat', sans-serif;
+    --aw-font-serif: 'Fraunces', serif;
+    --aw-font-heading: 'Montserrat', sans-serif;
 
     --aw-color-primary: rgb(1 97 239);
     --aw-color-secondary: rgb(1 84 207);
