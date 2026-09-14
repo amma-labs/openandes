@@ -227,10 +227,11 @@ for (let i = 1; i < 3; i++) {
                 author: "Joaquín Vigueras",
                 dateStr: "29 Sep 2026",
                 url: "/analisis/a-donde-apunta-el-faro-de-riad",
-                image: "/images/posts/8Zd5WP8p0XW43UJZ1PPBXrXOntM.jpg"
+                image: "/images/posts/8Zd5WP8p0XW43UJZ1PPBXrXOntM.jpg",
+                disabled: true
               }
             ].map((item, index, arr) => (
-              <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a]" : ""} items-center`}>
+              <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a]" : ""} items-center ${item.disabled ? "grayscale opacity-60 pointer-events-none select-none" : ""}`}>
                 <div class="col-span-8 flex flex-col gap-1">
                   <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">
                     {item.badge}
