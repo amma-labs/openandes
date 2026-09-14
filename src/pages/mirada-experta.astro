@@ -1,15 +1,15 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-// Buscar posts en src/data/vision-experta/
+// Buscar posts en s../data/mirada-experta/
 const posts = await Promise.all(
-  Object.entries(import.meta.glob('../data/vision-experta/*.{md,mdx}')).map(async ([path, load]) => {
+  Object.entries(import.meta.glob('../data/mirada-experta/*.{md,mdx}')).map(async ([path, load]) => {
     const post = await load();
     const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
     return {
       ...post,
       slug,
-      url: `/vision-experta/${slug}`
+      url: `/mirada-experta/${slug}`
     };
   })
 );
@@ -22,7 +22,7 @@ const sortedPosts = posts.sort((a, b) => {
 });
 
 const metadata = {
-  title: 'Visión Experta | OpenAndes',
+  title: 'Mirada Experta | OpenAndes',
   description: 'Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.',
 };
 ---
@@ -34,7 +34,7 @@ const metadata = {
         Open Andes
       </span>
       <h1 class="text-4xl font-sans font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
-        Visión Experta
+        Mirada Experta
       </h1>
       <div class="mt-4 text-lg font-medium text-slate-600 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
         Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.
@@ -58,7 +58,7 @@ const metadata = {
                     loading="lazy"
                   />
                   <span class="absolute top-3 left-3 text-xs font-medium bg-[#1a4b8c] text-white px-3 py-1 rounded-full">
-                    Visión Experta
+                    Mirada Experta
                   </span>
                 </div>
                 <div class="p-6">

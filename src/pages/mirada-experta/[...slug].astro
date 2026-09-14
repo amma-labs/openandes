@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = import.meta.glob('../../data/vision-experta/*.{md,mdx}');
+  const posts = import.meta.glob('../../data/mirada-experta/*.{md,mdx}');
   const paths = [];
   
   for (const path in posts) {
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const post = await import(`../../data/vision-experta/${slug}.mdx`);
+const post = await import(`../../data/mirada-experta/${slug}.mdx`);
 
 const metadata = {
   title: `${post.frontmatter?.title || 'Artículo'} | OpenAndes`,
@@ -25,7 +25,7 @@ const metadata = {
 <Layout metadata={metadata}>
   <article class="mx-auto max-w-3xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
     <header class="mb-10">
-      <a href="/vision-experta" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">&larr; Volver a Visión Experta</a>
+      <a href="/mirada-experta" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">&larr; Volver a Mirada Experta</a>
       <h1 class="text-4xl font-sans font-bold mt-6 text-slate-900 dark:text-white leading-tight">
         {post.frontmatter?.title || 'Sin título'}
       </h1>
