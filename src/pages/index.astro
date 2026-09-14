@@ -22,7 +22,9 @@ const sortedPosts = posts.sort((a, b) => {
   return dateB - dateA;
 });
 
-const mainPost = sortedPosts[0] || null;
+const today = new Date();
+const visiblePosts = sortedPosts.filter(p => new Date(p.frontmatter?.pubDate || "1970-01-01") <= today);
+const mainPost = visiblePosts[0] || null;
 
 // Array de Comentarios & Briefs reales (ordenados de más nuevo a más viejo)
 const briefs = [
