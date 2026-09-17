@@ -26,3 +26,11 @@ pnpm-lock.yaml
 
 # One-shot scripts (no versionados)
 scripts/
+
+# Backups y archivos temporales
+*.bak
+*.bak-*
+*.backup_*
+.DS_Store
+**/.DS_Store
+* 2
