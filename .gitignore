@@ -23,3 +23,6 @@ pnpm-lock.yaml
 
 .astro.env.local
 .vercel/
+
+# One-shot scripts (no versionados)
+scripts/
