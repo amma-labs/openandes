@@ -18,6 +18,7 @@
     'Segoe UI Symbol', 'Noto Color Emoji';
   --font-serif: var(--aw-font-serif, ui-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   --font-heading: var(--aw-font-heading, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+  --font-fraunces: var(--font-fraunces), ui-serif, Georgia, serif;
 
   --animate-fade: fadeInUp 1s both;
 
