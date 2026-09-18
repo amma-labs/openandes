@@ -1,5 +1,6 @@
 ---
 import '~/assets/styles/tailwind.css';
+import '@fontsource-variable/fraunces/opsz.css';
 
 import { Font } from 'astro:assets';
 
@@ -33,7 +34,6 @@ const { language, textDirection } = I18N;
     <CommonMeta />
     <Favicons />
     <Font cssVariable="--font-inter" preload />
-    <Font cssVariable="--font-fraunces" />
     <CustomStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
