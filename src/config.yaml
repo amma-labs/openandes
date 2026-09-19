@@ -1,34 +1,34 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Open Andes
+  site: 'https://openandes.org'
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId: ''
 
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Open Andes — Inteligencia Estratégica y Riesgo Geofinanciero LatAm-Asia
+    template: '%s — Open Andes'
+  description: "Un think tank descentralizado y 100% nativo digital. Investigación independiente sobre geoeconomía y prospectiva estratégica sobre el corredor LatAm-Asia."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Open Andes
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/og-default.jpg'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
+    handle: ''
+    site: ''
     cardType: summary_large_image
 
 i18n:
-  language: en
+  language: es
   textDirection: ltr
 
 apps:
