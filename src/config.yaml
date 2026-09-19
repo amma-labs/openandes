@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Open Andes — Inteligencia Estratégica y Riesgo Geofinanciero LatAm-Asia
+    default: Open Andes — El primer think tank descentralizado y 100% digital.
     template: '%s — Open Andes'
-  description: "Un think tank descentralizado y 100% nativo digital. Investigación independiente sobre geoeconomía y prospectiva estratégica sobre el corredor LatAm-Asia."
+  description: "Investigación independiente dedicada a la inteligencia geopolítica y la prospectiva geoeconómica en el eje América Latina-Asia."
   robots:
     index: true
     follow: true
