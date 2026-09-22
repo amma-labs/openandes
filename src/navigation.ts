@@ -11,11 +11,12 @@ export const headerData = {
       href: getPermalink('/expertos'),
     },
     {
-      text: 'Advisory',
-      links: [
-        { text: 'Estrategia', href: getPermalink('/estrategia') },
-        { text: 'Monitor Latam-Asia', href: getPermalink('/monitor') },
-      ],
+      text: 'Asesoría',
+      href: getPermalink('/estrategia'),
+    },
+    {
+      text: 'Monitor',
+      href: getPermalink('/monitor'),
     },
     {
       text: 'Análisis',
