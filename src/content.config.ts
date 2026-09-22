@@ -21,7 +21,6 @@ function safeDate(value: unknown): Date {
       if (!isNaN(d.getTime())) return d;
     } catch {}
   }
-  // Valor por defecto: fecha actual
   return new Date();
 }
 
@@ -54,7 +53,27 @@ const funPolitik = defineCollection({
   }),
 });
 
+const reports = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/reports' }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    date: z.coerce.date(),
+    type: z.string().optional(),
+    program: z.string().optional(),
+    author: z.string().optional(),
+    researchLeaders: z.array(z.string()).default([]),
+    associateResearchers: z.array(z.string()).default([]),
+    pdfUrl: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    summary: z.string().optional(),
+    toc: z.boolean().default(true),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog: blog,
   'fun-politik': funPolitik,
+  reports: reports,
 };

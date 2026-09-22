@@ -1,0 +1,162 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  report: CollectionEntry<'reports'>;
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { report, headings = [] } = Astro.props;
+const { data } = report;
+
+const tocHeadings = headings.filter((h) => h.depth === 1 || h.depth === 2);
+
+const formatDate = (d: Date) =>
+  new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(d);
+
+const metadata = {
+  title: `${data.title} — Open Andes`,
+  description: data.summary || data.subtitle,
+};
+---
+
+<PageLayout metadata={metadata}>
+  <!-- HERO -->
+  <section class="bg-[#faf8f3] dark:bg-[#0e0d0b] border-b border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+      <div class="flex flex-wrap items-center gap-2 text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-6">
+        {data.program && <span>{data.program}</span>}
+        {data.type && <><span>•</span><span>{data.type}</span></>}
+        {data.date && <><span>•</span><time datetime={data.date.toISOString()}>{formatDate(data.date)}</time></>}
+      </div>
+
+      <h1 class="font-fraunces font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1a1410] dark:text-[#f0ece4] leading-tight tracking-tight max-w-4xl">
+        {data.title}
+      </h1>
+
+      {data.subtitle && (
+        <p class="mt-6 text-lg sm:text-xl text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed max-w-4xl font-fraunces font-light italic">
+          {data.subtitle}
+        </p>
+      )}
+
+      <!-- AUTORES -->
+      {(data.researchLeaders.length > 0 || data.associateResearchers.length > 0) && (
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-8 max-w-4xl">
+          {data.researchLeaders.length > 0 && (
+            <div>
+              <h4 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-3">
+                Líderes de Investigación
+              </h4>
+              <ul class="space-y-1 font-medium text-[#1a1410] dark:text-[#f0ece4]">
+                {data.researchLeaders.map((name) => <li>{name}</li>)}
+              </ul>
+            </div>
+          )}
+          {data.associateResearchers.length > 0 && (
+            <div>
+              <h4 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-3">
+                Investigadores Asociados
+              </h4>
+              <p class="text-sm text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">
+                {data.associateResearchers.join(', ')}.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CUERPO PRINCIPAL -->
+  <section class="bg-white dark:bg-[#0e0d0b]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+        <!-- TOC STICKY (izquierda) -->
+        {data.toc && tocHeadings.length > 0 && (
+          <aside class="hidden lg:block lg:col-span-3">
+            <nav class="sticky top-24" aria-label="Tabla de contenidos">
+              <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-4">
+                Contenido
+              </h3>
+              <ol class="space-y-2 text-sm">
+                {tocHeadings.map((h) => (
+                  <li class={h.depth === 2 ? 'pl-3' : ''}>
+                    <a
+                      href={`#${h.slug}`}
+                      class="block text-[#4a4438] dark:text-[#c8c2b6] hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors leading-snug"
+                    >
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </aside>
+        )}
+
+        <!-- CONTENIDO (derecha) -->
+        <div class={data.toc && tocHeadings.length > 0 ? 'lg:col-span-9' : 'lg:col-span-12'}>
+          <div class="max-w-3xl">
+
+            <!-- KEY TAKEAWAYS -->
+            {data.keyTakeaways && data.keyTakeaways.length > 0 && (
+              <aside class="mb-10 rounded-lg border-l-4 border-[#1a4b8c] dark:border-[#2b6cb5] bg-[#e2f3ff]/50 dark:bg-white/5 p-6">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-3">
+                  Puntos Clave
+                </h3>
+                <ul class="space-y-2 text-sm text-[#1a1410] dark:text-[#f0ece4] leading-relaxed list-disc pl-5">
+                  {data.keyTakeaways.map((t) => (
+                    <li set:html={t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+                  ))}
+                </ul>
+              </aside>
+            )}
+
+            <!-- STATS -->
+            {data.stats && data.stats.length > 0 && (
+              <div class="my-10 grid grid-cols-1 sm:grid-cols-3 gap-6 py-6 border-y border-[#e8e0d0] dark:border-[#2a2a2a] text-center">
+                {data.stats.map((s) => (
+                  <div>
+                    <span class="block text-3xl font-bold text-[#1a4b8c] dark:text-[#2b6cb5] font-fraunces">{s.value}</span>
+                    <span class="mt-1 block text-xs font-mono-tech font-bold text-[#8a8070] dark:text-[#8a8070] uppercase tracking-wider leading-tight">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <!-- ACKNOWLEDGMENT -->
+            {data.acknowledgment && (
+              <aside class="my-10 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] bg-[#faf8f3] dark:bg-white/5 p-6 text-sm">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-3">
+                  Reconocimiento Institucional
+                </h3>
+                <p class="text-[#1a1410] dark:text-[#f0ece4] leading-relaxed" set:html={data.acknowledgment.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>')} />
+              </aside>
+            )}
+
+            <!-- TAGS -->
+            {data.tags.length > 0 && (
+              <div class="mb-10 flex flex-wrap gap-2">
+                {data.tags.map((tag) => (
+                  <span class="text-xs px-3 py-1 rounded-full bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <!-- CONTENIDO MDX -->
+            <div class="prose prose-lg max-w-none font-fraunces text-[#1a1410] dark:text-[#f0ece4]">
+              <slot />
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</PageLayout>
