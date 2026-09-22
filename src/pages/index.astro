@@ -22,9 +22,13 @@ const sortedPosts = posts.sort((a, b) => {
   return dateB - dateA;
 });
 
-const today = new Date();
-const visiblePosts = sortedPosts.filter(p => new Date(p.frontmatter?.pubDate || "1970-01-01") <= today);
-const mainPost = visiblePosts[0] || null;
+const todayStr = new Date().toISOString().slice(0, 10);
+const visiblePosts = sortedPosts.filter(p => {
+  const d = new Date(p.frontmatter?.pubDate || "1970-01-01").toISOString().slice(0, 10);
+  return d <= todayStr;
+});
+const mainPost = visiblePosts.find(p => p.frontmatter?.featured) || visiblePosts[0] || null;
+const sidebarMainPost = visiblePosts.find(p => p.slug !== mainPost?.slug) || null;
 
 // Array de Comentarios & Briefs reales (ordenados de más nuevo a más viejo)
 const briefs = [
