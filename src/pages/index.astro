@@ -210,43 +210,10 @@ for (let i = 1; i < 3; i++) {
         <aside class="lg:col-span-5 flex flex-col justify-between lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
           <div class="flex flex-col justify-between h-full gap-5">
             {[
-              {
-                badge: "Geopolítica",
-                title: "Chile y el Asia-Pacífico",
-                excerpt: "La política exterior frente a la disputa global",
-                author: "Francisco Covarrubias Rojas",
-                dateStr: "01 Sep 2026",
-                url: "/analisis/politica-exterior-chile-asia-pacifico",
-                image: "/images/posts/LatAm-US-China-Graphic.png"
-              },
-              {
-                badge: "Seguridad Económica",
-                title: "El Estrecho de Malaca se resuelve en Salta",
-                excerpt: "Argentina como válvula de escape de la seguridad energética china.",
-                author: "Joaquín Vigueras",
-                dateStr: "08 Sep 2026",
-                url: "/analisis/el-estrecho-de-malaca-se-resuelve-en-salta",
-                image: "/images/posts/cover-lithium.jpg"
-              },
-              {
-                badge: "Minerales críticos",
-                title: "No es el litio, es el corredor",
-                excerpt: "La geopolítica de la cadena de valor",
-                author: "Bernardo Muñoz Aguilar",
-                dateStr: "22 Sep 2026",
-                url: "/analisis/no-es-el-litio-es-el-corredor",
-                image: "/images/posts/litio-07-l.jpg"
-              },
-              {
-                badge: "Geofinanzas",
-                title: "¿A dónde apunta el faro de Riad?",
-                excerpt: "Manara Minerals y el poder petrolero",
-                author: "Joaquín Vigueras",
-                dateStr: "29 Sep 2026",
-                url: "/analisis/a-donde-apunta-el-faro-de-riad",
-                image: "/images/posts/8Zd5WP8p0XW43UJZ1PPBXrXOntM.jpg",
-                disabled: true
-              }
+              { badge: "Logística", title: "Más allá de Chancay", excerpt: "La competitividad no solo se puede perder frente a puertos extranjeros.", author: "Jimena Valenzuela G.", dateStr: "14 Sep 2026", url: "/analisis/mas-alla-de-chancay", image: "/images/posts/shenzhen-container-port.webp" },
+              { badge: "Seguridad Económica", title: "El Estrecho de Malaca se resuelve en Salta", excerpt: "Argentina como válvula de escape de la seguridad energética china.", author: "Joaquín Vigueras", dateStr: "08 Sep 2026", url: "/analisis/el-estrecho-de-malaca-se-resuelve-en-salta", image: "/images/posts/cover-lithium.jpg" },
+              { badge: "Geopolítica", title: "Chile y el Asia-Pacífico", excerpt: "La política exterior frente a la disputa global", author: "Francisco Covarrubias Rojas", dateStr: "01 Sep 2026", url: "/analisis/politica-exterior-chile-asia-pacifico", image: "/images/posts/LatAm-US-China-Graphic.png" },
+              { badge: "Geofinanzas", title: "¿A dónde apunta el faro de Riad?", excerpt: "Manara Minerals y el poder petrolero", author: "Joaquín Vigueras", dateStr: "29 Sep 2026", url: "/analisis/a-donde-apunta-el-faro-de-riad", image: "/images/posts/8Zd5WP8p0XW43UJZ1PPBXrXOntM.jpg", disabled: true }
             ].map((item, index, arr) => (
               <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a]" : ""} items-center ${item.disabled ? "grayscale opacity-60 pointer-events-none select-none" : ""}`}>
                 <div class="col-span-8 flex flex-col gap-1">
