@@ -37,10 +37,10 @@ El Usuario tiene la facultad de aceptar, rechazar o configurar el uso de cookies
 
 - **Configuración del sitio:** A través del banner de consentimiento desplegado al ingresar por primera vez a nuestras plataformas.
 - **Configuración del navegador:** Puede configurar su navegador para bloquear o alertar sobre la presencia de cookies. A continuación, se facilitan las instrucciones para los navegadores principales:
-  - Google Chrome
-  - Mozilla Firefox
-  - Apple Safari
-  - Microsoft Edge
+  - [Google Chrome](https://support.google.com/chrome/answer/95647)
+  - [Mozilla Firefox](https://support.mozilla.org/es/kb/cookies-informacion-que-los-sitios-web-guardan-en-)
+  - [Apple Safari](https://support.apple.com/es-es/guide/safari/sfri11471/mac)
+  - [Microsoft Edge](https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)
 
 Tenga en cuenta que la desactivación total de ciertas cookies esenciales puede afectar la correcta visualización o funcionalidad de algunas secciones del sitio de Open Andes.
 
