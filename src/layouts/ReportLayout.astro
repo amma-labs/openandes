@@ -1,6 +1,7 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import type { CollectionEntry } from 'astro:content';
+import ShareButtons from '~/components/common/ShareButtons.astro';
 
 export interface Props {
   report: CollectionEntry<'reports'>;
@@ -77,26 +78,28 @@ const metadata = {
         <!-- TOC STICKY (izquierda) -->
         {data.toc && tocHeadings.length > 0 && (
           <aside class="hidden lg:block lg:col-span-3">
-            <nav class="sticky top-24" aria-label="Tabla de contenidos">
-              <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-4">
-                Contenido
-              </h3>
-              <ol class="space-y-2 text-sm">
-                {tocHeadings.map((h) => (
-                  <li class={h.depth === 2 ? 'pl-3' : ''}>
-                    <a
-                      href={`#${h.slug}`}
-                      class="block text-[#4a4438] dark:text-[#c8c2b6] hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors leading-snug"
-                    >
-                      {h.text}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            <div class="sticky top-24 space-y-8">
+              <ShareButtons variant="sticky" />
+              <nav aria-label="Tabla de contenidos">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-4">
+                  Contenido
+                </h3>
+                <ol class="space-y-2 text-sm">
+                  {tocHeadings.map((h) => (
+                    <li class={h.depth === 2 ? "pl-3" : ""}>
+                      <a
+                        href={`#${h.slug}`}
+                        class="block text-[#4a4438] dark:text-[#c8c2b6] hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors leading-snug"
+                      >
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </div>
           </aside>
         )}
-
         <!-- CONTENIDO (derecha) -->
         <div class={data.toc && tocHeadings.length > 0 ? 'lg:col-span-9' : 'lg:col-span-12'}>
           <div class="max-w-3xl">
@@ -152,6 +155,8 @@ const metadata = {
             <div class="prose prose-lg max-w-none font-fraunces text-[#1a1410] dark:text-[#f0ece4] prose-headings:font-fraunces prose-headings:text-[#1a1410] dark:prose-headings:text-[#f0ece4] prose-strong:text-[#1a1410] dark:prose-strong:text-[#f0ece4] prose-a:text-[#1a4b8c] dark:prose-a:text-[#7fb3e0] prose-a:no-underline hover:prose-a:underline prose-blockquote:text-[#4a4438] dark:prose-blockquote:text-[#c8c2b6] prose-blockquote:border-l-[#1a4b8c] prose-code:text-[#1a4b8c] dark:prose-code:text-[#7fb3e0] prose-table:text-[#1a1410] dark:prose-table:text-[#f0ece4]">
               <slot />
             </div>
+
+            <ShareButtons variant="inline" />
 
           </div>
         </div>

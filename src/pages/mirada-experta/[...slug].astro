@@ -1,15 +1,16 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import ShareButtons from '~/components/common/ShareButtons.astro';
 
 export async function getStaticPaths() {
   const posts = import.meta.glob('../../data/mirada-experta/*.{md,mdx}');
   const paths = [];
-  
+
   for (const path in posts) {
     const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
     paths.push({ params: { slug } });
   }
-  
+
   return paths;
 }
 
@@ -23,43 +24,64 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <article class="mx-auto max-w-3xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
-    <header class="mb-10">
-      <a href="/mirada-experta" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">&larr; Volver a Mirada Experta</a>
-      <h1 class="text-4xl font-sans font-bold mt-6 text-slate-900 dark:text-white leading-tight">
-        {post.frontmatter?.title || 'Sin título'}
-      </h1>
-      <div class="flex items-center gap-4 mt-4 text-sm text-slate-500 dark:text-slate-400">
-        {post.frontmatter?.author && (
-          <span class="font-medium">Por {post.frontmatter.author}</span>
-        )}
-        {post.frontmatter?.pubDate && (
-          <time>
-            {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
-          </time>
-        )}
-      </div>
-    </header>
-    
-    <div class="prose prose-lg prose-slate dark:prose-invert max-w-none 
-      prose-headings:font-sans 
-      prose-headings:text-slate-900 dark:prose-headings:text-white 
-      prose-headings:font-bold 
-      prose-p:text-slate-700 dark:prose-p:text-slate-300 
-      prose-p:leading-relaxed 
-      prose-p:text-[18px] 
-      prose-p:mb-6 
-      prose-a:text-blue-600 dark:prose-a:text-blue-400 
-      prose-a:no-underline hover:prose-a:underline 
-      prose-strong:text-slate-900 dark:prose-strong:text-white 
-      prose-img:rounded-xl prose-img:shadow-md 
-      prose-figure:my-8 
-      prose-figcaption:text-center prose-figcaption:text-sm prose-figcaption:text-slate-500 dark:prose-figcaption:text-slate-400">
-      <post.Content />
+  <div class="mx-auto max-w-5xl px-6 py-12 sm:py-16 lg:py-20">
+    <div class="lg:grid lg:grid-cols-[80px_1fr] lg:gap-8">
+
+      <ShareButtons variant="sticky" />
+
+      <article class="max-w-3xl">
+        <header class="mb-10">
+          <a href="/mirada-experta" class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-sm font-medium">
+            &larr; Volver a Mirada Experta
+          </a>
+          <h1 class="text-4xl font-sans font-bold mt-6 text-[#1a1410] dark:text-[#f0ece4] leading-tight">
+            {post.frontmatter?.title || 'Sin título'}
+          </h1>
+          <div class="flex items-center gap-4 mt-4 text-sm text-[#8a8070]">
+            {post.frontmatter?.author && (
+              <span class="font-medium uppercase tracking-wide">Por {post.frontmatter.author}</span>
+            )}
+            {post.frontmatter?.pubDate && (
+              <time>
+                {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+            )}
+          </div>
+          {post.frontmatter?.tags && post.frontmatter.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-4">
+              {post.frontmatter.tags.map((tag) => (
+                <span class="text-xs bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] px-2 py-1 rounded-full text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </header>
+
+        <div class="prose prose-lg max-w-none font-fraunces
+          text-[#1a1410] dark:text-[#f0ece4]
+          prose-headings:font-sans prose-headings:font-bold prose-headings:tracking-tight
+          prose-headings:text-[#1a1410] dark:prose-headings:text-[#f0ece4]
+          prose-p:leading-relaxed prose-p:text-[18px] prose-p:mb-6
+          prose-a:text-[#1a4b8c] dark:prose-a:text-[#7fb3e0] prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-[#1a1410] dark:prose-strong:text-[#f0ece4]
+          prose-li:text-[#1a1410] dark:prose-li:text-[#f0ece4]
+          prose-img:rounded-xl prose-img:shadow-md
+          prose-figure:my-8
+          prose-figcaption:text-center prose-figcaption:text-sm prose-figcaption:text-[#8a8070]
+          prose-blockquote:border-l-4 prose-blockquote:border-[#1a4b8c]
+          prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-[#4a4438] dark:prose-blockquote:text-[#c8c2b6]
+          [&_img]:my-8 [&_img]:rounded-xl [&_img]:shadow-lg">
+          <post.Content />
+        </div>
+
+        <ShareButtons variant="inline" />
+      </article>
+
     </div>
-  </article>
+  </div>
 </Layout>
