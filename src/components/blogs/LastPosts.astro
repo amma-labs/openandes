@@ -29,70 +29,53 @@ const parseRSS = (xml) => {
   const items = [];
   const itemRegex = /<item>([\s\S]*?)<\/item>/g;
   let match;
-  
+
   while ((match = itemRegex.exec(xml)) !== null) {
     const itemXml = match[1];
     let title = itemXml.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'Sin título';
     title = decodeHTML(title.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim());
-    
+
     let description = itemXml.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
     description = decodeHTML(description.replace(/<!\[CDATA\[/g, '').replace(/\]\]>/g, '').trim());
-    
+
     const link = itemXml.match(/<link>([\s\S]*?)<\/link>/)?.[1] || '';
     const pubDate = itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/)?.[1] || '';
     const enclosure = itemXml.match(/<enclosure url="([^"]+)"/)?.[1] || '';
     const content = itemXml.match(/<content:encoded><\!\[CDATA\[([\s\S]*?)\]\]><\/content:encoded>/)?.[1] || '';
-    
+
     let imageUrl = enclosure;
     if (!imageUrl) {
       const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
       if (imgMatch) imageUrl = imgMatch[1];
     }
-    
-    items.push({
-      title: title,
-      link: link.trim(),
-      pubDate: pubDate.trim(),
-      description: description,
-      image: imageUrl,
-      content: content
-    });
+
+    items.push({ title, description, link, pubDate, image: imageUrl });
   }
+
   return items;
 };
 
-let funPolitikPosts = [];
-let futuresLabPosts = [];
-
 const fetchFeed = async (url) => {
   try {
-    const response = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0' }
-    });
-    if (response.ok) {
-      return await response.text();
-    }
-    return null;
-  } catch (error) {
-    console.error(`Error loading feed ${url}:`, error);
-    return null;
+    const res = await fetch(url);
+    if (!res.ok) return [];
+    const xml = await res.text();
+    return parseRSS(xml);
+  } catch {
+    return [];
   }
 };
 
-const funPolitikXml = await fetchFeed('https://funpolitik.substack.com/feed');
-if (funPolitikXml) {
-  funPolitikPosts = parseRSS(funPolitikXml);
-}
-
-const futuresLabXml = await fetchFeed('https://www.2050lab.org/feed');
-if (futuresLabXml) {
-  futuresLabPosts = parseRSS(futuresLabXml);
-}
+const [funPolitikPosts, futuresLabPosts] = await Promise.all([
+  fetchFeed('https://funpolitik.substack.com/feed'),
+  fetchFeed('https://2050lab.substack.com/feed'),
+]);
 
 const getLastPost = (posts) => {
   if (!posts || posts.length === 0) return null;
-  return posts.sort((a, b) => 
-    new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+  return posts.sort(
+    (a, b) =>
+      new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
   )[0];
 };
 
@@ -100,100 +83,124 @@ const lastFunPolitik = getLastPost(funPolitikPosts);
 const lastFuturesLab = getLastPost(futuresLabPosts);
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+<div class="space-y-8 mt-8">
+
   <!-- Fun Politik -->
-  <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
-    <div class="flex items-center gap-2 mb-3">
-      <img 
-        src="https://substackcdn.com/image/fetch/$s_!IeqO!,w_48,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Ffunpolitik.substack.com%2Fimg%2Fsubstack.png" 
+  <article class="p-6 sm:p-8 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <div class="flex items-center gap-2 mb-5">
+      <img
+        src="https://substackcdn.com/image/fetch/$s_!IeqO!,w_48,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Ffunpolitik.substack.com%2Fimg%2Fsubstack.png"
         alt="Fun Politik"
         class="w-6 h-6 rounded"
       />
-      <h3 class="text-xl font-bold">Fun Politik</h3>
-      
+      <h3 class="text-xl font-bold text-[#1a1410] dark:text-[#f0ece4]">Fun Politik</h3>
     </div>
-    
-    {lastFunPolitik ? (
-      <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
-        {lastFunPolitik.image && (
-          <div class="overflow-hidden rounded mb-3">
-            <img 
-              src={lastFunPolitik.image} 
-              alt={lastFunPolitik.title}
-              class="w-full h-48 object-cover"
-              loading="lazy"
-            />
-          </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-5 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+
+      <!-- Último post -->
+      <div>
+        {lastFunPolitik ? (
+          <>
+            {lastFunPolitik.image && (
+              <div class="overflow-hidden rounded mb-3">
+                <img
+                  src={lastFunPolitik.image}
+                  alt={lastFunPolitik.title}
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <p class="text-xs text-[#8a8070] mb-1">
+              {new Date(lastFunPolitik.pubDate).toLocaleDateString('es-ES', {
+                day: 'numeric', month: 'long', year: 'numeric'
+              })}
+            </p>
+            <a
+              href={lastFunPolitik.link}
+              target="_blank"
+              rel="noopener"
+              class="font-semibold text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-base leading-snug block"
+            >
+              {lastFunPolitik.title}
+            </a>
+          </>
+        ) : (
+          <p class="text-sm text-[#8a8070]">No se pudo cargar el feed</p>
         )}
-        <p class="text-xs text-muted mb-1">
-          {new Date(lastFunPolitik.pubDate).toLocaleDateString('es-ES', { 
-            day: 'numeric', month: 'long', year: 'numeric' 
-          })}
+      </div>
+
+      <!-- Descripción de la plataforma -->
+      <div class="lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8">
+        <p class="text-sm text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">
+          Análisis coyuntural e internacional de Open Andes dedicada a interpretar los acontecimientos en tiempo real. Este espacio aporta la lectura crítica de política exterior, diplomacia y dinámicas de poder que alimenta el marco divulgativo del think tank.
         </p>
-        <a 
-          href={lastFunPolitik.link}
-          target="_blank" 
-          rel="noopener"
-          class="font-semibold text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-base"
-        >
-          {lastFunPolitik.title}
-        </a>
-        <p class="text-sm text-muted mt-2 line-clamp-3 leading-relaxed">
-          {lastFunPolitik.description}
+        <p class="text-xs text-[#8a8070] mt-4 italic">
+          Política exterior, geoeconomía, conflictos globales y diplomacia.
         </p>
       </div>
-    ) : (
-      <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
-        <p class="text-sm text-muted">No se pudo cargar el feed</p>
-      </div>
-    )}
-    
-  </div>
-  <div class="p-6 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
-    <div class="flex items-center gap-2 mb-3">
-      <img 
-        src="https://substackcdn.com/image/fetch/$s_!qnb5!,w_48,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7d01f6a5-7f87-497b-aa94-bd8d7a6b956f_270x270.png" 
+
+    </div>
+  </article>
+
+  <!-- 2050 Futures Lab -->
+  <article class="p-6 sm:p-8 bg-[#f8f4ea]/50 dark:bg-[#1a1a1a]/50 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <div class="flex items-center gap-2 mb-5">
+      <img
+        src="https://substackcdn.com/image/fetch/$s_!qnb5!,w_48,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7d01f6a5-7f87-497b-aa94-bd8d7a6b956f_270x270.png"
         alt="2050 Futures Lab"
         class="w-6 h-6 rounded"
       />
-      <h3 class="text-xl font-bold">2050 Futures Lab</h3>
-      
+      <h3 class="text-xl font-bold text-[#1a1410] dark:text-[#f0ece4]">2050 Futures Lab</h3>
     </div>
-    
-    {lastFuturesLab ? (
-      <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
-        {lastFuturesLab.image && (
-          <div class="overflow-hidden rounded mb-3">
-            <img 
-              src={lastFuturesLab.image} 
-              alt={lastFuturesLab.title}
-              class="w-full h-48 object-cover"
-              loading="lazy"
-            />
-          </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-5 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+
+      <!-- Último post -->
+      <div>
+        {lastFuturesLab ? (
+          <>
+            {lastFuturesLab.image && (
+              <div class="overflow-hidden rounded mb-3">
+                <img
+                  src={lastFuturesLab.image}
+                  alt={lastFuturesLab.title}
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <p class="text-xs text-[#8a8070] mb-1">
+              {new Date(lastFuturesLab.pubDate).toLocaleDateString('es-ES', {
+                day: 'numeric', month: 'long', year: 'numeric'
+              })}
+            </p>
+            <a
+              href={lastFuturesLab.link}
+              target="_blank"
+              rel="noopener"
+              class="font-semibold text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-base leading-snug block"
+            >
+              {lastFuturesLab.title}
+            </a>
+          </>
+        ) : (
+          <p class="text-sm text-[#8a8070]">No se pudo cargar el feed</p>
         )}
-        <p class="text-xs text-muted mb-1">
-          {new Date(lastFuturesLab.pubDate).toLocaleDateString('es-ES', { 
-            day: 'numeric', month: 'long', year: 'numeric' 
-          })}
+      </div>
+
+      <!-- Descripción de la plataforma -->
+      <div class="lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8">
+        <p class="text-sm text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">
+          El centro de prospectiva de Open Andes. Estudios enfocado en anticipar transformaciones sistémicas, proyectar escenarios complejos a 10, 20 y 30 años e investigar el impacto de las tecnologías e innovaciones disruptivas en la sociedad.
         </p>
-        <a 
-          href={lastFuturesLab.link}
-          target="_blank" 
-          rel="noopener"
-          class="font-semibold text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-base"
-        >
-          {lastFuturesLab.title}
-        </a>
-        <p class="text-sm text-muted mt-2 line-clamp-3 leading-relaxed">
-          {lastFuturesLab.description}
+        <p class="text-xs text-[#8a8070] mt-4 italic">
+          Cadenas globales de valor, tecnologías emergentes, defensa y arquitectura estratégica 2035–2050.
         </p>
       </div>
-    ) : (
-      <div class="border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-3">
-        <p class="text-sm text-muted">No se pudo cargar el feed</p>
-      </div>
-    )}
-    
-  </div>
+
+    </div>
+  </article>
+
 </div>
