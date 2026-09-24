@@ -11,6 +11,11 @@ export interface Props {
 const { report, headings = [] } = Astro.props;
 const { data } = report;
 
+const leaderImages: Record<string, string> = {
+  'Francisco J. Covarrubias R.': '/images/experts-profile/francisco-covarrubias.webp',
+  'Jimena Valenzuela G.': '/images/experts-profile/jimena-valenzuela.webp',
+};
+
 const tocHeadings = headings.filter((h) => h.depth === 1 || h.depth === 2);
 
 const formatDate = (d: Date) =>
@@ -50,8 +55,19 @@ const metadata = {
               <h4 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-3">
                 Líderes de Investigación
               </h4>
-              <ul class="space-y-1 font-medium text-[#1a1410] dark:text-[#f0ece4]">
-                {data.researchLeaders.map((name) => <li>{name}</li>)}
+              <ul class="space-y-3">
+                {data.researchLeaders.map((name) => (
+                  <li class="flex items-center gap-3">
+                    {leaderImages[name] && (
+                      <img
+                        src={leaderImages[name]}
+                        alt={name}
+                        class="w-10 h-10 rounded-full object-cover border border-[#e8e0d0] dark:border-[#2a2a2a]"
+                      />
+                    )}
+                    <span class="font-normal text-[#1a1410] dark:text-[#f0ece4]">{name}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           )}
