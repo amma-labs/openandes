@@ -11,5 +11,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/enfoques",
+      "destination": "/about",
+      "permanent": true
+    }
   ]
 }
