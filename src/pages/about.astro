@@ -1,190 +1,151 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { Icon } from 'astro-icon/components';
 
-// Importar la imagen
 import heroImage from '~/assets/images/10-chasing-climate-change-in-the-arctic-2800.jpg';
 
 const metadata = {
   title: 'Nosotros — Open Andes',
 };
+
+const pilares = [
+  {
+    titulo: 'Análisis Geopolítico & Geoeconómico',
+    descripcion: 'Evaluación de riesgos globales, política exterior, comercio e impacto de los conflictos internacionales en América Latina.',
+    icon: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418',
+  },
+  {
+    titulo: 'Prospectiva & Escenarios Futuros',
+    descripcion: 'Modelado de tendencias a mediano y largo plazo (2035–2050) sobre reordenamiento sistémico, defensa y recursos estratégicos.',
+    icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  },
+  {
+    titulo: 'Inteligencia & Redes de Conocimiento',
+    descripcion: 'Espacio de encuentro entre académicos, analistas y tomadores de decisión mediante publicaciones, mesas de discusión y reportes temáticos.',
+    icon: 'M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25',
+  },
+];
+
+const servicios = [
+  {
+    titulo: 'Asesoría Estratégica',
+    descripcion: 'Análisis de riesgo geopolítico y regulatorio para instituciones y empresas con operaciones en la región andina.',
+    icon: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z',
+  },
+  {
+    titulo: 'Informes a Medida',
+    descripcion: 'Reportes de inteligencia sobre cadenas de suministro, defensa y dinámica tecnológica en sectores críticos.',
+    icon: 'M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z',
+  },
+  {
+    titulo: 'Briefings Ejecutivos',
+    descripcion: 'Sesiones de trabajo y análisis de escenario para equipos directivos que enfrentan entornos complejos.',
+    icon: 'M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section con imagen de fondo -->
   <section class="relative min-h-[600px] flex items-center overflow-hidden">
-    <!-- Imagen de fondo -->
     <div class="absolute inset-0 z-0">
-      <img 
-        src={heroImage.src} 
-        alt="Cordillera de los Andes - Paisaje andino" 
+      <img
+        src={heroImage.src}
+        alt="Cordillera de los Andes — Paisaje andino"
         class="w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/40"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0F2A44]/90 via-[#0F2A44]/70 to-[#0F2A44]/50"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A44]/60 via-transparent to-transparent"></div>
     </div>
-    
-    <!-- Línea decorativa superior -->
-    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"></div>
-    
-    <!-- Contenido del hero -->
+
+    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-[#1a4b8c] via-[#2b6cb5] to-[#1a4b8c]"></div>
+
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-20 sm:py-28">
       <div class="max-w-2xl">
-        <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Think Tank &amp; Consultoría Estratégica
+        <span class="inline-block text-sm font-mono-tech font-bold tracking-widest uppercase text-[#c8d8ea] mb-4 border border-[#c8d8ea]/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
+          Think Tank &amp; Análisis Estratégico
         </span>
-        <h1 class="font-sans text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
+        <h1 class="font-sans font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight">
           Pensamiento estratégico para un<br />
-          <span class="text-blue-300">orden global en transformación</span>
+          <span class="text-[#c8d8ea]">orden global en transformación</span>
         </h1>
         <p class="mt-6 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
-          Open Andes es un think tank y centro de análisis independiente dedicado a la geopolítica, 
-          la geoeconomía y la prospectiva de largo plazo. Investigamos las dinámicas de poder global, 
-          la seguridad, las cadenas de valor y la tecnología para ofrecer contexto crítico 
+          Open Andes es un think tank y centro de análisis independiente dedicado a la geopolítica,
+          la geoeconomía y la prospectiva de largo plazo. Investigamos las dinámicas de poder global,
+          la seguridad, las cadenas de valor y la tecnología para ofrecer contexto crítico
           e inteligencia estratégica desde y para la región.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Pilares / Enfoque -->
-  <section class="py-20 bg-white dark:bg-slate-900">
-    <div class="max-w-6xl mx-auto px-4">
+  <section class="py-20 bg-[#faf8f3] dark:bg-[#0e0d0b]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
-        <h2 class="font-sans text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+        <h2 class="font-sans font-bold text-3xl md:text-4xl text-[#1a1410] dark:text-[#f0ece4]">
           Nuestro Enfoque
         </h2>
-        <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-        <p class="text-slate-600 dark:text-slate-300 mt-4 max-w-2xl mx-auto">
+        <div class="w-16 h-1 bg-[#1a4b8c] dark:bg-[#2b6cb5] mx-auto mt-4 rounded-full"></div>
+        <p class="text-[#4a4438] dark:text-[#c8c2b6] mt-4 max-w-2xl mx-auto">
           Tres pilares que guían nuestra investigación y análisis estratégico
         </p>
       </div>
-      
+
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Pilar 1: Geopolítica -->
-        <div class="group relative bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 blur-sm"></div>
-          <div class="relative bg-white dark:bg-slate-800 rounded-2xl p-6">
-            <div class="w-14 h-14 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+        {pilares.map((p) => (
+          <div class="group p-8 rounded-2xl border border-[#e8e0d0] dark:border-[#2a2a2a] bg-white dark:bg-white/5 hover:border-[#1a4b8c] dark:hover:border-[#2b6cb5] hover:shadow-lg transition-all duration-300">
+            <div class="w-14 h-14 bg-[#e2f3ff]/70 dark:bg-white/5 rounded-xl flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-[#1a4b8c] dark:text-[#2b6cb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={p.icon} />
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Análisis Geopolítico &amp; Geoeconómico</h3>
-            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-              Evaluación de riesgos globales, política exterior, comercio e impacto de los conflictos 
-              internacionales en América Latina.
-            </p>
+            <h3 class="font-sans font-bold text-xl text-[#1a1410] dark:text-[#f0ece4] mb-3">{p.titulo}</h3>
+            <p class="text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">{p.descripcion}</p>
           </div>
-        </div>
-
-        <!-- Pilar 2: Prospectiva -->
-        <div class="group relative bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 blur-sm"></div>
-          <div class="relative bg-white dark:bg-slate-800 rounded-2xl p-6">
-            <div class="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Prospectiva &amp; Escenarios Futuros</h3>
-            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-              Modelado de tendencias a mediano y largo plazo (2035–2050) sobre reordenamiento sistémico, 
-              defensa y recursos estratégicos.
-            </p>
-          </div>
-        </div>
-
-        <!-- Pilar 3: Inteligencia -->
-        <div class="group relative bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300 blur-sm"></div>
-          <div class="relative bg-white dark:bg-slate-800 rounded-2xl p-6">
-            <div class="w-14 h-14 bg-purple-50 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Inteligencia &amp; Redes de Conocimiento</h3>
-            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-              Espacio de encuentro entre académicos, analistas y tomadores de decisión mediante publicaciones, 
-              mesas de discusión y reportes temáticos.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Ecosistema -->
-  <section class="py-20 bg-slate-50 dark:bg-slate-800">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600/10 via-indigo-600/5 to-blue-600/10 dark:from-blue-500/10 dark:via-indigo-500/5 dark:to-blue-500/10 border border-blue-100 dark:border-blue-800/30 p-10 md:p-16">
+  <section class="py-20 bg-white dark:bg-[#0e0d0b] border-y border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="relative overflow-hidden rounded-3xl bg-[#faf8f3] dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] p-10 md:p-16">
         <div class="relative z-10 text-center">
-          <h2 class="font-sans text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 class="font-sans font-bold text-3xl md:text-4xl text-[#1a1410] dark:text-[#f0ece4] mb-4">
             Un ecosistema de investigación modular
           </h2>
-          <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto">
-            Open Andes opera como un nodo central de inteligencia estratégica que articula tanto el trabajo aplicado de su Consultora como el desarrollo de sus plataformas de análisis independiente: 
-            <strong class="text-blue-600 dark:text-blue-400"> Fun Politik</strong> (enfocada en la coyuntura internacional) y 
-            <strong class="text-blue-600 dark:text-blue-400"> 2050 Futures Lab</strong> (dedicada a la prospectiva de largo plazo y tecnología).
+          <p class="text-lg text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed max-w-3xl mx-auto">
+            Open Andes opera como un nodo central de inteligencia estratégica que articula tanto el trabajo aplicado de su Consultora como el desarrollo de sus plataformas de análisis independiente:
+            <strong class="text-[#1a4b8c] dark:text-[#2b6cb5]"> Fun Politik</strong> (enfocada en la coyuntura internacional) y
+            <strong class="text-[#1a4b8c] dark:text-[#2b6cb5]"> 2050 Futures Lab</strong> (dedicada a la prospectiva de largo plazo y tecnología).
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Consultoría & Servicios -->
-  <section class="py-20 bg-white dark:bg-slate-900">
-    <div class="max-w-6xl mx-auto px-4">
+  <section class="py-20 bg-[#faf8f3] dark:bg-[#0e0d0b]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
-        <h2 class="font-sans text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-          Consultoría &amp; Servicios
+        <h2 class="font-sans font-bold text-3xl md:text-4xl text-[#1a1410] dark:text-[#f0ece4]">
+          Soluciones y Solicitudes Directas
         </h2>
-        <div class="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-        <p class="text-slate-600 dark:text-slate-300 mt-4 max-w-2xl mx-auto">
+        <div class="w-16 h-1 bg-[#1a4b8c] dark:bg-[#2b6cb5] mx-auto mt-4 rounded-full"></div>
+        <p class="text-[#4a4438] dark:text-[#c8c2b6] mt-4 max-w-2xl mx-auto">
           Soluciones estratégicas para instituciones y empresas
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Servicio 1 -->
-        <div class="group p-8 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
-          <div class="flex items-center justify-center w-14 h-14 bg-blue-50 dark:bg-blue-900/30 rounded-xl mb-5 group-hover:bg-blue-100 dark:group-hover:bg-blue-800/50 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-            </svg>
+        {servicios.map((s) => (
+          <div class="group p-8 rounded-2xl border border-[#e8e0d0] dark:border-[#2a2a2a] bg-white dark:bg-white/5 hover:border-[#1a4b8c] dark:hover:border-[#2b6cb5] hover:shadow-lg transition-all duration-300">
+            <div class="flex items-center justify-center w-14 h-14 bg-[#e2f3ff]/70 dark:bg-white/5 rounded-xl mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-[#1a4b8c] dark:text-[#2b6cb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={s.icon} />
+              </svg>
+            </div>
+            <h3 class="font-sans font-bold text-xl text-[#1a1410] dark:text-[#f0ece4] mb-3">{s.titulo}</h3>
+            <p class="text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">{s.descripcion}</p>
           </div>
-          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Asesoría Estratégica</h3>
-          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-            Análisis de riesgo geopolítico y regulatorio para instituciones y empresas con operaciones en la región andina.
-          </p>
-        </div>
-
-        <!-- Servicio 2 -->
-        <div class="group p-8 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-lg transition-all duration-300">
-          <div class="flex items-center justify-center w-14 h-14 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl mb-5 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-800/50 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Informes a Medida</h3>
-          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-            Reportes de inteligencia sobre cadenas de suministro, defensa y dinámica tecnológica en sectores críticos.
-          </p>
-        </div>
-
-        <!-- Servicio 3 -->
-        <div class="group p-8 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-purple-500 dark:hover:border-purple-400 hover:shadow-lg transition-all duration-300">
-          <div class="flex items-center justify-center w-14 h-14 bg-purple-50 dark:bg-purple-900/30 rounded-xl mb-5 group-hover:bg-purple-100 dark:group-hover:bg-purple-800/50 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Briefings Ejecutivos</h3>
-          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-            Sesiones de trabajo y análisis de escenario para equipos directivos que enfrentan entornos complejos.
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
