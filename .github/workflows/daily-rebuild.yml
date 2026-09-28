@@ -1,0 +1,17 @@
+name: Daily Rebuild
+
+on:
+  schedule:
+    # 10:00 UTC = 06:00 Chile (CLT, UTC-4)
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger-vercel:
+    name: Trigger Vercel Deploy Hook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+          echo "Deploy triggered at $(date)"
