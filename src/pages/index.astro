@@ -211,6 +211,15 @@ for (let i = 1; i < 3; i++) {
           <div class="flex flex-col justify-between h-full gap-5">
             {[
               {
+                badge: "Minerales críticos",
+                title: "No es el litio, es el corredor",
+                excerpt: "Yacimientos de minerales estratégicos y su capacidad de conectar territorios, procesamiento, tecnología y el mercado asiático.",
+                author: "Bernardo Muñoz Aguilar",
+                dateStr: "22 Sep 2026",
+                url: "/analisis/no-es-el-litio-es-el-corredor",
+                image: "/images/posts/litio-07-l.jpg"
+              },
+              {
                 badge: "Logística",
                 title: "Más allá de Chancay",
                 excerpt: "La competitividad no solo se puede perder frente a puertos extranjeros.",
@@ -236,15 +245,6 @@ for (let i = 1; i < 3; i++) {
                 dateStr: "01 Sep 2026",
                 url: "/analisis/politica-exterior-chile-asia-pacifico",
                 image: "/images/posts/LatAm-US-China-Graphic.png"
-              },
-              {
-                badge: "Infraestructura Digital",
-                title: "Los centros de datos en LatAm y el caso peruano",
-                excerpt: "América Latina consume tecnología. ¿Quién controla la infraestructura?",
-                author: "Renzo Aldair Juipa Peña",
-                dateStr: "01 Oct 2026",
-                url: "/analisis/centros-de-datos-latam-soberania-digital-peru",
-                image: "/images/posts/cover-583b9f166270147.64153e11a39fd.jpg"
               }
             ].map((item, index, arr) => (
               <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a]" : ""} items-center ${item.disabled ? "grayscale opacity-60 pointer-events-none select-none" : ""}`}>
