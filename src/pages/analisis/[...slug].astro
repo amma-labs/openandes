@@ -18,8 +18,11 @@ const { slug } = Astro.params;
 const post = await import(`../../data/post/${slug}.mdx`);
 
 const metadata = {
-  title: `${post.frontmatter?.title || 'Artículo'} | OpenAndes`,
-  description: post.frontmatter?.excerpt || post.frontmatter?.description || '',
+  title: `${post.frontmatter?.title || "Artículo"} | OpenAndes`,
+  description: post.frontmatter?.excerpt || post.frontmatter?.description || "",
+  openGraph: {
+    images: post.frontmatter?.image ? [{ url: post.frontmatter.image }] : [],
+  },
 };
 ---
 

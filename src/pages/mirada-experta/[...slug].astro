@@ -18,8 +18,11 @@ const { slug } = Astro.params;
 const post = await import(`../../data/mirada-experta/${slug}.mdx`);
 
 const metadata = {
-  title: `${post.frontmatter?.title || 'Artículo'} | OpenAndes`,
-  description: post.frontmatter?.excerpt || '',
+  title: `${post.frontmatter?.title || "Artículo"} | OpenAndes`,
+  description: post.frontmatter?.excerpt || "",
+  openGraph: {
+    images: post.frontmatter?.image ? [{ url: post.frontmatter.image }] : [],
+  },
 };
 ---
 

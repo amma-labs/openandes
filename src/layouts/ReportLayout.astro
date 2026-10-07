@@ -24,6 +24,9 @@ const formatDate = (d: Date) =>
 const metadata = {
   title: `${data.title} — Open Andes`,
   description: data.summary || data.subtitle,
+  openGraph: {
+    images: data.image ? [{ url: data.image }] : [],
+  },
 };
 ---
 
