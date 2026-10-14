@@ -9,24 +9,28 @@ const {
 
 // 1. Las 12 fuentes estructuradas por Eje Geopolítico (fuentes abiertas)
 const FEEDS_CONFIG = [
+  // África
+  { url: 'https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf', region: 'África', source: 'AllAfrica' },
+
   // Occidente / Transatlántico
-  { url: 'https://www.economist.com/the-world-this-week/rss.xml', region: 'Occidente / Transatlántico', source: 'The Economist' },
   { url: 'https://foreignpolicy.com/feed/', region: 'Occidente / Transatlántico', source: 'Foreign Policy' },
-  
+
   // Eje Ruso / Euroasiático
   { url: 'https://tass.com/rss/v2.xml', region: 'Eje Ruso / Euroasiático', source: 'TASS English' },
   { url: 'https://www.rt.com/rss/news/', region: 'Eje Ruso / Euroasiático', source: 'RT World News' },
-  
+
   // Asia-Pacífico / China
   { url: 'https://www.scmp.com/rss/322296/feed', region: 'Asia-Pacífico / China', source: 'SCMP' },
   { url: 'https://www.xinhuanet.com/english/rss/worldrss.xml', region: 'Asia-Pacífico / China', source: 'Xinhua Net' },
   { url: 'https://asia.nikkei.com/rss/feed/nar', region: 'Asia-Pacífico / China', source: 'Nikkei Asia' },
-  
-  // Oriente Medio, Sur Global / BRICS+ y Geoeconomía
+
+  // Sur Global / BRICS+
   { url: 'https://www.aljazeera.com/xml/rss/all.xml', region: 'Sur Global / BRICS+', source: 'Al Jazeera' },
   { url: 'https://www.orfonline.org/feed', region: 'Sur Global / BRICS+', source: 'ORF India' },
   { url: 'https://en.mercopress.com/rss', region: 'Sur Global / BRICS+', source: 'Mercopress' },
   { url: 'https://timesofindia.indiatimes.com/rssfeedstopstories.cms', region: 'Sur Global / BRICS+', source: 'Times of India' },
+
+  // Riesgo Geofinanciero
   { url: 'https://thediplomat.com/feed/', region: 'Riesgo Geofinanciero', source: 'The Diplomat' }
 ];
 
