@@ -95,6 +95,17 @@ const metadata = {
           </div>
         )}
 
+
+        {post.frontmatter?.bibliography && post.frontmatter.bibliography.length > 0 && (
+          <div class="mt-12 pt-8 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+            <h2 class="font-sans font-bold text-2xl text-[#1a1410] dark:text-[#f0ece4] mb-4">Bibliografía</h2>
+            <ol class="space-y-3 text-sm text-[#4a4438] dark:text-[#c8c2b6] list-decimal pl-5">
+              {post.frontmatter.bibliography.map((item) => (
+                <li set:html={item.replace(/\*(.*?)\*/g, "<em>$1</em>")} />
+              ))}
+            </ol>
+          </div>
+        )}
         <div class="mt-10 p-5 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] bg-[#faf8f3] dark:bg-white/5">
           <p class="font-mono-tech font-bold text-xs uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-2">
             Nota editorial
