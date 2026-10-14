@@ -211,6 +211,15 @@ for (let i = 1; i < 3; i++) {
           <div class="flex flex-col justify-between h-full gap-5">
             {[
               {
+                badge: "Infraestructura Digital",
+                title: "Los centros de datos en LatAm y el caso peruano",
+                excerpt: "La región consume tecnología, pero depende de la infraestructura extranjera.",
+                author: "Renzo Aldair Juipa Peña",
+                dateStr: "30 Sep 2026",
+                url: "/analisis/centros-de-datos-latam-soberania-digital-peru",
+                image: "/images/posts/cover-583b9f166270147.64153e11a39fd.jpg"
+              },
+              {
                 badge: "Minerales críticos",
                 title: "No es el litio, es el corredor",
                 excerpt: "Litio, corredores y la asimetría industrial con Asia.",
@@ -227,24 +236,6 @@ for (let i = 1; i < 3; i++) {
                 dateStr: "14 Sep 2026",
                 url: "/analisis/mas-alla-de-chancay",
                 image: "/images/posts/shenzhen-container-port.webp"
-              },
-              {
-                badge: "Seguridad Económica",
-                title: "El Estrecho de Malaca se resuelve en Salta",
-                excerpt: "Argentina como válvula de escape de la seguridad energética china.",
-                author: "Joaquín Vigueras",
-                dateStr: "08 Sep 2026",
-                url: "/analisis/el-estrecho-de-malaca-se-resuelve-en-salta",
-                image: "/images/posts/cover-lithium.jpg"
-              },
-              {
-                badge: "Geopolítica",
-                title: "Chile y el Asia-Pacífico",
-                excerpt: "La política exterior frente a la disputa global",
-                author: "Francisco Covarrubias Rojas",
-                dateStr: "01 Sep 2026",
-                url: "/analisis/politica-exterior-chile-asia-pacifico",
-                image: "/images/posts/LatAm-US-China-Graphic.png"
               }
             ].map((item, index, arr) => (
               <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a]" : ""} items-center ${item.disabled ? "grayscale opacity-60 pointer-events-none select-none" : ""}`}>
