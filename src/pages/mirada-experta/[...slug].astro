@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import ShareButtons from '~/components/common/ShareButtons.astro';
+import { authors } from '~/data/authors';
 
 export async function getStaticPaths() {
   const posts = import.meta.glob('../../data/mirada-experta/*.{md,mdx}');
@@ -16,6 +17,9 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const post = await import(`../../data/mirada-experta/${slug}.mdx`);
+
+const authorSlug = post.frontmatter?.authorSlug;
+const authorData = authorSlug ? authors[authorSlug] : null;
 
 const metadata = {
   title: `${post.frontmatter?.title || "Artículo"} | OpenAndes`,
@@ -80,6 +84,24 @@ const metadata = {
           prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-[#4a4438] dark:prose-blockquote:text-[#c8c2b6]
           [&_img]:my-8 [&_img]:rounded-xl [&_img]:shadow-lg">
           <post.Content />
+        </div>
+
+        {authorData && (
+          <div class="mt-12 pt-8 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+            <p class="font-fraunces text-[#1a1410] dark:text-[#f0ece4]">
+              <strong>{authorData.name}</strong>{' '}
+              <em>{authorData.bio}</em>
+            </p>
+          </div>
+        )}
+
+        <div class="mt-10 p-5 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] bg-[#faf8f3] dark:bg-white/5">
+          <p class="font-mono-tech font-bold text-xs uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-2">
+            Nota editorial
+          </p>
+          <p class="text-sm text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">
+            Este trabajo representa exclusivamente las opiniones del autor o autores. Open Andes es un think tank y editorial independiente, y no adopta posturas institucionales sobre asuntos de política pública.
+          </p>
         </div>
 
         <ShareButtons variant="inline" />
