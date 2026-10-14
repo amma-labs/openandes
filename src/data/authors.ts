@@ -18,7 +18,7 @@ export const authors: Record<string, Author> = {
   },
   'joaquin-vigueras': {
     name: 'Joaquín Vigueras',
-    bio: 'es Operations Manager en Open Andes. Analista de riesgo político y geofinanciero con foco en mercados emergentes, América Latina y dinámicas BRICS+. Su trabajo traduce señales políticas, regulatorias y macroeconómicas en riesgo cuantificado y evaluación de escenarios para decisiones de inversión y planificación estratégica.',
+    bio: 'es Coordinador de Programas en Open Andes. Analista de riesgo político y geofinanciero con foco en mercados emergentes, América Latina y dinámicas BRICS+. Su trabajo traduce señales políticas, regulatorias y macroeconómicas en riesgo cuantificado y evaluación de escenarios para decisiones de inversión y planificación estratégica.',
   },
   'francisco-covarrubias': {
     name: 'Francisco Covarrubias Rojas',
