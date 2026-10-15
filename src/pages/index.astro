@@ -28,7 +28,6 @@ const visiblePosts = sortedPosts.filter(p => {
   return d <= todayStr;
 });
 const mainPost = visiblePosts[0] || null;
-const sidebarPosts = visiblePosts.filter(p => p.slug !== mainPost?.slug).slice(0, 3);
 
 // Array de Comentarios & Briefs reales (ordenados de más nuevo a más viejo)
 const briefs = [
@@ -83,76 +82,6 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-// Preparar elementos de la barra lateral (posts del 2 al 4, rellenados con placeholders si faltan)
-const dynamicPosts = sortedPosts.slice(1, 5);
-const placeholders = [
-  {
-    title: "El Estrecho de Malaca se resuelve en Salta",
-    category: "Seguridad Económica",
-    excerpt: "Argentina como válvula de escape de la seguridad energética china.",
-    dateStr: "08 Sep 2026",
-    image: "/images/posts/cover-lithium.jpg",
-    url: "/analisis/el-estrecho-de-malaca-se-resuelve-en-salta",
-    author: "JOAQUÍN VIGUERAS"
-  },
-  {
-    title: "Análisis en preparación...",
-    category: "Geoeconomía",
-    dateStr: "Estreno: Lunes 22 Sep",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    url: "#",
-    author: "Análisis en preparación..."
-  }
-];
-
-const sidebarItems = [];
-
-if (dynamicPosts[0]) {
-  sidebarItems.push({
-    title: dynamicPosts[0].frontmatter?.title,
-    author: dynamicPosts[0].frontmatter?.author,
-    category: dynamicPosts[0].frontmatter?.category || "Análisis",
-    dateStr: new Date(dynamicPosts[0].frontmatter?.pubDate).toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" }),
-    image: dynamicPosts[0].frontmatter?.image || "https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    url: dynamicPosts[0].url,
-    isPlaceholder: false
-  });
-}
-
-sidebarItems.push({
-  title: placeholders[0].title,
-  author: placeholders[0].author,
-  category: placeholders[0].category,
-  dateStr: placeholders[0].dateStr,
-  image: placeholders[0].image,
-  url: placeholders[0].url,
-  isPlaceholder: true
-});
-
-for (let i = 1; i < 3; i++) {
-  if (dynamicPosts[i]) {
-    sidebarItems.push({
-      title: dynamicPosts[i].frontmatter?.title,
-      author: dynamicPosts[i].frontmatter?.author,
-      category: dynamicPosts[i].frontmatter?.category || "Análisis",
-      dateStr: new Date(dynamicPosts[i].frontmatter?.pubDate).toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" }),
-      image: dynamicPosts[i].frontmatter?.image || "https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      url: dynamicPosts[i].url,
-      isPlaceholder: false
-    });
-  } else if (placeholders[i]) {
-    const p = placeholders[i];
-    sidebarItems.push({
-      title: p.title,
-      author: p.author,
-      category: p.category,
-      dateStr: p.dateStr,
-      image: p.image,
-      url: p.url,
-      isPlaceholder: true
-    });
-  }
-}
 ---
 
 <Layout metadata={metadata}>
