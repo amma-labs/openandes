@@ -1,0 +1,144 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import LastPosts from '~/components/blogs/LastPosts.astro';
+
+// Cargar miradas expertas
+const posts = await Promise.all(
+  Object.entries(import.meta.glob('../data/mirada-experta/*.{md,mdx}')).map(async ([path, load]) => {
+    const post = await load();
+    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
+    return {
+      ...post,
+      slug,
+      url: `/miradas/${slug}`,
+    };
+  })
+);
+
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
+  const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
+  return dateB - dateA;
+});
+
+// Recopilar todos los tags únicos
+const tagCounts: Record<string, number> = {};
+for (const post of sortedPosts) {
+  const tags = post.frontmatter?.tags || [];
+  tags.forEach((t) => {
+    const key = t.toLowerCase();
+    tagCounts[key] = (tagCounts[key] || 0) + 1;
+  });
+}
+
+const topics = Object.entries(tagCounts)
+  .map(([key, count]) => ({
+    label: key,
+    slug: key.replace(/\s+/g, '-'),
+    count,
+  }))
+  .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+
+const metadata = {
+  title: 'Miradas — Open Andes',
+  description: 'Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <section class="border-b border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <div class="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+      <span class="inline-block text-xs font-mono-tech font-bold tracking-widest uppercase text-[#1a4b8c] dark:text-[#2b6cb5] mb-4">
+        Miradas
+      </span>
+      <h1 class="font-sans text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
+        Miradas expertas
+      </h1>
+      <p class="mt-4 text-lg text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed max-w-3xl font-fraunces font-light italic">
+        Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.
+      </p>
+    </div>
+  </section>
+
+  <!-- Explorar por tema -->
+  {topics.length > 0 && (
+    <section class="mx-auto max-w-5xl px-6 py-12 border-b border-[#e8e0d0] dark:border-[#2a2a2a]">
+      <h2 class="font-sans font-bold text-xl sm:text-2xl text-[#1a1410] dark:text-[#f0ece4] mb-6">
+        Explorar por tema
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        {topics.map((t) => (
+          <a
+            href={`/topics/${t.slug}`}
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#faf8f3] dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech text-sm hover:bg-[#1a4b8c] hover:text-white dark:hover:bg-[#2b6cb5] transition-colors"
+          >
+            <span>{t.label}</span>
+            <span class="text-[10px] font-bold text-[#8a8070] dark:text-[#8a8070]">· {t.count}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Listado de miradas -->
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    {sortedPosts.length === 0 ? (
+      <p class="text-center text-[#8a8070]">No hay publicaciones aún.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {sortedPosts.map((post) => {
+          const image = post.frontmatter?.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80';
+          return (
+            <article class="group rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-[#e8e0d0] dark:border-[#2a2a2a] bg-white dark:bg-white/5">
+              <a href={post.url} class="block">
+                <div class="relative h-48 overflow-hidden">
+                  <img
+                    src={image}
+                    alt={post.frontmatter?.title || 'Artículo'}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-3 left-3 text-[10px] font-mono-tech font-bold uppercase tracking-widest bg-[#1a4b8c] text-white px-2.5 py-1 rounded">
+                    Mirada Experta
+                  </span>
+                </div>
+                <div class="p-6">
+                  <h2 class="text-xl font-sans font-bold mb-2 text-[#1a1410] dark:text-[#f0ece4] group-hover:text-[#1a4b8c] dark:group-hover:text-[#2b6cb5] transition-colors leading-snug">
+                    {post.frontmatter?.title || 'Sin título'}
+                  </h2>
+                  <p class="text-[#4a4438] dark:text-[#c8c2b6] text-sm leading-relaxed line-clamp-2 font-fraunces font-light italic">
+                    {post.frontmatter?.excerpt || ''}
+                  </p>
+                  <div class="flex items-center justify-between mt-4 text-xs text-[#8a8070]">
+                    <span class="font-medium uppercase tracking-wide">{post.frontmatter?.author || ''}</span>
+                    {post.frontmatter?.pubDate && (
+                      <time>
+                        {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </time>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    )}
+  </section>
+
+  <!-- Plataformas asociadas -->
+  <section class="mx-auto max-w-5xl px-6 py-12 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <h2 class="font-sans font-bold text-xl sm:text-2xl text-[#1a1410] dark:text-[#f0ece4] mb-2">
+      Plataformas asociadas
+    </h2>
+    <p class="text-sm text-[#8a8070] mb-8 font-fraunces font-light italic">
+      Espacios editoriales donde Open Andes publica análisis coyuntural y prospectiva de largo plazo.
+    </p>
+    <LastPosts />
+  </section>
+</Layout>

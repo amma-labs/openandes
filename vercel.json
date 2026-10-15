@@ -17,6 +17,21 @@
       "source": "/enfoques",
       "destination": "/about",
       "permanent": true
+    },
+    {
+      "source": "/blogs",
+      "destination": "/miradas",
+      "permanent": true
+    },
+    {
+      "source": "/mirada-experta",
+      "destination": "/miradas",
+      "permanent": true
+    },
+    {
+      "source": "/mirada-experta/:slug",
+      "destination": "/miradas/:slug",
+      "permanent": true
     }
   ]
 }
