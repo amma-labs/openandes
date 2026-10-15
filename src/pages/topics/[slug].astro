@@ -1,0 +1,148 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = import.meta.glob('../../data/post/*.{md,mdx}');
+  const miradas = import.meta.glob('../../data/mirada-experta/*.{md,mdx}');
+
+  const allTags = new Set<string>();
+
+  for (const path in posts) {
+    const mod = await posts[path]();
+    const tags = mod.frontmatter?.tags || [];
+    tags.forEach((t) => allTags.add(t));
+  }
+  for (const path in miradas) {
+    const mod = await miradas[path]();
+    const tags = mod.frontmatter?.tags || [];
+    tags.forEach((t) => allTags.add(t));
+  }
+
+  return Array.from(allTags).map((tag) => ({
+    params: { slug: tag.toLowerCase().replace(/\s+/g, '-') },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const normalizedTag = tag.toLowerCase();
+
+const postsMods = import.meta.glob('../../data/post/*.{md,mdx}');
+const miradasMods = import.meta.glob('../../data/mirada-experta/*.{md,mdx}');
+
+const items = [];
+
+for (const path in postsMods) {
+  const mod = await postsMods[path]();
+  const tags = (mod.frontmatter?.tags || []).map((t) => t.toLowerCase());
+  if (tags.includes(normalizedTag)) {
+    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
+    items.push({
+      type: 'Análisis',
+      title: mod.frontmatter?.title,
+      excerpt: mod.frontmatter?.excerpt,
+      author: mod.frontmatter?.author,
+      pubDate: mod.frontmatter?.pubDate,
+      image: mod.frontmatter?.image,
+      category: mod.frontmatter?.category,
+      url: `/analisis/${slug}`,
+    });
+  }
+}
+
+for (const path in miradasMods) {
+  const mod = await miradasMods[path]();
+  const tags = (mod.frontmatter?.tags || []).map((t) => t.toLowerCase());
+  if (tags.includes(normalizedTag)) {
+    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
+    items.push({
+      type: 'Mirada Experta',
+      title: mod.frontmatter?.title,
+      excerpt: mod.frontmatter?.excerpt,
+      author: mod.frontmatter?.author,
+      pubDate: mod.frontmatter?.pubDate,
+      image: mod.frontmatter?.image,
+      category: mod.frontmatter?.category,
+      url: `/mirada-experta/${slug}`,
+    });
+  }
+}
+
+const sortedItems = items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+const metadata = {
+  title: `${tag} — Open Andes`,
+  description: `Análisis y miradas expertas etiquetados con "${tag}" en Open Andes.`,
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="mx-auto max-w-5xl px-6 py-12 sm:py-16 lg:py-20">
+    <header class="mb-10 pb-8 border-b border-[#e8e0d0] dark:border-[#2a2a2a]">
+      <a href="/" class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-sm font-medium">
+        &larr; Volver al inicio
+      </a>
+      <h1 class="text-4xl font-sans font-bold mt-6 text-[#1a1410] dark:text-[#f0ece4] leading-tight capitalize">
+        {tag}
+      </h1>
+      <p class="mt-3 text-sm text-[#8a8070] font-mono-tech uppercase tracking-wide">
+        {sortedItems.length} {sortedItems.length === 1 ? 'resultado' : 'resultados'}
+      </p>
+    </header>
+
+    {sortedItems.length === 0 ? (
+      <p class="text-[#4a4438] dark:text-[#c8c2b6]">No hay contenido con este tag.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {sortedItems.map((item) => (
+          <article class="flex flex-col gap-3 group">
+            <a href={item.url} class="block overflow-hidden rounded-lg bg-[#faf8f3] dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a]">
+              {item.image && (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              )}
+            </a>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[10px] font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5]">
+                {item.type}
+              </span>
+              {item.category && (
+                <span class="text-[10px] font-mono-tech font-bold text-[#8a8070] uppercase tracking-widest">
+                  · {item.category}
+                </span>
+              )}
+            </div>
+            <a href={item.url} class="hover:underline">
+              <h2 class="font-sans font-bold text-xl text-[#1a1410] dark:text-[#f0ece4] leading-snug">
+                {item.title}
+              </h2>
+            </a>
+            {item.excerpt && (
+              <p class="font-fraunces font-light italic text-base text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">
+                {item.excerpt}
+              </p>
+            )}
+            <div class="flex items-center gap-3 text-xs text-[#8a8070] mt-1">
+              {item.author && <span class="font-medium uppercase tracking-wide">{item.author}</span>}
+              {item.pubDate && (
+                <time>
+                  {new Date(item.pubDate).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>
