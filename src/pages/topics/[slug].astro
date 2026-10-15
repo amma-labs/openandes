@@ -80,25 +80,25 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <div class="mx-auto max-w-5xl px-6 py-12 sm:py-16 lg:py-20">
-    <header class="mb-10 pb-8 border-b border-[#e8e0d0] dark:border-[#2a2a2a]">
-      <a href="/" class="text-[#1a4b8c] dark:text-[#2b6cb5] hover:underline text-sm font-medium">
+    <header class="mb-10 pb-8 border-b border-[#e5e7eb] dark:border-[#2a2a2a]">
+      <a href="/" class="text-[#1344e7] dark:text-[#1344e7] hover:underline text-sm font-medium">
         &larr; Volver al inicio
       </a>
-      <h1 class="text-4xl font-sans font-bold mt-6 text-[#1a1410] dark:text-[#f0ece4] leading-tight capitalize">
+      <h1 class="text-4xl font-sans font-bold mt-6 text-[#111827] dark:text-[#f3f4f6] leading-tight capitalize">
         {tag}
       </h1>
-      <p class="mt-3 text-sm text-[#8a8070] font-mono-tech uppercase tracking-wide">
+      <p class="mt-3 text-sm text-[#9ca3af] font-mono-tech uppercase tracking-wide">
         {sortedItems.length} {sortedItems.length === 1 ? 'resultado' : 'resultados'}
       </p>
     </header>
 
     {sortedItems.length === 0 ? (
-      <p class="text-[#4a4438] dark:text-[#c8c2b6]">No hay contenido con este tag.</p>
+      <p class="text-[#4b5563] dark:text-[#9ca3af]">No hay contenido con este tag.</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {sortedItems.map((item) => (
           <article class="flex flex-col gap-3 group">
-            <a href={item.url} class="block overflow-hidden rounded-lg bg-[#faf8f3] dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a]">
+            <a href={item.url} class="block overflow-hidden rounded-lg bg-[#ffffff] dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a]">
               {item.image && (
                 <img
                   src={item.image}
@@ -109,26 +109,26 @@ const metadata = {
               )}
             </a>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[10px] font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5]">
+              <span class="text-[10px] font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#1344e7]">
                 {item.type}
               </span>
               {item.category && (
-                <span class="text-[10px] font-mono-tech font-bold text-[#8a8070] uppercase tracking-widest">
+                <span class="text-[10px] font-mono-tech font-bold text-[#9ca3af] uppercase tracking-widest">
                   · {item.category}
                 </span>
               )}
             </div>
             <a href={item.url} class="hover:underline">
-              <h2 class="font-sans font-bold text-xl text-[#1a1410] dark:text-[#f0ece4] leading-snug">
+              <h2 class="font-sans font-bold text-xl text-[#111827] dark:text-[#f3f4f6] leading-snug">
                 {item.title}
               </h2>
             </a>
             {item.excerpt && (
-              <p class="font-fraunces font-light italic text-base text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">
+              <p class="font-fraunces font-light italic text-base text-[#4b5563] dark:text-[#9ca3af] leading-relaxed">
                 {item.excerpt}
               </p>
             )}
-            <div class="flex items-center gap-3 text-xs text-[#8a8070] mt-1">
+            <div class="flex items-center gap-3 text-xs text-[#9ca3af] mt-1">
               {item.author && <span class="font-medium uppercase tracking-wide">{item.author}</span>}
               {item.pubDate && (
                 <time>

@@ -85,7 +85,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <div class="font-sans text-[#1a1410] dark:text-[#f0ece4]">
+  <div class="font-sans text-[#111827] dark:text-[#f3f4f6]">
 
     <!-- ============================================ -->
     <!-- HERO / MAIN GRID                             -->
@@ -99,7 +99,7 @@ const metadata = {
               {mainPost ? mainPost.frontmatter?.category || 'Análisis' : 'Informe Principal'}
             </span>
             {mainPost?.frontmatter?.pubDate && (
-              <span class="text-xs font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight">
+              <span class="text-xs font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-tight">
                 {new Date(mainPost.frontmatter.pubDate).toLocaleDateString('es-ES', { 
                   year: 'numeric', 
                   month: 'long', 
@@ -136,7 +136,7 @@ const metadata = {
           </div>
         </article>
 
-        <aside class="lg:col-span-4 flex flex-col justify-between lg:border-l lg:border-[#e8e0d0] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
+        <aside class="lg:col-span-4 flex flex-col justify-between lg:border-l lg:border-[#e5e7eb] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
           <div class="flex flex-col justify-between h-full gap-5">
             {[
               {
@@ -176,7 +176,7 @@ const metadata = {
                 image: "/images/posts/cover-lithium.jpg"
               }
             ].map((item, index, arr) => (
-              <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e8e0d0] dark:border-[#2a2a2a]" : ""} items-center ${item.disabled ? "grayscale opacity-60 pointer-events-none select-none" : ""}`}>
+              <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e5e7eb] dark:border-[#2a2a2a]" : ""} items-center ${item.disabled ? "grayscale opacity-60 pointer-events-none select-none" : ""}`}>
                 <div class="col-span-8 flex flex-col gap-1">
                   <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">
                     {item.badge}
@@ -192,7 +192,7 @@ const metadata = {
                   {item.author && (
                     <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">{item.author.toUpperCase()}</p>
                   )}
-                  <div class="text-[10px] font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-tight mt-0.5">
+                  <div class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-tight mt-0.5">
                     {item.dateStr}
                   </div>
                 </div>
@@ -212,13 +212,13 @@ const metadata = {
     <!-- ============================================ -->
     <!-- ANÁLISIS & INFORMES TÁCTICOS                 -->
     <!-- ============================================ -->
-    <section class="py-12 px-4 sm:px-6 mx-auto max-w-7xl border-b border-[#e8e0d0] dark:border-[#2a2a2a] font-sans">
+    <section class="py-12 px-4 sm:px-6 mx-auto max-w-7xl border-b border-[#e5e7eb] dark:border-[#2a2a2a] font-sans">
       <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h2 class="text-2xl sm:text-3xl font-display font-bold text-[#1a1410] dark:text-[#f0ece4]">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-[#111827] dark:text-[#f3f4f6]">
           Comentarios &amp; <em>Briefs</em>
         </h2>
         <div class="flex items-center gap-2 self-start sm:self-auto bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 px-3 py-1.5 rounded-full shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-[#1a4b8c] dark:bg-[#2b6cb5] animate-pulse"></span>
+          <span class="w-2 h-2 rounded-full bg-[#1344e7] dark:bg-[#1344e7] animate-pulse"></span>
           <span class="text-xs font-mono-tech font-semibold tracking-wide text-slate-700 dark:text-slate-300 uppercase">Mirada Experta</span>
         </div>
       </div>
@@ -227,14 +227,14 @@ const metadata = {
 
 
       <a href="/miradas/estocolmo-paris-gobernanza-climatica-internacional" class="block group mb-10">
-        <article class="rounded-2xl overflow-hidden border border-[#e8e0d0] dark:border-[#2a2a2a] bg-[#faf8f3] dark:bg-white/5">
+        <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
           <div class="grid grid-cols-1 lg:grid-cols-2">
             <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Mirada Experta</span>
                 <span class="text-[10px] font-mono-tech font-bold text-[#4A7C59] uppercase tracking-widest">Diplomacia Ambiental · 07 Oct 2026</span>
               </div>
-              <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#1a1410] dark:text-[#f0ece4] leading-tight tracking-tight">
+              <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
                 Desde la NYC Climate Week: los límites estructurales del orden climático
               </h3>
               <p class="font-fraunces font-light italic text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -251,17 +251,17 @@ const metadata = {
         </article>
       </a>
       <a href="/miradas/termodinamica-fortaleza-agricola-latinoamericana" class="block group mb-10">
-        <article class="rounded-2xl overflow-hidden border border-[#e8e0d0] dark:border-[#2a2a2a] bg-[#faf8f3] dark:bg-white/5">
+        <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
           <div class="grid grid-cols-1 lg:grid-cols-2">
             <div class="relative min-h-[280px] lg:min-h-[360px]">
               <img src="/images/posts/fertilizantes-rusia.webp" alt="Lo que oculta la fortaleza agrícola latinoamericana" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
             </div>
             <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
               <div class="flex items-center gap-2 flex-wrap">
-                <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Mirada Experta</span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-widest">Energía · 30 Sep 2026</span>
+                <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Mirada Experta</span>
+                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-widest">Energía · 30 Sep 2026</span>
               </div>
-              <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#1a1410] dark:text-[#f0ece4] leading-tight tracking-tight">
+              <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
                 Lo que oculta la fortaleza agrícola latinoamericana
               </h3>
               <p class="font-fraunces font-light italic text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -277,12 +277,12 @@ const metadata = {
       <!-- Brief principal: Reporte #1 -->
 
       <a href="/monitor/reporte-1" class="block group mb-10">
-        <article class="rounded-2xl overflow-hidden border border-[#e8e0d0] dark:border-[#2a2a2a] bg-[#e2f3ff]/50 dark:bg-white/5">
+        <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#e2f3ff]/50 dark:bg-white/5">
           <div class="grid grid-cols-1 lg:grid-cols-4">
             <div class="lg:col-span-1 p-6 sm:p-8 flex flex-col justify-center gap-3">
               <div class="flex items-center gap-2 flex-wrap">
-                <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">REPORTE #1</span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#1a4b8c] dark:text-[#2b6cb5] uppercase tracking-widest">Monitor</span>
+                <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">REPORTE #1</span>
+                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-widest">Monitor</span>
               </div>
               <p class="font-fraunces font-light italic text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
                 La inversión de capital chino en la infraestructura portuaria de Perú y Chile, los cuellos de botella globales, y sus implicaciones para las industrias minera y agrícola.
@@ -300,15 +300,15 @@ const metadata = {
       </a>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {briefs.map((brief) => (
-          <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#e2f3ff]/50 dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
+          <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#e2f3ff]/50 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
             <a href={brief.url}>
               <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
                 <img src={brief.image} alt={brief.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
               </div>
             </a>
             <div class="flex items-center justify-between text-xs">
-              <span class="bg-[#1a4b8c] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
-              <span class="text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech font-bold">{brief.displayDate}</span>
+              <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
+              <span class="text-[#1344e7] dark:text-[#1344e7] font-mono-tech font-bold">{brief.displayDate}</span>
             </div>
             <a href={brief.url} class="hover:underline">
               <h3 class="text-lg font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>

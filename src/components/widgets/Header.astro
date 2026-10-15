@@ -145,7 +145,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             {
               showRssFeed && (
                 <a
-                  class="text-muted dark:text-gray-400 hover:bg-[#faf8f3] dark:hover:bg-white/5 focus:outline-none focus:ring-4 focus:ring-[#e8e0d0] dark:focus:ring-[#2a2a2a] rounded-lg text-sm p-2.5 inline-flex items-center"
+                  class="text-muted dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-white/5 focus:outline-none focus:ring-4 focus:ring-[#e5e7eb] dark:focus:ring-[#2a2a2a] rounded-lg text-sm p-2.5 inline-flex items-center"
                   aria-label="RSS Feed"
                   href={getAsset('/rss.xml')}
                 >
@@ -183,7 +183,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     right: 1rem;
     bottom: 0.75rem;
     height: 1.5px;
-    background-color: #1a4b8c;
+    background-color: #1344e7;
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 0.3s ease;
@@ -196,7 +196,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   }
 
   :global(.dark) .nav-underline::after {
-    background-color: #2b6cb5;
+    background-color: #1344e7;
   }
 </style>
 

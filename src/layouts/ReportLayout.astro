@@ -32,30 +32,30 @@ const metadata = {
 
 <PageLayout metadata={metadata}>
   <!-- HERO -->
-  <section class="bg-[#faf8f3] dark:bg-[#030620] border-b border-[#e8e0d0] dark:border-[#2a2a2a]">
+  <section class="bg-[#ffffff] dark:bg-[#030712] border-b border-[#e5e7eb] dark:border-[#2a2a2a]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
-      <div class="flex flex-wrap items-center gap-2 text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-6">
+      <div class="flex flex-wrap items-center gap-2 text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#1344e7] mb-6">
         {data.program && <span>{data.program}</span>}
         {data.type && <><span>•</span><span>{data.type}</span></>}
         {data.date && <><span>•</span><time datetime={data.date.toISOString()}>{formatDate(data.date)}</time></>}
       </div>
 
-      <h1 class="font-fraunces font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1a1410] dark:text-[#f0ece4] leading-tight tracking-tight max-w-4xl">
+      <h1 class="font-fraunces font-normal text-4xl sm:text-5xl lg:text-6xl text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight max-w-4xl">
         {data.title}
       </h1>
 
       {data.subtitle && (
-        <p class="mt-6 text-lg sm:text-xl text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed max-w-4xl font-sans font-normal">
+        <p class="mt-6 text-lg sm:text-xl text-[#4b5563] dark:text-[#9ca3af] leading-relaxed max-w-4xl font-sans font-normal">
           {data.subtitle}
         </p>
       )}
 
       <!-- AUTORES -->
       {(data.researchLeaders.length > 0 || data.associateResearchers.length > 0) && (
-        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm border-t border-[#e8e0d0] dark:border-[#2a2a2a] pt-8 max-w-4xl">
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm border-t border-[#e5e7eb] dark:border-[#2a2a2a] pt-8 max-w-4xl">
           {data.researchLeaders.length > 0 && (
             <div>
-              <h4 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-3">
+              <h4 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#9ca3af] dark:text-[#9ca3af] mb-3">
                 Líderes de Investigación
               </h4>
               <ul class="space-y-3">
@@ -65,10 +65,10 @@ const metadata = {
                       <img
                         src={leaderImages[name]}
                         alt={name}
-                        class="w-10 h-10 rounded-full object-cover border border-[#e8e0d0] dark:border-[#2a2a2a]"
+                        class="w-10 h-10 rounded-full object-cover border border-[#e5e7eb] dark:border-[#2a2a2a]"
                       />
                     )}
-                    <span class="font-normal text-[#1a1410] dark:text-[#f0ece4]">{name}</span>
+                    <span class="font-normal text-[#111827] dark:text-[#f3f4f6]">{name}</span>
                   </li>
                 ))}
               </ul>
@@ -76,10 +76,10 @@ const metadata = {
           )}
           {data.associateResearchers.length > 0 && (
             <div>
-              <h4 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-3">
+              <h4 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#9ca3af] dark:text-[#9ca3af] mb-3">
                 Investigadores Asociados
               </h4>
-              <p class="text-sm text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed">
+              <p class="text-sm text-[#4b5563] dark:text-[#9ca3af] leading-relaxed">
                 {data.associateResearchers.join(', ')}.
               </p>
             </div>
@@ -90,7 +90,7 @@ const metadata = {
   </section>
 
   <!-- CUERPO PRINCIPAL -->
-  <section class="bg-white dark:bg-[#030620]">
+  <section class="bg-white dark:bg-[#030712]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
@@ -100,7 +100,7 @@ const metadata = {
             <div class="sticky top-24 space-y-8">
               <ShareButtons variant="sticky" />
               <nav aria-label="Tabla de contenidos">
-                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#8a8070] dark:text-[#8a8070] mb-4">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#9ca3af] dark:text-[#9ca3af] mb-4">
                   Contenido
                 </h3>
                 <ol class="space-y-2 text-sm">
@@ -108,7 +108,7 @@ const metadata = {
                     <li class={h.depth === 2 ? "pl-3" : ""}>
                       <a
                         href={`#${h.slug}`}
-                        class="block text-[#4a4438] dark:text-[#c8c2b6] hover:text-[#1a4b8c] dark:hover:text-[#2b6cb5] transition-colors leading-snug"
+                        class="block text-[#4b5563] dark:text-[#9ca3af] hover:text-[#1344e7] dark:hover:text-[#1344e7] transition-colors leading-snug"
                       >
                         {h.text}
                       </a>
@@ -125,11 +125,11 @@ const metadata = {
 
             <!-- KEY TAKEAWAYS -->
             {data.keyTakeaways && data.keyTakeaways.length > 0 && (
-              <aside class="mb-10 rounded-lg border-l-4 border-[#1a4b8c] dark:border-[#2b6cb5] bg-[#e2f3ff]/50 dark:bg-white/5 p-6">
-                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-3">
+              <aside class="mb-10 rounded-lg border-l-4 border-[#1344e7] dark:border-[#1344e7] bg-[#e2f3ff]/50 dark:bg-white/5 p-6">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#1344e7] mb-3">
                   Puntos Clave
                 </h3>
-                <ul class="space-y-2 text-sm text-[#1a1410] dark:text-[#f0ece4] leading-relaxed list-disc pl-5">
+                <ul class="space-y-2 text-sm text-[#111827] dark:text-[#f3f4f6] leading-relaxed list-disc pl-5">
                   {data.keyTakeaways.map((t) => (
                     <li set:html={t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
                   ))}
@@ -139,11 +139,11 @@ const metadata = {
 
             <!-- STATS -->
             {data.stats && data.stats.length > 0 && (
-              <div class="my-10 grid grid-cols-1 sm:grid-cols-3 gap-6 py-6 border-y border-[#e8e0d0] dark:border-[#2a2a2a] text-center">
+              <div class="my-10 grid grid-cols-1 sm:grid-cols-3 gap-6 py-6 border-y border-[#e5e7eb] dark:border-[#2a2a2a] text-center">
                 {data.stats.map((s) => (
                   <div>
-                    <span class="block text-3xl font-bold text-[#1a4b8c] dark:text-[#2b6cb5] font-fraunces">{s.value}</span>
-                    <span class="mt-1 block text-xs font-mono-tech font-bold text-[#8a8070] dark:text-[#8a8070] uppercase tracking-wider leading-tight">{s.label}</span>
+                    <span class="block text-3xl font-bold text-[#1344e7] dark:text-[#1344e7] font-fraunces">{s.value}</span>
+                    <span class="mt-1 block text-xs font-mono-tech font-bold text-[#9ca3af] dark:text-[#9ca3af] uppercase tracking-wider leading-tight">{s.label}</span>
                   </div>
                 ))}
               </div>
@@ -151,11 +151,11 @@ const metadata = {
 
             <!-- ACKNOWLEDGMENT -->
             {data.acknowledgment && (
-              <aside class="my-10 rounded-lg border border-[#e8e0d0] dark:border-[#2a2a2a] bg-[#faf8f3] dark:bg-white/5 p-6 text-sm">
-                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1a4b8c] dark:text-[#2b6cb5] mb-3">
+              <aside class="my-10 rounded-lg border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5 p-6 text-sm">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#1344e7] mb-3">
                   Reconocimiento Institucional
                 </h3>
-                <p class="text-[#1a1410] dark:text-[#f0ece4] leading-relaxed" set:html={data.acknowledgment.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>')} />
+                <p class="text-[#111827] dark:text-[#f3f4f6] leading-relaxed" set:html={data.acknowledgment.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>')} />
               </aside>
             )}
 
@@ -163,7 +163,7 @@ const metadata = {
             {data.tags.length > 0 && (
               <div class="mb-10 flex flex-wrap gap-2">
                 {data.tags.map((tag) => (
-                  <span class="text-xs px-3 py-1 rounded-full bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech">
+                  <span class="text-xs px-3 py-1 rounded-full bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] text-[#1344e7] dark:text-[#1344e7] font-mono-tech">
                     {tag}
                   </span>
                 ))}
@@ -171,7 +171,7 @@ const metadata = {
             )}
 
             <!-- CONTENIDO MDX -->
-            <div class="prose prose-lg prose-p:text-[20px] prose-p:text-[#0a0705] dark:prose-p:text-[#f0ece4] prose-p:font-light max-w-none font-fraunces text-[#1a1410] dark:text-[#f0ece4] prose-headings:font-fraunces prose-headings:text-[#1a1410] dark:prose-headings:text-[#f0ece4] prose-strong:text-[#1a1410] dark:prose-strong:text-[#f0ece4] prose-a:text-[#1a4b8c] dark:prose-a:text-[#7fb3e0] prose-a:no-underline hover:prose-a:underline prose-blockquote:text-[#4a4438] dark:prose-blockquote:text-[#c8c2b6] prose-blockquote:border-l-[#1a4b8c] prose-code:text-[#1a4b8c] dark:prose-code:text-[#7fb3e0] prose-table:text-[#1a1410] dark:prose-table:text-[#f0ece4]">
+            <div class="prose prose-lg prose-p:text-[20px] prose-p:text-[#0a0705] dark:prose-p:text-[#f3f4f6] prose-p:font-light max-w-none font-fraunces text-[#111827] dark:text-[#f3f4f6] prose-headings:font-fraunces prose-headings:text-[#111827] dark:prose-headings:text-[#f3f4f6] prose-strong:text-[#111827] dark:prose-strong:text-[#f3f4f6] prose-a:text-[#1344e7] dark:prose-a:text-[#7fb3e0] prose-a:no-underline hover:prose-a:underline prose-blockquote:text-[#4b5563] dark:prose-blockquote:text-[#9ca3af] prose-blockquote:border-l-[#1344e7] prose-code:text-[#1344e7] dark:prose-code:text-[#7fb3e0] prose-table:text-[#111827] dark:prose-table:text-[#f3f4f6]">
               <slot />
             </div>
 
