@@ -61,9 +61,12 @@ const metadata = {
           {post.frontmatter?.tags && post.frontmatter.tags.length > 0 && (
             <div class="flex flex-wrap gap-2 mt-4">
               {post.frontmatter.tags.map((tag) => (
-                <span class="text-xs bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] px-2 py-1 rounded-full text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech">
+                <a
+                  href={`/topics/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+                  class="text-xs bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] px-2 py-1 rounded-full text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech hover:bg-[#1a4b8c] hover:text-white dark:hover:bg-[#2b6cb5] transition-colors"
+                >
                   #{tag}
-                </span>
+                </a>
               ))}
             </div>
           )}
