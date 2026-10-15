@@ -1,9 +1,40 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import LastPosts from '~/components/blogs/LastPosts.astro';
-
 // Importar imagen para el hero
 import heroImage from '~/assets/images/1-chasing-climate-change-in-the-arctic-2800.jpg';
+
+// Recopilar todos los tags únicos de posts y miradas
+const postsMods = import.meta.glob('../data/post/*.{md,mdx}');
+const miradasMods = import.meta.glob('../data/mirada-experta/*.{md,mdx}');
+
+const tagCounts: Record<string, number> = {};
+
+for (const path in postsMods) {
+  const mod = await postsMods[path]();
+  const tags = mod.frontmatter?.tags || [];
+  tags.forEach((t) => {
+    const key = t.toLowerCase();
+    tagCounts[key] = (tagCounts[key] || 0) + 1;
+  });
+}
+
+for (const path in miradasMods) {
+  const mod = await miradasMods[path]();
+  const tags = mod.frontmatter?.tags || [];
+  tags.forEach((t) => {
+    const key = t.toLowerCase();
+    tagCounts[key] = (tagCounts[key] || 0) + 1;
+  });
+}
+
+const topics = Object.entries(tagCounts)
+  .map(([key, count]) => ({
+    label: key,
+    slug: key.replace(/\s+/g, '-'),
+    count,
+  }))
+  .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const metadata = {
   title: 'Blogs — OpenAndes',
@@ -43,6 +74,25 @@ const metadata = {
           A través de nuestros espacios editoriales asociados, abordamos la coyuntura internacional y los escenarios de largo plazo desde distintos ángulos metodológicos.
         </p>
       </div>
+    </div>
+  </section>
+
+
+  <!-- Explorar por tema -->
+  <section class="max-w-5xl mx-auto px-4 py-12 border-t border-[#e8e0d0] dark:border-[#2a2a2a]">
+    <h2 class="font-sans font-bold text-2xl sm:text-3xl text-[#1a1410] dark:text-[#f0ece4] mb-6">
+      Explorar por tema
+    </h2>
+    <div class="flex flex-wrap gap-3">
+      {topics.map((t) => (
+        <a
+          href={`/topics/${t.slug}`}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#faf8f3] dark:bg-white/5 border border-[#e8e0d0] dark:border-[#2a2a2a] text-[#1a4b8c] dark:text-[#2b6cb5] font-mono-tech text-sm hover:bg-[#1a4b8c] hover:text-white dark:hover:bg-[#2b6cb5] transition-colors"
+        >
+          <span>{t.label}</span>
+          <span class="text-[10px] font-bold text-[#8a8070] dark:text-[#8a8070]">· {t.count}</span>
+        </a>
+      ))}
     </div>
   </section>
 
