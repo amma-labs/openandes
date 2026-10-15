@@ -2,6 +2,9 @@
 import Layout from '~/layouts/PageLayout.astro';
 import LastPosts from '~/components/blogs/LastPosts.astro';
 
+// Importar imagen para el hero
+import heroImage from '~/assets/images/1-chasing-climate-change-in-the-arctic-2800.jpg';
+
 // Cargar miradas expertas
 const posts = await Promise.all(
   Object.entries(import.meta.glob('../data/mirada-experta/*.{md,mdx}')).map(async ([path, load]) => {
@@ -46,18 +49,32 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero -->
-  <section class="border-b border-[#e8e0d0] dark:border-[#2a2a2a]">
-    <div class="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-      <span class="inline-block text-xs font-mono-tech font-bold tracking-widest uppercase text-[#1a4b8c] dark:text-[#2b6cb5] mb-4">
-        Miradas
-      </span>
-      <h1 class="font-sans text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-[#1a1410] dark:text-[#f0ece4]">
-        Miradas expertas
-      </h1>
-      <p class="mt-4 text-lg text-[#4a4438] dark:text-[#c8c2b6] leading-relaxed max-w-3xl font-fraunces font-light italic">
-        Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.
-      </p>
+  <!-- Hero con imagen de fondo -->
+  <section class="relative min-h-[450px] flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src={heroImage.src}
+        alt="Miradas expertas - Open Andes"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0F2A44]/90 via-[#0F2A44]/70 to-[#0F2A44]/50"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A44]/60 via-transparent to-transparent"></div>
+    </div>
+
+    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-[#1a4b8c] via-[#2b6cb5] to-[#1a4b8c]"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 py-16 sm:py-20">
+      <div class="max-w-3xl">
+        <span class="inline-block text-sm font-mono-tech font-bold tracking-widest uppercase text-[#c8d8ea] mb-4 border border-[#c8d8ea]/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
+          Miradas
+        </span>
+        <h1 class="font-sans text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight tracking-tight">
+          Miradas expertas
+        </h1>
+        <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
+          Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.
+        </p>
+      </div>
     </div>
   </section>
 
