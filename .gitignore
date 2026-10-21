@@ -34,3 +34,5 @@ scripts/
 .DS_Store
 **/.DS_Store
 * 2
+.vercel
+.env*

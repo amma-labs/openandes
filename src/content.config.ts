@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { feedLoader } from '@ascorbic/feed-loader';
+import { insMediasLoader } from 'astro-loader-ins-medias';
 
 function safeDate(value: unknown): Date {
   if (value instanceof Date) return value;
@@ -72,8 +73,25 @@ const reports = defineCollection({
   }),
 });
 
+const instagram = defineCollection({
+  loader: insMediasLoader({
+    fields: 'id,permalink,caption,media_url,media_type',
+    mediaTypes: ['IMAGE', 'CAROUSEL_ALBUM'],
+    limit: 6,
+    apiVersion: 'v25.0',
+  }),
+  schema: z.object({
+    id: z.string(),
+    permalink: z.string(),
+    caption: z.string().optional(),
+    media_url: z.string(),
+    media_type: z.string(),
+  }),
+});
+
 export const collections = {
   blog: blog,
   'fun-politik': funPolitik,
   reports: reports,
+  instagram: instagram,
 };

@@ -1,0 +1,161 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const profile = {
+  name: 'Open Andes',
+  description: 'Think tank y consultora que transforma el <strong>análisis</strong> geopolítico, tecnológico y geoeconómico en <strong>soluciones</strong> concretas para la <strong>toma de decisiones</strong>.',
+};
+
+const links = [
+  {
+    title: 'Escucha nuestro podcast',
+    hidden: true,
+  },
+  {
+    title: 'Acceder al informe estratégico',
+    subtitle: 'Pívot en el Pacífico Sur',
+    url: '/reports/pdf/open-andes-briefing-asesoria-2026-09.pdf',
+    featured: true,
+  },
+  {
+    title: 'Visita nuestro sitio web',
+    url: 'https://openandes.org',
+  },
+  {
+    title: 'Suscríbete al newsletter',
+    url: '#',
+    isNewsletter: true,
+  },
+];
+
+const gridImages = [
+  { image: "/images/posts/chernozem-brasil.jpg", link: "https://oandes.link/ynias0" },
+  { image: "/images/posts/rezago-digital", link: "https://www.2050lab.org/p/rezago-digital" },
+  { image: "/images/posts/inteligencia-militar", link: "https://www.2050lab.org/p/inteligencia-militar" },
+  { image: "/images/posts/vinculo-laboral.webp", link: "https://www.2050lab.org/p/vinculo-laboral" },
+  { image: "/images/posts/cosco-nebula.jpg", link: "https://www.2050lab.org/p/puertos-e-inversiones" },
+  { image: "/images/posts/alimentos-energia.webp", link: "https://www.2050lab.org/p/alimentos-energia" },
+];
+
+const title = 'Later — Open Andes';
+const description = 'Nuestros links, lecturas y referencias.';
+---
+
+<Layout title={title} description={description}>
+  <style is:global>
+    header#header { display: none !important; }
+  </style>
+
+  <div class="flex min-h-screen flex-col items-center bg-white px-4 py-12 dark:bg-gray-900">
+    
+    <!-- Header del perfil -->
+    <div class="mb-8 flex flex-col items-center text-center">
+      <div class="mb-4 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700">
+        <img src="/images/logo-open-andes.png" alt="Open Andes Logo" class="h-full w-full object-cover" />
+      </div>
+      
+      <h1 class="font-montserrat text-2xl font-bold tracking-wider text-black uppercase dark:text-white">{profile.name}</h1>
+      <p class="mt-2 text-gray-600 dark:text-gray-400 max-w-[320px] mx-auto text-sm leading-snug" set:html={profile.description}></p>
+    </div>
+
+    <!-- Botones -->
+    <div class="flex w-full max-w-lg flex-col gap-3">
+      {links.filter((link) => !link.hidden).map((link) => (
+        link.isNewsletter ? (
+          <details class="group w-full rounded-xl border-2 border-black bg-white transition hover:bg-gray-50 dark:border-white dark:bg-gray-800 dark:hover:bg-gray-700">
+            <summary class="flex w-full cursor-pointer list-none items-center justify-center p-4 text-center font-semibold text-black dark:text-white [&::-webkit-details-marker]:hidden">
+              {link.title}
+            </summary>
+            <div class="border-t-2 border-gray-100 p-4 dark:border-gray-700">
+              <form id="inline-newsletter-form" class="flex flex-col gap-3">
+                <input type="email" id="inline-newsletter-email" placeholder="tu@email.com" required class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-[#1344e7] dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                <button type="submit" id="inline-newsletter-submit" class="w-full px-4 py-2 text-sm font-semibold bg-[#1344e7] hover:bg-[#0d2b4f] text-white rounded-md transition-colors">Enviar</button>
+                <div id="inline-newsletter-message" class="text-xs text-center"></div>
+              </form>
+            </div>
+          </details>
+        ) : (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex w-full items-center justify-center rounded-xl border-2 border-black bg-white p-4 text-center font-semibold text-black transition hover:bg-gray-50 dark:border-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
+          >
+            {(link.featured && link.subtitle) ? (
+              <div class="flex w-full flex-col items-center text-center">
+                <span class="text-base font-bold">{link.title}</span>
+                <span class="text-sm font-normal text-gray-600 dark:text-gray-400">{link.subtitle}</span>
+              </div>
+            ) : (
+              <div class="flex flex-col">
+                <span>{link.title}</span>
+                {link.subtitle && <span class="text-sm font-normal text-gray-600 dark:text-gray-400">{link.subtitle}</span>}
+              </div>
+            )}
+          </a>
+        )
+      ))}
+    </div>
+
+    <!-- Grilla de imágenes inferior -->
+    <div class="mt-12 grid w-full max-w-md grid-cols-3 gap-[2px] md:max-w-2xl">
+      {gridImages.map((item) => (
+        <div class="aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+          <a href={item.link} target="_blank" rel="noopener noreferrer" class="block h-full w-full">
+            <img src={item.image} alt="" class="h-full w-full object-cover transition duration-300 hover:scale-105" />
+          </a>
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('inline-newsletter-form');
+      const emailInput = document.getElementById('inline-newsletter-email');
+      const messageEl = document.getElementById('inline-newsletter-message');
+      const submitBtn = document.getElementById('inline-newsletter-submit');
+
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = emailInput.value.trim();
+          if (!email || !email.includes('@') || !email.includes('.')) {
+            messageEl.textContent = 'Por favor, ingresa un email válido.';
+            messageEl.className = 'text-xs text-center text-red-600';
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Enviando...';
+          messageEl.textContent = '';
+
+          try {
+            const res = await fetch('/api/newsletter', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email }),
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+              messageEl.textContent = data.message || '¡Suscripción exitosa!';
+              messageEl.className = 'text-xs text-center text-green-600';
+              emailInput.value = '';
+            } else {
+              messageEl.textContent = data.error || 'Error al suscribir.';
+              messageEl.className = 'text-xs text-center text-red-600';
+            }
+          } catch (err) {
+            messageEl.textContent = 'Error de conexión. Intenta de nuevo.';
+            messageEl.className = 'text-xs text-center text-red-600';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar';
+          }
+        });
+      }
+    });
+  </script>
+</Layout>
