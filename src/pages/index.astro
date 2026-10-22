@@ -138,71 +138,38 @@ const metadata = {
 
         <aside class="lg:col-span-4 flex flex-col justify-between lg:border-l lg:border-[#e5e7eb] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
           <div class="flex flex-col justify-between h-full gap-5">
-            {[
-              {
-                badge: "Infraestructura Digital",
-                title: "Los centros de datos en LatAm y el caso peruano",
-                excerpt: "La región consume tecnología, pero depende de la infraestructura extranjera.",
-                author: "Renzo Aldair Juipa Peña",
-                dateStr: "30 Sep 2026",
-                url: "/analisis/centros-de-datos-latam-soberania-digital-peru",
-                image: "/images/posts/cover-583b9f166270147.64153e11a39fd.webp"
-              },
-              {
-                badge: "Minerales críticos",
-                title: "No es el litio, es el corredor",
-                excerpt: "Litio, corredores y la asimetría industrial con Asia.",
-                author: "Bernardo Muñoz Aguilar",
-                dateStr: "22 Sep 2026",
-                url: "/analisis/no-es-el-litio-es-el-corredor",
-                image: "/images/posts/litio-07-l.webp"
-              },
-              {
-                badge: "Logística",
-                title: "Más allá de Chancay",
-                excerpt: "La competitividad no solo se puede perder frente a puertos extranjeros.",
-                author: "Jimena Valenzuela G.",
-                dateStr: "14 Sep 2026",
-                url: "/analisis/mas-alla-de-chancay",
-                image: "/images/posts/shenzhen-container-port.webp"
-              },
-              {
-                badge: "Seguridad Económica",
-                title: "El Estrecho de Malaca se resuelve en Salta",
-                excerpt: "Argentina como válvula de escape de la seguridad energética china.",
-                author: "Joaquín Vigueras",
-                dateStr: "08 Sep 2026",
-                url: "/analisis/el-estrecho-de-malaca-se-resuelve-en-salta",
-                image: "/images/posts/cover-lithium.webp"
-              }
-            ].map((item, index, arr) => (
-              <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e5e7eb] dark:border-[#2a2a2a]" : ""} items-center ${item.disabled ? "grayscale opacity-60 pointer-events-none select-none" : ""}`}>
-                <div class="col-span-8 flex flex-col gap-1">
-                  <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">
-                    {item.badge}
-                  </span>
-                  <a href={item.url} class="hover:underline">
-                    <h3 class="text-xl font-display font-medium text-slate-900 dark:text-white leading-snug">
-                      {item.title}
-                    </h3>
-                  </a>
-                  <p class="text-base font-fraunces font-light text-slate-600 dark:text-slate-300 italic">
-                    {item.excerpt}
-                  </p>
-                  {item.author && (
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">{item.author.toUpperCase()}</p>
-                  )}
-                  <div class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-tight mt-0.5">
-                    {item.dateStr}
+            {visiblePosts.slice(1, 5).map((post, index, arr) => {
+              const frontmatter = post.frontmatter || {};
+              const dateStr = frontmatter.pubDate ? new Date(frontmatter.pubDate).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" }) : "";
+              return (
+                <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e5e7eb] dark:border-[#2a2a2a]" : ""} items-center`}>
+                  <div class="col-span-8 flex flex-col gap-1">
+                    <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">
+                      {frontmatter.category || "Análisis"}
+                    </span>
+                    <a href={post.url} class="hover:underline">
+                      <h3 class="text-xl font-display font-medium text-slate-900 dark:text-white leading-snug">
+                        {frontmatter.title || "Sin título"}
+                      </h3>
+                    </a>
+                    <p class="text-base font-fraunces font-light text-slate-600 dark:text-slate-300 italic">
+                      {frontmatter.excerpt || ""}
+                    </p>
+                    {frontmatter.author && (
+                      <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">{frontmatter.author.toUpperCase()}</p>
+                    )}
+                    <div class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-tight mt-0.5">
+                      {dateStr}
+                    </div>
                   </div>
-                </div>
-                <div class="col-span-4 overflow-hidden rounded">
-                  <a href={item.url}>
-                    <img src={item.image} alt={item.title} class="w-full h-20 object-cover hover:scale-105 transition-transform duration-300" />
-                  </a>
-                </div>
-              </article>
-            ))}
+                  <div class="col-span-4 overflow-hidden rounded">
+                    <a href={post.url}>
+                      <img src={frontmatter.image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa"} alt={frontmatter.title || "Artículo"} class="w-full h-20 object-cover hover:scale-105 transition-transform duration-300" />
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </aside>
 
