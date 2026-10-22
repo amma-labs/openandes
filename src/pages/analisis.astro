@@ -16,8 +16,8 @@ const posts = await Promise.all(
 
 // Ordenar por fecha
 const sortedPosts = posts.sort((a, b) => {
-  const dateA = new Date(a.frontmatter?.publishDate || '1970-01-01');
-  const dateB = new Date(b.frontmatter?.publishDate || '1970-01-01');
+  const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
+  const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
   return dateB - dateA;
 });
 
@@ -78,9 +78,9 @@ const metadata = {
                         <span class="font-medium uppercase tracking-wide">{post.frontmatter.author.toUpperCase()}</span>
                       )}
                     </div>
-                    {post.frontmatter?.publishDate && (
+                    {post.frontmatter?.pubDate && (
                       <time class="text-slate-400 dark:text-slate-500">
-                        {new Date(post.frontmatter.publishDate).toLocaleDateString('es-ES', { 
+                        {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', { 
                           year: 'numeric', 
                           month: 'short', 
                           day: 'numeric' 
