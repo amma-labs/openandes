@@ -44,6 +44,11 @@ export const authors: Record<string, Author> = {
     name: 'Robert A. Hale',
     bio: 'es Lead AI Systems Architect en IBM y Foresight Data Scientist en 2050 Futures Lab. Graduado de Stanford University y de la University of Utah, Robert se especializa en arquitecturas de sistemas de IA a escala empresarial, modelado predictivo y gobernanza tecnológica.',
   },
+  'danna-mena': {
+    name: 'Danna Mena',
+    bio: 'es maestra en Derecho Constitucional y Derechos Humanos, con formación como abogada e internacionalista. Desde 2019 representa a colectivos en foros nacionales e internacionales, con trayectoria de colaboración junto a organizaciones como USAID, FMCN y Sureste Sostenible. Su trabajo analiza la justicia climática, los derechos humanos y la geopolítica. Es cofundadora de Hackers por Nuestro Futuro A.C. y actualmente es investigadora asociada en Open Andes.',
+  },
+
   'dina-fazlizhanova': {
     name: 'Dina Fazlizhanova',
     bio: 'es doctora en ciencias por la Skoltech y física graduada con honores de la Universidad Estatal de Moscú (MSU). Ha publicado en Scientific Reports y colaborado con institutos de investigación internacionales. Aporta una perspectiva única respecto a las cadenas de suministro global, recursos estratégicos y dependencias tecnológicas.',
