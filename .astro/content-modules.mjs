@@ -6,5 +6,6 @@ export default new Map([
 ["src/data/post/la-leccion-indonesia.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fdata%2Fpost%2Fla-leccion-indonesia.mdx&astroContentModuleFlag=true")],
 ["src/data/post/mas-alla-de-chancay.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fdata%2Fpost%2Fmas-alla-de-chancay.mdx&astroContentModuleFlag=true")],
 ["src/data/post/no-es-el-litio-es-el-corredor.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fdata%2Fpost%2Fno-es-el-litio-es-el-corredor.mdx&astroContentModuleFlag=true")],
-["src/data/post/politica-exterior-chile-asia-pacifico.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fdata%2Fpost%2Fpolitica-exterior-chile-asia-pacifico.mdx&astroContentModuleFlag=true")]]);
+["src/data/post/politica-exterior-chile-asia-pacifico.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fdata%2Fpost%2Fpolitica-exterior-chile-asia-pacifico.mdx&astroContentModuleFlag=true")],
+["src/data/post/subsuelo-america-latina-parte-1.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fdata%2Fpost%2Fsubsuelo-america-latina-parte-1.mdx&astroContentModuleFlag=true")]]);
 		
