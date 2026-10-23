@@ -7,7 +7,7 @@ export interface Props {
 
 const { url, title = '', variant = 'inline' } = Astro.props;
 
-const shareUrl = url || Astro.url.href;
+const shareUrl = url || "https://openandes.org" + Astro.url.pathname;
 const shareTitle = title;
 
 const links = [
