@@ -78,7 +78,9 @@ const { text, url, class: className = 'inline-block' } = Astro.props;
       this.querySelectorAll<HTMLElement>('[data-aw-social-share]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const network = btn.getAttribute('data-aw-social-share') ?? '';
-          const url = encodeURIComponent(btn.getAttribute('data-aw-url') ?? '');
+          let rawUrl = btn.getAttribute('data-aw-url') ?? '';
+          if (rawUrl.includes('localhost')) rawUrl = 'https://openandes.org' + new URL(rawUrl).pathname;
+          const url = encodeURIComponent(rawUrl);
           const text = encodeURIComponent(btn.getAttribute('data-aw-text') ?? '');
           const build = SHARE_URLS[network];
           if (!build) return;
