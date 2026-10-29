@@ -1,0 +1,44 @@
+Para buena parte de la opinión pública asiática, Latinoamérica es una prolongación de la Península Ibérica: la misma lengua, la misma religión, el mismo pasado imperial. La imagen es cómoda y tiene un costo. Quien ve herencia lingüística ve cultura, turismo y consumo. No ve Estados soberanos con subsuelo estratégico. La imagen decide qué relación se ofrece: intercambio cultural, o acuerdos de suministro y cooperación industrial entre iguales.
+
+Mi tesis es que la región debe dejar de presentarse por su origen colonial y presentarse por su posición estructural. Esa posición tiene tres planos. Es geología: el subsuelo del que depende la electrificación mundial. Es orden jurídico: constituciones que declaran la propiedad originaria de la nación sobre sus recursos. Y es pluralidad: pueblos indígenas y tribales con derechos propios. España no figura en ninguno de los tres.
+
+## La frontera como escenario de negociación.
+
+La historia desmonta el relato de la herencia ibérica. Gloria Kok estudia las fronteras de la América Meridional en el siglo XVII, donde los grupos mbayá-guaicurú y payaguá se movían entre las coronas de España y Portugal. El oro de Cuiabá y la plata atraían a ambas potencias hacia los ríos de Paraguay y el Pantanal. Kok muestra que esos pueblos no recibieron pasivamente a la cultura europea. Aprovecharon las ambigüedades de las fronteras ibéricas, negociaron las alianzas y comerciaron cautivos, caballos y productos coloniales con una potencia y con la otra. Fueron actores políticos que jugaban con dos imperios rivales. De ese proceso surgieron identidades nuevas, lo que Jonathan Hill llama etnogénesis.¹
+
+La misma fuente muestra el reverso. Las coronas respondieron con presidios, fuertes y expediciones punitivas, algunas con orden de no perdonar a los vencidos. El territorio con metal se aseguró con fuerza militar. Es un antecedente directo de la pregunta actual: quién custodia el subsuelo y bajo qué reglas.
+
+El vínculo con Asia es aún más antiguo. La plata americana alimentó la economía de la China Imperial por la vía del comercio transpacífico. España fue en esa cadena un intermediario y un extractor, no el interlocutor de Asia. Esa intermediación desapareció. Hoy los Estados latinoamericanos negocian directamente con Pekín, Seúl, Tokio y Washington, y presentar la región como “mundo hispano” borra al verdadero protagonista.
+
+## Del Consenso de Washington al espejismo del litio.
+
+José Antonio Sanahuja analizó en 2003 la relación de la región con los Estados Unidos y la Unión Europea. Recoge la expresión de Ricardo Hausmann, entonces economista jefe del BID: una “crisis de esperanza”. Las reformas del Consenso de Washington lograron estabilidad macroeconómica y atrajeron capital, pero los indicadores sociales apenas mejoraron y la apertura agravó la vulnerabilidad externa. México fue la primera víctima con la crisis del peso, y la inestabilidad se propagó después a Asia y Sudamérica. Sanahuja concluye que el problema no era solo de políticas internas. La arquitectura financiera internacional tenía fallas que un enfoque nacional no podía corregir.²
+
+Su texto registra otra asimetría. Washington y Bruselas predicaban la apertura mientras protegían sus propios sectores agrarios con subsidios, la Farm Bill de 2002 y la Política Agrícola Común. Sanahuja habla de un “doble rasero”. También muestra una región atrapada entre dos potencias que compiten por su mercado, con el ALCA por un lado y los acuerdos de asociación europeos con México y Chile por otro, y con países que negocian por separado, cada uno a su ritmo. Su advertencia final es que la región debía mirar el futuro “sobre bases más firmes”, sin el espejismo neoliberal.
+
+Cambian los protagonistas y la estructura se repite. Hace dos décadas la promesa era que abrir la economía y exportar traería desarrollo. Hoy la promesa es que tener litio y cobre traerá prosperidad. Washington condiciona hoy sus incentivos industriales al origen de los minerales mientras exige acceso, y es el mismo doble rasero con otro insumo. Quien ignora ese antecedente repetirá el espejismo.
+
+Desde la diplomacia mexicana, Jorge Pinto Mazal, entonces subsecretario de Relaciones Exteriores, describe a mediados de los noventa la respuesta histórica. Presentaba la soberanía como el baluarte más importante de México en su política exterior. Defendía la concertación regional mediante el Grupo del Río, el Grupo de los Tres y Contadora para ganar margen de maniobra. Y sostenía el principio de no intervención, con la tesis de que la democracia no puede imponerse desde fuera. Su texto es la voz oficial del gobierno de Salinas, con su optimismo, y lo usó como testimonio de una doctrina, no como evaluación de resultados. Esa doctrina, sin embargo, es el sustrato jurídico sobre el que hoy se declara estratégico el litio.³
+
+## Por qué Asia y Estados Unidos miran el subsuelo.
+
+Cuatro fuerzas de largo aliento sostienen el interés actual, y ninguna depende del titular de la semana.
+
+La geología. El triángulo del litio entre Argentina, Bolivia y Chile concentra entre poco más de la mitad y cerca de dos tercios de los recursos identificados de litio del planeta. Las cifras varían porque dependen de la distinción entre recursos y reservas y de las revisiones del Servicio Geológico de Estados Unidos.⁴ Con esa salvedad, los recursos identificados se ubican en torno a 21 millones de toneladas en Bolivia, cerca de 20 en Argentina y entre 10 y 11 en Chile, mientras que en reservas económicamente explotables sobresale Chile. La palabra “triángulo” engaña, porque sugiere una región homogénea: Chile y Argentina producen, y Bolivia, pese a su dotación, apenas ha desarrollado proyectos piloto. A ello se suman el cobre de Chile y Perú, el hierro y el niobio de Brasil, y la plata y potencial litífero de México. La dotación es permanente. La capacidad de explotarla no lo es.
+
+La concentración industrial. El punto crítico no es solo dónde está el mineral, sino quién lo refina y lo convierte en baterías. China construyó durante dos décadas una posición dominante en esas etapas. Asegurar acceso aguas arriba mediante financiamiento, participaciones y contratos de largo plazo es, para las economías asiáticas, política de seguridad industrial.
+
+La inseguridad asiática. León-Manríquez, Tzili-Apango y Cárdenas-Barajas describen un continente de enorme densidad estratégica: potencias nucleares y disputas territoriales abiertas en el mar del Sur de China, la península coreana y Cachemira. Recuerdan que más de un tercio del comercio global transita por el mar del Sur de China, un punto de conflicto potencial.⁵ Un espacio tan vulnerable empuja a sus economías a diversificar el acceso a los recursos fuera de él. Mei Zhaorong lo formuló en 2001 desde la diplomacia china: independencia, soberanía, no intervención, multipolaridad y un “nuevo orden económico justo”, con un discurso de beneficio mutuo y desarrollo común dirigido a los países en desarrollo.⁶ Ese discurso resuena en una región que conoció el doble rasero.
+
+La lógica defensiva de Estados Unidos. Washington percibe dependencia de una cadena que controla su competidor principal. Responde con incentivos industriales condicionados al origen de los minerales y la relocalización hacia países considerados confiables. Es la vieja lógica hemisférica con vocabulario nuevo. México, con frontera, tratado comercial y capital manufacturero asiático, es el punto donde las dos órbitas se tocan. Chile y Perú miran al Pacífico. La región es el cruce de dos rivales, y esa es su mayor oportunidad y su mayor riesgo.
+
+---
+
+**Notas**
+
+¹ Gloria Kok, “Guerras, cautivos y metales: etnogénesis en las fronteras de la América Meridional en el siglo XVIII”, en *Miradas comparativas sobre las fronteras en América Latina* (2010).
+² José Antonio Sanahuja, “América Latina, la cuestión agraria y las negociaciones comerciales con Estados Unidos y la Unión Europea: ¿crisis de esperanza o fin de un espejismo?”, *Revista Mexicana de Política Exterior* 69 (2003).
+³ Jorge Pinto Mazal, “Integración política y económica con América Latina”, *Revista Mexicana de Política Exterior* 44 (1994).
+⁴ United States Geological Survey (USGS), *Mineral Commodity Summaries*, ediciones relevantes.
+⁵ José Luis León-Manríquez, Eduardo Tzili-Apango y César Cárdenas-Barajas, “La seguridad internacional en Asia”, en *Seguridad y asuntos internacionales* (2020), pp. 926-938.
+⁶ Mei Zhaorong, “La situación internacional y la política exterior de China”, *Revista Mexicana de Política Exterior* 65 (2002).
