@@ -10,143 +10,140 @@ const metadata = {
 const pilares = [
   {
     titulo: 'Análisis Geopolítico & Geoeconómico',
-    descripcion: 'Evaluación de riesgos globales, política exterior, comercio e impacto de los conflictos internacionales en América Latina.',
+    descripcion: 'Evaluación de riesgos globales, fricción territorial, soberanía digital y cadenas de suministro críticas (cobre, litio y nodos portuarios).',
     icon: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418',
   },
   {
-    titulo: 'Prospectiva & Escenarios Futuros',
-    descripcion: 'Modelado de tendencias a mediano y largo plazo (2035–2050) sobre reordenamiento sistémico, defensa y recursos estratégicos.',
+    titulo: 'Prospectiva & Escenarios Futuros (2035+)',
+    descripcion: 'Modelado cuantitativo y cualitativo de tendencias a mediano y largo plazo sobre reordenamiento sistémico, defensa y recursos estratégicos.',
     icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
   },
   {
-    titulo: 'Inteligencia & Redes de Conocimiento',
-    descripcion: 'Espacio de encuentro entre académicos, analistas y tomadores de decisión mediante publicaciones, mesas de discusión y reportes temáticos.',
+    titulo: 'Geofinanzas & Due Diligence Territorial',
+    descripcion: 'Rigor analítico en la asignación de capital transfronterizo, valoración de activos y estrés regulatorio para inversores y banca de desarrollo.',
     icon: 'M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25',
   },
 ];
 
 const servicios = [
   {
-    titulo: 'Asesoría Estratégica',
-    descripcion: 'Análisis de riesgo geopolítico y regulatorio para instituciones y empresas con operaciones en la región andina.',
+    titulo: 'Para la Industria y Activos Críticos',
+    descripcion: 'Stress-testing logístico mina-puerto, licencias sociales y mapeo anticipatorio de riesgos regulatorios y de soberanía digital (Minería, Energía, Puertos, Telecom).',
     icon: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z',
   },
   {
-    titulo: 'Informes a Medida',
-    descripcion: 'Reportes de inteligencia sobre cadenas de suministro, defensa y dinámica tecnológica en sectores críticos.',
+    titulo: 'Para Inversores y Comités',
+    descripcion: 'Political & Territorial Due Diligence para M&A, modelado de escenarios macro-geopolíticos y protección de flujos de caja frente a cisnes negros (Private Equity / Project Finance).',
     icon: 'M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z',
   },
   {
-    titulo: 'Briefings Ejecutivos',
-    descripcion: 'Sesiones de trabajo y análisis de escenario para equipos directivos que enfrentan entornos complejos.',
-    icon: 'M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0',
+    titulo: 'Para el Sector Público y Organismos Multilaterales',
+    descripcion: 'Workshops de Scenario Planning (2035+), Executive Briefings para misiones diplomáticas y asesoría en integración de corredores bioceánicos.',
+    icon: 'M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z',
   },
 ];
 ---
 
 <Layout metadata={metadata}>
   <section class="relative min-h-[600px] flex items-center overflow-hidden">
+    <!-- Imagen de fondo -->
     <div class="absolute inset-0 z-0">
-      <img
-        src={heroImage.src}
-        alt="Cordillera de los Andes — Paisaje andino"
+      <img 
+        src={heroImage.src} 
+        alt="Open Andes - Think Tank" 
         class="w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-[#030712]/90 via-[#030712]/70 to-[#030712]/50"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#030712]/60 via-transparent to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
     </div>
-
-    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-[#1344e7] via-[#1344e7] to-[#1344e7]"></div>
-
+    
+    <!-- Línea decorativa superior -->
+    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"></div>
+    
+    <!-- Contenido del hero -->
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-20 sm:py-28">
       <div class="max-w-2xl">
         <span class="inline-block text-sm font-mono-tech font-bold tracking-widest uppercase text-[#e5e7eb] mb-4 border border-[#e5e7eb]/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Think Tank &amp; Análisis Estratégico
+          Think Tank &amp; Red de Investigación Andes-Pacífico (Santiago - Lima)
         </span>
         <h1 class="font-sans font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight">
-          Pensamiento estratégico para un<br />
+          Inteligencia territorial y mitigación de riesgo para un<br />
           <span class="text-[#e5e7eb]">orden global en transformación</span>
         </h1>
         <p class="mt-6 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
-          Open Andes es un think tank y centro de análisis independiente dedicado a la geopolítica,
-          la geoeconomía y la prospectiva de largo plazo. Investigamos las dinámicas de poder global,
-          la seguridad, las cadenas de valor y la tecnología para ofrecer contexto crítico
-          e inteligencia estratégica desde y para la región.
+          Open Andes es el primer think tank descentralizado, no partidista, independiente y 100% digital, especializado en inteligencia geopolítica y prospectiva geoeconómica en el eje América Latina-Asia, así como en riesgos geoestratégicos y flujos de capital.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-[#ffffff] dark:bg-[#030712]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="font-sans font-bold text-3xl md:text-4xl text-[#111827] dark:text-[#f3f4f6]">
-          Nuestro Enfoque
-        </h2>
-        <div class="w-16 h-1 bg-[#1344e7] dark:bg-[#1344e7] mx-auto mt-4 rounded-full"></div>
-        <p class="text-[#4b5563] dark:text-[#9ca3af] mt-4 max-w-2xl mx-auto">
-          Tres pilares que guían nuestra investigación y análisis estratégico
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {pilares.map((p) => (
-          <div class="group p-8 rounded-2xl border border-[#e5e7eb] dark:border-[#2a2a2a] bg-white dark:bg-white/5 hover:border-[#1344e7] dark:hover:border-[#1344e7] hover:shadow-lg transition-all duration-300">
-            <div class="w-14 h-14 bg-[#e2f3ff]/70 dark:bg-white/5 rounded-xl flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-[#1344e7] dark:text-[#1344e7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d={p.icon} />
+  <!-- Nuestro Enfoque -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-5xl mx-auto px-4">
+      <header class="mb-12 text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Nuestros Pilares de Investigación</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">Tres vectores analíticos clave para entender el corredor Andes-Pacífico y la disputa global.</p>
+      </header>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {pilares.map((pilar) => (
+          <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={pilar.icon} />
               </svg>
             </div>
-            <h3 class="font-sans font-bold text-xl text-[#111827] dark:text-[#f3f4f6] mb-3">{p.titulo}</h3>
-            <p class="text-[#4b5563] dark:text-[#9ca3af] leading-relaxed">{p.descripcion}</p>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">{pilar.titulo}</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">{pilar.descripcion}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-white dark:bg-[#030712] border-y border-[#e5e7eb] dark:border-[#2a2a2a]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="relative overflow-hidden rounded-3xl bg-[#ffffff] dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] p-10 md:p-16">
-        <div class="relative z-10 text-center">
-          <h2 class="font-sans font-bold text-3xl md:text-4xl text-[#111827] dark:text-[#f3f4f6] mb-4">
-            Un ecosistema de investigación modular
-          </h2>
-          <p class="text-lg text-[#4b5563] dark:text-[#9ca3af] leading-relaxed max-w-3xl mx-auto">
-            Open Andes opera como un nodo central de inteligencia estratégica que articula tanto el trabajo aplicado de su Consultora como el desarrollo de sus plataformas de análisis independiente:
-            <strong class="text-[#1344e7] dark:text-[#1344e7]"> Fun Politik</strong> (enfocada en la coyuntura internacional) y
-            <strong class="text-[#1344e7] dark:text-[#1344e7]"> 2050 Futures Lab</strong> (dedicada a la prospectiva de largo plazo y tecnología).
-          </p>
-        </div>
+  <!-- Ecosistema -->
+  <section class="py-16 bg-slate-50 dark:bg-slate-900/50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">Un ecosistema de investigación modular</h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
+        Open Andes opera como un nodo central de inteligencia estratégica que articula tanto el trabajo aplicado de su Consultora como el desarrollo de sus plataformas de análisis independiente: <strong>Fun Politik</strong> (enfocada en la coyuntura internacional) y <strong>2050 Futures Lab</strong> (dedicada a la prospectiva de largo plazo y tecnología).
+      </p>
+    </div>
+  </section>
+
+  <!-- Soluciones -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-5xl mx-auto px-4">
+      <header class="mb-12 text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Soluciones por Vertical e Institución</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">Rigor analítico adaptado a los requerimientos de la alta dirección.</p>
+      </header>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {servicios.map((servicio) => (
+          <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={servicio.icon} />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">{servicio.titulo}</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">{servicio.descripcion}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-[#ffffff] dark:bg-[#030712]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="font-sans font-bold text-3xl md:text-4xl text-[#111827] dark:text-[#f3f4f6]">
-          Soluciones y Solicitudes Directas
-        </h2>
-        <div class="w-16 h-1 bg-[#1344e7] dark:bg-[#1344e7] mx-auto mt-4 rounded-full"></div>
-        <p class="text-[#4b5563] dark:text-[#9ca3af] mt-4 max-w-2xl mx-auto">
-          Soluciones estratégicas para instituciones y empresas
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {servicios.map((s) => (
-          <div class="group p-8 rounded-2xl border border-[#e5e7eb] dark:border-[#2a2a2a] bg-white dark:bg-white/5 hover:border-[#1344e7] dark:hover:border-[#1344e7] hover:shadow-lg transition-all duration-300">
-            <div class="flex items-center justify-center w-14 h-14 bg-[#e2f3ff]/70 dark:bg-white/5 rounded-xl mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-[#1344e7] dark:text-[#1344e7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d={s.icon} />
-              </svg>
-            </div>
-            <h3 class="font-sans font-bold text-xl text-[#111827] dark:text-[#f3f4f6] mb-3">{s.titulo}</h3>
-            <p class="text-[#4b5563] dark:text-[#9ca3af] leading-relaxed">{s.descripcion}</p>
-          </div>
-        ))}
-      </div>
+  <!-- Cierre Institucional -->
+  <section class="py-16 bg-[#111827] text-center text-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <p class="text-xl sm:text-2xl font-light italic leading-relaxed">
+        "No entregamos teoría geopolítica abstracta, sino inteligencia territorial accionable adaptada a los requerimientos de la alta dirección y cuerpos deliberativos del Estado."
+      </p>
+      <p class="mt-8 text-sm uppercase tracking-widest text-slate-400 font-mono-tech">
+        Santiago de Chile · Lima, Perú
+      </p>
     </div>
   </section>
 </Layout>
