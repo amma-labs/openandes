@@ -15,7 +15,7 @@ export const headerData = {
       href: getPermalink('/estrategia'),
     },
     {
-      text: 'Monitor',
+      text: 'Investigación',
       href: getPermalink('/monitor'),
     },
     {

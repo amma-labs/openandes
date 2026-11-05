@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 import heroImage from '~/assets/images/9-viridien-see-things-differently-1400.png';
 
 const metadata = {
-  title: 'Monitor: Equipos de Investigación — OpenAndes',
+  title: 'Investigación LatAm-Asia — OpenAndes',
 };
 
 const reports = (await getCollection('reports', ({ data }) => !data.draft))
@@ -25,7 +25,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
     <div class="absolute inset-0 z-0">
       <img
         src={heroImage.src}
-        alt="Monitor LatAm-Asia - Open Andes"
+        alt="Investigación LatAm-Asia - Open Andes"
         class="w-full h-full object-cover"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/40"></div>
@@ -37,7 +37,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
       <div class="max-w-3xl">
         <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Monitor
+          Investigación
         </span>
         <h1 class="font-sans text-4xl sm:text-5xl md:text-5xl font-bold text-white leading-tight">
           LatAm-Asia
