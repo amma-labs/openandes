@@ -68,6 +68,7 @@ const reports = defineCollection({
     pdfUrl: z.string().optional(),
     tags: z.array(z.string()).default([]),
     summary: z.string().optional(),
+    image: z.string().optional(),
     toc: z.boolean().default(true),
     draft: z.boolean().default(false),
   }),

@@ -1,32 +1,39 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
 
-// Importar imagen para el hero
 import heroImage from '~/assets/images/9-viridien-see-things-differently-1400.png';
 
 const metadata = {
   title: 'Monitor: Equipos de Investigación — OpenAndes',
 };
+
+const reports = (await getCollection('reports', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const [featured, ...rest] = reports;
+
+const formatDate = (d: Date) =>
+  new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long' }).format(d);
+
+const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Section con imagen de fondo -->
   <section class="relative min-h-[450px] flex items-center overflow-hidden">
-    <!-- Imagen de fondo -->
     <div class="absolute inset-0 z-0">
-      <img 
-        src={heroImage.src} 
-        alt="Monitor LatAm-Asia - Open Andes" 
+      <img
+        src={heroImage.src}
+        alt="Monitor LatAm-Asia - Open Andes"
         class="w-full h-full object-cover"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/40"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
     </div>
-    
-    <!-- Línea decorativa superior -->
+
     <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"></div>
-    
-    <!-- Contenido del hero -->
+
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
       <div class="max-w-3xl">
         <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
@@ -42,43 +49,83 @@ const metadata = {
     </div>
   </section>
 
-  <!-- Contenido -->
   <div class="max-w-5xl mx-auto px-4 py-16">
-    
 
-    <!-- Reporte -->
-    <a href="/monitor/reporte-1" class="block group mb-16">
-      <article class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden">
-        <div class="grid grid-cols-1 md:grid-cols-2">
-          <div class="p-8">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold">REPORTE #1</span>
-              <span class="text-xs text-slate-500 dark:text-slate-400">Septiembre 2026</span>
+    <!-- Reporte destacado (más reciente) -->
+    {featured && (
+      <a href={`/monitor/${getSlug(featured.id)}`} class="block group mb-12">
+        <article class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="p-8">
+              <div class="flex items-center gap-3 mb-4">
+                {featured.data.type && (
+                  <span class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold">{featured.data.type}</span>
+                )}
+                <span class="text-xs text-slate-500 dark:text-slate-400">{formatDate(featured.data.date)}</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {featured.data.title}
+              </h3>
+              {featured.data.summary && (
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  {featured.data.summary}
+                </p>
+              )}
+              {featured.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2">
+                  {featured.data.tags.slice(0, 6).map((tag) => (
+                    <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
-            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              Reconfiguración logística y geopolítica en el Pacífico Sur
-            </h3>
-            <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              Frente a la inversión de capital chino y de Asia-Pacífico en infraestructura portuaria (San Antonio, Chancay y Callao).
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Geopolítica</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Pacífico Sur</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Comercio Marítimo</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Infraestructura Portuaria</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">China-América Latina</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Chile</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Perú</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Minerales Críticos</span>
-              <span class="text-xs px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Cadenas de Suministro</span>
-            </div>
+            {featured.data.image && (
+              <div class="relative min-h-[280px] md:min-h-full">
+                <img src={featured.data.image} alt={featured.data.title} class="absolute inset-0 w-full h-full object-cover" />
+              </div>
+            )}
           </div>
-          <div class="relative min-h-[280px] md:min-h-full">
-            <img src="/images/posts/shanghai-puerto-1920x1080-1.webp" alt="Puerto de Shanghái" class="absolute inset-0 w-full h-full object-cover" />
-          </div>
+        </article>
+      </a>
+    )}
+
+    <!-- Otros reportes -->
+    {rest.length > 0 && (
+      <div class="mt-4">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mb-6">
+          Reportes anteriores
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {rest.map((report) => (
+            <a href={`/monitor/${getSlug(report.id)}`} class="block group">
+              <article class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col">
+                {report.data.image && (
+                  <div class="relative h-48 overflow-hidden">
+                    <img src={report.data.image} alt={report.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  </div>
+                )}
+                <div class="p-6 flex-1 flex flex-col">
+                  <div class="flex items-center gap-3 mb-3">
+                    {report.data.type && (
+                      <span class="text-[10px] font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold">{report.data.type}</span>
+                    )}
+                    <span class="text-xs text-slate-500 dark:text-slate-400">{formatDate(report.data.date)}</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {report.data.title}
+                  </h3>
+                  {report.data.summary && (
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
+                      {report.data.summary}
+                    </p>
+                  )}
+                </div>
+              </article>
+            </a>
+          ))}
         </div>
-      </article>
-    </a>
+      </div>
+    )}
 
   </div>
 </Layout>
