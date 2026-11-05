@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import RadarWidget from '~/components/widgets/RadarWidget.astro';
+import { getCollection } from 'astro:content';
 
 // Importar posts de Análisis
 const posts = await Promise.all(
@@ -28,6 +29,12 @@ const visiblePosts = sortedPosts.filter(p => {
   return d <= todayStr;
 });
 const mainPost = visiblePosts[0] || null;
+
+// Importar reportes para el hero
+const reports = (await getCollection('reports', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const mainReport = reports[0] || null;
+const getReportSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
 
 // Array de Comentarios & Briefs reales (ordenados de más nuevo a más viejo)
 const briefs = [
@@ -96,43 +103,41 @@ const metadata = {
         <article class="lg:col-span-8 flex flex-col gap-4 font-sans text-center items-center lg:max-w-[700px] lg:mx-auto">
           <div class="flex items-center gap-3">
             <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono-tech font-bold text-xs uppercase px-2.5 py-1 rounded w-max tracking-wide">
-              {mainPost ? mainPost.frontmatter?.category || 'Análisis' : 'Informe Principal'}
+              {mainReport ? mainReport.data.type || 'Informe' : 'Informe Principal'}
             </span>
-            {mainPost?.frontmatter?.pubDate && (
+            {mainReport?.data?.date && (
               <span class="text-xs font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-tight">
-                {new Date(mainPost.frontmatter.pubDate).toLocaleDateString('es-ES', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
+                {mainReport.data.date.toLocaleDateString('es-ES', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
                 })}
               </span>
             )}
           </div>
-          
-          <a href={mainPost?.url || "#"} class="group block overflow-hidden rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 lg:max-w-[700px] lg:mx-auto">
-            <img 
-              src={mainPost?.frontmatter?.image || 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'} 
-              alt={mainPost?.frontmatter?.title || 'Análisis Principal'} 
+
+          <a href={mainReport ? `/monitor/${getReportSlug(mainReport.id)}` : '#'} class="group block overflow-hidden rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 lg:max-w-[700px] lg:mx-auto">
+            <img
+              src={mainReport?.data?.image || 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'}
+              alt={mainReport?.data?.title || 'Informe Principal'}
               class="w-full h-[360px] sm:h-[400px] lg:h-auto lg:aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </a>
 
-          <a href={mainPost?.url || '#'} class="hover:underline">
+          <a href={mainReport ? `/monitor/${getReportSlug(mainReport.id)}` : '#'} class="hover:underline">
             <h1 class="text-3xl sm:text-4xl font-fraunces font-normal tracking-tight text-slate-900 dark:text-white leading-tight">
-              {mainPost?.frontmatter?.title || 'El Estrecho de Malaca se resuelve en Salta'}
+              {mainReport?.data?.title || 'Corredores andinos: integración portuaria de Bolivia, Perú, Argentina y Chile'}
             </h1>
           </a>
 
-          <a href={mainPost?.url || '#'} class="block hover:opacity-90">
+          <a href={mainReport ? `/monitor/${getReportSlug(mainReport.id)}` : '#'} class="block hover:opacity-90">
             <p class="font-fraunces font-light text-xl text-slate-600 dark:text-slate-300 leading-relaxed italic">
-              {mainPost?.frontmatter?.excerpt || 'La apuesta industrial que convierte a Argentina en la válvula de escape de la seguridad energética china.'}
+              {mainReport?.data?.summary || mainReport?.data?.subtitle || ''}
             </p>
           </a>
 
           <div class="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
-            {mainPost?.frontmatter?.author && (
-              <span class="font-medium uppercase tracking-wide">{mainPost.frontmatter.author.toUpperCase()}</span>
-            )}
+            <span class="font-medium uppercase tracking-wide">OPEN ANDES</span>
           </div>
         </article>
 
@@ -241,25 +246,25 @@ const metadata = {
           </div>
         </article>
       </a>
-      <!-- Brief principal: Reporte #1 -->
+      <!-- Brief principal: Informe #2 -->
 
-      <a href="/monitor/reporte-1" class="block group mb-10">
+      <a href="/monitor/reporte-2" class="block group mb-10">
         <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#e2f3ff]/50 dark:bg-white/5">
           <div class="grid grid-cols-1 lg:grid-cols-4">
             <div class="lg:col-span-1 p-6 sm:p-8 flex flex-col justify-center gap-3">
               <div class="flex items-center gap-2 flex-wrap">
-                <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">REPORTE #1</span>
+                <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">INFORME #2</span>
                 <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-widest">Investigación</span>
               </div>
               <p class="font-fraunces font-light italic text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                La inversión de capital chino en la infraestructura portuaria de Perú y Chile, los cuellos de botella globales, y sus implicaciones para las industrias minera y agrícola.
+                Análisis de los corredores mine-to-port del Pacífico sudamericano, la integración portuaria y los riesgos geopolíticos asociados.
               </p>
             </div>
             <div class="lg:col-span-3 relative min-h-[280px] lg:min-h-[360px]">
-              <img src="/images/posts/shanghai-puerto-1920x1080-1.webp" alt="Informe #1 - Investigación LatAm-Asia" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+              <img src="/images/posts/bolivia-uyuni-laguna-colorada.webp" alt="Informe #2 - Investigación LatAm-Asia" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <h3 class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white font-sans text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">
-                Reconfiguración logística y geopolítica en el Pacífico Sur
+                Corredores andinos: integración portuaria de Bolivia, Perú, Argentina y Chile
               </h3>
             </div>
           </div>
