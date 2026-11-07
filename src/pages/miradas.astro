@@ -43,8 +43,8 @@ const topics = Object.entries(tagCounts)
   .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const metadata = {
-  title: 'Notas Expertas — Open Andes',
-  description: 'Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.',
+  title: 'Comentarios — Open Andes',
+  description: 'Perspectivas de coyuntura y columnas sobre los cambios de poder en la región.',
 };
 ---
 
@@ -58,7 +58,7 @@ const metadata = {
         Comentarios
       </h1>
       <div class="mt-4 text-lg font-medium text-slate-600 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
-        Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.
+        Perspectivas de coyuntura y columnas sobre los cambios de poder en la región.
       </div>
       {topics.length > 0 && (
         <div class="mt-8 flex flex-wrap justify-center gap-2">
