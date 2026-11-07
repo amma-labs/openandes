@@ -49,41 +49,31 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero con imagen de fondo -->
-  <section class="relative min-h-[450px] flex items-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img
-        src={heroImage.src}
-        alt="Notas Expertas - Open Andes"
-        class="w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r from-[#030712]/90 via-[#030712]/70 to-[#030712]/50"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#030712]/60 via-transparent to-transparent"></div>
-    </div>
-
-    <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-[#1344e7] via-[#1344e7] to-[#1344e7]"></div>
-
-    <div class="relative z-10 max-w-5xl mx-auto px-6 py-16 sm:py-20">
-      <div class="max-w-3xl">
-        <span class="inline-block text-sm font-mono-tech font-bold tracking-widest uppercase text-[#e5e7eb] mb-4 border border-[#e5e7eb]/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Comentarios
-        </span>
-        <h1 class="font-sans text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight tracking-tight">
-          Notas Expertas
-        </h1>
-        <div class="mt-6 flex flex-wrap gap-2">
+  <section class="mx-auto max-w-5xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <header class="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+      <span class="text-sm font-medium tracking-widest uppercase text-blue-600 dark:text-[#5b8def] border border-blue-200 dark:border-[#5b8def]/30 px-3 py-1 rounded-full">
+        Open Andes
+      </span>
+      <h1 class="text-4xl font-sans font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
+        Comentarios
+      </h1>
+      <div class="mt-4 text-lg font-medium text-slate-600 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
+        Comentarios y columnas de expertos sobre geopolítica, economía y poder en América Latina.
+      </div>
+      {topics.length > 0 && (
+        <div class="mt-8 flex flex-wrap justify-center gap-2">
           {topics.map((t) => (
             <a
               href={`/topics/${t.slug}`}
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-mono-tech text-xs hover:bg-white/20 transition-colors"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] text-[#1344e7] dark:text-[#5b8def] font-mono-tech text-xs hover:bg-[#1344e7] hover:text-white dark:hover:bg-[#1344e7] transition-colors"
             >
               <span>{t.label}</span>
-              <span class="text-[10px] text-white/60">· {t.count}</span>
+              <span class="text-[10px] opacity-60">· {t.count}</span>
             </a>
           ))}
         </div>
-      </div>
-    </div>
+      )}
+    </header>
   </section>
 
   <!-- Listado de miradas -->
