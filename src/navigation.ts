@@ -23,7 +23,7 @@ export const headerData = {
       href: getPermalink('/analisis'),
     },
     {
-      text: 'Notas Expertas',
+      text: 'Comentarios',
       href: getPermalink('/miradas'),
     },
     {
