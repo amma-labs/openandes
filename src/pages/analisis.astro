@@ -36,13 +36,13 @@ const metadata = {
       <h1 class="text-4xl font-sans font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
         Análisis
       </h1>
-      <div class="mt-4 text-lg font-medium text-slate-700 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
+      <div class="mt-4 text-lg font-medium text-slate-700 dark:text-slate-600 md:mt-3 max-w-2xl mx-auto">
         Lecturas para la toma de decisiones. Investigaciones y ensayos orientados para exponer las inercias de poder que condicionan el desarrollo regional.
       </div>
     </header>
 
     {sortedPosts.length === 0 ? (
-      <p class="text-center text-gray-500 dark:text-slate-400">No hay publicaciones aún.</p>
+      <p class="text-center text-gray-500 dark:text-slate-600">No hay publicaciones aún.</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {sortedPosts.map((post) => {
@@ -68,18 +68,18 @@ const metadata = {
                     {post.frontmatter?.title || 'Sin título'}
                   </h2>
                   {post.frontmatter?.excerpt && (
-                    <p class="text-slate-700 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
+                    <p class="text-slate-700 dark:text-slate-600 text-sm leading-relaxed line-clamp-2">
                       {post.frontmatter.excerpt}
                     </p>
                   )}
-                  <div class="flex items-center justify-between mt-4 text-xs text-slate-600 dark:text-slate-400">
+                  <div class="flex items-center justify-between mt-4 text-xs text-slate-600 dark:text-slate-600">
                     <div class="flex items-center gap-2">
                       {post.frontmatter?.author && (
                         <span class="font-medium uppercase tracking-wide">{post.frontmatter.author.toUpperCase()}</span>
                       )}
                     </div>
                     {post.frontmatter?.pubDate && (
-                      <time class="text-slate-400 dark:text-slate-600">
+                      <time class="text-slate-600 dark:text-slate-600">
                         {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', { 
                           year: 'numeric', 
                           month: 'short', 

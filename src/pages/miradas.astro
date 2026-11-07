@@ -57,7 +57,7 @@ const metadata = {
       <h1 class="text-4xl font-sans font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
         Comentarios
       </h1>
-      <div class="mt-4 text-lg font-medium text-slate-700 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
+      <div class="mt-4 text-lg font-medium text-slate-700 dark:text-slate-600 md:mt-3 max-w-2xl mx-auto">
         Perspectivas de coyuntura y columnas sobre los cambios en el poder, el capital y la geopolítica en toda América.
       </div>
       {topics.length > 0 && (
@@ -79,7 +79,7 @@ const metadata = {
   <!-- Listado de miradas -->
   <section class="mx-auto max-w-5xl px-6 pb-12 pt-0">
     {sortedPosts.length === 0 ? (
-      <p class="text-center text-[#9ca3af]">No hay publicaciones aún.</p>
+      <p class="text-center text-[#4b5563]">No hay publicaciones aún.</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {sortedPosts.map((post) => {
@@ -102,10 +102,10 @@ const metadata = {
                   <h2 class="text-xl font-sans font-bold mb-2 text-[#111827] dark:text-[#f3f4f6] group-hover:text-[#1344e7] dark:group-hover:text-[#1344e7] transition-colors leading-snug">
                     {post.frontmatter?.title || 'Sin título'}
                   </h2>
-                  <p class="text-[#4b5563] dark:text-[#9ca3af] text-sm leading-relaxed line-clamp-2">
+                  <p class="text-[#4b5563] dark:text-[#4b5563] text-sm leading-relaxed line-clamp-2">
                     {post.frontmatter?.excerpt || ''}
                   </p>
-                  <div class="flex items-center justify-between mt-4 text-xs text-[#9ca3af]">
+                  <div class="flex items-center justify-between mt-4 text-xs text-[#4b5563]">
                     <span class="font-medium uppercase tracking-wide">{post.frontmatter?.author || ''}</span>
                     {post.frontmatter?.pubDate && (
                       <time>
@@ -131,7 +131,7 @@ const metadata = {
     <h2 class="font-sans font-bold text-xl sm:text-2xl text-[#111827] dark:text-[#f3f4f6] mb-2">
       Plataformas asociadas
     </h2>
-    <p class="text-sm text-[#9ca3af] mb-8">
+    <p class="text-sm text-[#4b5563] mb-8">
       Espacios editoriales donde Open Andes publica análisis coyuntural y prospectiva de largo plazo.
     </p>
     <LastPosts />
