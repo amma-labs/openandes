@@ -34,7 +34,7 @@ const metadata = {
   <!-- HERO -->
   <section class="bg-[#ffffff] dark:bg-[#030712] border-b border-[#e5e7eb] dark:border-[#2a2a2a]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
-      <div class="flex flex-wrap items-center gap-2 text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#1344e7] mb-6">
+      <div class="flex flex-wrap items-center gap-2 text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def] mb-6">
         {data.program && <span>{data.program}</span>}
         {data.type && <><span>•</span><span>{data.type}</span></>}
         {data.date && <><span>•</span><time datetime={data.date.toISOString()}>{formatDate(data.date)}</time></>}
@@ -108,7 +108,7 @@ const metadata = {
                     <li class={h.depth === 2 ? "pl-3" : ""}>
                       <a
                         href={`#${h.slug}`}
-                        class="block text-[#4b5563] dark:text-[#9ca3af] hover:text-[#1344e7] dark:hover:text-[#1344e7] transition-colors leading-snug"
+                        class="block text-[#4b5563] dark:text-[#9ca3af] hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors leading-snug"
                       >
                         {h.text}
                       </a>
@@ -126,7 +126,7 @@ const metadata = {
             <!-- KEY TAKEAWAYS -->
             {data.keyTakeaways && data.keyTakeaways.length > 0 && (
               <aside class="mb-10 rounded-lg border-l-4 border-[#1344e7] dark:border-[#1344e7] bg-[#e2f3ff]/50 dark:bg-white/5 p-6">
-                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#1344e7] mb-3">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def] mb-3">
                   Puntos Clave
                 </h3>
                 <ul class="space-y-2 text-sm text-[#111827] dark:text-[#f3f4f6] leading-relaxed list-disc pl-5">
@@ -142,7 +142,7 @@ const metadata = {
               <div class="my-10 grid grid-cols-1 sm:grid-cols-3 gap-6 py-6 border-y border-[#e5e7eb] dark:border-[#2a2a2a] text-center">
                 {data.stats.map((s) => (
                   <div>
-                    <span class="block text-3xl font-bold text-[#1344e7] dark:text-[#1344e7] font-fraunces">{s.value}</span>
+                    <span class="block text-3xl font-bold text-[#1344e7] dark:text-[#5b8def] font-fraunces">{s.value}</span>
                     <span class="mt-1 block text-xs font-mono-tech font-bold text-[#9ca3af] dark:text-[#9ca3af] uppercase tracking-wider leading-tight">{s.label}</span>
                   </div>
                 ))}
@@ -152,7 +152,7 @@ const metadata = {
             <!-- ACKNOWLEDGMENT -->
             {data.acknowledgment && (
               <aside class="my-10 rounded-lg border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5 p-6 text-sm">
-                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#1344e7] mb-3">
+                <h3 class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def] mb-3">
                   Reconocimiento Institucional
                 </h3>
                 <p class="text-[#111827] dark:text-[#f3f4f6] leading-relaxed" set:html={data.acknowledgment.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>')} />
@@ -163,7 +163,7 @@ const metadata = {
             {data.tags.length > 0 && (
               <div class="mb-10 flex flex-wrap gap-2">
                 {data.tags.map((tag) => (
-                  <span class="text-xs px-3 py-1 rounded-full bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] text-[#1344e7] dark:text-[#1344e7] font-mono-tech">
+                  <span class="text-xs px-3 py-1 rounded-full bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] text-[#1344e7] dark:text-[#5b8def] font-mono-tech">
                     {tag}
                   </span>
                 ))}

@@ -106,7 +106,7 @@ const metadata = {
               {mainReport ? mainReport.data.type || 'Informe' : 'Informe Principal'}
             </span>
             {mainReport?.data?.date && (
-              <span class="text-xs font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-tight">
+              <span class="text-xs font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-tight">
                 {mainReport.data.date.toLocaleDateString('es-ES', {
                   year: 'numeric',
                   month: 'long',
@@ -160,7 +160,7 @@ const metadata = {
                     {frontmatter.author && (
                       <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">{frontmatter.author.toUpperCase()}</p>
                     )}
-                    <div class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-tight mt-0.5">
+                    <div class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-tight mt-0.5">
                       {dateStr}
                     </div>
                   </div>
@@ -228,7 +228,7 @@ const metadata = {
             <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Mirada Experta</span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-widest">Energía · 30 Sep 2026</span>
+                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">Energía · 30 Sep 2026</span>
               </div>
               <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
                 Lo que oculta la fortaleza agrícola latinoamericana
@@ -251,7 +251,7 @@ const metadata = {
             <div class="lg:col-span-1 p-6 sm:p-8 flex flex-col justify-center gap-3">
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">INFORME #2</span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#1344e7] uppercase tracking-widest">Investigación</span>
+                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">Investigación</span>
               </div>
               <p class="font-fraunces font-light italic text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
                 Análisis de los corredores mine-to-port del Pacífico sudamericano, la integración portuaria y los riesgos geopolíticos asociados.
@@ -277,7 +277,7 @@ const metadata = {
             </a>
             <div class="flex items-center justify-between text-xs">
               <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
-              <span class="text-[#1344e7] dark:text-[#1344e7] font-mono-tech font-bold">{brief.displayDate}</span>
+              <span class="text-[#1344e7] dark:text-[#5b8def] font-mono-tech font-bold">{brief.displayDate}</span>
             </div>
             <a href={brief.url} class="hover:underline">
               <h3 class="text-lg font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
