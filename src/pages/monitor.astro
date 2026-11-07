@@ -61,7 +61,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
                 {featured.data.type && (
                   <span class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold">{featured.data.type}</span>
                 )}
-                <span class="text-xs text-slate-600 dark:text-slate-600">{formatDate(featured.data.date)}</span>
+                <span class="text-xs text-slate-600 dark:text-slate-400">{formatDate(featured.data.date)}</span>
               </div>
               <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {featured.data.title}
@@ -92,7 +92,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
     <!-- Otros reportes -->
     {rest.length > 0 && (
       <div class="mt-4">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-slate-600 dark:text-slate-600 font-bold mb-6">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-slate-600 dark:text-slate-400 font-bold mb-6">
           Informes anteriores
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -109,7 +109,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
                     {report.data.type && (
                       <span class="text-[10px] font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold">{report.data.type}</span>
                     )}
-                    <span class="text-xs text-slate-600 dark:text-slate-600">{formatDate(report.data.date)}</span>
+                    <span class="text-xs text-slate-600 dark:text-slate-400">{formatDate(report.data.date)}</span>
                   </div>
                   <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {report.data.title}
