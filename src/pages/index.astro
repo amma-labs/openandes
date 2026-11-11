@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import RadarWidget from '~/components/widgets/RadarWidget.astro';
 import { getCollection } from 'astro:content';
+import { getLangFromUrl } from '~/i18n/ui';
 
 // Importar posts de Análisis (por locale)
 const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
@@ -49,53 +50,37 @@ const reports = (await getCollection('reports', ({ data }) => !data.draft))
 const mainReport = reports[0] || null;
 const getReportSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
 
-// Array de Comentarios & Briefs reales (ordenados de más nuevo a más viejo)
-const briefs = [
-  {
-    title: "La transición energética es diferente a lo planeado",
-    author: "Tyge Helms",
-    date: "2026-09-18",
-    displayDate: "18 Sep 2026",
-    category: "Energía",
-    image: "/images/posts/subak-bali.webp",
-    url: "/miradas/transicion-energetica-diferente-a-lo-planeado",
-    excerpt: "Por qué la transición energética avanza por geopolítica y termodinámica, no por acuerdos climáticos.",
-    published: true
-  },
-  {
-    title: "El talón de Aquiles de Silicon Valley",
-    author: "Robert A. Hale",
-    date: "2026-09-12",
-    displayDate: "12 Sep 2026",
-    category: "Tecnología",
-    image: "/images/posts/artificial-sun.webp",
-    url: "/miradas/el-talon-de-aquiles-de-silicon-valley",
-    excerpt: "Energía, redes y la divergencia entre Estados Unidos y China.",
-    published: true
-  },
-  {
-    title: "El petróleo saudí sin su doble salida",
-    author: "Sabrina Langer",
-    date: "2026-09-05",
-    displayDate: "5 Sep 2026",
-    category: "Geoeconomía",
-    image: "/images/posts/1750905_0.png.webp",
-    url: "/miradas/petroleo-saudi-sin-doble-salida",
-    excerpt: "El colapso de los corredores saudíes expone cómo la especialización extrema de las cadenas de suministro dejó al descubierto la fragilidad del comercio mundial.",
-    published: true
-  },
-  {
-    title: "El Milagro Chino de Zhou Qunfei",
-    author: "Nicolás H. Pinzón",
-    date: "2026-08-31",
-    displayDate: "31 Ago 2026",
-    category: "Tecnología",
-    image: "/images/posts/a836391ed7c366d38ded99b0b42c038f5673d784-1480x833.webp",
-    url: "/miradas/milagro-chino-zhou-qunfei",
-    excerpt: "La historia de la niña pobre del campo que se convirtió en la mujer hecha a sí misma más rica del mundo, fundadora de Lens Technology y símbolo del desarrollo industrial chino.",
-    published: true
-  }
-];
+// Cargar miradas dinámicamente por locale
+const allMiradas = import.meta.glob('../data/mirada-experta/*/*.{md,mdx}');
+
+// Cargar todas las miradas del locale actual (con fallback a ES si no existe)
+const miradas = await Promise.all(
+  Object.entries(allMiradas)
+    .filter(([path]) => path.includes(`/mirada-experta/${locale}/`))
+    .map(async ([path, load]) => {
+      const post = await load();
+      const slug = path.split('/').pop()?.replace(/\.(md|mdx)$/, '') ?? '';
+      return {
+        ...post,
+        slug,
+        url: locale === 'es' ? `/miradas/${slug}` : `/${locale}/miradas/${slug}`,
+      };
+    })
+);
+
+// Ordenar por fecha descendente
+miradas.sort((a, b) => {
+  const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01').getTime();
+  const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01').getTime();
+  return dateB - dateA;
+});
+
+// Primeras 4 para el array briefs
+const briefs = miradas.slice(0, 4);
+
+// Miradas 5 y 6 para los bloques destacados
+const mirada5 = miradas[4];
+const mirada6 = miradas[5];
 
 const metadata = {
   title: 'OPEN ANDES — El primer think tank descentralizado y 100% digital.',
@@ -210,54 +195,62 @@ const metadata = {
 
 
 
-      <a href="/miradas/estocolmo-paris-gobernanza-climatica-internacional" class="block group mb-10">
-        <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
-          <div class="grid grid-cols-1 lg:grid-cols-2">
-            <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Miradas 2050</span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#4A7C59] uppercase tracking-widest">Diplomacia Ambiental · 07 Oct 2026</span>
+      {mirada5 && (
+        <a href={mirada5.url} class="block group mb-10">
+          <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+              <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Miradas 2050</span>
+                  <span class="text-[10px] font-mono-tech font-bold text-[#4A7C59] uppercase tracking-widest">
+                    {mirada5.frontmatter?.category || 'Miradas'} · {mirada5.frontmatter?.pubDate ? new Date(mirada5.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
+                  </span>
+                </div>
+                <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
+                  {mirada5.frontmatter?.title}
+                </h3>
+                <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
+                  {mirada5.frontmatter?.excerpt}
+                </p>
+                <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">
+                  {mirada5.frontmatter?.author}
+                </p>
               </div>
-              <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
-                Desde la NYC Climate Week: los límites estructurales del orden climático
-              </h3>
-              <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
-                De Estocolmo a París, los acuerdos climáticos han perfeccionado la negociación institucional, mas no la velocidad ni el alcance que demanda el planeta.
-              </p>
-              <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">
-                MAURICIO AARON BRAVO MELENDEZ
-              </p>
-            </div>
-            <div class="relative min-h-[280px] lg:min-h-[360px]">
-              <img src="/images/posts/nyc-climate-week.webp" alt="Desde la NYC Climate Week: los límites estructurales del orden climático" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
-            </div>
-          </div>
-        </article>
-      </a>
-      <a href="/miradas/termodinamica-fortaleza-agricola-latinoamericana" class="block group mb-10">
-        <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
-          <div class="grid grid-cols-1 lg:grid-cols-2">
-            <div class="relative min-h-[280px] lg:min-h-[360px]">
-              <img src="/images/posts/fertilizantes-rusia.webp" alt="Lo que oculta la fortaleza agrícola latinoamericana" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
-            </div>
-            <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Miradas 2050</span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">Energía · 30 Sep 2026</span>
+              <div class="relative min-h-[280px] lg:min-h-[360px]">
+                <img src={mirada5.frontmatter?.image} alt={mirada5.frontmatter?.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
               </div>
-              <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
-                Lo que oculta la fortaleza agrícola latinoamericana
-              </h3>
-              <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
-                Lo que parece un milagro agrícola es, en realidad, un logro científico que la región no controla.
-              </p>
-              <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">
-                DINA FAZLIZHANOVA
-              </p>
             </div>
-          </div>
-        </article>
-      </a>
+          </article>
+        </a>
+      )}
+      {mirada6 && (
+        <a href={mirada6.url} class="block group mb-10">
+          <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+              <div class="relative min-h-[280px] lg:min-h-[360px]">
+                <img src={mirada6.frontmatter?.image} alt={mirada6.frontmatter?.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+              </div>
+              <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Miradas 2050</span>
+                  <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] uppercase tracking-widest">
+                    {mirada6.frontmatter?.category || 'Miradas'} · {mirada6.frontmatter?.pubDate ? new Date(mirada6.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
+                  </span>
+                </div>
+                <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
+                  {mirada6.frontmatter?.title}
+                </h3>
+                <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
+                  {mirada6.frontmatter?.excerpt}
+                </p>
+                <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">
+                  {mirada6.frontmatter?.author}
+                </p>
+              </div>
+            </div>
+          </article>
+        </a>
+      )}
       <!-- Brief principal: Informe #2 -->
 
       <a href="/monitor/reporte-2" class="block group mb-10">
@@ -283,23 +276,32 @@ const metadata = {
         </article>
       </a>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {briefs.map((brief) => (
-          <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#e2f3ff]/50 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
-            <a href={brief.url}>
-              <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
-                <img src={brief.image} alt={brief.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+        {briefs.map((brief: any) => {
+          const fm = brief.frontmatter || {};
+          const displayDate = fm.pubDate
+            ? new Date(fm.pubDate).toLocaleDateString(
+                locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN',
+                { day: 'numeric', month: 'short', year: 'numeric' }
+              )
+            : '';
+          return (
+            <article class="flex flex-col gap-3 p-4 rounded-lg bg-[#e2f3ff]/50 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] hover:opacity-100 transition-opacity">
+              <a href={brief.url}>
+                <div class="overflow-hidden rounded h-40 bg-slate-200 dark:bg-slate-800">
+                  <img src={fm.image} alt={fm.title || ''} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                </div>
+              </a>
+              <div class="flex items-center justify-between text-xs">
+                <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{fm.category || 'Miradas'}</span>
+                <span class="text-[#1344e7] dark:text-[#5b8def] font-mono-tech font-bold">{displayDate}</span>
               </div>
-            </a>
-            <div class="flex items-center justify-between text-xs">
-              <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{brief.category}</span>
-              <span class="text-[#1344e7] dark:text-[#5b8def] font-mono-tech font-bold">{brief.displayDate}</span>
-            </div>
-            <a href={brief.url} class="hover:underline">
-              <h3 class="text-lg font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{brief.title}</h3>
-            </a>
-            <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">{brief.author.toUpperCase()}</p>
-          </article>
-        ))}
+              <a href={brief.url} class="hover:underline">
+                <h3 class="text-lg font-display font-medium text-slate-800 dark:text-slate-200 leading-tight">{fm.title || ''}</h3>
+              </a>
+              <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">{(fm.author || '').toUpperCase()}</p>
+            </article>
+          );
+        })}
       </div>
     </section>
 
