@@ -145,7 +145,7 @@ const metadata = {
 
         <aside class="lg:col-span-4 flex flex-col justify-between lg:border-l lg:border-[#e5e7eb] lg:dark:border-[#2a2a2a] lg:pl-8 font-sans h-full">
           <div class="flex flex-col justify-between h-full gap-5">
-            {visiblePosts.filter(p => p.slug !== 'no-es-el-litio-es-el-corredor').slice(0, 4).map((post, index, arr) => {
+            {visiblePosts.slice(1, 5).map((post, index, arr) => {
               const frontmatter = post.frontmatter || {};
               const dateStr = frontmatter.pubDate ? new Date(frontmatter.pubDate).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" }) : "";
               return (
