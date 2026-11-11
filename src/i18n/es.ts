@@ -90,6 +90,72 @@ export const es = {
     title: 'Expertos',
     description: 'Red de especialistas en geopolítica, geofinanza y logística.',
   },
+
+  // ─── Páginas estáticas ───
+  pages: {
+    monitor: {
+      metaTitle: 'Investigación LatAm-Asia — OpenAndes',
+      tagline: 'Investigación',
+      heroTitle: 'LatAm-Asia',
+      heroDesc:
+        'es una iniciativa de investigación aplicada de Open Andes dedicada al análisis geoeconómico, logístico y financiero de las relaciones entre América Latina y la Cuenca del Indo-Pacífico.',
+      previousReports: 'Informes anteriores',
+      emptyState: 'No hay publicaciones aún.',
+    },
+    notFound: {
+      metaTitle: 'Error 404',
+      sorry: 'Lo sentimos, no encontramos esta página.',
+      butDontWorry:
+        'Pero no te preocupes, puedes encontrar muchas otras cosas en nuestra página de inicio.',
+      backToHome: 'Volver al inicio',
+    },
+    eventos: {
+      metaTitle: 'Eventos — OpenAndes',
+      tagline: 'Eventos & Encuentros',
+      heroTitle: 'Diálogos, Prospectiva y Geopolítica en Acción',
+      heroSubtitle:
+        'Consolidado de sesiones, mesas de trabajo y seminarios organizados por FunPolitik y 2050 Futures Lab a través de Luma.',
+      ctaAgendaFunPolitik: 'Agenda FunPolitik',
+      ctaAgenda2050Lab: 'Agenda 2050 Lab',
+      statsTitle: 'Cifras del Histórico de Encuentros',
+      statsSubtitle:
+        'Resultados acumulados del ciclo de eventos 2025-2026. El historial de sesiones se articula en dos grandes vertientes analíticas para comprender el presente y anticipar el futuro.',
+      statEvents: 'Eventos Realizados',
+      statLabs: 'Laboratorios (FunPolitik + 2050 Lab)',
+      statManagement: 'Gestión en Luma',
+      contentGeopoliticsTitle: 'Geopolítica y Sistema Internacional',
+      contentGeopoliticsDesc:
+        'Análisis crítico de la competencia China-EE.UU., guerra tecnológica, dinámicas en el Sudeste Asiático, Oriente Medio y la política exterior en América Latina.',
+      contentTrainingTitle: 'Cultura, Formación y Capacidades',
+      contentTrainingDesc:
+        'Sesiones de formación continua, aprendizaje de Chino Mandarín, preparación para la carrera diplomática (MRE) y transferencia de capacidades.',
+      funPolitikTitle: 'FunPolitik',
+      funPolitikDesc:
+        'Enfoque en relaciones internacionales, geopolítica aplicada y análisis estratégico del sistema internacional.',
+      lab2050Title: '2050 Futures Lab',
+      lab2050Desc:
+        'Espacios de pensamiento prospectivo, diseño de escenarios y exploración de fronteras tecnológicas.',
+      contentForesightTitle: 'Prospectiva y Diseños de Futuro',
+      contentForesightDesc:
+        'Exploración de tecnologías emergentes, el impacto del Estado frente a la IA, el fin del trabajo, ciudades del futuro y narrativas visuales de poder.',
+      contentInnovationTitle: 'Innovación Periférica y Autonomía',
+      contentInnovationDesc:
+        'Rutas protopianas, análisis de talento regional y marcos conceptuales para fortalecer la presencia colectiva del Sur Global.',
+      faqsTitle: 'Preguntas Frecuentes sobre las Sesiones',
+      faq1Title: '¿Dónde se gestionan las inscripciones?',
+      faq1Desc:
+        'Todos los eventos se registran y gestionan de forma centralizada a través de la plataforma Luma.',
+      faq2Title: '¿Las sesiones son grabadas o públicas?',
+      faq2Desc:
+        'La mayoría de webinars abiertos cuentan con resúmenes ejecutivos e insumos que alimentan los artículos de investigación.',
+      faq3Title: '¿Cómo puedo proponer una sesión o co-organizar un evento?',
+      faq3Desc:
+        'A través de nuestro formulario de contacto o participando directamente en las dinámicas de la red de Fellows & Strategists.',
+      ctaTitle: 'Participa en los Próximos Encuentros',
+      ctaSubtitle:
+        'Suscríbete a nuestras comunidades en Luma para recibir invitaciones a los siguientes talleres, charlas y webinars.',
+    },
+  },
 };
 
 

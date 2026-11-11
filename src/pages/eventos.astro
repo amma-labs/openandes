@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Content from '~/components/widgets/Content.astro';
@@ -12,25 +13,28 @@ import heroImage from '~/assets/images/Religiones del mundo999.png';
 import funPolitikImage from '~/assets/images/funpolitik-evento-30agosto.png';
 import futureLabImage from '~/assets/images/default.png';
 
+const lang = getLangFromUrl(Astro);
+const t = useTranslations(lang).pages.eventos;
+
 const metadata = {
-  title: 'Eventos — OpenAndes',
+  title: t.metaTitle,
 };
 ---
 
 <Layout metadata={metadata}>
   <Hero2
-    tagline="Eventos & Encuentros"
+    tagline={t.tagline}
     image={{
       src: heroImage.src,
       alt: 'Encuentros y Diálogos OpenAndes',
     }}
   >
     <Fragment slot="title">
-      Diálogos, Prospectiva y <span class="text-slate-900 dark:text-white">Geopolítica en Acción</span>
+      {t.heroTitle}
     </Fragment>
 
     <Fragment slot="subtitle">
-      Consolidado de sesiones, mesas de trabajo y seminarios organizados por <strong>FunPolitik</strong> y <strong>2050 Futures Lab</strong> a través de Luma.
+      {t.heroSubtitle}
     </Fragment>
 
     <div slot="actions" class="flex flex-col sm:flex-row max-w-md gap-4">
@@ -44,12 +48,12 @@ const metadata = {
   </Hero2>
 
   <Stats
-    title="Cifras del Histórico de Encuentros"
-    subtitle="Resultados acumulados del ciclo de eventos 2025-2026. El historial de sesiones se articula en dos grandes vertientes analíticas para comprender el presente y anticipar el futuro."
+    title={t.statsTitle}
+    subtitle={t.statsSubtitle}
     stats={[
-      { amount: '30+', icon: 'tabler:calendar-event', title: 'Eventos Realizados' },
-      { amount: '2', icon: 'tabler:hierarchy', title: 'Laboratorios (FunPolitik + 2050 Lab)' },
-      { amount: '100%', icon: 'tabler:brand-tabler', title: 'Gestión en Luma' },
+      { amount: '30+', icon: 'tabler:calendar-event', title: t.statEvents },
+      { amount: '2', icon: 'tabler:hierarchy', title: t.statLabs },
+      { amount: '100%', icon: 'tabler:brand-tabler', title: t.statManagement },
     ]}
   />
 
@@ -57,13 +61,13 @@ const metadata = {
     isReversed
     items={[
       {
-        title: 'Geopolítica y Sistema Internacional',
-        description: 'Análisis crítico de la competencia China-EE.UU., guerra tecnológica, dinámicas en el Sudeste Asiático, Oriente Medio y la política exterior en América Latina.',
+        title: t.contentGeopoliticsTitle,
+        description: t.contentGeopoliticsDesc,
         icon: 'tabler:world-latitude',
       },
       {
-        title: 'Cultura, Formación y Capacidades',
-        description: 'Sesiones de formación continua, aprendizaje de Chino Mandarín, preparación para la carrera diplomática (MRE) y transferencia de capacidades.',
+        title: t.contentTrainingTitle,
+        description: t.contentTrainingDesc,
         icon: 'tabler:school',
       },
     ]}
@@ -73,9 +77,9 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">FunPolitik</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">{t.funPolitikTitle}</h3>
       <p class="text-muted dark:text-slate-400 mb-4">
-        Enfoque en relaciones internacionales, geopolítica aplicada y análisis estratégico del sistema internacional.
+        {t.funPolitikDesc}
       </p>
     </Fragment>
   </Content>
@@ -83,13 +87,13 @@ const metadata = {
   <Content
     items={[
       {
-        title: 'Prospectiva y Diseños de Futuro',
-        description: 'Exploración de tecnologías emergentes, el impacto del Estado frente a la IA, el fin del trabajo, ciudades del futuro y narrativas visuales de poder.',
+        title: t.contentForesightTitle,
+        description: t.contentForesightDesc,
         icon: 'tabler:rocket',
       },
       {
-        title: 'Innovación Periférica y Autonomía',
-        description: 'Rutas protopianas, análisis de talento regional y marcos conceptuales para fortalecer la presencia colectiva del Sur Global.',
+        title: t.contentInnovationTitle,
+        description: t.contentInnovationDesc,
         icon: 'tabler:shield-check',
       },
     ]}
@@ -99,35 +103,35 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">2050 Futures Lab</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">{t.lab2050Title}</h3>
       <p class="text-muted dark:text-slate-400 mb-4">
-        Espacios de pensamiento prospectivo, diseño de escenarios y exploración de fronteras tecnológicas.
+        {t.lab2050Desc}
       </p>
     </Fragment>
   </Content>
 
   <FAQs
-    title="Preguntas Frecuentes sobre las Sesiones"
+    title={t.faqsTitle}
     items={[
       {
-        title: '¿Dónde se gestionan las inscripciones?',
-        description: 'Todos los eventos se registran y gestionan de forma centralizada a través de la plataforma Luma.',
+        title: t.faq1Title,
+        description: t.faq1Desc,
       },
       {
-        title: '¿Las sesiones son grabadas o públicas?',
-        description: 'La mayoría de webinars abiertos cuentan con resúmenes ejecutivos e insumos que alimentan los artículos de investigación.',
+        title: t.faq2Title,
+        description: t.faq2Desc,
       },
       {
-        title: '¿Cómo puedo proponer una sesión o co-organizar un evento?',
-        description: 'A través de nuestro formulario de contacto o participando directamente en las dinámicas de la red de Fellows & Strategists.',
+        title: t.faq3Title,
+        description: t.faq3Desc,
       },
     ]}
   />
 
   <CallToAction
     id="registro"
-    title="Participa en los Próximos Encuentros"
-    subtitle="Suscríbete a nuestras comunidades en Luma para recibir invitaciones a los siguientes talleres, charlas y webinars."
+    title={t.ctaTitle}
+    subtitle={t.ctaSubtitle}
   >
     <div slot="actions" class="flex flex-col sm:flex-row max-w-md gap-4 justify-center">
       <Button variant="primary" href="https://luma.com/user/FunPolitik" target="_blank" icon="tabler:calendar">

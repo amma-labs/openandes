@@ -90,4 +90,68 @@ export const zh = {
     title: '专家',
     description: '地缘政治、地缘金融与物流领域的专家网络。',
   },
+
+  pages: {
+    monitor: {
+      metaTitle: '拉丁美洲—亚洲研究 — OpenAndes',
+      tagline: '研究',
+      heroTitle: '拉丁美洲—亚洲',
+      heroDesc:
+        '是 Open Andes 应用研究计划，专注于拉丁美洲与印度洋—太平洋盆地关系的地缘经济、物流与金融分析。',
+      previousReports: '往期报告',
+      emptyState: '暂无出版物。',
+    },
+    notFound: {
+      metaTitle: '错误 404',
+      sorry: '抱歉，我们找不到此页面。',
+      butDontWorry: '但别担心，您可以在我们的主页找到许多其他内容。',
+      backToHome: '返回首页',
+    },
+    eventos: {
+      metaTitle: '活动 — OpenAndes',
+      tagline: '活动与交流',
+      heroTitle: '对话、前瞻与地缘政治实践',
+      heroSubtitle:
+        'FunPolitik 与 2050 Futures Lab 通过 Luma 组织的会议、工作会议和研讨会的汇总记录。',
+      ctaAgendaFunPolitik: 'FunPolitik 日程',
+      ctaAgenda2050Lab: '2050 Lab 日程',
+      statsTitle: '历史活动数据',
+      statsSubtitle:
+        '2025-2026 年活动周期的累计成果。会议历史分为两大分析板块，以理解当下并展望未来。',
+      statEvents: '已举办活动',
+      statLabs: '实验室（FunPolitik + 2050 Lab）',
+      statManagement: 'Luma 管理',
+      contentGeopoliticsTitle: '地缘政治与国际体系',
+      contentGeopoliticsDesc:
+        '对中美竞争、技术战、东南亚动态、中东局势以及拉丁美洲外交政策的批判性分析。',
+      contentTrainingTitle: '文化、培训与能力建设',
+      contentTrainingDesc:
+        '持续培训课程、普通话学习、外交职业（外交部）备考以及能力转移。',
+      funPolitikTitle: 'FunPolitik',
+      funPolitikDesc:
+        '聚焦国际关系、应用地缘政治与国际体系的战略分析。',
+      lab2050Title: '2050 Futures Lab',
+      lab2050Desc:
+        '前瞻思维、情景设计与技术前沿探索的空间。',
+      contentForesightTitle: '前瞻与未来设计',
+      contentForesightDesc:
+        '探索新兴技术、国家与人工智能的关系、工作的终结、未来城市以及权力的视觉叙事。',
+      contentInnovationTitle: '边缘创新与自主性',
+      contentInnovationDesc:
+        '原托邦路径、区域人才分析以及强化全球南方集体存在的概念框架。',
+      faqsTitle: '关于会议的常见问题',
+      faq1Title: '报名在哪里管理？',
+      faq1Desc:
+        '所有活动均通过 Luma 平台集中登记和管理。',
+      faq2Title: '会议是否录制或公开？',
+      faq2Desc:
+        '大多数公开网络研讨会都提供执行摘要和研究成果，用于充实研究文章。',
+      faq3Title: '如何提议会议或共同组织活动？',
+      faq3Desc:
+        '通过我们的联系表单，或直接参与 Fellows & Strategists 网络的动态。',
+      ctaTitle: '参与即将举行的交流活动',
+      ctaSubtitle:
+        '订阅我们的 Luma 社区，以接收即将举办的研讨会、讲座和网络研讨会的邀请。',
+    },
+  },
 } satisfies UIStrings;

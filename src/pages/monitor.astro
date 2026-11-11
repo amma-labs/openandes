@@ -1,14 +1,18 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 
 import heroImage from '~/assets/images/9-viridien-see-things-differently-1400.png';
 
+const lang = getLangFromUrl(Astro);
+const t = useTranslations(lang).pages.monitor;
+
 const metadata = {
-  title: 'Investigación LatAm-Asia — OpenAndes',
+  title: t.metaTitle,
 };
 
-const reports = (await getCollection('reports', ({ data }) => !data.draft))
+const reports = (await getCollection('reports', ({ data }) => !data.draft && data.lang === lang))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const [featured, ...rest] = reports;
@@ -43,7 +47,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
           LatAm-Asia
         </h1>
         <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
-          es una iniciativa de investigación aplicada de Open Andes dedicada al análisis geoeconómico, logístico y financiero de las relaciones entre América Latina y la Cuenca del Indo-Pacífico.
+          {t.heroDesc}
         </p>
       </div>
     </div>

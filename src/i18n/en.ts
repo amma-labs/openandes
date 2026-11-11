@@ -89,4 +89,68 @@ export const en = {
     title: 'Experts',
     description: 'Network of specialists in geopolitics, geofinance, and logistics.',
   },
+
+  pages: {
+    monitor: {
+      metaTitle: 'LatAm-Asia Research — OpenAndes',
+      tagline: 'Research',
+      heroTitle: 'LatAm-Asia',
+      heroDesc:
+        'is an applied research initiative by Open Andes dedicated to the geoeconomic, logistical, and financial analysis of relations between Latin America and the Indo-Pacific Basin.',
+      previousReports: 'Previous reports',
+      emptyState: 'No publications yet.',
+    },
+    notFound: {
+      metaTitle: 'Error 404',
+      sorry: "Sorry, we couldn't find this page.",
+      butDontWorry: "But don't worry, you can find plenty of other things on our homepage.",
+      backToHome: 'Back to homepage',
+    },
+    eventos: {
+      metaTitle: 'Events — OpenAndes',
+      tagline: 'Events & Encounters',
+      heroTitle: 'Dialogues, Foresight and Geopolitics in Action',
+      heroSubtitle:
+        'A consolidated record of sessions, working tables and seminars organized by FunPolitik and 2050 Futures Lab through Luma.',
+      ctaAgendaFunPolitik: 'FunPolitik Agenda',
+      ctaAgenda2050Lab: '2050 Lab Agenda',
+      statsTitle: 'Historic Figures of Encounters',
+      statsSubtitle:
+        'Cumulative results of the 2025-2026 event cycle. The session history is articulated across two major analytical branches to understand the present and anticipate the future.',
+      statEvents: 'Events Held',
+      statLabs: 'Laboratories (FunPolitik + 2050 Lab)',
+      statManagement: 'Luma Management',
+      contentGeopoliticsTitle: 'Geopolitics and the International System',
+      contentGeopoliticsDesc:
+        'Critical analysis of US-China competition, the tech war, dynamics in Southeast Asia, the Middle East, and foreign policy in Latin America.',
+      contentTrainingTitle: 'Culture, Training and Capabilities',
+      contentTrainingDesc:
+        'Continuous training sessions, Mandarin Chinese learning, preparation for the diplomatic career (MFA), and capacity transfer.',
+      funPolitikTitle: 'FunPolitik',
+      funPolitikDesc:
+        'Focus on international relations, applied geopolitics, and strategic analysis of the international system.',
+      lab2050Title: '2050 Futures Lab',
+      lab2050Desc:
+        'Spaces for foresight thinking, scenario design, and exploration of technological frontiers.',
+      contentForesightTitle: 'Foresight and Future Design',
+      contentForesightDesc:
+        'Exploration of emerging technologies, the impact of the State versus AI, the end of work, future cities, and visual narratives of power.',
+      contentInnovationTitle: 'Peripheral Innovation and Autonomy',
+      contentInnovationDesc:
+        'Protopian routes, regional talent analysis, and conceptual frameworks to strengthen the collective presence of the Global South.',
+      faqsTitle: 'Frequently Asked Questions about the Sessions',
+      faq1Title: 'Where are registrations managed?',
+      faq1Desc:
+        'All events are registered and managed centrally through the Luma platform.',
+      faq2Title: 'Are sessions recorded or public?',
+      faq2Desc:
+        'Most open webinars include executive summaries and inputs that feed the research articles.',
+      faq3Title: 'How can I propose a session or co-organize an event?',
+      faq3Desc:
+        'Through our contact form or by participating directly in the dynamics of the Fellows & Strategists network.',
+      ctaTitle: 'Join the Upcoming Encounters',
+      ctaSubtitle:
+        'Subscribe to our Luma communities to receive invitations to upcoming workshops, talks, and webinars.',
+    },
+  },
 } satisfies UIStrings;
