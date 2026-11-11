@@ -4,19 +4,39 @@ import ShareButtons from '~/components/common/ShareButtons.astro';
 import { authors } from '~/data/authors';
 
 export async function getStaticPaths() {
-  const posts = import.meta.glob('../../data/post/*.{md,mdx}');
+  // Genera una ruta por cada (locale, slug) existente en disco.
+  // La raíz (/) sirve 'es'; /en/... y /zh/... sirven EN y ZH.
   const paths = [];
+  const locales = ['es', 'en', 'zh'] as const;
+  const files = import.meta.glob('../../data/post/*/*.{md,mdx}');
+  const seen = new Set<string>();
 
-  for (const path in posts) {
-    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
-    paths.push({ params: { slug } });
+  for (const filepath in files) {
+    const m = filepath.match(/\/post\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
+    if (!m) continue;
+    const [, locale, slug] = m;
+    if (!locales.includes(locale as any)) continue;
+    const key = `${locale}/${slug}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    paths.push({
+      params: { lang: locale === 'es' ? undefined : locale, slug },
+      props: { locale, slug },
+    });
   }
-
   return paths;
 }
 
 const { slug } = Astro.params;
-const post = await import(`../../data/post/${slug}.mdx`);
+const locale = (Astro.params as { lang?: string }).lang ?? 'es';
+
+// Importa el .mdx del locale; si no existe, fallback a ES.
+const allPosts = import.meta.glob('../../data/post/*/*.{md,mdx}');
+const loader =
+  allPosts[`../../data/post/${locale}/${slug}.mdx`] ??
+  allPosts[`../../data/post/es/${slug}.mdx`];
+if (!loader) throw new Error(`No hay post para slug "${slug}" (locale=${locale})`);
+const post = (await loader()) as { Content: any; frontmatter: Record<string, any> };
 
 const authorSlug = post.frontmatter?.authorSlug;
 const authorData = authorSlug ? authors[authorSlug] : null;

@@ -4,19 +4,36 @@ import ShareButtons from '~/components/common/ShareButtons.astro';
 import { authors } from '~/data/authors';
 
 export async function getStaticPaths() {
-  const posts = import.meta.glob('../../data/mirada-experta/*.{md,mdx}');
   const paths = [];
+  const locales = ['es', 'en', 'zh'] as const;
+  const files = import.meta.glob('../../data/mirada-experta/*/*.{md,mdx}');
+  const seen = new Set<string>();
 
-  for (const path in posts) {
-    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
-    paths.push({ params: { slug } });
+  for (const filepath in files) {
+    const m = filepath.match(/\/mirada-experta\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
+    if (!m) continue;
+    const [, locale, slug] = m;
+    if (!locales.includes(locale as any)) continue;
+    const key = `${locale}/${slug}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    paths.push({
+      params: { lang: locale === 'es' ? undefined : locale, slug },
+      props: { locale, slug },
+    });
   }
-
   return paths;
 }
 
 const { slug } = Astro.params;
-const post = await import(`../../data/mirada-experta/${slug}.mdx`);
+const locale = (Astro.params as { lang?: string }).lang ?? 'es';
+
+const allPosts = import.meta.glob('../../data/mirada-experta/*/*.{md,mdx}');
+const loader =
+  allPosts[`../../data/mirada-experta/${locale}/${slug}.mdx`] ??
+  allPosts[`../../data/mirada-experta/es/${slug}.mdx`];
+if (!loader) throw new Error(`No hay mirada para slug "${slug}" (locale=${locale})`);
+const post = (await loader()) as { Content: any; frontmatter: Record<string, any> };
 
 const authorSlug = post.frontmatter?.authorSlug;
 const authorData = authorSlug ? authors[authorSlug] : null;
