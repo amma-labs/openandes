@@ -4,6 +4,10 @@ export interface Author {
 }
 
 export const authors: Record<string, Author> = {
+  'valentina-cid-avello': {
+    name: 'Valentina Cid A.',
+    bio: 'es Trabajadora Social y candidata a Magíster en Seguridad, Defensa y Relaciones Internacionales (ANEPE) y en Prevención, Seguridad Urbana y Política Criminal (UAH). Cuenta con diplomados en Investigación del Crimen Organizado, Criminología y Análisis del Comportamiento Delictivo. Se ha desempeñado en la Subsecretaría de Prevención del Delito y en direcciones de seguridad pública municipal (Iquique, Peñalolén, Alto Hospicio), especializándose en análisis territorial, inteligencia vecinal y gestión de crisis. En Open Andes investiga sobre crimen organizado transnacional, seguridad fronteriza y políticas de prevención.',
+  },
   'bernardo-munoz-aguilar': {
     name: 'Bernardo Muñoz Aguilar',
     bio: 'es Doctor en Antropología de la Universidad de Tübingen, Alemania. Es director de 2050 Lab Chile, Desarrollo Sostenible & Territorio.',
