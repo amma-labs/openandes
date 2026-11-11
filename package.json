@@ -1,7 +1,7 @@
 {
-  "name": "@onwidget/astrowind",
-  "version": "1.0.0",
-  "description": "AstroWind: A free template using Astro 7 and Tailwind CSS v4. Astro starter theme.",
+  "name": "open-andes",
+  "version": "2.0.0",
+  "description": "Open Andes — Think tank descentralizado, 0% partidista e independiente. Geopolítica, geofinanza y logística de infraestructura en el eje América Latina–Asia. Trilingüe (ES/EN/ZH).",
   "type": "module",
   "private": true,
   "engines": {
