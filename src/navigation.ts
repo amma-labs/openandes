@@ -1,7 +1,6 @@
 // src/navigation.ts
 // Navegación derivada del diccionario i18n (fuente única: src/i18n/es.ts).
-// Se exporta como funciones para que el layout pase el `lang` actual.
-import { getPermalink } from './utils/permalinks';
+// Los href se construyen con el prefijo de locale correcto.
 import { useTranslations, type Lang } from './i18n/ui';
 
 export interface MenuLink {
@@ -18,18 +17,24 @@ export interface FooterData {
   // reservado para futuras columnas de footer; hoy el Footer lee i18n directo
 }
 
-/** Menú principal por idioma. Orden y href idénticos en los 3. */
+/** Construye la ruta con el prefijo de locale (ES = sin prefijo). */
+function localizedPath(path: string, lang: Lang): string {
+  const clean = path.startsWith('/') ? path : `/${path}`;
+  return lang === 'es' ? clean : `/${lang}${clean}`;
+}
+
+/** Menú principal por idioma. */
 export function headerData(lang: Lang = 'es'): HeaderData {
   const t = useTranslations(lang);
   return {
     links: [
-      { text: t.nav.about, href: getPermalink('/about') },
-      { text: t.nav.experts, href: getPermalink('/expertos') },
-      { text: t.nav.advisory, href: getPermalink('/estrategia') },
-      { text: t.nav.research, href: getPermalink('/monitor') },
-      { text: t.nav.analysis, href: getPermalink('/analisis') },
-      { text: t.nav.commentary, href: getPermalink('/miradas') },
-      { text: t.nav.events, href: getPermalink('/eventos') },
+      { text: t.nav.about, href: localizedPath('/about', lang) },
+      { text: t.nav.experts, href: localizedPath('/expertos', lang) },
+      { text: t.nav.advisory, href: localizedPath('/estrategia', lang) },
+      { text: t.nav.research, href: localizedPath('/monitor', lang) },
+      { text: t.nav.analysis, href: localizedPath('/analisis', lang) },
+      { text: t.nav.commentary, href: localizedPath('/miradas', lang) },
+      { text: t.nav.events, href: localizedPath('/eventos', lang) },
     ],
   };
 }

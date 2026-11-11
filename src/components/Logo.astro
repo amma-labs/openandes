@@ -1,8 +1,11 @@
 ---
-import { getHomePermalink } from '~/utils/permalinks';
+import { getLangFromUrl } from '~/i18n/ui';
+
+const lang = getLangFromUrl(Astro);
+const homeUrl = lang === 'es' ? '/' : `/${lang}/`;
 ---
 
-<a class="flex items-center shrink-0" href={getHomePermalink()}>
+<a class="flex items-center shrink-0" href={homeUrl}>
   <span translate="no" class="notranslate inline-flex items-center gap-2 font-montserrat font-bold text-2xl tracking-wider text-[#140092] dark:text-[#f3f4f6] uppercase">
     <img 
       src="/images/logo-open-andes.png" 
