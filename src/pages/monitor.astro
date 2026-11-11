@@ -20,7 +20,14 @@ const [featured, ...rest] = reports;
 const formatDate = (d: Date) =>
   new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long' }).format(d);
 
-const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
+const getSlug = (id: string) =>
+  // id = "es/reporte-2" → quitar extensión → "es/reporte-2" → quitar locale → "reporte-2"
+  id.replace(/\.(md|mdx)$/, '').replace(/^(es|en|zh)\//, '');
+
+const getUrl = (id: string) => {
+  const slug = getSlug(id);
+  return lang === 'es' ? `/monitor/${slug}` : `/${lang}/monitor/${slug}`;
+};
 ---
 
 <Layout metadata={metadata}>
@@ -57,7 +64,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
 
     <!-- Reporte destacado (más reciente) -->
     {featured && (
-      <a href={`/monitor/${getSlug(featured.id)}`} class="block group mb-12">
+      <a href={getUrl(featured.id)} class="block group mb-12">
         <article class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="p-8">
@@ -101,7 +108,7 @@ const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {rest.map((report) => (
-            <a href={`/monitor/${getSlug(report.id)}`} class="block group">
+            <a href={getUrl(report.id)} class="block group">
               <article class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col">
                 {report.data.image && (
                   <div class="relative h-48 overflow-hidden">
