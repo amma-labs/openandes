@@ -15,7 +15,8 @@ const posts = await Promise.all(
 );
 
 // Ordenar por fecha
-const sortedPosts = posts.sort((a, b) => {
+const publishedPosts = posts;
+const sortedPosts = publishedPosts.sort((a, b) => {
   const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
   const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
   return dateB - dateA;
