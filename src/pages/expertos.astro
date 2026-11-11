@@ -1,160 +1,28 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { Icon } from 'astro-icon/components';
+import { getLangFromUrl } from '~/i18n/ui';
 
 // Importar imagen para el hero
 import heroImage from '~/assets/images/19-the-time-between-2500.jpg';
 
+const lang = getLangFromUrl(Astro);
+const allData = import.meta.glob('~/data/experts/*.json', { eager: true, import: 'default' }) as Record<string, any>;
+const data = allData[`/src/data/experts/${lang}.json`] ?? allData['/src/data/experts/es.json'];
+
 const metadata = {
-  title: 'Expertos — OpenAndes',
+  title: data.metaTitle,
 };
 
-const experts = [
-  {
-    name: 'Benyi Barros Rojas',
-    role: 'Director Ejecutivo',
-    spec: 'Análisis geopolítico, política internacional, diplomacia interregional y estudios asiáticos.',
-    bio: 'Politólogo por la Universidad Nacional Mayor de San Marcos, especializado en geopolítica, política internacional y estudios asiáticos. Cuenta con trayectoria en la Sociedad Peruana de Derecho Internacional (SPDI) y en el Ministerio de Relaciones Exteriores del Perú. Fundador y Director General de Fun Politik y del Centro Internacional de Estudios Asiáticos. En Open Andes lidera la visión estratégica y las relaciones interregionales.',
-    email: 'benyi.barros@openandes.org',
-    image: '/images/experts-profile/benyi-barros.webp',
-  },
-  {
-    name: 'Joaquín Vigueras',
-    role: 'Coordinador de Programas',
-    spec: 'Arquitectura de los flujos de trabajo técnicos, modelos de riesgo y operativos del centro de mando.',
-    bio: 'Analista internacional especializado en inteligencia para mercados emergentes y evaluación de riesgos globales. Research Analyst en 2050 Futures Lab y exanalista financiero en Banco BICE y Banco de Chile. Experto en planificación de escenarios, seguimiento de señales y análisis político comparado para la asignación estratégica de capital y anticipación de crisis. En Open Andes coordina la agenda de programas y análisis prospectivo.',
-    email: 'jvigueras@openandes.org',
-    image: '/images/experts-profile/joaquin-vigueras.webp',
-  },
-  {
-    name: 'Lita Picasso Ramírez',
-    role: 'Coordinadora de Gestión y Contenidos',
-    spec: 'Ciencia política, relaciones internacionales, políticas públicas y gestión de proyectos con perspectiva de género.',
-    bio: 'Politóloga por la Universidad Alberto Hurtado. Cuenta con experiencia en la Dirección de Seguridad Internacional (DISIN) del Ministerio de Relaciones Exteriores de Chile y en gestión de proyectos en la Fundación Crea Equidad. Especializada en análisis político, redacción institucional, perspectiva de género y gestión cultural. En Open Andes coordina la gestión operativa y el desarrollo de contenidos estratégicos.',
-    email: 'litapicasso@openandes.org',
-    image: '/images/experts-profile/lita-picasso.webp',
-  },
-  {
-    name: 'Maira N. Oberstar',
-    role: 'Coordinadora de Comunicaciones',
-    spec: 'Narrativa geopolítica, escritura estratégica, conflictos globales y derechos humanos.',
-    bio: 'Especialista en narrativa geopolítica, estrategia editorial y análisis trilingüe (español, inglés, portugués). Su trabajo integra la escritura estratégica con el análisis de la dinámica internacional, conflictos globales y derechos humanos para la prospectiva diplomática en la Cuenca del Pacífico y América Latina.',
-    email: 'maira.oberstar@openandes.org',
-    image: '/images/experts-profile/maira-oberstar.webp',
-  },
-  {
-    name: 'Anthony Medina Rivas Plata',
-    role: 'Investigador Sénior No Residente',
-    spec: 'Relaciones internacionales, historia económica, políticas públicas y gobernanza.',
-    bio: 'Candidato a Doctor en Relaciones Internacionales (Universidad Nacional de La Plata) y especialista en Historia Económica (Universidad de Buenos Aires). Posee un Doble Máster en Políticas Públicas, Gobernanza y Desarrollo por Erasmus University Rotterdam y University of York, y es Politólogo por la UNMSM. Exdirector de la Escuela de Ciencia Política de la Universidad Católica de Santa María. En Open Andes aporta respaldo institucional y redes académicas globales.',
-    email: '',
-    image: '/images/experts-profile/anthony-medina.webp',
-  },
-  {
-    name: 'Esteban Silva Navarro',
-    role: 'Investigador Sénior No Residente',
-    spec: 'Estudios migratorios, relaciones internacionales y análisis de estudios estratégicos.',
-    bio: 'Politólogo por la Universidad Nacional Mayor de San Marcos y Master of Arts en Estudios Migratorios por la Universidad de Tel Aviv, con estudios de posgrado en Chile, Alemania, Brasil y la Universidad San Sebastián. Se desempeña como Director General Adjunto del Instituto de Estudios Políticos Andinos y Vicepresidente del Comité Ejecutivo de IAPSS América Latina. En Open Andes fortalece la articulación internacional y el análisis migratorio y geopolítico.',
-    email: '',
-    image: '/images/experts-profile/esteban-silva.webp',
-  },
-  {
-    name: 'Francisco Javier Covarrubias R.',
-    role: 'Líder de Investigación',
-    spec: 'Seguridad internacional, diplomacia, cooperación internacional y análisis histórico de relaciones exteriores.',
-    bio: 'Politólogo por la Universidad Diego Portales y Magíster en Desarrollo y Cooperación Internacional por la Universidad de Chile. Candidato a Magíster en Seguridad, Defensa y Relaciones Internacionales por la ANEPE (Ministerio de Defensa Nacional de Chile). Cuenta con experiencia profesional en la DISIN de la Cancillería de Chile, IdeaPaís y el Proyecto FONDECYT sobre historia diplomática. En Open Andes lidera líneas de investigación y control de calidad analítica.',
-    email: '',
-    image: '/images/experts-profile/francisco-covarrubias.webp',
-  },
-  {
-    name: 'Jimena Valenzuela',
-    role: 'Líder de Investigación',
-    spec: 'Seguridad internacional, ciberseguridad, cooperación tecnológica y estudios asiáticos.',
-    bio: 'Politóloga por la Pontificia Universidad Católica de Chile y candidata a Magíster en Estudios sobre Asia por la Universidad de Chile. Posee diplomados en Seguridad Internacional y Traducción. Cuenta con trayectoria en la División de Seguridad Internacional y Humana del Ministerio de Relaciones Exteriores de Chile, enfocada en ciberseguridad y cooperación tecnológica. En Open Andes dirige áreas de investigación estratégica y agenda asiática.',
-    email: '',
-    image: '/images/experts-profile/jimena-valenzuela.webp',
-  },
-  {
-    name: 'Álvaro Recabal Cervantes',
-    role: 'Investigador',
-    spec: 'Estrategia militar, geopolítica, liderazgo institucional y análisis de conflictos armados.',
-    bio: 'Oficial de Artillería del Ejército de Chile en retiro, Magíster en Ciencia Política y Magíster en Liderazgo Organizacional. Cuenta con más de 20 años de experiencia estratégica, misiones de paz internacionales (EUFOR en Bosnia y Herzegovina) y gestión de crisis. Fundador de Rooster Think Tank, docente universitario y columnista. En Open Andes investiga temas de estrategia, seguridad multidimensional y cultura institucional.',
-    email: '',
-    image: '/images/experts-profile/alvaro-recabal.webp',
-  },
-  {
-    name: 'Danna Mena N.',
-    role: 'Investigadora',
-    spec: 'Justicia climática, derechos humanos, fortalecimiento de la sociedad civil y geopolítica.',
-    bio: 'Abogada e internacionalista, magíster en Derecho Constitucional y Derechos Humanos. Co-fundadora de Hackers por Nuestro Futuro A.C. y expresidenta del Ateneo Nacional de la Juventud (Yucatán). Ha colaborado con USAID, FMCN, Sureste Sostenible A.C. y es creadora de contenido en Fun Politik. En Open Andes investiga sobre justicia climática, derechos humanos, sociedad civil y dinámicas regionales en América Central y México.',
-    email: '',
-    image: '/images/experts-profile/danna-mena.webp',
-  },
-  {
-    name: 'Mónica Cornejo',
-    role: 'Investigadora',
-    spec: 'Derechos humanos, migración internacional, propiedad intelectual y actualidad internacional.',
-    bio: 'Abogada por la Universidad Católica de Santa María, especialista en Relaciones Internacionales por la Fundación Academia Diplomática del Perú. Posee formación en derechos humanos y migración internacional (OIM-ONU) y propiedad intelectual, con experiencia en INDECOPI, Ministerio Público y Cancillería del Perú. En Open Andes analiza coyuntura internacional, marco legal transfronterizo y asuntos migratorios.',
-    email: '',
-    image: '/images/experts-profile/monica-cornejo.webp',
-  },
-  {
-    name: 'Christian Ardila',
-    role: 'Investigador Asociado',
-    spec: 'Crimen organizado, narcotráfico transnacional, seguridad internacional e inteligencia criminal.',
-    bio: 'Internacionalista por la Universidad de Palermo y especialista en Análisis de Crimen Organizado y Seguridad Internacional por FLACSO Ecuador. Cuenta con trayectoria en InSight Crime y publicaciones sobre narcotráfico transnacional y seguridad en América Latina. En Open Andes investiga dinámicas de crimen organizado y seguridad regional.',
-    email: '',
-    image: '/images/experts-profile/christian-ardila.webp',
-  },
-  {
-    name: 'Felix Vasquez Suasnabar',
-    role: 'Investigador Asociado',
-    spec: 'Finanzas, contabilidad, prevención de lavado de activos y análisis de fraudes.',
-    bio: 'Licenciado en Administración, Finanzas y Contabilidad por la UPC, especializado en Relaciones Internacionales por la Fundación Academia Diplomática del Perú. Exconsultor Senior en EY en investigación de fraudes, prevención de lavado de activos (PLAFT) y peritajes contables. En Open Andes aporta análisis en la intersección de geoeconomía, finanzas y gobernanza corporativa.',
-    email: '',
-    image: '/images/experts-profile/felix-vasquez.webp',
-  },
-  {
-    name: 'Alexia T. Laimes Campos',
-    role: 'Investigadora Asociada',
-    spec: 'Ciencia política, diagnósticos territoriales, mapeo de actores y análisis de riesgos reputacionales.',
-    bio: 'Politóloga por la Universidad Nacional Mayor de San Marcos, especializada en diagnósticos territoriales, mapeo de actores y análisis de riesgo socio-político y reputacional. Coautora de publicaciones en políticas públicas e interculturalidad. En Open Andes genera evidencia técnica y cuantitativa para el análisis de políticas públicas y riesgos regionales.',
-    email: '',
-    image: '/images/experts-profile/alexia-laimes.webp',
-  },
-  {
-    name: 'Silvana Huaman',
-    role: 'Investigadora Asociada',
-    spec: 'Derecho penal, ciberdelincuencia, tecnología aplicada al derecho e impacto social.',
-    bio: 'Analista en Derecho e Informática Jurídica por la Universidad Nacional Mayor de San Marcos, con experiencia en voluntariados en la Fiscalía Especializada en Ciberdelincuencia y la SENAJU. Participante del Aspire Leader Program (Harvard Business School) y APEC Academic Model. En Open Andes investiga sobre ciberdelito, derecho tecnológico e impacto social de las nuevas tecnologías.',
-    email: '',
-    image: '/images/experts-profile/silvana-huaman.webp',
-  },
-  {
-    name: 'Lourdes Agostina Delgado',
-    role: 'Investigadora Asociada',
-    spec: 'Relaciones internacionales, análisis de política global y asistencia en investigación.',
-    bio: 'Internacionalista por la Universidad Nacional de San Martín (Argentina). Cuenta con experiencia en asistencia administrativa y gestión institucional, especializándose en análisis de coyuntura y redacción de política global. En Open Andes colabora en el monitoreo geopolítico y la producción de ensayos de coyuntura internacional.',
-    email: '',
-    image: '/images/experts-profile/lourdes-delgado.webp',
-  },
-  {
-    name: 'Aldo Andrés Rijo',
-    role: 'Investigador Asociado',
-    spec: 'Economía internacional, comercio exterior, integración regional y geoeconomía.',
-    bio: 'Internacionalista y analista en Economía por la Universidad de la República (Udelar, Uruguay). Especializado en la intersección entre economía, relaciones internacionales y desarrollo regional. En Open Andes investiga temas de desarrollo económico, integración transandina y mercados latinoamericanos.',
-    email: '',
-    image: '/images/experts-profile/aldo-rijo.webp',
-  },
-  {
-    name: 'Delia Pedroza M.',
-    role: 'Investigadora Asociada',
-    spec: 'Geoeconomía, finanzas internacionales y relaciones internacionales.',
-    bio: 'Analista en Administración y Finanzas por la Universidad ESAN (Perú). Enfocada en geoeconomía, mercados financieros globales y su interacción con la política internacional. En Open Andes analiza flujos financieros, geoeconomía y dinámicas del comercio regional.',
-    email: '',
-    image: '/images/experts-profile/delia-pedroza.webp',
-  },
-];
+// Alias para mantener el template igual
+const experts = data.experts as Array<{
+  name: string;
+  role: string;
+  spec: string;
+  bio: string;
+  email: string;
+  image: string;
+}>;
+
 ---
 
 <Layout metadata={metadata}>
@@ -177,14 +45,10 @@ const experts = [
     <!-- Contenido del hero -->
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
       <div class="max-w-3xl">
-        <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Red Global
-        </span>
-        <h1 class="font-sans text-4xl sm:text-5xl md:text-5xl font-bold text-white leading-tight">
-          Expertos y Analistas
-        </h1>
+        <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">{data.heroBadge}</span>
+        <h1 class="font-sans text-4xl sm:text-5xl md:text-5xl font-bold text-white leading-tight">{data.heroTitle}</h1>
         <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
-          Investigadores, directores y especialistas dedicados al análisis estratégico y la prospectiva geopolítica en América.
+          {data.heroDesc}
         </p>
       </div>
     </div>
@@ -194,8 +58,8 @@ const experts = [
   <div class="max-w-5xl mx-auto px-4 py-16">
     <!-- Grid de expertos -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {experts.map((expert, index) => (
-        <div key={index} class="group p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+      {experts.map((expert) => (
+        <div class="group p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
           <div class="flex items-start gap-4">
             <div class="flex-shrink-0 w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-3xl font-bold text-blue-600 dark:text-blue-400 overflow-hidden">
               {expert.image ? (
@@ -222,9 +86,7 @@ const experts = [
                 {expert.spec}
               </p>
               <details class="mt-3">
-                <summary class="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">
-                  Ver perfil y trayectoria ▼
-                </summary>
+                <summary class="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors">{data.profileToggle}</summary>
                 <p class="mt-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                   {expert.bio}
                 </p>

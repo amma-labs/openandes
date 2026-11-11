@@ -1,0 +1,153 @@
+{
+  "metaTitle": "专家 — OpenAndes",
+  "heroBadge": "全球网络",
+  "heroTitle": "专家与分析師",
+  "heroDesc": "致力于美洲战略分析与地缘政治前瞻的研究人员、主任与专家。",
+  "profileToggle": "查看简介与履历 ▼",
+  "experts": [
+    {
+      "name": "Benyi Barros Rojas",
+      "role": "执行主任",
+      "spec": "地缘政治分析、国际政治、区域间外交与亚洲研究。",
+      "bio": "圣马科斯国立大学政治学家，专攻地缘政治、国际政治与亚洲研究。曾在秘鲁国际法学会（SPDI）和秘鲁外交部任职。Fun Politik 和国际亚洲研究中心创始人兼总干事。在 Open Andes 负责战略愿景与区域间关系。",
+      "email": "benyi.barros@openandes.org",
+      "image": "/images/experts-profile/benyi-barros.webp"
+    },
+    {
+      "name": "Joaquín Vigueras",
+      "role": "项目协调员",
+      "spec": "技术工作流架构、风险模型与指挥中心运营。",
+      "bio": "国际分析师，专攻新兴市场情报与全球风险评估。2050 Futures Lab 研究分析师，曾任 Banco BICE 和 Banco de Chile 金融分析师。擅长情景规划、信号监测与比较政治分析，用于战略资本配置与危机预判。在 Open Andes 协调项目议程与前瞻分析。",
+      "email": "jvigueras@openandes.org",
+      "image": "/images/experts-profile/joaquin-vigueras.webp"
+    },
+    {
+      "name": "Lita Picasso Ramírez",
+      "role": "管理与内容协调员",
+      "spec": "政治学、国际关系、公共政策与具有性别视角的项目管理。",
+      "bio": "阿尔贝托·乌尔塔多大学政治学家。曾在智利外交部国际安全司（DISIN）和 Crea Equidad 基金会从事项目管理工作。专攻政治分析、机构写作、性别视角与文化管理。在 Open Andes 协调运营管理与战略内容开发。",
+      "email": "litapicasso@openandes.org",
+      "image": "/images/experts-profile/lita-picasso.webp"
+    },
+    {
+      "name": "Maira N. Oberstar",
+      "role": "传播协调员",
+      "spec": "地缘政治叙事、战略写作、全球冲突与人权。",
+      "bio": "地缘政治叙事、编辑策略与三语分析（西班牙语、英语、葡萄牙语）专家。其工作将战略写作与国际动态、全球冲突和人权分析相结合，服务于太平洋盆地与拉丁美洲的外交前瞻。",
+      "email": "maira.oberstar@openandes.org",
+      "image": "/images/experts-profile/maira-oberstar.webp"
+    },
+    {
+      "name": "Anthony Medina Rivas Plata",
+      "role": "非驻地高级研究员",
+      "spec": "国际关系、经济史、公共政策与治理。",
+      "bio": "拉普拉塔国立大学国际关系博士候选人，布宜诺斯艾利斯大学经济史专家。拥有鹿特丹伊拉斯姆斯大学和约克大学公共政策、治理与发展双硕士学位，圣马科斯国立大学政治学家。曾任圣玛丽亚天主教大学政治学院院长。在 Open Andes 提供机构支持与全球学术网络。",
+      "email": "",
+      "image": "/images/experts-profile/anthony-medina.webp"
+    },
+    {
+      "name": "Esteban Silva Navarro",
+      "role": "非驻地高级研究员",
+      "spec": "移民研究、国际关系与战略研究分析。",
+      "bio": "圣马科斯国立大学政治学家，特拉维夫大学移民研究文学硕士，曾在智利、德国、巴西和圣塞巴斯蒂安大学攻读研究生课程。现任安第斯政治研究所副总干事、IAPSS 拉丁美洲执行委员会副主席。在 Open Andes 加强国际联络与移民及地缘政治分析。",
+      "email": "",
+      "image": "/images/experts-profile/esteban-silva.webp"
+    },
+    {
+      "name": "Francisco Javier Covarrubias R.",
+      "role": "研究负责人",
+      "spec": "国际安全、外交、国际合作与对外关系历史分析。",
+      "bio": "迭戈波塔莱斯大学政治学家，智利大学发展与国际合作硕士。智利国防部 ANEPE 安全、国防与国际关系硕士候选人。曾在智利外交部 DISIN、IdeaPaís 和 FONDECYT 外交史项目任职。在 Open Andes 领导研究线与分析质量控制。",
+      "email": "",
+      "image": "/images/experts-profile/francisco-covarrubias.webp"
+    },
+    {
+      "name": "Jimena Valenzuela",
+      "role": "研究负责人",
+      "spec": "国际安全、网络安全、技术合作与亚洲研究。",
+      "bio": "智利天主教大学政治学家，智利大学亚洲研究硕士候选人。拥有国际安全与翻译文凭。曾在智利外交部国际与人类安全司任职，专注于网络安全与技术合作。在 Open Andes 主管战略研究与亚洲议程。",
+      "email": "",
+      "image": "/images/experts-profile/jimena-valenzuela.webp"
+    },
+    {
+      "name": "Álvaro Recabal Cervantes",
+      "role": "研究员",
+      "spec": "军事战略、地缘政治、机构领导力与武装冲突分析。",
+      "bio": "智利陆军退役炮兵军官，政治学硕士与组织领导力硕士。拥有 20 余年战略经验、国际维和任务（波黑 EUFOR）与危机管理经验。Rooster Think Tank 创始人、大学讲师与专栏作家。在 Open Andes 研究战略、多维安全与机构文化。",
+      "email": "",
+      "image": "/images/experts-profile/alvaro-recabal.webp"
+    },
+    {
+      "name": "Danna Mena N.",
+      "role": "研究员",
+      "spec": "气候正义、人权、公民社会强化与地缘政治。",
+      "bio": "律师与国际主义者，宪法与人权硕士。Hackers por Nuestro Futuro A.C. 联合创始人，前尤卡坦青年雅典耀主席。曾与 USAID、FMCN、Sureste Sostenible A.C. 合作，并为 Fun Politik 内容创作者。在 Open Andes 研究气候正义、人权、公民社会与中美洲和墨西哥的区域动态。",
+      "email": "",
+      "image": "/images/experts-profile/danna-mena.webp"
+    },
+    {
+      "name": "Mónica Cornejo",
+      "role": "研究员",
+      "spec": "人权、国际移民、知识产权与国际时事。",
+      "bio": "圣玛丽亚天主教大学律师，秘鲁外交学院国际关系专家。拥有人权与国际移民（OIM-UN）及知识产权培训，曾在 INDECOPI、公共部和秘鲁外交部任职。在 Open Andes 分析国际时事、跨境法律框架与移民事务。",
+      "email": "",
+      "image": "/images/experts-profile/monica-cornejo.webp"
+    },
+    {
+      "name": "Christian Ardila",
+      "role": "副研究员",
+      "spec": "有组织犯罪、跨国贩毒、国际安全与犯罪情报。",
+      "bio": "巴勒莫大学国际主义者，FLACSO 厄瓜多尔有组织犯罪分析与国际安全专家。曾在 InSight Crime 任职，并发表跨国贩毒与拉美安全研究。在 Open Andes 研究有组织犯罪动态与区域安全。",
+      "email": "",
+      "image": "/images/experts-profile/christian-ardila.webp"
+    },
+    {
+      "name": "Felix Vasquez Suasnabar",
+      "role": "副研究员",
+      "spec": "金融、会计、反洗钱预防与欺诈分析。",
+      "bio": "UPC 行政、金融与会计学士，秘鲁外交学院国际关系专家。曾任 EY 高级顾问，从事欺诈调查、反洗钱（AML/CFT）与会计鉴定。在 Open Andes 从事地缘经济、金融与公司治理交叉分析。",
+      "email": "",
+      "image": "/images/experts-profile/felix-vasquez.webp"
+    },
+    {
+      "name": "Alexia T. Laimes Campos",
+      "role": "副研究员",
+      "spec": "政治学、区域诊断、利益相关者映射与声誉风险分析。",
+      "bio": "圣马科斯国立大学政治学家，专攻区域诊断、利益相关者映射与社会政治及声誉风险分析。合著公共政策与跨文化出版物。在 Open Andes 为公共政策分析与区域风险提供技术与量化证据。",
+      "email": "",
+      "image": "/images/experts-profile/alexia-laimes.webp"
+    },
+    {
+      "name": "Silvana Huaman",
+      "role": "副研究员",
+      "spec": "刑法、网络犯罪、法律科技与社会影响。",
+      "bio": "圣马科斯国立大学法律与法律信息学分析师，曾在网络犯罪专门检察厅和 SENAJU 志愿服务。哈佛商学院 Aspire Leader Program 与 APEC 学术模型参与者。在 Open Andes 研究网络犯罪、法律科技与新技术的社会影响。",
+      "email": "",
+      "image": "/images/experts-profile/silvana-huaman.webp"
+    },
+    {
+      "name": "Lourdes Agostina Delgado",
+      "role": "副研究员",
+      "spec": "国际关系、全球政策分析与研究协助。",
+      "bio": "圣马丁国立大学（阿根廷）国际主义者。拥有行政协助与机构管理经验，专攻时事分析与全球政策写作。在 Open Andes 协助地缘政治监测与国际时事文章撰写。",
+      "email": "",
+      "image": "/images/experts-profile/lourdes-delgado.webp"
+    },
+    {
+      "name": "Aldo Andrés Rijo",
+      "role": "副研究员",
+      "spec": "国际经济、对外贸易、区域一体化与地缘经济。",
+      "bio": "乌拉圭共和国大学（Udelar）国际主义者与经济分析师。专攻经济、国际关系与区域发展的交叉领域。在 Open Andes 研究经济发展、跨安第斯一体化与拉美市场。",
+      "email": "",
+      "image": "/images/experts-profile/aldo-rijo.webp"
+    },
+    {
+      "name": "Delia Pedroza M.",
+      "role": "副研究员",
+      "spec": "地缘经济、国际金融与国际关系。",
+      "bio": "秘鲁 ESAN 大学行政与金融分析师。专注地缘经济、全球金融市场及其与国际政治的互动。在 Open Andes 分析资金流动、地缘经济与区域贸易动态。",
+      "email": "",
+      "image": "/images/experts-profile/delia-pedroza.webp"
+    }
+  ]
+}

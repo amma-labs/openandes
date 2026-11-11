@@ -1,0 +1,153 @@
+{
+  "metaTitle": "Experts — OpenAndes",
+  "heroBadge": "Global Network",
+  "heroTitle": "Experts and Analysts",
+  "heroDesc": "Researchers, directors, and specialists dedicated to strategic analysis and geopolitical foresight in the Americas.",
+  "profileToggle": "View profile and background ▼",
+  "experts": [
+    {
+      "name": "Benyi Barros Rojas",
+      "role": "Executive Director",
+      "spec": "Geopolitical analysis, international politics, interregional diplomacy, and Asian studies.",
+      "bio": "Political scientist from the Universidad Nacional Mayor de San Marcos, specialized in geopolitics, international politics, and Asian studies. He has experience at the Peruvian Society of International Law (SPDI) and the Ministry of Foreign Affairs of Peru. Founder and Director General of Fun Politik and the International Center for Asian Studies. At Open Andes he leads the strategic vision and interregional relations.",
+      "email": "benyi.barros@openandes.org",
+      "image": "/images/experts-profile/benyi-barros.webp"
+    },
+    {
+      "name": "Joaquín Vigueras",
+      "role": "Programs Coordinator",
+      "spec": "Architecture of technical workflows, risk models, and command center operations.",
+      "bio": "International analyst specialized in intelligence for emerging markets and global risk assessment. Research Analyst at 2050 Futures Lab and former financial analyst at Banco BICE and Banco de Chile. Expert in scenario planning, signal monitoring, and comparative political analysis for strategic capital allocation and crisis anticipation. At Open Andes he coordinates the programs agenda and foresight analysis.",
+      "email": "jvigueras@openandes.org",
+      "image": "/images/experts-profile/joaquin-vigueras.webp"
+    },
+    {
+      "name": "Lita Picasso Ramírez",
+      "role": "Management and Content Coordinator",
+      "spec": "Political science, international relations, public policy, and project management with a gender perspective.",
+      "bio": "Political scientist from Universidad Alberto Hurtado. She has experience at the Directorate of International Security (DISIN) of the Ministry of Foreign Affairs of Chile and in project management at Fundación Crea Equidad. Specialized in political analysis, institutional writing, gender perspective, and cultural management. At Open Andes she coordinates operational management and strategic content development.",
+      "email": "litapicasso@openandes.org",
+      "image": "/images/experts-profile/lita-picasso.webp"
+    },
+    {
+      "name": "Maira N. Oberstar",
+      "role": "Communications Coordinator",
+      "spec": "Geopolitical narrative, strategic writing, global conflicts, and human rights.",
+      "bio": "Specialist in geopolitical narrative, editorial strategy, and trilingual analysis (Spanish, English, Portuguese). Her work integrates strategic writing with the analysis of international dynamics, global conflicts, and human rights for diplomatic foresight in the Pacific Basin and Latin America.",
+      "email": "maira.oberstar@openandes.org",
+      "image": "/images/experts-profile/maira-oberstar.webp"
+    },
+    {
+      "name": "Anthony Medina Rivas Plata",
+      "role": "Non-Resident Senior Researcher",
+      "spec": "International relations, economic history, public policy, and governance.",
+      "bio": "PhD candidate in International Relations (Universidad Nacional de La Plata) and specialist in Economic History (Universidad de Buenos Aires). He holds a Double Master's in Public Policy, Governance, and Development from Erasmus University Rotterdam and the University of York, and is a Political Scientist from UNMSM. Former Director of the School of Political Science at Universidad Católica de Santa María. At Open Andes he provides institutional backing and global academic networks.",
+      "email": "",
+      "image": "/images/experts-profile/anthony-medina.webp"
+    },
+    {
+      "name": "Esteban Silva Navarro",
+      "role": "Non-Resident Senior Researcher",
+      "spec": "Migration studies, international relations, and strategic studies analysis.",
+      "bio": "Political scientist from Universidad Nacional Mayor de San Marcos and Master of Arts in Migration Studies from Tel Aviv University, with postgraduate studies in Chile, Germany, Brazil, and Universidad San Sebastián. He serves as Deputy Director General of the Institute of Andean Political Studies and Vice President of the IAPSS Latin America Executive Committee. At Open Andes he strengthens international articulation and migration and geopolitical analysis.",
+      "email": "",
+      "image": "/images/experts-profile/esteban-silva.webp"
+    },
+    {
+      "name": "Francisco Javier Covarrubias R.",
+      "role": "Research Lead",
+      "spec": "International security, diplomacy, international cooperation, and historical analysis of foreign relations.",
+      "bio": "Political scientist from Universidad Diego Portales and Master in Development and International Cooperation from Universidad de Chile. Candidate for Master in Security, Defense, and International Relations at ANEPE (Ministry of National Defense of Chile). He has professional experience at the DISIN of the Chilean Foreign Ministry, IdeaPaís, and the FONDECYT Project on diplomatic history. At Open Andes he leads research lines and analytical quality control.",
+      "email": "",
+      "image": "/images/experts-profile/francisco-covarrubias.webp"
+    },
+    {
+      "name": "Jimena Valenzuela",
+      "role": "Research Lead",
+      "spec": "International security, cybersecurity, technological cooperation, and Asian studies.",
+      "bio": "Political scientist from Pontificia Universidad Católica de Chile and candidate for Master in Asian Studies at Universidad de Chile. She holds diplomas in International Security and Translation. She has experience at the Division of International and Human Security of the Ministry of Foreign Affairs of Chile, focused on cybersecurity and technological cooperation. At Open Andes she directs strategic research areas and the Asian agenda.",
+      "email": "",
+      "image": "/images/experts-profile/jimena-valenzuela.webp"
+    },
+    {
+      "name": "Álvaro Recabal Cervantes",
+      "role": "Researcher",
+      "spec": "Military strategy, geopolitics, institutional leadership, and analysis of armed conflicts.",
+      "bio": "Retired Artillery Officer of the Chilean Army, Master in Political Science and Master in Organizational Leadership. He has over 20 years of strategic experience, international peace missions (EUFOR in Bosnia and Herzegovina), and crisis management. Founder of Rooster Think Tank, university lecturer, and columnist. At Open Andes he researches strategy, multidimensional security, and institutional culture.",
+      "email": "",
+      "image": "/images/experts-profile/alvaro-recabal.webp"
+    },
+    {
+      "name": "Danna Mena N.",
+      "role": "Researcher",
+      "spec": "Climate justice, human rights, civil society strengthening, and geopolitics.",
+      "bio": "Lawyer and internationalist, Master in Constitutional Law and Human Rights. Co-founder of Hackers por Nuestro Futuro A.C. and former president of the Ateneo Nacional de la Juventud (Yucatán). She has collaborated with USAID, FMCN, Sureste Sostenible A.C., and is a content creator at Fun Politik. At Open Andes she researches climate justice, human rights, civil society, and regional dynamics in Central America and Mexico.",
+      "email": "",
+      "image": "/images/experts-profile/danna-mena.webp"
+    },
+    {
+      "name": "Mónica Cornejo",
+      "role": "Researcher",
+      "spec": "Human rights, international migration, intellectual property, and international affairs.",
+      "bio": "Lawyer from Universidad Católica de Santa María, specialist in International Relations from the Diplomatic Academy Foundation of Peru. She has training in human rights and international migration (IOM-UN) and intellectual property, with experience at INDECOPI, the Public Ministry, and the Ministry of Foreign Affairs of Peru. At Open Andes she analyzes international affairs, cross-border legal frameworks, and migration issues.",
+      "email": "",
+      "image": "/images/experts-profile/monica-cornejo.webp"
+    },
+    {
+      "name": "Christian Ardila",
+      "role": "Associate Researcher",
+      "spec": "Organized crime, transnational drug trafficking, international security, and criminal intelligence.",
+      "bio": "Internationalist from Universidad de Palermo and specialist in Organized Crime Analysis and International Security from FLACSO Ecuador. He has experience at InSight Crime and publications on transnational drug trafficking and security in Latin America. At Open Andes he researches organized crime dynamics and regional security.",
+      "email": "",
+      "image": "/images/experts-profile/christian-ardila.webp"
+    },
+    {
+      "name": "Felix Vasquez Suasnabar",
+      "role": "Associate Researcher",
+      "spec": "Finance, accounting, anti-money laundering prevention, and fraud analysis.",
+      "bio": "Bachelor in Administration, Finance, and Accounting from UPC, specialized in International Relations from the Diplomatic Academy Foundation of Peru. Former Senior Consultant at EY in fraud investigation, anti-money laundering prevention (AML/CFT), and accounting expertise. At Open Andes he contributes analysis at the intersection of geoeconomics, finance, and corporate governance.",
+      "email": "",
+      "image": "/images/experts-profile/felix-vasquez.webp"
+    },
+    {
+      "name": "Alexia T. Laimes Campos",
+      "role": "Associate Researcher",
+      "spec": "Political science, territorial diagnostics, stakeholder mapping, and reputational risk analysis.",
+      "bio": "Political scientist from Universidad Nacional Mayor de San Marcos, specialized in territorial diagnostics, stakeholder mapping, and socio-political and reputational risk analysis. Co-author of publications on public policy and interculturality. At Open Andes she generates technical and quantitative evidence for public policy analysis and regional risks.",
+      "email": "",
+      "image": "/images/experts-profile/alexia-laimes.webp"
+    },
+    {
+      "name": "Silvana Huaman",
+      "role": "Associate Researcher",
+      "spec": "Criminal law, cybercrime, technology applied to law, and social impact.",
+      "bio": "Analyst in Law and Legal Informatics from Universidad Nacional Mayor de San Marcos, with experience in volunteering at the Specialized Cybercrime Prosecutor's Office and SENAJU. Participant in the Aspire Leader Program (Harvard Business School) and APEC Academic Model. At Open Andes she researches cybercrime, legal technology, and the social impact of new technologies.",
+      "email": "",
+      "image": "/images/experts-profile/silvana-huaman.webp"
+    },
+    {
+      "name": "Lourdes Agostina Delgado",
+      "role": "Associate Researcher",
+      "spec": "International relations, global policy analysis, and research assistance.",
+      "bio": "Internationalist from Universidad Nacional de San Martín (Argentina). She has experience in administrative assistance and institutional management, specializing in current affairs analysis and global policy writing. At Open Andes she collaborates in geopolitical monitoring and the production of international current affairs essays.",
+      "email": "",
+      "image": "/images/experts-profile/lourdes-delgado.webp"
+    },
+    {
+      "name": "Aldo Andrés Rijo",
+      "role": "Associate Researcher",
+      "spec": "International economics, foreign trade, regional integration, and geoeconomics.",
+      "bio": "Internationalist and Economics analyst from Universidad de la República (Udelar, Uruguay). Specialized in the intersection of economics, international relations, and regional development. At Open Andes he researches economic development, trans-Andean integration, and Latin American markets.",
+      "email": "",
+      "image": "/images/experts-profile/aldo-rijo.webp"
+    },
+    {
+      "name": "Delia Pedroza M.",
+      "role": "Associate Researcher",
+      "spec": "Geoeconomics, international finance, and international relations.",
+      "bio": "Analyst in Administration and Finance from Universidad ESAN (Peru). Focused on geoeconomics, global financial markets, and their interaction with international politics. At Open Andes she analyzes financial flows, geoeconomics, and regional trade dynamics.",
+      "email": "",
+      "image": "/images/experts-profile/delia-pedroza.webp"
+    }
+  ]
+}

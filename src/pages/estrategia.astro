@@ -1,61 +1,27 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import heroImage from '~/assets/images/46-chasing-climate-change-in-the-arctic-2800.jpg';
+import { getLangFromUrl } from '~/i18n/ui';
+
+const lang = getLangFromUrl(Astro);
+// Carga el JSON del locale (es/en/zh). Todos los JSON existen; fallback a es.
+const allData = import.meta.glob('~/data/estrategia/*.json', { eager: true, import: 'default' }) as Record<string, any>;
+const data = allData[`/src/data/estrategia/${lang}.json`] ?? allData['/src/data/estrategia/es.json'];
 
 const metadata = {
-  title: 'Asesoría — Open Andes',
-  description: 'Inteligencia de riesgo y prospectiva para la toma de decisiones en América Latina.',
+  title: data.metaTitle,
+  description: data.metaDescription,
 };
 
-const servicios = [
-  {
-    titulo: 'Monitor de Riesgo LatAm-Asia',
-    descripcion: 'Tableros paramétricos y mapas de calor regulatorio actualizados continuamente.',
-    icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
-  },
-  {
-    titulo: 'Análisis Geofinanciero & Regulatorio',
-    descripcion: 'Evaluaciones técnicas sobre concesiones, regulación ambiental, soberanía digital y aduanas.',
-    icon: 'M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z',
-  },
-  {
-    titulo: 'Riesgo Político & Ciclos Electorales',
-    descripcion: 'Mapeo de perfiles gubernamentales y proyecciones de gobernabilidad en América Latina.',
-    icon: 'M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25',
-  },
-  {
-    titulo: 'Prospectiva de Escenarios & Cisnes Negros',
-    descripcion: 'Modelado de escenarios de incertidumbre a mediano y largo plazo (2035–2050).',
-    icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
-  },
-  {
-    titulo: 'Briefings Ejecutivos & Reportes Ad-Hoc',
-    descripcion: 'Sesiones privadas de trabajo y reportes a medida ante coyunturas específicas.',
-    icon: 'M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0',
-  },
-];
+// Alias para mantener el resto del template igual
+type Servicio = { titulo: string; descripcion: string; icon: string };
+type Sello = { titulo: string; descripcion: string };
+type Stat = { valor: string; label: string };
 
-const sello = [
-  {
-    titulo: 'Data-Driven Visuals',
-    descripcion: 'Gráficos, mapas y esquemas diseñados para entender el impacto de negocio en segundos.',
-  },
-  {
-    titulo: 'Firma Humana',
-    descripcion: 'Análisis técnico empírico y desprovisto de especulación o IA generativa.',
-  },
-  {
-    titulo: 'Neutralidad',
-    descripcion: 'Análisis riguroso, independiente y agnóstico ideológicamente.',
-  },
-];
+const servicios = data.services as Servicio[];
+const sello = data.sello as Sello[];
+const stats = data.stats as Stat[];
 
-const stats = [
-  { valor: '−10 días', label: 'Reducción tránsito transpacífico' },
-  { valor: '−20%', label: 'Costos logísticos globales' },
-  { valor: '$1.3B', label: 'Inversión Etapa 1 · Chancay' },
-  { valor: '$4.5B', label: 'Inversión proyectada · San Antonio' },
-];
 ---
 
 <Layout metadata={metadata}>
@@ -75,14 +41,10 @@ const stats = [
 
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
       <div class="max-w-3xl">
-        <span class="inline-block text-sm font-mono-tech font-bold tracking-widest uppercase text-[#e5e7eb] mb-4 border border-[#e5e7eb]/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Asesoría
-        </span>
-        <h1 class="font-sans font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight">
-          Soluciones y Solicitudes Directas
-        </h1>
+        <span class="inline-block text-sm font-mono-tech font-bold tracking-widest uppercase text-[#e5e7eb] mb-4 border border-[#e5e7eb]/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">{data.heroBadge}</span>
+        <h1 class="font-sans font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight">{data.heroTitle}</h1>
         <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
-          Inteligencia de riesgo y prospectiva para la toma de decisiones en América Latina.
+          {data.heroDesc}
         </p>
       </div>
     </div>
@@ -100,23 +62,15 @@ const stats = [
           <div class="lg:col-span-3 p-8 sm:p-10 flex flex-col justify-between gap-6">
             <div>
               <div class="flex flex-wrap items-center gap-2 mb-5">
-                <span class="bg-[#030712] text-white font-mono-tech font-bold text-[10px] px-2.5 py-1 rounded uppercase tracking-widest">
-                  Brief Ejecutivo
-                </span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">
-                  N.° 2026-09
-                </span>
+                <span class="bg-[#030712] text-white font-mono-tech font-bold text-[10px] px-2.5 py-1 rounded uppercase tracking-widest">{data.briefingBadge}</span>
+                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">{data.briefingNumber}</span>
               </div>
 
-              <h2 class="font-sans font-bold text-3xl sm:text-4xl text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight mb-3">
-                Pívot en el Pacífico Sur
-              </h2>
-              <p class="font-sans font-light italic text-lg text-[#4b5563] dark:text-[#4b5563] mb-5">
-                Análisis de Riesgo Geoeconómico
-              </p>
+              <h2 class="font-sans font-bold text-3xl sm:text-4xl text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight mb-3">{data.briefingTitle}</h2>
+              <p class="font-sans font-light italic text-lg text-[#4b5563] dark:text-[#4b5563] mb-5">{data.briefingSubtitle}</p>
 
               <p class="text-sm text-[#4b5563] dark:text-[#4b5563] leading-relaxed mb-6">
-                La pugna por el liderazgo logístico entre el megapuerto de Chancay (Perú) y el Puerto Exterior de San Antonio (Chile) reconfigura la competitividad de las cadenas de suministro transpacíficas. Este brief analiza la inversión china en infraestructura portuaria, el impacto del corredor directo Chancay-Shanghái, las asimetrías regulatorias, el riesgo geopolítico y las implicaciones para las industrias minera y agrícola de la región.
+                {data.briefingDesc}
               </p>
 
               <!-- Stats -->
@@ -137,9 +91,7 @@ const stats = [
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2 self-start px-7 py-3.5 bg-[#030712] hover:bg-[#1344e7] text-white font-mono-tech font-bold text-sm uppercase tracking-wider rounded-full transition-colors duration-200"
-            >
-              Descargar PDF
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            >{data.briefingCta}<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
             </a>
@@ -149,7 +101,7 @@ const stats = [
           <div class="lg:col-span-2 relative min-h-[280px] lg:min-h-full">
             <img
               src="/images/posts/shanghai-puerto-1920x1080-1.webp"
-              alt="Brief Ejecutivo — Pívot en el Pacífico Sur"
+              alt={`${data.briefingBadge} — ${data.briefingTitle}`}
               class="absolute inset-0 w-full h-full object-cover"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#030712]/70 via-transparent to-transparent"></div>
@@ -161,9 +113,7 @@ const stats = [
 
     <!-- SERVICIOS -->
     <section class="mb-20">
-      <h2 class="font-sans font-bold text-2xl sm:text-3xl text-[#111827] dark:text-[#f3f4f6] mb-10">
-        Líneas de Asesoría
-      </h2>
+      <h2 class="font-sans font-bold text-2xl sm:text-3xl text-[#111827] dark:text-[#f3f4f6] mb-10">{data.servicesTitle}</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {servicios.map((s) => (
@@ -204,14 +154,12 @@ const stats = [
         ¿Listo para evaluar sus escenarios de riesgo?
       </h2>
       <p class="text-[#4b5563] dark:text-[#4b5563] mb-8 max-w-xl mx-auto">
-        Coordinemos un briefing ejecutivo a medida para su directorio o equipo de inversión.
+        {data.ctaDesc}
       </p>
       <a
         href="mailto:contacto@openandes.org?subject=Solicitud%20de%20Briefing%20Ejecutivo"
         class="inline-flex items-center justify-center px-8 py-3.5 bg-[#030712] hover:bg-[#1344e7] text-white font-mono-tech font-bold text-sm uppercase tracking-wider rounded-full transition-colors duration-200"
-      >
-        Solicitar Briefing Ejecutivo
-      </a>
+      >{data.ctaButton}</a>
     </section>
 
   </div>
