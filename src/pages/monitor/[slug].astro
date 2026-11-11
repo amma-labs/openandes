@@ -1,19 +1,72 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ReportLayout from '~/layouts/ReportLayout.astro';
+import { defaultLang, getLangFromUrl, getLocalizedPath, type Lang } from '~/i18n/ui';
 
+// i18n nativo: la URL raíz sirve 'es'; /en/... y /zh/... sirven EN y ZH.
+// `prefixDefaultLocale: false` → para 'es' el segmento de idioma es `undefined`.
 export async function getStaticPaths() {
   const reports = await getCollection('reports', ({ data }) => !data.draft);
-  return reports.map((report) => ({
-    params: { slug: report.id.replace(/\.(md|mdx)$/, '') },
-    props: { report },
-  }));
+
+  // Indexa variantes por translationKey para saber qué idiomas existen por reporte
+  const byKey = new Map<string, { es?: typeof reports[0]; en?: typeof reports[0]; zh?: typeof reports[0] }>();
+  for (const r of reports) {
+    const key = r.data.translationKey;
+    if (!byKey.has(key)) byKey.set(key, {});
+    byKey.get(key)![r.data.lang] = r;
+  }
+
+  // Un path por (locale, translationKey). El slug en URL siempre es el translationKey.
+  const paths = [];
+  for (const [key, variants] of byKey.entries()) {
+    for (const lang of ['es', 'en', 'zh'] as const) {
+      if (!variants[lang]) continue; // no existe esa traducción: no se genera la ruta
+      paths.push({
+        params: {
+          // '' para 'es' (URL limpia sin prefijo), 'en' o 'zh' para los demás
+          lang: lang === defaultLang ? undefined : lang,
+          slug: key,
+        },
+        props: { translationKey: key, lang },
+      });
+    }
+  }
+  return paths;
 }
 
-const { report } = Astro.props;
-const { Content, headings } = await render(report);
+const currentLang = getLangFromUrl(Astro);
+const { translationKey } = Astro.props;
+
+// Carga la variante del idioma actual; si no existe (raro), cae a ES.
+const allReports = await getCollection('reports', ({ data }) => !data.draft);
+const variants = allReports.filter((r) => r.data.translationKey === translationKey);
+const localized = variants.find((r) => r.data.lang === currentLang) ?? variants.find((r) => r.data.lang === 'es');
+
+if (!localized) {
+  throw new Error(`No hay variante para translationKey "${translationKey}" (lang=${currentLang}).`);
+}
+
+const { Content, headings } = await render(localized);
+
+// Idiomas disponibles para el selector "Ver en otros idiomas"
+const availableLangs = new Set(variants.map((v) => v.data.lang as Lang));
+const langLinks = (['es', 'en', 'zh'] as const)
+  .filter((l) => availableLangs.has(l) && l !== currentLang)
+  .map((l) => ({
+    lang: l,
+    href: getLocalizedPath(Astro.url.pathname, l),
+  }));
+
+// Traducciones pendientes: idiomas que NO existen para este reporte,
+// excluyendo el actual (ya estás renderizando algo en él, sea fallback o traducción).
+const missingLangs = (['es', 'en', 'zh'] as const).filter(
+  (l) => !availableLangs.has(l) && l !== currentLang
+);
+
+const report = localized;
+
 ---
 
-<ReportLayout report={report} headings={headings}>
+<ReportLayout report={report} headings={headings} langLinks={langLinks} missingLangs={missingLangs}>
   <Content />
 </ReportLayout>

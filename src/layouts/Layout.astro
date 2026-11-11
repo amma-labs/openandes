@@ -5,6 +5,7 @@ import '@fontsource-variable/fraunces/opsz.css';
 import { Font } from 'astro:assets';
 
 import { I18N } from 'astrowind:config';
+import { getLangFromUrl } from '~/i18n/ui';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
@@ -25,11 +26,15 @@ export interface Props {
 }
 
 const { metadata = {} } = Astro.props;
-const { language, textDirection } = I18N;
+const { textDirection: configTextDirection } = I18N;
+const lang = getLangFromUrl(Astro);
+// <html lang> por locale: es / en / zh-Hans (HTML prefiere zh-Hans sobre zh para SEO)
+const htmlLang = lang === 'zh' ? 'zh-Hans' : lang;
+const textDirection = configTextDirection ?? 'ltr';
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={htmlLang} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />
     <Favicons />

@@ -1,0 +1,93 @@
+// src/i18n/zh.ts
+// 简体中文 (Simplified Chinese)
+import type { UIStrings } from './es';
+
+export const zh = {
+  meta: {
+    siteName: 'Open Andes',
+    siteTagline: '首个去中心化、100% 数字化的智库。',
+    siteDescription:
+      '专注拉丁美洲—亚洲轴心地缘政治情报与地缘经济前瞻的独立研究机构。',
+    ogLocale: 'zh_CN',
+  },
+  nav: {
+    about: '关于我们',
+    experts: '专家',
+    advisory: '咨询',
+    research: '研究',
+    analysis: '分析',
+    commentary: '评论',
+    events: '活动',
+    ariaLabel: '主导航',
+  },
+  langSwitcher: {
+    label: '语言',
+    ariaLabel: '切换语言',
+    es: 'Español',
+    en: 'English',
+    zh: '简体中文',
+  },
+  common: {
+    readMore: '阅读更多',
+    readReport: '阅读报告',
+    downloadPdf: '下载 PDF',
+    share: '分享',
+    relatedPosts: '相关内容',
+    minRead: '分钟阅读',
+    publishedOn: '发布于',
+    updatedOn: '更新于',
+    backTo: '返回',
+    loading: '加载中…',
+    skipToContent: '跳至正文',
+    translationPending: '译文即将推出',
+    availableIn: '可用语言',
+  },
+  footer: {
+    newsletterCta: '订阅我们的通讯',
+    newsletterPlaceholder: 'you@email.com',
+    newsletterButton: '发送',
+    newsletterSending: '发送中…',
+    newsletterNoSpam: '无垃圾邮件，可随时退订。',
+    newsletterSuccess: '订阅成功！',
+    newsletterAlreadySubscribed: '该邮箱已订阅。',
+    newsletterInvalid: '请输入有效的邮箱地址。',
+    newsletterError: '订阅失败。',
+    newsletterConnectionError: '连接错误，请重试。',
+    coordinationLabel: '区域协调：',
+    coordinationCities: '智利圣地亚哥 · 秘鲁利马',
+    missionStatement:
+      '回望过去，展望未来，我们以信心立足当下。我们是覆盖整个美洲的风险分析、地缘经济趋势与前瞻情景的模块化节点，致力于凝聚批判性知识，以预见变化、助力决策。',
+    copyright: '© 2026 OPEN ANDES. 版权所有。',
+    labCredit: '2050 LAB · FunPolitik',
+    privacy: '隐私政策',
+    terms: '服务条款',
+    cookies: 'Cookie 政策',
+    rss: 'RSS',
+    contactEmail: 'contact@openandes.org',
+    ariaLinkedIn: 'Open Andes 的 LinkedIn 主页',
+    ariaInstagram: 'Open Andes 的 Instagram 主页',
+  },
+  report: {
+    typeInforme: '报告',
+    typeAnalisis: '分析',
+    typeMirada: '专家观点',
+    researchLeaders: '研究负责人',
+    associateResearchers: '副研究员',
+    program: '项目',
+    author: '作者',
+    tableOfContents: '目录',
+    citeThis: '引用本文',
+  },
+  about: {
+    title: '关于我们',
+    description: '我们是谁，以及我们如何开展工作。',
+  },
+  team: {
+    title: '团队',
+    description: 'Open Andes 的研究人员与合作伙伴。',
+  },
+  experts: {
+    title: '专家',
+    description: '地缘政治、地缘金融与物流领域的专家网络。',
+  },
+} satisfies UIStrings;

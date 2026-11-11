@@ -36,3 +36,5 @@ scripts/
 * 2
 .vercel
 .env*
+*.bak2
+.astro/

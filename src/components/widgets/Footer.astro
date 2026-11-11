@@ -1,18 +1,22 @@
 ---
 import { getHomePermalink } from '~/utils/permalinks';
+import { useTranslations, getLangFromUrl } from '~/i18n/ui';
 
 export interface Props {
   theme?: string;
+  lang?: 'es' | 'en' | 'zh';
 }
 
-const { theme = 'dark' } = Astro.props;
+const { theme = 'dark', lang: langProp } = Astro.props;
+const lang = langProp ?? getLangFromUrl(Astro);
+const t = useTranslations(lang);
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-[#e5e7eb] dark:border-[#2a2a2a] bg-page not-prose font-sans']}>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 text-[#111827] dark:text-[#f3f4f6]">
-    
+
     <div class="grid grid-cols-12 gap-8 py-12 items-start">
-      
+
       <div class="col-span-12 lg:col-span-5 flex flex-col justify-between">
         <div>
           <a translate="no" class="notranslate inline-flex items-center gap-2 font-montserrat font-bold text-2xl tracking-wider text-[#111827] dark:text-[#f3f4f6] mb-4 uppercase" href={getHomePermalink()}>
@@ -22,26 +26,34 @@ const { theme = 'dark' } = Astro.props;
         </div>
 
         <div class="mt-6">
-          <p class="text-xs text-[#4a4038] dark:text-[#c8c0b4] mb-3 font-sans">Suscríbete a nuestro newsletter</p>
-          <form id="newsletter-form" class="flex flex-col gap-2 max-w-md">
+          <p class="text-xs text-[#4a4038] dark:text-[#c8c0b4] mb-3 font-sans">{t.footer.newsletterCta}</p>
+          <form id="newsletter-form" class="flex flex-col gap-2 max-w-md" data-i18n={JSON.stringify({
+            button: t.footer.newsletterButton,
+            sending: t.footer.newsletterSending,
+            success: t.footer.newsletterSuccess,
+            already: t.footer.newsletterAlreadySubscribed,
+            invalid: t.footer.newsletterInvalid,
+            error: t.footer.newsletterError,
+            connectionError: t.footer.newsletterConnectionError,
+          })}>
             <div class="flex gap-2">
-              <input type="email" id="newsletter-email" placeholder="tu@email.com" required class="flex-1 px-3 py-2 text-sm bg-[#ffffff] dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] rounded-md focus:outline-none focus:border-[#1344e7] dark:focus:border-[#1344e7] transition-colors font-sans text-[#111827] dark:text-[#f3f4f6]" />
-              <button type="submit" id="newsletter-submit" class="px-4 py-2 text-sm font-mono-tech font-semibold bg-[#1344e7] hover:bg-[#0d2b4f] dark:bg-[#1344e7] dark:hover:bg-[#1344e7] text-white rounded-md transition-colors">Enviar</button>
+              <input type="email" id="newsletter-email" placeholder={t.footer.newsletterPlaceholder} required class="flex-1 px-3 py-2 text-sm bg-[#ffffff] dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] rounded-md focus:outline-none focus:border-[#1344e7] dark:focus:border-[#1344e7] transition-colors font-sans text-[#111827] dark:text-[#f3f4f6]" />
+              <button type="submit" id="newsletter-submit" class="px-4 py-2 text-sm font-mono-tech font-semibold bg-[#1344e7] hover:bg-[#0d2b4f] dark:bg-[#1344e7] dark:hover:bg-[#1344e7] text-white rounded-md transition-colors">{t.footer.newsletterButton}</button>
             </div>
             <div id="newsletter-message" class="text-xs font-sans"></div>
           </form>
-          <p class="text-[10px] text-[#4a4038]/60 dark:text-[#c8c0b4]/60 mt-2 font-sans">Sin spam. Puedes darte de baja cuando quieras.</p>
+          <p class="text-[10px] text-[#4a4038]/60 dark:text-[#c8c0b4]/60 mt-2 font-sans">{t.footer.newsletterNoSpam}</p>
         </div>
 
         <div class="space-y-1 text-xs text-[#4a4038] dark:text-[#c8c0b4] mt-6">
-          <p class="font-semibold text-[#111827] dark:text-[#f3f4f6]">Coordinación Regional:</p>
-          <p>Santiago, Chile · Lima, Perú</p>
+          <p class="font-semibold text-[#111827] dark:text-[#f3f4f6]">{t.footer.coordinationLabel}</p>
+          <p>{t.footer.coordinationCities}</p>
         </div>
       </div>
 
       <div class="col-span-12 lg:col-span-7 lg:border-l lg:border-[#e5e7eb] lg:dark:border-[#2a2a2a] lg:pl-8">
         <p class="text-lg sm:text-xl lg:text-2xl font-display font-medium leading-relaxed text-[#111827] dark:text-[#f3f4f6]">
-          Si miramos el pasado y el futuro, caminaremos con confianza en el presente. Somos un nodo modular de análisis de riesgos, tendencias geoeconómicas, y escenarios prospectivos de toda América. Articulamos conocimiento crítico para anticipar el cambio y tomar decisiones con certidumbre.
+          {t.footer.missionStatement}
         </p>
       </div>
 
@@ -49,20 +61,20 @@ const { theme = 'dark' } = Astro.props;
 
     <div class="md:flex md:items-center md:justify-between py-6 border-t border-[#e5e7eb] dark:border-[#2a2a2a] text-xs text-[#4a4038] dark:text-[#c8c0b4] font-sans">
       <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-        <span>© 2026 OPEN ANDES. Todos los derechos reservados.</span>
+        <span>{t.footer.copyright}</span>
         <span class="hidden sm:inline text-[#4a4038]/30 dark:text-[#c8c0b4]/30">|</span>
-        <span class="text-[10px] text-[#4a4038]/60 dark:text-[#c8c0b4]/60">2050 LAB · FunPolitik</span>
+        <span class="text-[10px] text-[#4a4038]/60 dark:text-[#c8c0b4]/60">{t.footer.labCredit}</span>
       </div>
 
       <div class="flex items-center gap-5 mt-4 md:mt-0">
-        <a href="/privacidad" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">Privacidad</a>
-        <a href="/terminos" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">Términos</a>
-        <a href="/cookies" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">Cookies</a>
+        <a href="/privacidad" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">{t.footer.privacy}</a>
+        <a href="/terminos" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">{t.footer.terms}</a>
+        <a href="/cookies" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">{t.footer.cookies}</a>
         <span class="text-[#4a4038]/30 dark:text-[#c8c0b4]/30">|</span>
-        <a href="https://www.linkedin.com/company/openandes/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">LinkedIn</a>
-        <a href="https://www.instagram.com/openandes_org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">Instagram</a>
-        <a href="mailto:contacto@openandes.org" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors font-medium">contacto@openandes.org</a>
-        <a href="/rss.xml" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors font-mono-tech text-[10px] uppercase tracking-wider">RSS</a>
+        <a href="https://www.linkedin.com/company/openandes/" target="_blank" rel="noopener noreferrer" aria-label={t.footer.ariaLinkedIn} class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">LinkedIn</a>
+        <a href="https://www.instagram.com/openandes_org/" target="_blank" rel="noopener noreferrer" aria-label={t.footer.ariaInstagram} class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors">Instagram</a>
+        <a href={`mailto:${t.footer.contactEmail}`} class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors font-medium">{t.footer.contactEmail}</a>
+        <a href="/rss.xml" class="hover:text-[#1344e7] dark:hover:text-[#5b8def] transition-colors font-mono-tech text-[10px] uppercase tracking-wider">{t.footer.rss}</a>
       </div>
     </div>
 
@@ -70,51 +82,54 @@ const { theme = 'dark' } = Astro.props;
 </footer>
 
 <script is:inline>
-  const form = document.getElementById('newsletter-form');
-  const emailInput = document.getElementById('newsletter-email');
-  const messageEl = document.getElementById('newsletter-message');
-  const submitBtn = document.getElementById('newsletter-submit');
+  (function () {
+    const form = document.getElementById('newsletter-form');
+    if (!form) return;
+    const i18n = JSON.parse(form.dataset.i18n || '{}');
+    const emailInput = document.getElementById('newsletter-email');
+    const messageEl = document.getElementById('newsletter-message');
+    const submitBtn = document.getElementById('newsletter-submit');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
 
-    if (!email || !email.includes('@') || !email.includes('.')) {
-      messageEl.textContent = 'Por favor, ingresa un email válido.';
-      messageEl.className = 'text-xs font-sans text-red-600 dark:text-red-400';
-      return;
-    }
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        messageEl.textContent = i18n.invalid || 'Invalid email';
+        messageEl.className = 'text-xs font-sans text-red-600 dark:text-red-400';
+        return;
+      }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando...';
-    messageEl.textContent = '';
+      submitBtn.disabled = true;
+      submitBtn.textContent = i18n.sending || 'Sending…';
+      messageEl.textContent = '';
 
-    try {
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
+      try {
+        const response = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await response.json();
 
-      const data = await response.json();
-
-      if (response.status === 409) {
-        messageEl.textContent = data.error || 'Este email ya está suscrito.';
-        messageEl.className = 'text-xs font-sans text-yellow-600 dark:text-yellow-400';
-      } else if (response.ok) {
-        messageEl.textContent = data.message || '¡Suscripción exitosa!';
-        messageEl.className = 'text-xs font-sans text-green-600 dark:text-green-400';
-        emailInput.value = '';
-      } else {
-        messageEl.textContent = data.error || 'Error al suscribir.';
+        if (response.status === 409) {
+          messageEl.textContent = data.error || i18n.already || 'Already subscribed';
+          messageEl.className = 'text-xs font-sans text-yellow-600 dark:text-yellow-400';
+        } else if (response.ok) {
+          messageEl.textContent = data.message || i18n.success || 'Success';
+          messageEl.className = 'text-xs font-sans text-green-600 dark:text-green-400';
+          emailInput.value = '';
+        } else {
+          messageEl.textContent = data.error || i18n.error || 'Error';
+          messageEl.className = 'text-xs font-sans text-red-600 dark:text-red-400';
+        }
+      } catch {
+        messageEl.textContent = i18n.connectionError || 'Connection error';
         messageEl.className = 'text-xs font-sans text-red-600 dark:text-red-400';
       }
-    } catch (error) {
-      messageEl.textContent = 'Error de conexión. Intenta de nuevo.';
-      messageEl.className = 'text-xs font-sans text-red-600 dark:text-red-400';
-    }
 
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Enviar';
-  });
+      submitBtn.disabled = false;
+      submitBtn.textContent = i18n.button || 'Send';
+    });
+  })();
 </script>

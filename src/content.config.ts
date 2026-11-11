@@ -57,6 +57,8 @@ const funPolitik = defineCollection({
 const reports = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/reports' }),
   schema: z.object({
+    translationKey: z.string(),
+    lang: z.enum(['es', 'en', 'zh']),
     title: z.string(),
     subtitle: z.string().optional(),
     date: z.coerce.date(),
@@ -71,6 +73,13 @@ const reports = defineCollection({
     image: z.string().optional(),
     toc: z.boolean().default(true),
     draft: z.boolean().default(false),
+
+    // ─── Campos usados por ReportLayout.astro ───
+    keyTakeaways: z.array(z.string()).default([]),
+    stats: z
+      .array(z.object({ value: z.string(), label: z.string() }))
+      .default([]),
+    acknowledgment: z.string().optional(),
   }),
 });
 

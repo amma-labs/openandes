@@ -29,6 +29,22 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static', // Static mode (soporta endpoints API en Astro v7)
 
+  // i18n nativo de Astro. La raíz (/) sirve 'es'; /en y /zh son subdirectorios.
+  // Las rutas de colecciones se generan por locale vía getStaticPaths().
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en', 'zh'],
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: false,
+      fallbackType: 'rewrite',
+    },
+    fallback: {
+      en: 'es',
+      zh: 'es',
+    },
+  },
+
   adapter: vercel(), // Adaptador de Vercel para despliegue
 
   // Prefetch links as they enter the viewport for snappier navigations

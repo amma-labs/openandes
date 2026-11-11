@@ -2,14 +2,20 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import type { CollectionEntry } from 'astro:content';
 import ShareButtons from '~/components/common/ShareButtons.astro';
+import { getLangFromUrl, useTranslations, languages, type Lang } from '~/i18n/ui';
 
 export interface Props {
   report: CollectionEntry<'reports'>;
   headings?: { depth: number; slug: string; text: string }[];
+  langLinks?: { lang: Lang; href: string }[];
+  missingLangs?: Lang[];
 }
 
-const { report, headings = [] } = Astro.props;
+const { report, headings = [], langLinks = [], missingLangs = [] } = Astro.props;
 const { data } = report;
+
+const lang = getLangFromUrl(Astro);
+const t = useTranslations(lang);
 
 const leaderImages: Record<string, string> = {
   'Francisco J. Covarrubias R.': '/images/experts-profile/francisco-covarrubias.webp',
@@ -19,10 +25,10 @@ const leaderImages: Record<string, string> = {
 const tocHeadings = headings.filter((h) => h.depth === 1 || h.depth === 2);
 
 const formatDate = (d: Date) =>
-  new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(d);
+  new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : lang === 'en' ? 'en-US' : 'zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(d);
 
 const metadata = {
-  title: `${data.title} — Open Andes`,
+  title: data.title,  // el Layout base añade el sufijo `— Open Andes` vía config.yaml
   description: data.summary || data.subtitle,
   openGraph: {
     images: data.image ? [{ url: data.image }] : [],
@@ -48,6 +54,33 @@ const metadata = {
         <p class="mt-6 text-lg sm:text-xl text-[#4b5563] dark:text-[#4b5563] leading-relaxed max-w-4xl font-sans font-normal">
           {data.subtitle}
         </p>
+      )}
+
+      <!-- i18n: idiomas disponibles + traducciones pendientes -->
+      {(langLinks.length > 0 || missingLangs.length > 0) && (
+        <div class="mt-8 flex flex-wrap items-center gap-3 text-sm max-w-4xl">
+          {langLinks.length > 0 && (
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono-tech font-bold uppercase tracking-widest text-[#4b5563] dark:text-[#4b5563]">
+                {t.common.availableIn}:
+              </span>
+              {langLinks.map(({ lang: l, href }) => (
+                <a
+                  href={href}
+                  hreflang={l}
+                  class="text-xs px-3 py-1 rounded-full border border-[#1344e7] text-[#1344e7] dark:text-[#5b8def] dark:border-[#5b8def] hover:bg-[#1344e7] hover:text-white transition-colors font-mono-tech"
+                >
+                  {languages[l]}
+                </a>
+              ))}
+            </div>
+          )}
+          {missingLangs.length > 0 && (
+            <span class="text-xs text-[#4b5563] dark:text-[#4b5563] italic">
+              {t.common.translationPending}: {missingLangs.map((l) => languages[l]).join(' · ')}
+            </span>
+          )}
+        </div>
       )}
 
       <!-- AUTORES -->
