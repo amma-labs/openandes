@@ -3,18 +3,31 @@ import Layout from '~/layouts/PageLayout.astro';
 import RadarWidget from '~/components/widgets/RadarWidget.astro';
 import { getCollection } from 'astro:content';
 
-// Importar posts de Análisis
-const posts = await Promise.all(
-  Object.entries(import.meta.glob('../data/post/*.{md,mdx}')).map(async ([path, load]) => {
-    const post = await load();
-    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
-    return {
-      ...post,
-      slug,
-      url: `/analisis/${slug}`
-    };
-  })
-);
+// Importar posts de Análisis (por locale)
+const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+const allFiles = import.meta.glob('../data/post/*/*.{md,mdx}');
+const slugs = new Set<string>();
+for (const filepath in allFiles) {
+  const m = filepath.match(/\/post\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
+  if (m) slugs.add(m[2]);
+}
+const posts = (
+  await Promise.all(
+    Array.from(slugs).map(async (slug) => {
+      const wanted = `../data/post/${locale}/${slug}.mdx`;
+      const fallback = `../data/post/es/${slug}.mdx`;
+      const loader = allFiles[wanted] ?? allFiles[fallback];
+      if (!loader) return null;
+      const post = await loader();
+      return {
+        ...post,
+        slug,
+        locale: allFiles[wanted] ? locale : 'es',
+        url: locale === 'es' ? `/analisis/${slug}` : `/${locale}/analisis/${slug}`,
+      };
+    })
+  )
+).filter((p): p is NonNullable<typeof p> => p !== null);
 
 // Ordenar por fecha y obtener el más reciente
 const sortedPosts = posts.sort((a, b) => {

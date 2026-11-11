@@ -5,18 +5,33 @@ import LastPosts from '~/components/blogs/LastPosts.astro';
 // Importar imagen para el hero
 import heroImage from '~/assets/images/1-chasing-climate-change-in-the-arctic-2800.jpg';
 
-// Cargar miradas expertas
-const posts = await Promise.all(
-  Object.entries(import.meta.glob('../data/mirada-experta/*.{md,mdx}')).map(async ([path, load]) => {
-    const post = await load();
-    const slug = path.split('/').pop().replace(/\.(md|mdx)$/, '');
-    return {
-      ...post,
-      slug,
-      url: `/miradas/${slug}`,
-    };
-  })
-);
+// Cargar miradas expertas por locale
+const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+
+const allFiles = import.meta.glob('../data/mirada-experta/*/*.{md,mdx}');
+const slugs = new Set<string>();
+for (const filepath in allFiles) {
+  const m = filepath.match(/\/mirada-experta\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
+  if (m) slugs.add(m[2]);
+}
+
+const posts = (
+  await Promise.all(
+    Array.from(slugs).map(async (slug) => {
+      const wanted = `../data/mirada-experta/${locale}/${slug}.mdx`;
+      const fallback = `../data/mirada-experta/es/${slug}.mdx`;
+      const loader = allFiles[wanted] ?? allFiles[fallback];
+      if (!loader) return null;
+      const post = await loader();
+      return {
+        ...post,
+        slug,
+        locale: allFiles[wanted] ? locale : 'es',
+        url: locale === 'es' ? `/miradas/${slug}` : `/${locale}/miradas/${slug}`,
+      };
+    })
+  )
+).filter((p): p is NonNullable<typeof p> => p !== null);
 
 const sortedPosts = posts.sort((a, b) => {
   const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');

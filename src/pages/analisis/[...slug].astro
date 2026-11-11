@@ -28,7 +28,9 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const locale = (Astro.params as { lang?: string }).lang ?? 'es';
+// Astro.currentLocale se setea desde `params.lang` del getStaticPaths().
+// `Astro.params.lang` no existe porque la ruta es [...slug] (sin [lang]).
+const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
 
 // Importa el .mdx del locale; si no existe, fallback a ES.
 const allPosts = import.meta.glob('../../data/post/*/*.{md,mdx}');
