@@ -160,6 +160,7 @@ const currentLang: Lang = getLangFromUrl(Astro);
                       <a
                         href={getLocalizedPath(Astro.url.pathname, code as Lang)}
                         hreflang={code}
+                        data-astro-reload
                         class:list={[
                           'block px-3 py-1.5 text-xs font-mono-tech uppercase tracking-wider hover:bg-gray-100 dark:hover:bg-white/5 transition-colors',
                           { 'font-bold text-[#1344e7] dark:text-[#5b8def]': code === currentLang },
