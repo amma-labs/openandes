@@ -106,37 +106,6 @@ const currentLang: Lang = getLangFromUrl(Astro);
           </div>
           <ToggleMenu />
         </div>
-        {/* Selector de idioma de desktop (solo xl:) */}
-      <div id="desktop-actions" class="hidden xl:flex items-center gap-2">
-        <div class="relative inline-flex items-center group" data-lang-switcher>
-          <button
-            type="button"
-            aria-label={languages[currentLang]}
-            aria-haspopup="true"
-            class="appearance-none bg-transparent text-muted dark:text-gray-400 hover:text-[#1344e7] dark:hover:text-white text-xs font-mono-tech uppercase tracking-wider pr-4 pl-1 py-1 cursor-pointer focus:outline-none inline-flex items-center gap-1"
-          >
-            {currentLang}
-            <Icon name="tabler:chevron-down" class="w-3 h-3 pointer-events-none text-muted dark:text-gray-500" />
-          </button>
-          <ul class="absolute right-0 top-full mt-1 hidden group-hover:block group-focus-within:block z-50 min-w-[120px] rounded-md border border-[#e5e7eb] dark:border-[#2a2a2a] bg-white dark:bg-[#111] shadow-lg py-1">
-            {Object.entries(languages).map(([code, label]) => (
-              <li>
-                <a
-                  href={getLocalizedPath(Astro.url.pathname, code as Lang)}
-                  hreflang={code}
-                  data-astro-reload
-                  class:list={[
-                    'block px-3 py-1.5 text-xs font-mono-tech uppercase tracking-wider hover:bg-gray-100 dark:hover:bg-white/5 transition-colors',
-                    { 'font-bold text-[#1344e7] dark:text-[#5b8def]': code === currentLang },
-                  ]}
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
       </div>
       <nav
         class="items-center w-full xl:w-auto hidden xl:flex xl:mx-5 text-default overflow-y-auto overflow-x-hidden xl:overflow-visible xl:justify-self-center max-h-[calc(100vh-80px)] xl:max-h-none"
@@ -192,6 +161,38 @@ const currentLang: Lang = getLangFromUrl(Astro);
           }
         </ul>
       </nav>
+
+      {/* Selector de idioma de desktop (solo xl:) */}
+      <div class="hidden xl:flex items-center gap-2">
+        <div class="relative inline-flex items-center group" data-lang-switcher>
+          <button
+            type="button"
+            aria-label={languages[currentLang]}
+            aria-haspopup="true"
+            class="appearance-none bg-transparent text-muted dark:text-gray-400 hover:text-[#1344e7] dark:hover:text-white text-xs font-mono-tech uppercase tracking-wider pr-4 pl-1 py-1 cursor-pointer focus:outline-none inline-flex items-center gap-1"
+          >
+            {currentLang}
+            <Icon name="tabler:chevron-down" class="w-3 h-3 pointer-events-none text-muted dark:text-gray-500" />
+          </button>
+          <ul class="absolute right-0 top-full mt-1 hidden group-hover:block group-focus-within:block z-50 min-w-[120px] rounded-md border border-[#e5e7eb] dark:border-[#2a2a2a] bg-white dark:bg-[#111] shadow-lg py-1">
+            {Object.entries(languages).map(([code, label]) => (
+              <li>
+                <a
+                  href={getLocalizedPath(Astro.url.pathname, code as Lang)}
+                  hreflang={code}
+                  data-astro-reload
+                  class:list={[
+                    'block px-3 py-1.5 text-xs font-mono-tech uppercase tracking-wider hover:bg-gray-100 dark:hover:bg-white/5 transition-colors',
+                    { 'font-bold text-[#1344e7] dark:text-[#5b8def]': code === currentLang },
+                  ]}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -258,8 +259,6 @@ const currentLang: Lang = getLangFromUrl(Astro);
         header?.classList.remove('h-screen', 'expanded', 'bg-page');
         nav?.classList.add('hidden');
         lastChild?.classList.add('hidden');
-        const desktopActions = document.getElementById('desktop-actions');
-        if (desktopActions) desktopActions.style.display = '';
       };
 
       // Mobile menu toggle.
@@ -268,14 +267,6 @@ const currentLang: Lang = getLangFromUrl(Astro);
         toggle.setAttribute('aria-expanded', String(expanded));
         document.body.classList.toggle('overflow-hidden');
         header?.classList.toggle('h-screen');
-        const desktopActions = document.getElementById('desktop-actions');
-        if (desktopActions) {
-          if (expanded) {
-            desktopActions.style.display = 'none';
-          } else {
-            desktopActions.style.display = '';
-          }
-        }
         header?.classList.toggle('expanded');
         header?.classList.toggle('bg-page');
         nav?.classList.toggle('hidden');
