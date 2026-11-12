@@ -108,7 +108,7 @@ const currentLang: Lang = getLangFromUrl(Astro);
         </div>
       </div>
       <nav
-        class="items-center w-full xl:w-auto hidden xl:flex xl:mx-5 text-default overflow-y-auto overflow-x-hidden xl:overflow-visible xl:justify-self-center "
+        class="items-center w-full xl:w-auto hidden xl:flex xl:mx-5 text-default overflow-y-auto overflow-x-hidden xl:overflow-visible xl:justify-self-center max-h-[calc(100vh-80px)] xl:max-h-none"
         aria-label="Main navigation"
       >
         <ul
@@ -276,7 +276,7 @@ const currentLang: Lang = getLangFromUrl(Astro);
         const expanded = toggle.classList.toggle('expanded');
         toggle.setAttribute('aria-expanded', String(expanded));
         document.body.classList.toggle('overflow-hidden');
-        header?.classList.toggle('h-screen');
+        header?.classList.toggle('h-screen'); header?.classList.toggle('overflow-y-auto');
         header?.classList.toggle('expanded');
         header?.classList.toggle('bg-page');
         nav?.classList.toggle('hidden');
