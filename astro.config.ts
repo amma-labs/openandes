@@ -11,6 +11,7 @@ import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
+
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
@@ -106,9 +107,7 @@ export default defineConfig({
 
     compress({
       // csso off on purpose: its parser doesn't understand the media range
-      // syntax Tailwind v4 emits for breakpoints (`@media (width>=48rem)`) and
-      // silently drops every one of those blocks — the site then renders as if
-      // all `md:`/`lg:` classes were missing. lightningcss parses it correctly.
+      // syntax Tailwind v4 emits for breakpoints. lightningcss parses it correctly.
       CSS: { csso: false, lightningcss: { minify: true } },
       HTML: {
         'html-minifier-terser': {
