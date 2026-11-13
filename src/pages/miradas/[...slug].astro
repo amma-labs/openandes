@@ -68,7 +68,7 @@ const metadata = {
             )}
             {post.frontmatter?.pubDate && (
               <time>
-                {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', {
+                {new Date(post.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'

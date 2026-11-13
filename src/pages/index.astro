@@ -105,7 +105,7 @@ const metadata = {
             </span>
             {mainPost?.frontmatter?.pubDate && (
               <span class="text-xs font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-tight">
-                {new Date(mainPost.frontmatter.pubDate).toLocaleDateString('es-ES', { 
+                {new Date(mainPost.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { 
                   year: 'numeric', 
                   month: 'long', 
                   day: 'numeric' 

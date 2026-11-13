@@ -1,6 +1,8 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -132,7 +134,7 @@ const metadata = {
               {item.author && <span class="font-medium uppercase tracking-wide">{item.author}</span>}
               {item.pubDate && (
                 <time>
-                  {new Date(item.pubDate).toLocaleDateString('es-ES', {
+                  {new Date(item.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',

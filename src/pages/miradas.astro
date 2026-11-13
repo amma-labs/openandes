@@ -124,7 +124,7 @@ const metadata = {
                     <span class="font-medium uppercase tracking-wide">{post.frontmatter?.author || ''}</span>
                     {post.frontmatter?.pubDate && (
                       <time>
-                        {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', {
+                        {new Date(post.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',

@@ -1,4 +1,6 @@
 ---
+const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+
 // Este componente obtiene el último post de Fun Politik y 2050lab desde sus feeds RSS
 
 const decodeHTML = (str) => {
@@ -113,7 +115,7 @@ const lastFuturesLab = getLastPost(futuresLabPosts);
               </div>
             )}
             <p class="text-xs text-[#4b5563] mb-1">
-              {new Date(lastFunPolitik.pubDate).toLocaleDateString('es-ES', {
+              {new Date(lastFunPolitik.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
                 day: 'numeric', month: 'long', year: 'numeric'
               })}
             </p>
@@ -171,7 +173,7 @@ const lastFuturesLab = getLastPost(futuresLabPosts);
               </div>
             )}
             <p class="text-xs text-[#4b5563] mb-1">
-              {new Date(lastFuturesLab.pubDate).toLocaleDateString('es-ES', {
+              {new Date(lastFuturesLab.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
                 day: 'numeric', month: 'long', year: 'numeric'
               })}
             </p>

@@ -5,6 +5,8 @@ import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 
 import heroImage from '~/assets/images/9-viridien-see-things-differently-1400.png';
 
+const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+
 const lang = getLangFromUrl(Astro);
 const t = useTranslations(lang).pages.monitor;
 
@@ -18,7 +20,7 @@ const reports = (await getCollection('reports', ({ data }) => !data.draft && dat
 const [featured, ...rest] = reports;
 
 const formatDate = (d: Date) =>
-  new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long' }).format(d);
+  new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { year: 'numeric', month: 'long' }).format(d);
 
 const getSlug = (id: string) =>
   // id = "es/reporte-2" → quitar extensión → "es/reporte-2" → quitar locale → "reporte-2"

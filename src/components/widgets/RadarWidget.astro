@@ -1,4 +1,6 @@
 ---
+const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+
 export interface Props {
   title?: string;
 }
@@ -56,11 +58,11 @@ function formatDate(dateString: string): string {
       const cleaned = dateString.replace(/(\d{2})\s+(\w{3})\s+(\d{4})/, '$1 $2 $3');
       const fallbackDate = new Date(cleaned);
       if (!isNaN(fallbackDate.getTime())) {
-        return fallbackDate.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+        return fallbackDate.toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short' });
       }
       return 'Hoy';
     }
-    return date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+    return date.toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short' });
   } catch {
     return 'Hoy';
   }
