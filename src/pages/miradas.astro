@@ -1,11 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import LastPosts from '~/components/blogs/LastPosts.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 
-// Importar imagen para el hero
 import heroImage from '~/assets/images/1-chasing-climate-change-in-the-arctic-2800.jpg';
 
-// Cargar miradas expertas por locale
+const lang = getLangFromUrl(Astro);
+const t = useTranslations(lang).pages.miradas;
+
 const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
 
 const allFiles = import.meta.glob('../data/mirada-experta/*/*.{md,mdx}');
@@ -39,12 +41,11 @@ const sortedPosts = posts.sort((a, b) => {
   return dateB - dateA;
 });
 
-// Recopilar todos los tags únicos
 const tagCounts: Record<string, number> = {};
 for (const post of sortedPosts) {
   const tags = post.frontmatter?.tags || [];
-  tags.forEach((t) => {
-    const key = t.toLowerCase();
+  tags.forEach((tag) => {
+    const key = tag.toLowerCase();
     tagCounts[key] = (tagCounts[key] || 0) + 1;
   });
 }
@@ -58,8 +59,8 @@ const topics = Object.entries(tagCounts)
   .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const metadata = {
-  title: 'Comentarios — Open Andes',
-  description: 'Perspectivas de coyuntura y columnas sobre los cambios en el poder, el capital y la geopolítica en toda América.',
+  title: t.metaTitle,
+  description: t.metaDesc,
 };
 ---
 
@@ -67,23 +68,23 @@ const metadata = {
   <section class="mx-auto max-w-5xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
     <header class="mx-auto mb-8 max-w-3xl text-center">
       <span class="text-sm font-medium tracking-widest uppercase text-blue-600 dark:text-[#5b8def] border border-blue-200 dark:border-[#5b8def]/30 px-3 py-1 rounded-full">
-        Open Andes
+        {t.heroBadge}
       </span>
       <h1 class="text-4xl font-sans font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
-        Comentarios
+        {t.heroTitle}
       </h1>
       <div class="mt-4 text-lg font-medium text-slate-700 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
-        Perspectivas de coyuntura y columnas sobre los cambios en el poder, el capital y la geopolítica en toda América.
+        {t.heroDesc}
       </div>
       {topics.length > 0 && (
         <div class="mt-8 flex flex-wrap justify-center gap-2">
-          {topics.map((t) => (
+          {topics.map((topic) => (
             <a
-              href={`/topics/${t.slug}`}
+              href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] text-[#1344e7] dark:text-[#5b8def] font-mono-tech text-xs hover:bg-[#1344e7] hover:text-white dark:hover:bg-[#1344e7] transition-colors"
             >
-              <span>{t.label}</span>
-              <span class="text-[10px] opacity-60">· {t.count}</span>
+              <span>{topic.label}</span>
+              <span class="text-[10px] opacity-60">· {topic.count}</span>
             </a>
           ))}
         </div>
@@ -94,7 +95,7 @@ const metadata = {
   <!-- Listado de miradas -->
   <section class="mx-auto max-w-5xl px-6 pb-12 pt-0">
     {sortedPosts.length === 0 ? (
-      <p class="text-center text-[#4b5563]">No hay publicaciones aún.</p>
+      <p class="text-center text-[#4b5563]">{t.emptyState}</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {sortedPosts.map((post) => {
@@ -105,17 +106,17 @@ const metadata = {
                 <div class="relative h-48 overflow-hidden">
                   <img
                     src={image}
-                    alt={post.frontmatter?.title || 'Artículo'}
+                    alt={post.frontmatter?.title || t.articleFallback}
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
                   <span class="absolute top-3 left-3 text-[10px] font-mono-tech font-bold uppercase tracking-widest bg-[#1344e7] text-white px-2.5 py-1 rounded">
-                    Miradas 2050
+                    {t.miradasBadge}
                   </span>
                 </div>
                 <div class="p-6">
                   <h2 class="text-xl font-sans font-bold mb-2 text-[#111827] dark:text-[#f3f4f6] group-hover:text-[#1344e7] dark:group-hover:text-[#1344e7] transition-colors leading-snug">
-                    {post.frontmatter?.title || 'Sin título'}
+                    {post.frontmatter?.title || t.noTitle}
                   </h2>
                   <p class="text-[#4b5563] dark:text-[#4b5563] text-sm leading-relaxed line-clamp-2">
                     {post.frontmatter?.excerpt || ''}
@@ -144,10 +145,10 @@ const metadata = {
   <!-- Plataformas asociadas -->
   <section class="mx-auto max-w-5xl px-6 py-12 border-t border-[#e5e7eb] dark:border-[#2a2a2a]">
     <h2 class="font-sans font-bold text-xl sm:text-2xl text-[#111827] dark:text-[#f3f4f6] mb-2">
-      Plataformas asociadas
+      {t.platformsTitle}
     </h2>
     <p class="text-sm text-[#4b5563] mb-8">
-      Espacios editoriales donde Open Andes publica análisis coyuntural y prospectiva de largo plazo.
+      {t.platformsDesc}
     </p>
     <LastPosts />
   </section>
