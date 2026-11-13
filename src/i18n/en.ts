@@ -90,6 +90,24 @@ export const en = {
     description: 'Network of specialists in geopolitics, geofinance, and logistics.',
   },
 
+  home: {
+    metaTitle: 'OPEN ANDES — The first decentralized, 100% digital think tank.',
+    metaDesc: 'Independent research dedicated to geopolitical intelligence and geoeconomic foresight across the Latin America–Asia axis.',
+    commentsBriefsTitle: 'Commentary & Briefs',
+    miradas2050: 'Miradas 2050',
+    reportBadge: 'REPORT #2',
+    researchBadge: 'Research',
+    analysisBadge: 'Analysis',
+    miradasBadge: 'Commentary',
+    noTitle: 'Untitled',
+    articleFallback: 'Article',
+    titleFallback: 'Title',
+    radarTitle: 'Pulse',
+    categoryFallback: 'Analysis',
+    readMore: 'Read more',
+    mainAnalysisAlt: 'Main Analysis',
+  },
+
   pages: {
     monitor: {
       metaTitle: 'LatAm-Asia Research — OpenAndes',

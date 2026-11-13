@@ -2,7 +2,10 @@
 import Layout from '~/layouts/PageLayout.astro';
 import RadarWidget from '~/components/widgets/RadarWidget.astro';
 import { getCollection } from 'astro:content';
-import { getLangFromUrl } from '~/i18n/ui';
+import { getLangFromUrl, useTranslations } from '~/i18n/ui';
+
+const lang = getLangFromUrl(Astro);
+const t = useTranslations(lang).home;
 
 // Importar posts de Análisis (por locale)
 const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
@@ -83,10 +86,10 @@ const mirada5 = miradas[4];
 const mirada6 = miradas[5];
 
 const metadata = {
-  title: 'OPEN ANDES — El primer think tank descentralizado y 100% digital.',
+  title: t.metaTitle,
+  description: t.metaDesc,
   ignoreTitleTemplate: true,
 };
-
 ---
 
 <Layout metadata={metadata}>
@@ -97,34 +100,34 @@ const metadata = {
     <!-- ============================================ -->
     <section class="py-8 px-4 sm:px-6 mx-auto max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        
+
         <article class="lg:col-span-8 flex flex-col gap-4 font-sans text-center items-center lg:max-w-[700px] lg:mx-auto">
           <div class="flex items-center gap-3">
             <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-mono-tech font-bold text-xs uppercase px-2.5 py-1 rounded w-max tracking-wide">
-              {mainPost ? mainPost.frontmatter?.category || 'Análisis' : 'Análisis'}
+              {mainPost ? mainPost.frontmatter?.category || t.categoryFallback : t.categoryFallback}
             </span>
             {mainPost?.frontmatter?.pubDate && (
               <span class="text-xs font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-tight">
-                {new Date(mainPost.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
+                {new Date(mainPost.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
                 })}
               </span>
             )}
           </div>
-          
+
           <a href={mainPost?.url || '#'} class="group block overflow-hidden rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 lg:max-w-[700px] lg:mx-auto">
-            <img 
-              src={mainPost?.frontmatter?.image || 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'} 
-              alt={mainPost?.frontmatter?.title || 'Análisis Principal'} 
+            <img
+              src={mainPost?.frontmatter?.image || 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'}
+              alt={mainPost?.frontmatter?.title || t.mainAnalysisAlt}
               class="w-full h-[360px] sm:h-[400px] lg:h-auto lg:aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </a>
 
           <a href={mainPost?.url || '#'} class="hover:underline">
             <h1 class="text-3xl sm:text-4xl font-fraunces font-normal tracking-tight text-slate-900 dark:text-white leading-tight">
-              {mainPost?.frontmatter?.title || 'Título'}
+              {mainPost?.frontmatter?.title || t.titleFallback}
             </h1>
           </a>
 
@@ -145,16 +148,16 @@ const metadata = {
           <div class="flex flex-col justify-between h-full gap-5">
             {visiblePosts.slice(1, 5).map((post, index, arr) => {
               const frontmatter = post.frontmatter || {};
-              const dateStr = frontmatter.pubDate ? new Date(frontmatter.pubDate).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" }) : "";
+              const dateStr = frontmatter.pubDate ? new Date(frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: "numeric", month: "short", year: "numeric" }) : "";
               return (
                 <article class={`grid grid-cols-12 gap-3 ${index < arr.length - 1 ? "pb-4 border-b border-[#e5e7eb] dark:border-[#2a2a2a]" : ""} items-center`}>
                   <div class="col-span-8 flex flex-col gap-1">
                     <span class="inline-block bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-mono-tech font-bold text-[10px] uppercase px-2 py-0.5 rounded w-max">
-                      {frontmatter.category || "Análisis"}
+                      {frontmatter.category || t.categoryFallback}
                     </span>
                     <a href={post.url} class="hover:underline">
                       <h3 class="text-xl font-display font-medium text-slate-900 dark:text-white leading-snug">
-                        {frontmatter.title || "Sin título"}
+                        {frontmatter.title || t.noTitle}
                       </h3>
                     </a>
                     {frontmatter.author && (
@@ -166,7 +169,7 @@ const metadata = {
                   </div>
                   <div class="col-span-4 overflow-hidden rounded">
                     <a href={post.url}>
-                      <img src={frontmatter.image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa"} alt={frontmatter.title || "Artículo"} class="w-full h-20 object-cover hover:scale-105 transition-transform duration-300" />
+                      <img src={frontmatter.image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa"} alt={frontmatter.title || t.articleFallback} class="w-full h-20 object-cover hover:scale-105 transition-transform duration-300" />
                     </a>
                   </div>
                 </article>
@@ -184,16 +187,13 @@ const metadata = {
     <section class="py-12 px-4 sm:px-6 mx-auto max-w-7xl border-b border-[#e5e7eb] dark:border-[#2a2a2a] font-sans">
       <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h2 class="text-2xl sm:text-3xl font-display font-bold text-[#111827] dark:text-[#f3f4f6]">
-          Comentarios &amp; <em>Briefs</em>
+          {t.commentsBriefsTitle}
         </h2>
         <div class="flex items-center gap-2 self-start sm:self-auto bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 px-3 py-1.5 rounded-full shadow-sm">
           <span class="w-2 h-2 rounded-full bg-[#1344e7] dark:bg-[#1344e7] animate-pulse"></span>
-          <span class="text-xs font-mono-tech font-semibold tracking-wide text-slate-800 dark:text-slate-300 uppercase">Miradas 2050</span>
+          <span class="text-xs font-mono-tech font-semibold tracking-wide text-slate-800 dark:text-slate-300 uppercase">{t.miradas2050}</span>
         </div>
       </div>
-
-
-
 
       {mirada5 && (
         <a href={mirada5.url} class="block group mb-10">
@@ -201,9 +201,9 @@ const metadata = {
             <div class="grid grid-cols-1 lg:grid-cols-2">
               <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Miradas 2050</span>
+                  <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{t.miradas2050}</span>
                   <span class="text-[10px] font-mono-tech font-bold text-[#4A7C59] uppercase tracking-widest">
-                    {mirada5.frontmatter?.category || 'Miradas'} · {mirada5.frontmatter?.pubDate ? new Date(mirada5.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
+                    {mirada5.frontmatter?.category || t.miradasBadge} · {mirada5.frontmatter?.pubDate ? new Date(mirada5.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
                   </span>
                 </div>
                 <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
@@ -232,9 +232,9 @@ const metadata = {
               </div>
               <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">Miradas 2050</span>
+                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{t.miradas2050}</span>
                   <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] uppercase tracking-widest">
-                    {mirada6.frontmatter?.category || 'Miradas'} · {mirada6.frontmatter?.pubDate ? new Date(mirada6.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
+                    {mirada6.frontmatter?.category || t.miradasBadge} · {mirada6.frontmatter?.pubDate ? new Date(mirada6.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
                   </span>
                 </div>
                 <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
@@ -251,30 +251,33 @@ const metadata = {
           </article>
         </a>
       )}
-      <!-- Brief principal: Informe #2 -->
 
-      <a href="/monitor/reporte-2" class="block group mb-10">
-        <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#e2f3ff]/50 dark:bg-white/5">
-          <div class="grid grid-cols-1 lg:grid-cols-4">
-            <div class="lg:col-span-1 p-6 sm:p-8 flex flex-col justify-center gap-3">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">INFORME #2</span>
-                <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">Investigación</span>
+      <!-- Brief principal: Informe #2 -->
+      {mainReport && (
+        <a href={`${locale === 'es' ? '' : `/${locale}`}/monitor/${getReportSlug(mainReport.id)}`} class="block group mb-10">
+          <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#e2f3ff]/50 dark:bg-white/5">
+            <div class="grid grid-cols-1 lg:grid-cols-4">
+              <div class="lg:col-span-1 p-6 sm:p-8 flex flex-col justify-center gap-3">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{t.reportBadge}</span>
+                  <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">{t.researchBadge}</span>
+                </div>
+                <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
+                  {mainReport.data.subtitle || mainReport.data.summary || ''}
+                </p>
               </div>
-              <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
-                {mainReport.data.subtitle || mainReport.data.summary || ''}
-              </p>
+              <div class="lg:col-span-3 relative min-h-[280px] lg:min-h-[360px]">
+                <img src={mainReport.data.image || '/images/posts/bolivia-uyuni-laguna-colorada.webp'} alt={mainReport.data.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                <h3 class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white font-sans text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">
+                  {mainReport.data.title}
+                </h3>
+              </div>
             </div>
-            <div class="lg:col-span-3 relative min-h-[280px] lg:min-h-[360px]">
-              <img src="/images/posts/bolivia-uyuni-laguna-colorada.webp" alt={mainReport.data.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-              <h3 class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white font-sans text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">
-                {mainReport.data.title}
-              </h3>
-            </div>
-          </div>
-        </article>
-      </a>
+          </article>
+        </a>
+      )}
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {briefs.map((brief: any) => {
           const fm = brief.frontmatter || {};
@@ -292,7 +295,7 @@ const metadata = {
                 </div>
               </a>
               <div class="flex items-center justify-between text-xs">
-                <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{fm.category || 'Miradas'}</span>
+                <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{fm.category || t.miradasBadge}</span>
                 <span class="text-[#1344e7] dark:text-[#5b8def] font-mono-tech font-bold">{displayDate}</span>
               </div>
               <a href={brief.url} class="hover:underline">
@@ -309,7 +312,7 @@ const metadata = {
     <!-- RADAR WIDGET                                 -->
     <!-- ============================================ -->
     <section class="py-12 px-4 sm:px-6 mx-auto max-w-7xl font-sans">
-      <RadarWidget title="Pulso" badgePosition="right" />
+      <RadarWidget title={t.radarTitle} badgePosition="right" />
     </section>
 
   </div>

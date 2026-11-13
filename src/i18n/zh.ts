@@ -91,6 +91,24 @@ export const zh = {
     description: '地缘政治、地缘金融与物流领域的专家网络。',
   },
 
+  home: {
+    metaTitle: 'OPEN ANDES — 首个去中心化、100% 数字化的智库。',
+    metaDesc: '专注拉丁美洲—亚洲轴心地缘政治情报与地缘经济前瞻的独立研究机构。',
+    commentsBriefsTitle: '评论与简报',
+    miradas2050: '2050 观点',
+    reportBadge: '报告 #2',
+    researchBadge: '研究',
+    analysisBadge: '分析',
+    miradasBadge: '观点',
+    noTitle: '无标题',
+    articleFallback: '文章',
+    titleFallback: '标题',
+    radarTitle: '脉搏',
+    categoryFallback: '分析',
+    readMore: '阅读更多',
+    mainAnalysisAlt: '主要分析',
+  },
+
   pages: {
     monitor: {
       metaTitle: '拉丁美洲—亚洲研究 — OpenAndes',

@@ -92,6 +92,24 @@ export const es = {
   },
 
   // ─── Páginas estáticas ───
+  home: {
+    metaTitle: 'OPEN ANDES — El primer think tank descentralizado y 100% digital.',
+    metaDesc: 'Investigación independiente dedicada a la inteligencia geopolítica y la prospectiva geoeconómica en el eje América Latina-Asia.',
+    commentsBriefsTitle: 'Comentarios & Briefs',
+    miradas2050: 'Miradas 2050',
+    reportBadge: 'INFORME #2',
+    researchBadge: 'Investigación',
+    analysisBadge: 'Análisis',
+    miradasBadge: 'Miradas',
+    noTitle: 'Sin título',
+    articleFallback: 'Artículo',
+    titleFallback: 'Título',
+    radarTitle: 'Pulso',
+    categoryFallback: 'Análisis',
+    readMore: 'Leer más',
+    mainAnalysisAlt: 'Análisis Principal',
+  },
+
   pages: {
     monitor: {
       metaTitle: 'Investigación LatAm-Asia — OpenAndes',
