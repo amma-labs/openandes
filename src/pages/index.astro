@@ -45,7 +45,7 @@ const visiblePosts = sortedPosts.filter(p => !p.frontmatter?.draft).filter(p => 
 const mainPost = visiblePosts[0] || null;
 
 // Importar reportes para el hero
-const reports = (await getCollection('reports', ({ data }) => !data.draft))
+const reports = (await getCollection('reports', ({ data }) => !data.draft && data.lang === locale))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const mainReport = reports[0] || null;
 const getReportSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
@@ -262,14 +262,14 @@ const metadata = {
                 <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">Investigación</span>
               </div>
               <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
-                Análisis de los corredores mine-to-port del Pacífico sudamericano, la integración portuaria y los riesgos geopolíticos asociados.
+                {mainReport.data.subtitle || mainReport.data.summary || ''}
               </p>
             </div>
             <div class="lg:col-span-3 relative min-h-[280px] lg:min-h-[360px]">
-              <img src="/images/posts/bolivia-uyuni-laguna-colorada.webp" alt="Informe #2 - Investigación LatAm-Asia" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+              <img src="/images/posts/bolivia-uyuni-laguna-colorada.webp" alt={mainReport.data.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <h3 class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white font-sans text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">
-                Corredores andinos: integración portuaria de Bolivia, Perú, Argentina y Chile
+                {mainReport.data.title}
               </h3>
             </div>
           </div>
