@@ -1,10 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 
-// Buscar posts en src/data/post/{es,en,zh}/
+const lang = getLangFromUrl(Astro);
+const t = useTranslations(lang).pages.analisis;
+
 const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
-
-// Un post por slug en el locale actual (fallback a es si no existe traducción)
 const allFiles = import.meta.glob('../data/post/*/*.{md,mdx}');
 const slugs = new Set<string>();
 for (const filepath in allFiles) {
@@ -12,34 +13,33 @@ for (const filepath in allFiles) {
   if (m) slugs.add(m[2]);
 }
 
-const posts = await Promise.all(
-  Array.from(slugs).map(async (slug) => {
-    const wanted = `../data/post/${locale}/${slug}.mdx`;
-    const fallback = `../data/post/es/${slug}.mdx`;
-    const loader = allFiles[wanted] ?? allFiles[fallback];
-    if (!loader) return null;
-    const post = await loader();
-    return {
-      ...post,
-      slug,
-      locale: allFiles[wanted] ? locale : 'es',
-      url: locale === 'es' ? `/analisis/${slug}` : `/${locale}/analisis/${slug}`,
-    };
-  })
-);
+const posts = (
+  await Promise.all(
+    Array.from(slugs).map(async (slug) => {
+      const wanted = `../data/post/${locale}/${slug}.mdx`;
+      const fallback = `../data/post/es/${slug}.mdx`;
+      const loader = allFiles[wanted] ?? allFiles[fallback];
+      if (!loader) return null;
+      const post = await loader();
+      return {
+        ...post,
+        slug,
+        locale: allFiles[wanted] ? locale : 'es',
+        url: locale === 'es' ? `/analisis/${slug}` : `/${locale}/analisis/${slug}`,
+      };
+    })
+  )
+).filter((p): p is NonNullable<typeof p> => p !== null);
 
-
-// Ordenar por fecha (filtrando nulls)
-const publishedPosts = posts.filter((p): p is NonNullable<typeof p> => p !== null);
-const sortedPosts = publishedPosts.sort((a, b) => {
+const sortedPosts = posts.sort((a, b) => {
   const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
   const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
   return dateB - dateA;
 });
 
 const metadata = {
-  title: 'Análisis | OpenAndes',
-  description: 'Análisis estratégico y geopolítica aplicada bajo la metodología Narrative-Driven Analysis (NDA).',
+  title: t.metaTitle,
+  description: t.metaDesc,
 };
 ---
 
@@ -47,18 +47,18 @@ const metadata = {
   <section class="mx-auto max-w-5xl px-6 py-12 sm:px-6 sm:py-16 lg:py-20">
     <header class="mx-auto mb-12 max-w-3xl text-center md:mb-16">
       <span class="text-sm font-medium tracking-widest uppercase text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 px-3 py-1 rounded-full">
-        Open Andes
+        {t.heroBadge}
       </span>
       <h1 class="text-4xl font-sans font-bold leading-tighter tracking-tighter md:text-5xl mt-4 text-slate-900 dark:text-white">
-        Análisis
+        {t.heroTitle}
       </h1>
       <div class="mt-4 text-lg font-medium text-slate-700 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
-        Lecturas para la toma de decisiones. Investigaciones y ensayos orientados para exponer las inercias de poder que condicionan el desarrollo regional.
+        {t.heroDesc}
       </div>
     </header>
 
     {sortedPosts.length === 0 ? (
-      <p class="text-center text-gray-500 dark:text-slate-400">No hay publicaciones aún.</p>
+      <p class="text-center text-gray-500 dark:text-slate-400">{t.emptyState}</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {sortedPosts.map((post) => {
@@ -67,9 +67,9 @@ const metadata = {
             <article class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700">
               <a href={post.url} class="block">
                 <div class="relative h-48 overflow-hidden">
-                  <img 
-                    src={image} 
-                    alt={post.frontmatter?.title || 'Artículo'}
+                  <img
+                    src={image}
+                    alt={post.frontmatter?.title || t.articleFallback}
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
@@ -81,7 +81,7 @@ const metadata = {
                 </div>
                 <div class="p-6">
                   <h2 class="text-xl font-bold font-heading mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {post.frontmatter?.title || 'Sin título'}
+                    {post.frontmatter?.title || t.noTitle}
                   </h2>
                   {post.frontmatter?.excerpt && (
                     <p class="text-slate-700 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
@@ -96,10 +96,10 @@ const metadata = {
                     </div>
                     {post.frontmatter?.pubDate && (
                       <time class="text-slate-600 dark:text-slate-400">
-                        {new Date(post.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { 
-                          year: 'numeric', 
-                          month: 'short', 
-                          day: 'numeric' 
+                        {new Date(post.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
                         })}
                       </time>
                     )}

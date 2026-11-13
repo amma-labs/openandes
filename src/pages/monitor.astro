@@ -5,13 +5,12 @@ import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 
 import heroImage from '~/assets/images/9-viridien-see-things-differently-1400.png';
 
-const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
-
 const lang = getLangFromUrl(Astro);
 const t = useTranslations(lang).pages.monitor;
 
 const metadata = {
   title: t.metaTitle,
+  description: t.metaDesc,
 };
 
 const reports = (await getCollection('reports', ({ data }) => !data.draft && data.lang === lang))
@@ -20,11 +19,9 @@ const reports = (await getCollection('reports', ({ data }) => !data.draft && dat
 const [featured, ...rest] = reports;
 
 const formatDate = (d: Date) =>
-  new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { year: 'numeric', month: 'long' }).format(d);
+  new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : lang === 'en' ? 'en-US' : 'zh-CN', { year: 'numeric', month: 'long' }).format(d);
 
-const getSlug = (id: string) =>
-  // id = "es/reporte-2" → quitar extensión → "es/reporte-2" → quitar locale → "reporte-2"
-  id.replace(/\.(md|mdx)$/, '').replace(/^(es|en|zh)\//, '');
+const getSlug = (id: string) => id.replace(/\.(md|mdx)$/, '').replace(/^(es|en|zh)\//, '');
 
 const getUrl = (id: string) => {
   const slug = getSlug(id);
@@ -33,14 +30,9 @@ const getUrl = (id: string) => {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section con imagen de fondo -->
   <section class="relative min-h-[450px] flex items-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img
-        src={heroImage.src}
-        alt="Investigación LatAm-Asia - Open Andes"
-        class="w-full h-full object-cover"
-      />
+      <img src={heroImage.src} alt={t.heroTitle} class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/40"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
     </div>
@@ -50,10 +42,10 @@ const getUrl = (id: string) => {
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-20">
       <div class="max-w-3xl">
         <span class="inline-block text-sm font-medium tracking-widest uppercase text-blue-300 mb-4 border border-blue-400/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Investigación
+          {t.heroBadge}
         </span>
         <h1 class="font-sans text-4xl sm:text-5xl md:text-5xl font-bold text-white leading-tight">
-          LatAm-Asia
+          {t.heroTitle}
         </h1>
         <p class="mt-4 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
           {t.heroDesc}
@@ -63,8 +55,6 @@ const getUrl = (id: string) => {
   </section>
 
   <div class="max-w-5xl mx-auto px-4 py-16">
-
-    <!-- Reporte destacado (más reciente) -->
     {featured && (
       <a href={getUrl(featured.id)} class="block group mb-12">
         <article class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden">
@@ -80,9 +70,7 @@ const getUrl = (id: string) => {
                 {featured.data.title}
               </h3>
               {featured.data.summary && (
-                <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-                  {featured.data.summary}
-                </p>
+                <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">{featured.data.summary}</p>
               )}
               {featured.data.tags.length > 0 && (
                 <div class="flex flex-wrap gap-2">
@@ -102,11 +90,10 @@ const getUrl = (id: string) => {
       </a>
     )}
 
-    <!-- Otros reportes -->
     {rest.length > 0 && (
       <div class="mt-4">
         <h2 class="text-xs font-mono uppercase tracking-widest text-slate-600 dark:text-slate-400 font-bold mb-6">
-          Informes anteriores
+          {t.previousReports}
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {rest.map((report) => (
@@ -128,9 +115,7 @@ const getUrl = (id: string) => {
                     {report.data.title}
                   </h3>
                   {report.data.summary && (
-                    <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">
-                      {report.data.summary}
-                    </p>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">{report.data.summary}</p>
                   )}
                 </div>
               </article>
@@ -139,6 +124,5 @@ const getUrl = (id: string) => {
         </div>
       </div>
     )}
-
   </div>
 </Layout>
