@@ -1,0 +1,80 @@
+{
+  "metaTitle": "Nosotros — Open Andes",
+  "metaDescription": "Think tank descentralizado y nativo digital especializado en inteligencia geopolítica y geoeconomía del eje América Latina-Asia.",
+  "heroBadge": "Think Tank & Consultoría Estratégica",
+  "heroTitle": "Pensamiento en Acción",
+  "heroSubtitle": "para un orden global en transformación",
+  "heroDesc": "Somos el primer think tank descentralizado, no partidista y 100% digital especializado en inteligencia geopolítica, prospectiva geoeconómica y flujos de capital en el eje América Latina–Asia.",
+  "missionBadge": "Propósito",
+  "missionTitle": "Nuestra Misión",
+  "missionDesc": "Proveer inteligencia territorial rigurosa y libre de sesgos corporativos o estatales, conectando la realidad del terreno en la franja andina y el Pacífico Sur con decisiones de alto impacto.",
+  "visionBadge": "Horizonte",
+  "visionTitle": "Nuestra Visión",
+  "visionDesc": "Consolidarnos como el nodo de referencia en prospectiva de largo plazo para América, anticipando el reordenamiento sistémico global, la seguridad de recursos críticos y la soberanía tecnológica.",
+  "pillarsTitle": "Líneas de Investigación",
+  "pillarsDesc": "Los tres ejes analíticos que estructuran nuestra lectura del corredor Andes–Pacífico.",
+  "pillars": [
+    {
+      "titulo": "Geofinanzas e Inversión Estratégica",
+      "descripcion": "Mapeo de flujos de capital transpacífico en infraestructura crítica, transición energética y cadenas de valor de minerales clave.",
+      "icon": "M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+    },
+    {
+      "titulo": "Conectividad y Rediseño Logístico",
+      "descripcion": "Evaluación del impacto de la nueva infraestructura portuaria y corredores bioceánicos en tiempos de tránsito, fletes y resiliencia comercial.",
+      "icon": "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+    },
+    {
+      "titulo": "Riesgo Político y Gobernanza Regional",
+      "descripcion": "Análisis de vulnerabilidades marítimas, seguridad en activos críticos y arquitectura de integración en el Pacífico Sur.",
+      "icon": "M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+    }
+  ],
+  "ecosystemTitle": "Un ecosistema de investigación modular",
+  "ecosystemDesc": "Open Andes articula investigación aplicada con plataformas editoriales y laboratorios autónomos que operan bajo una misma arquitectura analítica.",
+  "ecosystem": [
+    {
+      "nombre": "Consultoría Estratégica",
+      "rol": "Inteligencia Aplicada",
+      "descripcion": "Diagnósticos reservados, debida diligencia geopolítica y diseño de escenarios a medida para la toma de decisiones ejecutivas."
+    },
+    {
+      "nombre": "Fun Politik",
+      "rol": "Coyuntura Internacional",
+      "descripcion": "Plataforma autónoma dedicada al análisis ágil de política exterior, dinámica electoral y reconfiguraciones de poder global."
+    },
+    {
+      "nombre": "2050 Futures Lab",
+      "rol": "Prospectiva y Tecnología",
+      "descripcion": "Laboratorio independiente enfocado en megatendencias de largo plazo, soberanía tecnológica y transiciones sistémicas."
+    }
+  ],
+  "servicesTitle": "Inteligencia Aplicada y Asesoría",
+  "servicesDesc": "Capacidad analítica a medida para directorios, comités de inversión y cuerpos deliberativos.",
+  "services": [
+    {
+      "titulo": "Industria y Activos Críticos",
+      "descripcion": "Evaluación de continuidad operativa frente a fricciones regulatorias, sociales y geopolíticas en minería, energía, puertos y telecomunicaciones.",
+      "icon": "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"
+    },
+    {
+      "titulo": "Inversores y Comités de Capital",
+      "descripcion": "Inteligencia de riesgo no financiero para la asignación de activos. Lectura del entorno institucional para resguardar valoraciones y tesis de inversión.",
+      "icon": "M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
+    },
+    {
+      "titulo": "Sector Público y Diplomacia",
+      "descripcion": "Insumos técnicos imparciales y lectura territorial de primera mano para misiones diplomáticas, organismos multilaterales y cuerpos legislativos.",
+      "icon": "M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"
+    }
+  ],
+  "briefingBadge": "Briefing Ejecutivo",
+  "briefingTag": "Edición Reciente",
+  "briefingTitle": "Escenarios de Riesgo Geopolítico y Transpacífico",
+  "briefingDesc": "Acceda al documento de análisis reservado que sintetiza nuestras metodologías de evaluación de fricción regulatoria y flujos de capital crítico para la toma de decisiones directivas.",
+  "briefingCta": "Descargar Briefing (PDF)",
+  "briefingMeeting": "Solicitar Reunión",
+  "ctaTitle": "¿Listo para evaluar sus escenarios de riesgo?",
+  "ctaDesc": "Coordinemos un briefing ejecutivo a medida para su directorio o equipo de inversión.",
+  "ctaButton": "Solicitar Briefing Ejecutivo"
+}

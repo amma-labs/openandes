@@ -144,6 +144,10 @@ export default defineConfig({
     responsiveStyles: true,
   },
 
+  redirects: {
+    '/estrategia': '/about',
+  },
+
   markdown: {
     processor: unified({
       remarkPlugins: [readingTimeRemarkPlugin],

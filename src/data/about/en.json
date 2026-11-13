@@ -1,0 +1,80 @@
+{
+  "metaTitle": "About — Open Andes",
+  "metaDescription": "Decentralized, digital-native think tank specialized in geopolitical intelligence and geoeconomics across the Latin America–Asia axis.",
+  "heroBadge": "Think Tank & Strategic Advisory",
+  "heroTitle": "Thinking in Action",
+  "heroSubtitle": "for a global order in transformation",
+  "heroDesc": "We are the first decentralized, non-partisan, 100% digital think tank specialized in geopolitical intelligence, geoeconomic foresight, and capital flows across the Latin America–Asia axis.",
+  "missionBadge": "Purpose",
+  "missionTitle": "Our Mission",
+  "missionDesc": "To provide rigorous, independent territorial intelligence, free from corporate or state bias, connecting on-the-ground realities in the Andean region and the South Pacific with high-impact decisions.",
+  "visionBadge": "Horizon",
+  "visionTitle": "Our Vision",
+  "visionDesc": "To consolidate ourselves as the reference node for long-term foresight in the Americas, anticipating global systemic reordering, critical resource security, and technological sovereignty.",
+  "pillarsTitle": "Research Lines",
+  "pillarsDesc": "The three analytical axes that structure our reading of the Andes–Pacific corridor.",
+  "pillars": [
+    {
+      "titulo": "Geofinance and Strategic Investment",
+      "descripcion": "Mapping of trans-Pacific capital flows in critical infrastructure, energy transition, and key mineral value chains.",
+      "icon": "M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+    },
+    {
+      "titulo": "Connectivity and Logistics Redesign",
+      "descripcion": "Assessment of the impact of new port infrastructure and bioceanic corridors on transit times, freight costs, and trade resilience.",
+      "icon": "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+    },
+    {
+      "titulo": "Political Risk and Regional Governance",
+      "descripcion": "Analysis of maritime vulnerabilities, critical asset security, and integration architecture in the South Pacific.",
+      "icon": "M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+    }
+  ],
+  "ecosystemTitle": "A modular research ecosystem",
+  "ecosystemDesc": "Open Andes articulates applied research with editorial platforms and autonomous laboratories operating under a shared analytical architecture.",
+  "ecosystem": [
+    {
+      "nombre": "Strategic Advisory",
+      "rol": "Applied Intelligence",
+      "descripcion": "Confidential diagnostics, geopolitical due diligence, and tailored scenario design for executive decision-making."
+    },
+    {
+      "nombre": "Fun Politik",
+      "rol": "International Affairs",
+      "descripcion": "Autonomous platform dedicated to agile analysis of foreign policy, electoral dynamics, and global power reconfigurations."
+    },
+    {
+      "nombre": "2050 Futures Lab",
+      "rol": "Foresight and Technology",
+      "descripcion": "Independent laboratory focused on long-term megatrends, technological sovereignty, and systemic transitions."
+    }
+  ],
+  "servicesTitle": "Applied Intelligence and Advisory",
+  "servicesDesc": "Tailored analytical capacity for boards, investment committees, and deliberative bodies.",
+  "services": [
+    {
+      "titulo": "Industry and Critical Assets",
+      "descripcion": "Assessment of operational continuity against regulatory, social, and geopolitical friction in mining, energy, ports, and telecommunications.",
+      "icon": "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"
+    },
+    {
+      "titulo": "Investors and Capital Committees",
+      "descripcion": "Non-financial risk intelligence for asset allocation. Reading of the institutional environment to safeguard valuations and investment theses.",
+      "icon": "M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
+    },
+    {
+      "titulo": "Public Sector and Diplomacy",
+      "descripcion": "Impartial technical inputs and first-hand territorial readings for diplomatic missions, multilateral organizations, and legislative bodies.",
+      "icon": "M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"
+    }
+  ],
+  "briefingBadge": "Executive Briefing",
+  "briefingTag": "Recent Edition",
+  "briefingTitle": "Geopolitical and Trans-Pacific Risk Scenarios",
+  "briefingDesc": "Access the reserved analysis document that synthesizes our methodologies for assessing regulatory friction and critical capital flows for executive decision-making.",
+  "briefingCta": "Download Briefing (PDF)",
+  "briefingMeeting": "Request a Meeting",
+  "ctaTitle": "Ready to assess your risk scenarios?",
+  "ctaDesc": "Let's coordinate a tailored executive briefing for your board or investment team.",
+  "ctaButton": "Request Executive Briefing"
+}

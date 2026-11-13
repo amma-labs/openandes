@@ -1,111 +1,82 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
 import heroImage from '~/assets/images/10-chasing-climate-change-in-the-arctic-2800.jpg';
+import { getLangFromUrl } from '~/i18n/ui';
+
+const lang = getLangFromUrl(Astro);
+const allData = import.meta.glob('~/data/about/*.json', { eager: true, import: 'default' }) as Record<string, any>;
+const data = allData[`/src/data/about/${lang}.json`] ?? allData['/src/data/about/es.json'];
 
 const metadata = {
-  title: 'Nosotros — Open Andes',
+  title: data.metaTitle,
+  description: data.metaDescription,
 };
 
-const pilares = [
-  {
-    titulo: "Geofinanzas e Inversión Estratégica",
-    descripcion: "Mapeo de flujos de capital transpacífico en infraestructura crítica, matriz energética y cadenas de valor de minerales clave.",
-    icon: "M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z",
-  },
-  {
-    titulo: "Conectividad y Rediseño Logístico",
-    descripcion: "Evaluación del impacto de la nueva infraestructura portuaria en los tiempos de tránsito, costos de flete y resiliencia de las cadenas de suministro.",
-    icon: "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z",
-  },
-  {
-    titulo: "Riesgo Político y Gobernanza Regional",
-    descripcion: "Análisis de vulnerabilidades marítimas, seguridad en infraestructura y marcos de integración comercial en el Pacífico Sur.",
-    icon: "M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25",
-  },
-];
+type Pilar = { titulo: string; descripcion: string; icon: string };
+type Ecosistema = { nombre: string; rol: string; descripcion: string };
+type Servicio = { titulo: string; descripcion: string; icon: string };
 
-const servicios = [
-  {
-    titulo: 'Para la Industria y Activos Críticos',
-    descripcion: 'Evaluación de la continuidad operativa frente a la fricción territorial, regulatoria y geopolítica en los sectores de minería, energía, puertos y telecomunicaciones.',
-    icon: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z',
-  },
-  {
-    titulo: 'Para Inversores y Comités',
-    descripcion: 'Inteligencia de riesgo no financiero para la asignación de capital. Análisis del entorno regulatorio y territorial para proteger las valoraciones y las decisiones de inversión.',
-    icon: 'M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z',
-  },
-  {
-    titulo: 'Para el Sector Público',
-    descripcion: 'Lectura territorial soberana e independiente. Insumos imparciales para misiones diplomáticas, agencias multilaterales y cuerpos deliberativos que navegan la dinámica transpacífica.',
-    icon: 'M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z',
-  },
-];
+const pilares = data.pillars as Pilar[];
+const ecosistema = data.ecosystem as Ecosistema[];
+const servicios = data.services as Servicio[];
 ---
 
 <Layout metadata={metadata}>
+  <!-- HERO -->
   <section class="relative min-h-[600px] flex items-center overflow-hidden">
-    <!-- Imagen de fondo -->
     <div class="absolute inset-0 z-0">
-      <img 
-        src={heroImage.src} 
-        alt="Open Andes - Think Tank" 
+      <img
+        src={heroImage.src}
+        alt="Open Andes - Think Tank Geopolítico y Geoeconómico"
         class="w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/75 to-slate-900/40"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
     </div>
-    
-    <!-- Línea decorativa superior -->
+
     <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-blue-500"></div>
-    
-    <!-- Contenido del hero -->
+
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-20 sm:py-28">
-      <div class="max-w-2xl">
-        <span class="inline-block text-sm font-mono-tech font-bold tracking-widest uppercase text-[#e5e7eb] mb-4 border border-[#e5e7eb]/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
-          Think Tank &amp; Análisis Estratégico
+      <div class="max-w-3xl">
+        <span class="inline-block text-xs sm:text-sm font-mono-tech font-bold tracking-widest uppercase text-slate-200 mb-5 border border-slate-200/30 px-4 py-1.5 rounded-full backdrop-blur-sm bg-black/20">
+          {data.heroBadge}
         </span>
         <h1 class="font-sans font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight">
-          Pensamiento estratégico para un<br />
-          <span class="text-[#e5e7eb]">orden global en transformación</span>
+          {data.heroTitle} <span class="text-blue-300">{data.heroSubtitle}</span>
         </h1>
-        <p class="mt-6 text-lg sm:text-xl text-white/90 max-w-3xl leading-relaxed">
-          Open Andes es el primer think tank descentralizado, no partidista, independiente y 100% digital, especializado en inteligencia geopolítica y prospectiva geoeconómica en el eje América Latina-Asia, así como en riesgos geoestratégicos y flujos de capital.
+        <p class="mt-6 text-lg sm:text-xl text-slate-200 leading-relaxed">
+          {data.heroDesc}
         </p>
       </div>
     </div>
   </section>
 
-
-  <!-- Nuestra Misión y Visión -->
+  <!-- MISIÓN Y VISIÓN -->
   <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900/40">
     <div class="max-w-5xl mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-8">
         <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-          <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Nuestra Misión</h3>
-          <p class="text-slate-700 dark:text-slate-400 leading-relaxed">
-            Proveemos inteligencia territorial soberana e independiente, libre de sesgos corporativos o estatales, conectando la realidad del terreno en la franja andina y el Pacífico Sur con la toma de decisiones estratégicas.
-          </p>
+          <span class="text-xs font-mono-tech font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">{data.missionBadge}</span>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1 mb-4">{data.missionTitle}</h2>
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed">{data.missionDesc}</p>
         </div>
         <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-          <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Nuestra Visión</h3>
-          <p class="text-slate-700 dark:text-slate-400 leading-relaxed">
-            Nos consolidamos como el nodo central de prospectiva de largo plazo, anticipando el reordenamiento sistémico global, la defensa, los recursos estratégicos y la soberanía tecnológica en América.
-          </p>
+          <span class="text-xs font-mono-tech font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">{data.visionBadge}</span>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1 mb-4">{data.visionTitle}</h2>
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed">{data.visionDesc}</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Nuestro Enfoque / Pilares -->
+  <!-- PILARES DE INVESTIGACIÓN -->
   <section class="py-16 sm:py-20">
     <div class="max-w-5xl mx-auto px-4">
       <header class="mb-12 text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Nuestras Líneas de Investigación</h2>
-        <p class="text-lg text-slate-700 dark:text-slate-400 max-w-3xl mx-auto">Los ejes analíticos que guían nuestra investigación sobre el corredor Andes-Pacífico.</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{data.pillarsTitle}</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{data.pillarsDesc}</p>
       </header>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {pilares.map((pilar) => (
           <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
@@ -115,32 +86,42 @@ const servicios = [
               </svg>
             </div>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">{pilar.titulo}</h3>
-            <p class="text-slate-700 dark:text-slate-400 leading-relaxed">{pilar.descripcion}</p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">{pilar.descripcion}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Ecosistema -->
-  <section class="py-16 bg-slate-50 dark:bg-slate-900/50">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">Un ecosistema de investigación modular</h2>
-      <p class="text-lg text-slate-700 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
-        Open Andes opera como un nodo central de inteligencia estratégica que articula tanto el trabajo aplicado de su Consultora como el desarrollo de sus plataformas de análisis independiente: <strong>Fun Politik</strong> (enfocada en la coyuntura internacional) y <strong>2050 Futures Lab</strong> (dedicada a la prospectiva de largo plazo y tecnología).
-      </p>
+  <!-- ECOSISTEMA MODULAR -->
+  <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900/50">
+    <div class="max-w-5xl mx-auto px-4">
+      <header class="mb-12 text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{data.ecosystemTitle}</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">{data.ecosystemDesc}</p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {ecosistema.map((nodo) => (
+          <div class="bg-white dark:bg-slate-800/80 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <span class="text-xs font-mono-tech font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">{nodo.rol}</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-3">{nodo.nombre}</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{nodo.descripcion}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- Soluciones -->
+  <!-- INTELIGENCIA APLICADA Y ASESORÍA -->
   <section class="py-16 sm:py-20">
     <div class="max-w-5xl mx-auto px-4">
       <header class="mb-12 text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Soluciones y Solicitudes Directas</h2>
-        <p class="text-lg text-slate-700 dark:text-slate-400 max-w-3xl mx-auto">Inteligencia estratégica adaptada a los requerimientos de la alta dirección y los cuerpos deliberativos.</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{data.servicesTitle}</h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{data.servicesDesc}</p>
       </header>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         {servicios.map((servicio) => (
           <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
             <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400">
@@ -149,11 +130,67 @@ const servicios = [
               </svg>
             </div>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">{servicio.titulo}</h3>
-            <p class="text-slate-700 dark:text-slate-400 leading-relaxed">{servicio.descripcion}</p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">{servicio.descripcion}</p>
           </div>
         ))}
+      </div>
+
+      <!-- BRIEFING DESTACADO -->
+      <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-5">
+          <div class="lg:col-span-3 p-8 sm:p-10 flex flex-col justify-between gap-6">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-4">
+                <span class="bg-slate-900 text-white font-mono-tech font-bold text-[10px] px-2.5 py-1 rounded uppercase tracking-widest">{data.briefingBadge}</span>
+                <span class="text-[10px] font-mono-tech font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">{data.briefingTag}</span>
+              </div>
+              <h3 class="font-sans font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white leading-tight mb-2">{data.briefingTitle}</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">{data.briefingDesc}</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+              <a
+                href="/reports/pdf/open-andes-briefing-asesoria-2026-09.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-blue-600 text-white font-mono-tech font-bold text-xs uppercase tracking-wider rounded-full transition-colors"
+              >
+                {data.briefingCta}
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+              </a>
+              <a
+                href="mailto:contacto@openandes.org?subject=Solicitud%20de%20Briefing%20Ejecutivo"
+                class="inline-flex items-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-600 hover:border-blue-600 text-slate-800 dark:text-slate-200 font-mono-tech font-bold text-xs uppercase tracking-wider rounded-full transition-colors"
+              >
+                {data.briefingMeeting}
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-2 relative min-h-[240px] lg:min-h-full">
+            <img
+              src="/images/posts/shanghai-puerto-1920x1080-1.webp"
+              alt={`${data.briefingBadge} — ${data.briefingTitle}`}
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA FINAL -->
+  <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900/40">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{data.ctaTitle}</h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">{data.ctaDesc}</p>
+      <a
+        href="mailto:contacto@openandes.org?subject=Solicitud%20de%20Briefing%20Ejecutivo"
+        class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 hover:bg-blue-600 text-white font-mono-tech font-bold text-sm uppercase tracking-wider rounded-full transition-colors"
+      >
+        {data.ctaButton}
+      </a>
+    </div>
+  </section>
 </Layout>
