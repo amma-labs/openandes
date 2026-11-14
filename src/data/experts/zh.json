@@ -31,7 +31,7 @@
     },
     {
       "name": "Maira N. Oberstar",
-      "role": "传播协调员",
+      "role": "传播顾问",
       "spec": "地缘政治叙事、战略写作、全球冲突与人权。",
       "bio": "地缘政治叙事、编辑策略与三语分析（西班牙语、英语、葡萄牙语）专家。其工作将战略写作与国际动态、全球冲突和人权分析相结合，服务于太平洋盆地与拉丁美洲的外交前瞻。",
       "email": "maira.oberstar@openandes.org",
@@ -54,6 +54,30 @@
       "image": "/images/experts-profile/esteban-silva.webp"
     },
     {
+      "name": "Nahuel Agustín Bento",
+      "role": "高级研究员",
+      "spec": "基本权利、国际法以及拉丁美洲国家与经济权力之间的关系。",
+      "bio": "律师，门多萨大学博士候选人。博洛尼亚大学宪法司法与人权硕士，刑事诉讼法与法庭演说硕士。研究员和作家，专注于基本权利、国际法以及拉丁美洲国家与经济权力之间的关系。",
+      "email": "",
+      "image": "/images/experts-profile/nahuel-bento.webp"
+    },
+    {
+      "name": "Lautaro Ezequiel Pittier",
+      "role": "高级研究员",
+      "spec": "宪法、人权与机构法律事务。",
+      "bio": "律师、代理人、法学教授（UNLZ）。宪法与人权专家。现任 UNLZ 法律事务总干事，洛马斯德萨莫拉律师协会人权研究所所长，布宜诺斯艾利斯省政府顾问办公室教师。曾任联邦行政诉讼法院书记员，并在 UBA 和 UAI 任教。",
+      "email": "",
+      "image": "/images/experts-profile/lautaro-pittier.webp"
+    },
+    {
+      "name": "Álvaro Recabal Cervantes",
+      "role": "高级研究员",
+      "spec": "军事战略、地缘政治、机构领导力与武装冲突分析。",
+      "bio": "智利陆军退役炮兵军官，政治学硕士与组织领导力硕士。拥有 20 余年战略经验、国际维和任务（波黑 EUFOR）与危机管理经验。Rooster Think Tank 创始人、大学讲师与专栏作家。在 Open Andes 研究战略、多维安全与机构文化。",
+      "email": "",
+      "image": "/images/experts-profile/alvaro-recabal.webp"
+    },
+    {
       "name": "Francisco Javier Covarrubias R.",
       "role": "研究负责人",
       "spec": "国际安全、外交、国际合作与对外关系历史分析。",
@@ -70,12 +94,12 @@
       "image": "/images/experts-profile/jimena-valenzuela.webp"
     },
     {
-      "name": "Álvaro Recabal Cervantes",
+      "name": "Christian Ardila",
       "role": "研究员",
-      "spec": "军事战略、地缘政治、机构领导力与武装冲突分析。",
-      "bio": "智利陆军退役炮兵军官，政治学硕士与组织领导力硕士。拥有 20 余年战略经验、国际维和任务（波黑 EUFOR）与危机管理经验。Rooster Think Tank 创始人、大学讲师与专栏作家。在 Open Andes 研究战略、多维安全与机构文化。",
+      "spec": "有组织犯罪、跨国贩毒、国际安全与犯罪情报。",
+      "bio": "巴勒莫大学国际主义者，FLACSO 厄瓜多尔有组织犯罪分析与国际安全专家。曾在 InSight Crime 任职，并发表跨国贩毒与拉美安全研究。在 Open Andes 研究有组织犯罪动态与区域安全。",
       "email": "",
-      "image": "/images/experts-profile/alvaro-recabal.webp"
+      "image": "/images/experts-profile/christian-ardila.webp"
     },
     {
       "name": "Danna Mena N.",
@@ -86,6 +110,14 @@
       "image": "/images/experts-profile/danna-mena.webp"
     },
     {
+      "name": "Felix Vasquez Suasnabar",
+      "role": "研究员",
+      "spec": "金融、会计、反洗钱预防与欺诈分析。",
+      "bio": "UPC 行政、金融与会计学士，秘鲁外交学院国际关系专家。曾任 EY 高级顾问，从事欺诈调查、反洗钱（AML/CFT）与会计鉴定。在 Open Andes 从事地缘经济、金融与公司治理交叉分析。",
+      "email": "",
+      "image": "/images/experts-profile/felix-vasquez.webp"
+    },
+    {
       "name": "Mónica Cornejo",
       "role": "研究员",
       "spec": "人权、国际移民、知识产权与国际时事。",
@@ -94,20 +126,12 @@
       "image": "/images/experts-profile/monica-cornejo.webp"
     },
     {
-      "name": "Christian Ardila",
+      "name": "Aldo Andrés Rijo",
       "role": "副研究员",
-      "spec": "有组织犯罪、跨国贩毒、国际安全与犯罪情报。",
-      "bio": "巴勒莫大学国际主义者，FLACSO 厄瓜多尔有组织犯罪分析与国际安全专家。曾在 InSight Crime 任职，并发表跨国贩毒与拉美安全研究。在 Open Andes 研究有组织犯罪动态与区域安全。",
+      "spec": "国际经济、对外贸易、区域一体化与地缘经济。",
+      "bio": "乌拉圭共和国大学（Udelar）国际主义者与经济分析师。专攻经济、国际关系与区域发展的交叉领域。在 Open Andes 研究经济发展、跨安第斯一体化与拉美市场。",
       "email": "",
-      "image": "/images/experts-profile/christian-ardila.webp"
-    },
-    {
-      "name": "Felix Vasquez Suasnabar",
-      "role": "副研究员",
-      "spec": "金融、会计、反洗钱预防与欺诈分析。",
-      "bio": "UPC 行政、金融与会计学士，秘鲁外交学院国际关系专家。曾任 EY 高级顾问，从事欺诈调查、反洗钱（AML/CFT）与会计鉴定。在 Open Andes 从事地缘经济、金融与公司治理交叉分析。",
-      "email": "",
-      "image": "/images/experts-profile/felix-vasquez.webp"
+      "image": "/images/experts-profile/aldo-rijo.webp"
     },
     {
       "name": "Alexia T. Laimes Campos",
@@ -116,6 +140,14 @@
       "bio": "圣马科斯国立大学政治学家，专攻区域诊断、利益相关者映射与社会政治及声誉风险分析。合著公共政策与跨文化出版物。在 Open Andes 为公共政策分析与区域风险提供技术与量化证据。",
       "email": "",
       "image": "/images/experts-profile/alexia-laimes.webp"
+    },
+    {
+      "name": "Delia Pedroza M.",
+      "role": "副研究员",
+      "spec": "地缘经济、国际金融与国际关系。",
+      "bio": "秘鲁 ESAN 大学行政与金融分析师。专注地缘经济、全球金融市场及其与国际政治的互动。在 Open Andes 分析资金流动、地缘经济与区域贸易动态。",
+      "email": "",
+      "image": "/images/experts-profile/delia-pedroza.webp"
     },
     {
       "name": "Silvana Huaman",
@@ -132,22 +164,6 @@
       "bio": "圣马丁国立大学（阿根廷）国际主义者。拥有行政协助与机构管理经验，专攻时事分析与全球政策写作。在 Open Andes 协助地缘政治监测与国际时事文章撰写。",
       "email": "",
       "image": "/images/experts-profile/lourdes-delgado.webp"
-    },
-    {
-      "name": "Aldo Andrés Rijo",
-      "role": "副研究员",
-      "spec": "国际经济、对外贸易、区域一体化与地缘经济。",
-      "bio": "乌拉圭共和国大学（Udelar）国际主义者与经济分析师。专攻经济、国际关系与区域发展的交叉领域。在 Open Andes 研究经济发展、跨安第斯一体化与拉美市场。",
-      "email": "",
-      "image": "/images/experts-profile/aldo-rijo.webp"
-    },
-    {
-      "name": "Delia Pedroza M.",
-      "role": "副研究员",
-      "spec": "地缘经济、国际金融与国际关系。",
-      "bio": "秘鲁 ESAN 大学行政与金融分析师。专注地缘经济、全球金融市场及其与国际政治的互动。在 Open Andes 分析资金流动、地缘经济与区域贸易动态。",
-      "email": "",
-      "image": "/images/experts-profile/delia-pedroza.webp"
     }
   ]
 }

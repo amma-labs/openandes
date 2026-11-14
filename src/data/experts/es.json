@@ -31,7 +31,7 @@
     },
     {
       "name": "Maira N. Oberstar",
-      "role": "Coordinadora de Comunicaciones",
+      "role": "Asesora de Comunicaciones",
       "spec": "Narrativa geopolítica, escritura estratégica, conflictos globales y derechos humanos.",
       "bio": "Especialista en narrativa geopolítica, estrategia editorial y análisis trilingüe (español, inglés, portugués). Su trabajo integra la escritura estratégica con el análisis de la dinámica internacional, conflictos globales y derechos humanos para la prospectiva diplomática en la Cuenca del Pacífico y América Latina.",
       "email": "maira.oberstar@openandes.org",
@@ -54,6 +54,30 @@
       "image": "/images/experts-profile/esteban-silva.webp"
     },
     {
+      "name": "Nahuel Agustín Bento",
+      "role": "Investigador Sénior",
+      "spec": "Derechos fundamentales, derecho internacional y relación entre Estado y poder económico en América Latina.",
+      "bio": "Abogado y doctorando (Universidad de Mendoza). Magíster en Justicia Constitucional y Derechos Humanos por la Universidad de Bolonia y en Derecho Procesal Penal y Oratoria Forense. Investigador y autor enfocado en derechos fundamentales, derecho internacional y la relación entre Estado y poder económico en América Latina.",
+      "email": "",
+      "image": "/images/experts-profile/nahuel-bento.webp"
+    },
+    {
+      "name": "Lautaro Ezequiel Pittier",
+      "role": "Investigador Sénior",
+      "spec": "Derecho constitucional, derechos humanos y asuntos jurídicos institucionales.",
+      "bio": "Abogado, procurador y profesor en Ciencias Jurídicas (UNLZ). Especialista en Derecho Constitucional y Derechos Humanos. Es Director General de Asuntos Jurídicos de la UNLZ, dirige el Instituto de DD.HH. del Colegio de Abogados de Lomas de Zamora y docente en la Asesoría de Gobierno de la Provincia de Buenos Aires. Exrelator en el Fuero Contencioso Administrativo Federal y docente en UBA y UAI.",
+      "email": "",
+      "image": "/images/experts-profile/lautaro-pittier.webp"
+    },
+    {
+      "name": "Álvaro Recabal Cervantes",
+      "role": "Investigador Sénior",
+      "spec": "Estrategia militar, geopolítica, liderazgo institucional y análisis de conflictos armados.",
+      "bio": "Oficial de Artillería del Ejército de Chile en retiro, Magíster en Ciencia Política y Magíster en Liderazgo Organizacional. Cuenta con más de 20 años de experiencia estratégica, misiones de paz internacionales (EUFOR en Bosnia y Herzegovina) y gestión de crisis. Fundador de Rooster Think Tank, docente universitario y columnista. En Open Andes investiga temas de estrategia, seguridad multidimensional y cultura institucional.",
+      "email": "",
+      "image": "/images/experts-profile/alvaro-recabal.webp"
+    },
+    {
       "name": "Francisco Javier Covarrubias R.",
       "role": "Líder de Investigación",
       "spec": "Seguridad internacional, diplomacia, cooperación internacional y análisis histórico de relaciones exteriores.",
@@ -70,12 +94,12 @@
       "image": "/images/experts-profile/jimena-valenzuela.webp"
     },
     {
-      "name": "Álvaro Recabal Cervantes",
+      "name": "Christian Ardila",
       "role": "Investigador",
-      "spec": "Estrategia militar, geopolítica, liderazgo institucional y análisis de conflictos armados.",
-      "bio": "Oficial de Artillería del Ejército de Chile en retiro, Magíster en Ciencia Política y Magíster en Liderazgo Organizacional. Cuenta con más de 20 años de experiencia estratégica, misiones de paz internacionales (EUFOR en Bosnia y Herzegovina) y gestión de crisis. Fundador de Rooster Think Tank, docente universitario y columnista. En Open Andes investiga temas de estrategia, seguridad multidimensional y cultura institucional.",
+      "spec": "Crimen organizado, narcotráfico transnacional, seguridad internacional e inteligencia criminal.",
+      "bio": "Internacionalista por la Universidad de Palermo y especialista en Análisis de Crimen Organizado y Seguridad Internacional por FLACSO Ecuador. Cuenta con trayectoria en InSight Crime y publicaciones sobre narcotráfico transnacional y seguridad en América Latina. En Open Andes investiga dinámicas de crimen organizado y seguridad regional.",
       "email": "",
-      "image": "/images/experts-profile/alvaro-recabal.webp"
+      "image": "/images/experts-profile/christian-ardila.webp"
     },
     {
       "name": "Danna Mena N.",
@@ -86,6 +110,14 @@
       "image": "/images/experts-profile/danna-mena.webp"
     },
     {
+      "name": "Felix Vasquez Suasnabar",
+      "role": "Investigador",
+      "spec": "Finanzas, contabilidad, prevención de lavado de activos y análisis de fraudes.",
+      "bio": "Licenciado en Administración, Finanzas y Contabilidad por la UPC, especializado en Relaciones Internacionales por la Fundación Academia Diplomática del Perú. Exconsultor Senior en EY en investigación de fraudes, prevención de lavado de activos (PLAFT) y peritajes contables. En Open Andes aporta análisis en la intersección de geoeconomía, finanzas y gobernanza corporativa.",
+      "email": "",
+      "image": "/images/experts-profile/felix-vasquez.webp"
+    },
+    {
       "name": "Mónica Cornejo",
       "role": "Investigadora",
       "spec": "Derechos humanos, migración internacional, propiedad intelectual y actualidad internacional.",
@@ -94,20 +126,12 @@
       "image": "/images/experts-profile/monica-cornejo.webp"
     },
     {
-      "name": "Christian Ardila",
+      "name": "Aldo Andrés Rijo",
       "role": "Investigador Asociado",
-      "spec": "Crimen organizado, narcotráfico transnacional, seguridad internacional e inteligencia criminal.",
-      "bio": "Internacionalista por la Universidad de Palermo y especialista en Análisis de Crimen Organizado y Seguridad Internacional por FLACSO Ecuador. Cuenta con trayectoria en InSight Crime y publicaciones sobre narcotráfico transnacional y seguridad en América Latina. En Open Andes investiga dinámicas de crimen organizado y seguridad regional.",
+      "spec": "Economía internacional, comercio exterior, integración regional y geoeconomía.",
+      "bio": "Internacionalista y analista en Economía por la Universidad de la República (Udelar, Uruguay). Especializado en la intersección entre economía, relaciones internacionales y desarrollo regional. En Open Andes investiga temas de desarrollo económico, integración transandina y mercados latinoamericanos.",
       "email": "",
-      "image": "/images/experts-profile/christian-ardila.webp"
-    },
-    {
-      "name": "Felix Vasquez Suasnabar",
-      "role": "Investigador Asociado",
-      "spec": "Finanzas, contabilidad, prevención de lavado de activos y análisis de fraudes.",
-      "bio": "Licenciado en Administración, Finanzas y Contabilidad por la UPC, especializado en Relaciones Internacionales por la Fundación Academia Diplomática del Perú. Exconsultor Senior en EY en investigación de fraudes, prevención de lavado de activos (PLAFT) y peritajes contables. En Open Andes aporta análisis en la intersección de geoeconomía, finanzas y gobernanza corporativa.",
-      "email": "",
-      "image": "/images/experts-profile/felix-vasquez.webp"
+      "image": "/images/experts-profile/aldo-rijo.webp"
     },
     {
       "name": "Alexia T. Laimes Campos",
@@ -116,6 +140,14 @@
       "bio": "Politóloga por la Universidad Nacional Mayor de San Marcos, especializada en diagnósticos territoriales, mapeo de actores y análisis de riesgo socio-político y reputacional. Coautora de publicaciones en políticas públicas e interculturalidad. En Open Andes genera evidencia técnica y cuantitativa para el análisis de políticas públicas y riesgos regionales.",
       "email": "",
       "image": "/images/experts-profile/alexia-laimes.webp"
+    },
+    {
+      "name": "Delia Pedroza M.",
+      "role": "Investigadora Asociada",
+      "spec": "Geoeconomía, finanzas internacionales y relaciones internacionales.",
+      "bio": "Analista en Administración y Finanzas por la Universidad ESAN (Perú). Enfocada en geoeconomía, mercados financieros globales y su interacción con la política internacional. En Open Andes analiza flujos financieros, geoeconomía y dinámicas del comercio regional.",
+      "email": "",
+      "image": "/images/experts-profile/delia-pedroza.webp"
     },
     {
       "name": "Silvana Huaman",
@@ -132,22 +164,6 @@
       "bio": "Internacionalista por la Universidad Nacional de San Martín (Argentina). Cuenta con experiencia en asistencia administrativa y gestión institucional, especializándose en análisis de coyuntura y redacción de política global. En Open Andes colabora en el monitoreo geopolítico y la producción de ensayos de coyuntura internacional.",
       "email": "",
       "image": "/images/experts-profile/lourdes-delgado.webp"
-    },
-    {
-      "name": "Aldo Andrés Rijo",
-      "role": "Investigador Asociado",
-      "spec": "Economía internacional, comercio exterior, integración regional y geoeconomía.",
-      "bio": "Internacionalista y analista en Economía por la Universidad de la República (Udelar, Uruguay). Especializado en la intersección entre economía, relaciones internacionales y desarrollo regional. En Open Andes investiga temas de desarrollo económico, integración transandina y mercados latinoamericanos.",
-      "email": "",
-      "image": "/images/experts-profile/aldo-rijo.webp"
-    },
-    {
-      "name": "Delia Pedroza M.",
-      "role": "Investigadora Asociada",
-      "spec": "Geoeconomía, finanzas internacionales y relaciones internacionales.",
-      "bio": "Analista en Administración y Finanzas por la Universidad ESAN (Perú). Enfocada en geoeconomía, mercados financieros globales y su interacción con la política internacional. En Open Andes analiza flujos financieros, geoeconomía y dinámicas del comercio regional.",
-      "email": "",
-      "image": "/images/experts-profile/delia-pedroza.webp"
     }
   ]
 }
