@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import { getLangFromUrl } from '~/i18n/ui';
 
 // Importar imagen para el hero
-import heroImage from '~/assets/images/19-the-time-between-2500.jpg';
+import heroImage from '~/assets/images/19-the-time-between-2500.webp';
 
 const lang = getLangFromUrl(Astro);
 const allData = import.meta.glob('~/data/experts/*.json', { eager: true, import: 'default' }) as Record<string, any>;
