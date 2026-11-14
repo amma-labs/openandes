@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import heroImage from '~/assets/images/10-chasing-climate-change-in-the-arctic-2800.webp';
+import ecosystemImage from '~/assets/images/1-chasing-climate-change-in-the-arctic-2800.webp';
 import { getLangFromUrl } from '~/i18n/ui';
 
 const lang = getLangFromUrl(Astro);
@@ -94,19 +95,30 @@ const servicios = data.services as Servicio[];
   </section>
 
   <!-- ECOSISTEMA MODULAR -->
-  <section class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900/50">
-    <div class="max-w-5xl mx-auto px-4">
+  <section class="relative py-16 sm:py-20 overflow-hidden">
+    <!-- Imagen de fondo -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src={ecosystemImage.src}
+        alt="Ecosistema de investigación modular - Open Andes"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-slate-900/85"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-slate-900/50"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4">
       <header class="mb-12 text-center max-w-3xl mx-auto">
-        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{data.ecosystemTitle}</h2>
-        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">{data.ecosystemDesc}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">{data.ecosystemTitle}</h2>
+        <p class="text-lg text-slate-200 leading-relaxed">{data.ecosystemDesc}</p>
       </header>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {ecosistema.map((nodo) => (
-          <div class="bg-white dark:bg-slate-800/80 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
-            <span class="text-xs font-mono-tech font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">{nodo.rol}</span>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-3">{nodo.nombre}</h3>
-            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{nodo.descripcion}</p>
+          <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
+            <span class="text-xs font-mono-tech font-semibold uppercase tracking-wider text-blue-300">{nodo.rol}</span>
+            <h3 class="text-xl font-bold text-white mt-1 mb-3">{nodo.nombre}</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">{nodo.descripcion}</p>
           </div>
         ))}
       </div>
