@@ -138,6 +138,13 @@ export const zh = {
       articleFallback: '文章',
     },
     topics: {
+      indexTitle: '主题 — Open Andes',
+      indexDesc: '探索我们涵盖的所有主题：分析、专家观点和研究。',
+      indexBadge: 'Open Andes',
+      indexHeroTitle: '主题',
+      indexHeroDesc: '探索我们涵盖的所有主题：分析、专家观点和研究。',
+      itemsCountSingular: '个主题',
+      itemsCountPlural: '个主题',
       metaTitle: '主题 — Open Andes',
       metaDesc: 'Open Andes 上标记此主题的分析与专家观点。',
       backToHome: '返回首页',

@@ -140,6 +140,13 @@ export const es = {
       articleFallback: 'Artículo',
     },
     topics: {
+      indexTitle: 'Temas — Open Andes',
+      indexDesc: 'Explora todos los temas que cubrimos: análisis, miradas expertas e investigaciones.',
+      indexBadge: 'Open Andes',
+      indexHeroTitle: 'Temas',
+      indexHeroDesc: 'Explora todos los temas que cubrimos: análisis, miradas expertas e investigaciones.',
+      itemsCountSingular: 'tema',
+      itemsCountPlural: 'temas',
       metaTitle: 'Tema — Open Andes',
       metaDesc: 'Análisis y miradas expertas etiquetados con este tema en Open Andes.',
       backToHome: 'Volver al inicio',

@@ -137,6 +137,13 @@ export const en = {
       articleFallback: 'Article',
     },
     topics: {
+      indexTitle: 'Topics — Open Andes',
+      indexDesc: 'Explore all the topics we cover: analysis, expert views and research.',
+      indexBadge: 'Open Andes',
+      indexHeroTitle: 'Topics',
+      indexHeroDesc: 'Explore all the topics we cover: analysis, expert views and research.',
+      itemsCountSingular: 'topic',
+      itemsCountPlural: 'topics',
       metaTitle: 'Topic — Open Andes',
       metaDesc: 'Analysis and expert views tagged with this topic at Open Andes.',
       backToHome: 'Back to home',
