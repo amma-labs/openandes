@@ -27,10 +27,11 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const { locale: propLocale } = Astro.props;
-const locale = (propLocale || (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined)) ?? 'es';
+const currentLoc = propLocale || Astro.currentLocale || 'es';
+const locale = ['es', 'en', 'zh'].includes(currentLoc) ? currentLoc : 'es';
 
 const allPosts = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
-const loader =
+const loader = 
   allPosts[`../../data/comentarios/${locale}/${slug}.mdx`] ||
   allPosts[`../../data/comentarios/${locale}/${slug}.md`] ||
   allPosts[`../../data/comentarios/es/${slug}.mdx`];
