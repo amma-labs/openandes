@@ -26,12 +26,13 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-// Astro.currentLocale se setea desde `params.lang` del getStaticPaths().
-const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+const { locale: propLocale } = Astro.props;
+const locale = propLocale || (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
 
 const allPosts = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
 const loader =
-  allPosts[`../../data/comentarios/${locale}/${slug}.mdx`] ??
+  allPosts[`../../data/comentarios/${locale}/${slug}.mdx`] ||
+  allPosts[`../../data/comentarios/${locale}/${slug}.md`] ||
   allPosts[`../../data/comentarios/es/${slug}.mdx`];
 if (!loader) throw new Error(`No hay mirada para slug "${slug}" (locale=${locale})`);
 const post = (await loader()) as { Content: any; frontmatter: Record<string, any> };
