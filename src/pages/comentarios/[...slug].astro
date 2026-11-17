@@ -34,7 +34,8 @@ const loader =
   allPosts[`../../data/comentarios/${locale}/${slug}.mdx`] ||
   allPosts[`../../data/comentarios/${locale}/${slug}.md`] ||
   allPosts[`../../data/comentarios/es/${slug}.mdx`];
-if (!loader) throw new Error(`No hay mirada para slug "${slug}" (locale=${locale})`);
+
+if (!loader) throw new Error(`No hay artículo para slug "${slug}" (locale=${locale})`);
 const post = (await loader()) as { Content: any; frontmatter: Record<string, any> };
 
 const authorSlug = post.frontmatter?.authorSlug;
@@ -143,12 +144,8 @@ const metadata = {
     </div>
   </div>
 
-
-
-
 <script is:inline>
   window.addEventListener('load', () => {
-    // Buscar el encabezado de notas (h2 con texto "Notas", "Notes" o "注释")
     const headings = document.querySelectorAll('article h2');
     let notesHeading = null;
     for (const h of headings) {
@@ -158,16 +155,10 @@ const metadata = {
         break;
       }
     }
-
     if (!notesHeading) return;
-
-    // Encontrar la minibio (data-author-bio)
     const authorBio = document.querySelector('[data-author-bio]');
     if (!authorBio) return;
-
-    // Mover la minibio antes del encabezado de notas
     notesHeading.parentNode.insertBefore(authorBio, notesHeading);
   });
 </script>
-
 </Layout>
