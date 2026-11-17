@@ -148,7 +148,7 @@ export const es = {
       typeAnalisis: 'Análisis',
       typeMiradas: 'Miradas 2050',
     },
-    miradas: {
+    comentarios: {
       metaTitle: 'Comentarios — Open Andes',
       metaDesc: 'Perspectivas de coyuntura y columnas sobre los cambios en el poder, el capital y la geopolítica en toda América.',
       heroBadge: 'Open Andes',

@@ -146,7 +146,7 @@ export const zh = {
       typeAnalisis: '分析',
       typeMiradas: '2050 观点',
     },
-    miradas: {
+    comentarios: {
       metaTitle: '评论 — Open Andes',
       metaDesc: '关于美洲权力、资本与地缘政治变迁的时事评论与专栏。',
       heroBadge: 'Open Andes',

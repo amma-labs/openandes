@@ -6,22 +6,22 @@ import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 import heroImage from '~/assets/images/1-chasing-climate-change-in-the-arctic-2800.webp';
 
 const lang = getLangFromUrl(Astro);
-const t = useTranslations(lang).pages.miradas;
+const t = useTranslations(lang).pages.comentarios;
 
 const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
 
-const allFiles = import.meta.glob('../data/mirada-experta/*/*.{md,mdx}');
+const allFiles = import.meta.glob('../data/comentarios/*/*.{md,mdx}');
 const slugs = new Set<string>();
 for (const filepath in allFiles) {
-  const m = filepath.match(/\/mirada-experta\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
+  const m = filepath.match(/\/comentarios\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
   if (m) slugs.add(m[2]);
 }
 
 const posts = (
   await Promise.all(
     Array.from(slugs).map(async (slug) => {
-      const wanted = `../data/mirada-experta/${locale}/${slug}.mdx`;
-      const fallback = `../data/mirada-experta/es/${slug}.mdx`;
+      const wanted = `../data/comentarios/${locale}/${slug}.mdx`;
+      const fallback = `../data/comentarios/es/${slug}.mdx`;
       const loader = allFiles[wanted] ?? allFiles[fallback];
       if (!loader) return null;
       const post = await loader();
@@ -29,7 +29,7 @@ const posts = (
         ...post,
         slug,
         locale: allFiles[wanted] ? locale : 'es',
-        url: locale === 'es' ? `/miradas/${slug}` : `/${locale}/miradas/${slug}`,
+        url: locale === 'es' ? `/comentarios/${slug}` : `/${locale}/comentarios/${slug}`,
       };
     })
   )

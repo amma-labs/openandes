@@ -54,19 +54,19 @@ const mainReport = reports[0] || null;
 const getReportSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
 
 // Cargar miradas dinámicamente por locale
-const allMiradas = import.meta.glob('../data/mirada-experta/*/*.{md,mdx}');
+const allMiradas = import.meta.glob('../data/comentarios/*/*.{md,mdx}');
 
 // Cargar todas las miradas del locale actual (con fallback a ES si no existe)
 const miradas = await Promise.all(
   Object.entries(allMiradas)
-    .filter(([path]) => path.includes(`/mirada-experta/${locale}/`))
+    .filter(([path]) => path.includes(`/comentarios/${locale}/`))
     .map(async ([path, load]) => {
       const post = await load();
       const slug = path.split('/').pop()?.replace(/\.(md|mdx)$/, '') ?? '';
       return {
         ...post,
         slug,
-        url: locale === 'es' ? `/miradas/${slug}` : `/${locale}/miradas/${slug}`,
+        url: locale === 'es' ? `/comentarios/${slug}` : `/${locale}/comentarios/${slug}`,
       };
     })
 );

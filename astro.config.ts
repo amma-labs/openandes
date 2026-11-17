@@ -146,6 +146,7 @@ export default defineConfig({
 
   redirects: {
     '/estrategia': '/about',
+    '/miradas': '/comentarios',
   },
 
   markdown: {

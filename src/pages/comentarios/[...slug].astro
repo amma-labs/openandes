@@ -6,11 +6,11 @@ import { authors } from '~/data/authors';
 export async function getStaticPaths() {
   const paths = [];
   const locales = ['es', 'en', 'zh'] as const;
-  const files = import.meta.glob('../../data/mirada-experta/*/*.{md,mdx}');
+  const files = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
   const seen = new Set<string>();
 
   for (const filepath in files) {
-    const m = filepath.match(/\/mirada-experta\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
+    const m = filepath.match(/\/comentarios\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
     if (!m) continue;
     const [, locale, slug] = m;
     if (!locales.includes(locale as any)) continue;
@@ -29,10 +29,10 @@ const { slug } = Astro.params;
 // Astro.currentLocale se setea desde `params.lang` del getStaticPaths().
 const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
 
-const allPosts = import.meta.glob('../../data/mirada-experta/*/*.{md,mdx}');
+const allPosts = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
 const loader =
-  allPosts[`../../data/mirada-experta/${locale}/${slug}.mdx`] ??
-  allPosts[`../../data/mirada-experta/es/${slug}.mdx`];
+  allPosts[`../../data/comentarios/${locale}/${slug}.mdx`] ??
+  allPosts[`../../data/comentarios/es/${slug}.mdx`];
 if (!loader) throw new Error(`No hay mirada para slug "${slug}" (locale=${locale})`);
 const post = (await loader()) as { Content: any; frontmatter: Record<string, any> };
 
@@ -56,7 +56,7 @@ const metadata = {
 
       <article class="max-w-3xl">
         <header class="mb-10">
-          <a href="/miradas" class="text-[#1344e7] dark:text-[#5b8def] hover:underline text-sm font-medium">
+          <a href="/comentarios" class="text-[#1344e7] dark:text-[#5b8def] hover:underline text-sm font-medium">
             &larr; Volver a Miradas 2050
           </a>
           <h1 class="text-4xl font-sans font-bold mt-6 text-[#111827] dark:text-[#f3f4f6] leading-tight">

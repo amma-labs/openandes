@@ -11,7 +11,7 @@ export const prerender = true;
 
 export async function getStaticPaths() {
   const posts = import.meta.glob('../../data/post/*/*.{md,mdx}');
-  const miradas = import.meta.glob('../../data/mirada-experta/*/*.{md,mdx}');
+  const miradas = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
 
   const allTags = new Set<string>();
 
@@ -36,7 +36,7 @@ const { tag } = Astro.props;
 const normalizedTag = tag.toLowerCase();
 
 const postsMods = import.meta.glob('../../data/post/*/*.{md,mdx}');
-const miradasMods = import.meta.glob('../../data/mirada-experta/*/*.{md,mdx}');
+const miradasMods = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
 
 const items = [];
 
@@ -73,7 +73,7 @@ for (const path in miradasMods) {
       pubDate: mod.frontmatter?.pubDate,
       image: mod.frontmatter?.image,
       category: mod.frontmatter?.category,
-      url: locale === 'es' ? `/miradas/${m[2]}` : `/${locale}/miradas/${m[2]}`,
+      url: locale === 'es' ? `/comentarios/${m[2]}` : `/${locale}/comentarios/${m[2]}`,
     });
   }
 }
