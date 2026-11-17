@@ -32,6 +32,16 @@
       "source": "/mirada-experta/:slug",
       "destination": "/miradas/:slug",
       "permanent": true
+    },
+    {
+      "source": "/en/analisis/la-otra-cara-de-la-transicion-energetica",
+      "destination": "/en/analisis/the-other-side-of-the-energy-transition",
+      "permanent": true
+    },
+    {
+      "source": "/zh/analisis/la-otra-cara-de-la-transicion-energetica",
+      "destination": "/zh/analisis/energy-transition-other-side",
+      "permanent": true
     }
   ]
 }
