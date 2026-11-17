@@ -109,11 +109,7 @@ export default defineConfig({
       // csso off on purpose: its parser doesn't understand the media range
       // syntax Tailwind v4 emits for breakpoints. lightningcss parses it correctly.
       CSS: { csso: false, lightningcss: { minify: true } },
-      HTML: {
-        'html-minifier-terser': {
-          removeAttributeQuotes: false,
-        },
-      },
+      HTML: false,
       Image: false,
       JavaScript: true,
       SVG: false,

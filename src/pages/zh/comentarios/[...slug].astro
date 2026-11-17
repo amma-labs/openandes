@@ -44,7 +44,7 @@ const metadata = {
       <article class="max-w-3xl">
         <header class="mb-10">
           <a href="/comentarios" class="text-[#1344e7] dark:text-[#5b8def] hover:underline text-sm font-medium">
-            &larr; {locale === 'es' ? 'Volver a Comentarios' : locale === 'en' ? 'Back to Commentary' : '返回评论'}
+            &larr; 返回评论
           </a>
           <h1 class="text-4xl font-sans font-bold mt-6 text-[#111827] dark:text-[#f3f4f6] leading-tight">
             {post.frontmatter?.title || 'Sin título'}
@@ -55,7 +55,7 @@ const metadata = {
             )}
             {post.frontmatter?.pubDate && (
               <time>
-                {new Date(post.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
+                {new Date(post.frontmatter.pubDate).toLocaleDateString('zh-CN', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
@@ -130,7 +130,7 @@ const metadata = {
   </div>
 
 <script is:inline>
-  window.addEventListener('load', () => {
+  function moveBio() {
     const headings = document.querySelectorAll('article h2');
     let notesHeading = null;
     for (const h of headings) {
@@ -144,6 +144,7 @@ const metadata = {
     const authorBio = document.querySelector('[data-author-bio]');
     if (!authorBio) return;
     notesHeading.parentNode.insertBefore(authorBio, notesHeading);
-  });
+}
+document.addEventListener('astro:page-load', moveBio);
 </script>
 </Layout>

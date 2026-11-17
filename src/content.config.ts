@@ -25,7 +25,7 @@ function safeDate(value: unknown): Date {
   return new Date();
 }
 
-const blog = defineCollection({
+const post = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/post' }),
   schema: z.object({
     title: z.string(),
@@ -100,7 +100,7 @@ const instagram = defineCollection({
 });
 
 export const collections = {
-  blog: blog,
+  post: post,
   'fun-politik': funPolitik,
   reports: reports,
   instagram: instagram,
