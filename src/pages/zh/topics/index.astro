@@ -9,8 +9,8 @@ const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
 
 export const prerender = true;
 
-const posts = import.meta.glob('../../../data/post/*/*.{md,mdx}');
-const miradas = import.meta.glob('../../../data/comentarios/*/*.{md,mdx}');
+const posts = import.meta.glob('../../../data/post/zh/*.{md,mdx}');
+const miradas = import.meta.glob('../../../data/comentarios/zh/*.{md,mdx}');
 
 const tagCounts: Record<string, { count: number; label: string }> = {};
 
