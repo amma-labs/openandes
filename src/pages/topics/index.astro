@@ -58,6 +58,13 @@ const rest = Object.entries(tagCounts)
   .sort((a, b) => a[1].label.localeCompare(b[1].label))
   .map(([slug, data]) => ({ slug, label: data.label, count: data.count }));
 
+// Respetar mayúsculas: 'ia'/'Ia' → 'IA'
+for (const key in tagCounts) {
+  if (tagCounts[key].label.toLowerCase() === 'ia') {
+    tagCounts[key].label = 'IA';
+  }
+}
+
 const metadata = {
   title: t.indexTitle,
   description: t.indexDesc,

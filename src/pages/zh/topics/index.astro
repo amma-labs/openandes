@@ -58,6 +58,13 @@ const rest = Object.entries(tagCounts)
   .sort((a, b) => a[1].label.localeCompare(b[1].label))
   .map(([slug, data]) => ({ slug, label: data.label, count: data.count }));
 
+// Respetar mayúsculas: 'ia'/'Ia' → 'IA'
+for (const key in tagCounts) {
+  if (tagCounts[key].label.toLowerCase() === 'ia') {
+    tagCounts[key].label = 'IA';
+  }
+}
+
 const metadata = {
   title: t.indexTitle,
   description: t.indexDesc,
@@ -113,7 +120,7 @@ const gradientClasses = [
                   href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
                   class={`flex items-center justify-center text-center px-4 py-6 rounded-lg font-sans font-bold text-lg leading-tight transition-transform hover:scale-[1.03] ${gradientClasses[i]}`}
                 >
-                  <span class="capitalize">{topic.label}</span>
+                  <span>{topic.label}</span>
                 </a>
               ))}
             </div>
@@ -131,7 +138,7 @@ const gradientClasses = [
                   href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
                   class="flex items-center justify-center text-center px-3 py-3 rounded-lg bg-white dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] hover:border-[#1344e7] dark:hover:border-[#5b8def] transition-colors"
                 >
-                  <span class="font-sans font-medium text-sm text-[#111827] dark:text-[#f3f4f6] capitalize truncate">
+                  <span class="font-sans font-medium text-sm text-[#111827] dark:text-[#f3f4f6] truncate">
                     {topic.label}
                   </span>
                 </a>
