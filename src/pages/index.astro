@@ -197,7 +197,7 @@ const metadata = {
             <div class="grid grid-cols-1 lg:grid-cols-2">
               <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{t.miradas2050}</span>
+                  <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{mirada5.frontmatter?.badge || t.miradas2050}</span>
                   <span class="text-[10px] font-mono-tech font-bold text-[#4A7C59] uppercase tracking-widest">
                     {mirada5.frontmatter?.category || t.miradasBadge} · {mirada5.frontmatter?.pubDate ? new Date(mirada5.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
                   </span>
@@ -228,7 +228,7 @@ const metadata = {
               </div>
               <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{t.miradas2050}</span>
+                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{mirada6.frontmatter?.badge || t.miradas2050}</span>
                   <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] uppercase tracking-widest">
                     {mirada6.frontmatter?.category || t.miradasBadge} · {mirada6.frontmatter?.pubDate ? new Date(mirada6.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
                   </span>
@@ -291,7 +291,7 @@ const metadata = {
                 </div>
               </a>
               <div class="flex items-center justify-between text-xs">
-                <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{fm.category || t.miradasBadge}</span>
+                <span class="bg-[#1344e7] text-white font-mono-tech font-bold px-2 py-0.5 rounded uppercase">{fm.badge || t.miradas2050} {fm.category && `· ${fm.category}`}</span>
                 <span class="text-[#1344e7] dark:text-[#5b8def] font-mono-tech font-bold">{displayDate}</span>
               </div>
               <a href={brief.url} class="hover:underline">
