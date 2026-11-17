@@ -78,12 +78,11 @@ miradas.sort((a, b) => {
   return dateB - dateA;
 });
 
-// Primeras 4 para el array briefs
-const briefs = miradas.slice(0, 4);
+// Destacado principal: Bernardo Muñoz Aguilar
+const featuredComentario = miradas.find((m) => m.slug === 'bernardo-munoz-chile') || miradas[0];
 
-// Miradas 5 y 6 para los bloques destacados
-const mirada5 = miradas[4];
-const mirada6 = miradas[5];
+// Siguientes 4 para el array briefs (excluyendo el destacado)
+const briefs = miradas.filter((m) => m.slug !== featuredComentario?.slug).slice(0, 4);
 
 const metadata = {
   title: t.metaTitle,
@@ -191,57 +190,42 @@ const metadata = {
         </h2>
       </div>
 
-      {mirada5 && (
-        <a href={mirada5.url} class="block group mb-10">
+      {featuredComentario && (
+        <a href={featuredComentario.url} class="block group mb-10">
           <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
             <div class="grid grid-cols-1 lg:grid-cols-2">
               <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span class="bg-[#4A7C59] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{mirada5.frontmatter?.badge || t.miradas2050}</span>
-                  <span class="text-[10px] font-mono-tech font-bold text-[#4A7C59] uppercase tracking-widest">
-                    {mirada5.frontmatter?.category || t.miradasBadge} · {mirada5.frontmatter?.pubDate ? new Date(mirada5.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
+                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">
+                    {featuredComentario.frontmatter?.badge || 'EXPERT TAKE'}
+                  </span>
+                  <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] dark:text-[#5b8def] uppercase tracking-widest">
+                    {featuredComentario.frontmatter?.pubDate
+                      ? new Date(featuredComentario.frontmatter.pubDate).toLocaleDateString(
+                          locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN',
+                          { day: '2-digit', month: 'short', year: 'numeric' }
+                        )
+                      : ''}
                   </span>
                 </div>
                 <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
-                  {mirada5.frontmatter?.title}
+                  {featuredComentario.frontmatter?.title}
                 </h3>
-                <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
-                  {mirada5.frontmatter?.excerpt}
-                </p>
+                {featuredComentario.frontmatter?.excerpt && (
+                  <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
+                    {featuredComentario.frontmatter?.excerpt}
+                  </p>
+                )}
                 <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">
-                  {mirada5.frontmatter?.author}
+                  {(featuredComentario.frontmatter?.author || '').toUpperCase()}
                 </p>
               </div>
               <div class="relative min-h-[280px] lg:min-h-[360px]">
-                <img src={mirada5.frontmatter?.image} alt={mirada5.frontmatter?.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
-              </div>
-            </div>
-          </article>
-        </a>
-      )}
-      {mirada6 && (
-        <a href={mirada6.url} class="block group mb-10">
-          <article class="rounded-2xl overflow-hidden border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
-            <div class="grid grid-cols-1 lg:grid-cols-2">
-              <div class="relative min-h-[280px] lg:min-h-[360px]">
-                <img src={mirada6.frontmatter?.image} alt={mirada6.frontmatter?.title} class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
-              </div>
-              <div class="p-6 sm:p-8 flex flex-col justify-center gap-3">
-                <div class="flex items-center gap-2 flex-wrap">
-                  <span class="bg-[#1344e7] text-white font-mono-tech font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-widest">{mirada6.frontmatter?.badge || t.miradas2050}</span>
-                  <span class="text-[10px] font-mono-tech font-bold text-[#1344e7] uppercase tracking-widest">
-                    {mirada6.frontmatter?.category || t.miradasBadge} · {mirada6.frontmatter?.pubDate ? new Date(mirada6.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
-                  </span>
-                </div>
-                <h3 class="font-sans text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#f3f4f6] leading-tight tracking-tight">
-                  {mirada6.frontmatter?.title}
-                </h3>
-                <p class="font-fraunces font-normal italic text-lg text-slate-800 dark:text-slate-300 leading-relaxed">
-                  {mirada6.frontmatter?.excerpt}
-                </p>
-                <p class="text-xs text-slate-600 dark:text-slate-400 font-medium uppercase tracking-wide">
-                  {mirada6.frontmatter?.author}
-                </p>
+                <img
+                  src={featuredComentario.frontmatter?.image}
+                  alt={featuredComentario.frontmatter?.title}
+                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                />
               </div>
             </div>
           </article>
