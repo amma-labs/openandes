@@ -155,6 +155,8 @@ export const zh = {
       typeAnalisis: '分析',
       typeMiradas: '2050 观点',
       typeInforme: '报告',
+      topTopics: '最受关注的主题',
+      allTopics: '所有主题',
     },
     comentarios: {
       metaTitle: '评论 — Open Andes',

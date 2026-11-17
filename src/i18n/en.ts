@@ -154,6 +154,8 @@ export const en = {
       typeAnalisis: 'Analysis',
       typeMiradas: 'Miradas 2050',
       typeInforme: 'Report',
+      topTopics: 'Most covered topics',
+      allTopics: 'All topics',
     },
     comentarios: {
       metaTitle: 'Commentary — Open Andes',
