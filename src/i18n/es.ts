@@ -156,6 +156,7 @@ export const es = {
       emptyState: 'No hay contenido con este tag.',
       typeAnalisis: 'Análisis',
       typeMiradas: 'Miradas 2050',
+      typeInforme: 'Informe',
     },
     comentarios: {
       metaTitle: 'Comentarios — Open Andes',

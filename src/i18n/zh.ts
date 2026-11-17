@@ -154,6 +154,7 @@ export const zh = {
       emptyState: '没有带有此标签的内容。',
       typeAnalisis: '分析',
       typeMiradas: '2050 观点',
+      typeInforme: '报告',
     },
     comentarios: {
       metaTitle: '评论 — Open Andes',

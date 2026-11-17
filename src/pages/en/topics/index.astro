@@ -11,6 +11,7 @@ export const prerender = true;
 
 const posts = import.meta.glob('../../../data/post/en/*.{md,mdx}');
 const miradas = import.meta.glob('../../../data/comentarios/en/*.{md,mdx}');
+const reports = import.meta.glob('../../../content/reports/en/*.{md,mdx}');
 
 const tagCounts: Record<string, { count: number; label: string }> = {};
 
@@ -25,6 +26,16 @@ for (const path in posts) {
 }
 for (const path in miradas) {
   const mod = (await miradas[path]()) as { frontmatter?: Record<string, any> };
+  const tags = mod.frontmatter?.tags || [];
+  tags.forEach((tag: string) => {
+    const key = tag.toLowerCase().replace(/\s+/g, '-');
+    if (!tagCounts[key]) tagCounts[key] = { count: 0, label: tag };
+    tagCounts[key].count++;
+  });
+}
+
+for (const path in reports) {
+  const mod = (await reports[path]()) as { frontmatter?: Record<string, any> };
   const tags = mod.frontmatter?.tags || [];
   tags.forEach((tag: string) => {
     const key = tag.toLowerCase().replace(/\s+/g, '-');

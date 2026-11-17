@@ -12,6 +12,7 @@ export const prerender = true;
 export async function getStaticPaths() {
   const posts = import.meta.glob('../../../data/post/en/*.{md,mdx}');
   const miradas = import.meta.glob('../../../data/comentarios/en/*.{md,mdx}');
+const reports = import.meta.glob('../../../content/reports/en/*.{md,mdx}');
 
   const allTags = new Set<string>();
 
@@ -37,6 +38,7 @@ const normalizedTag = tag.toLowerCase();
 
 const postsMods = import.meta.glob('../../../data/post/en/*.{md,mdx}');
 const miradasMods = import.meta.glob('../../../data/comentarios/en/*.{md,mdx}');
+const reportsMods = import.meta.glob('../../../content/reports/en/*.{md,mdx}');
 
 const items = [];
 
@@ -74,6 +76,26 @@ for (const path in miradasMods) {
       image: mod.frontmatter?.image,
       category: mod.frontmatter?.category,
       url: `/en/comentarios/${m[2]}`,
+    });
+  }
+}
+
+
+for (const path in reportsMods) {
+  const mod = (await reportsMods[path]()) as { frontmatter?: Record<string, any>; Content?: any };
+  const tags = (mod.frontmatter?.tags || []).map((tag: string) => tag.toLowerCase());
+  if (tags.includes(normalizedTag)) {
+    const m = path.match(/\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
+    if (!m || m[1] !== locale) continue;
+    items.push({
+      type: t.typeInforme,
+      title: mod.frontmatter?.title,
+      excerpt: mod.frontmatter?.excerpt,
+      author: mod.frontmatter?.author,
+      pubDate: mod.frontmatter?.pubDate,
+      image: mod.frontmatter?.image,
+      category: mod.frontmatter?.category,
+      url: `/en/monitor/${m[2]}`,
     });
   }
 }
