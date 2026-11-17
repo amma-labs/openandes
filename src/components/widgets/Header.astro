@@ -234,7 +234,7 @@ const currentLang: Lang = getLangFromUrl(Astro);
   class AwHeader extends HTMLElement {
     private onScroll?: () => void;
     private mql?: MediaQueryList;
-    private onMqlChange?: () => void;
+    private onMqlChange?: (e: MediaQueryListEvent) => void;
     private onPageLoad = () => {
       this.updateActiveLinks();
       this.closeOpenDropdown();
@@ -268,13 +268,13 @@ const currentLang: Lang = getLangFromUrl(Astro);
 
       nav?.addEventListener("click", closeMenu);
 
-      nav?.addEventListener("click", (e) => {
+      nav?.addEventListener("click", (e: Event) => {
         const link = (e.target as HTMLElement)?.closest<HTMLElement>(".dropdown-menu a");
         if (link) link.blur();
       });
 
       this.mql = window.matchMedia("(min-width: 1280px)");
-      this.onMqlChange = (e) => {
+      this.onMqlChange = (e: MediaQueryListEvent) => {
         if (e.matches) {
           closeMenu();
         }

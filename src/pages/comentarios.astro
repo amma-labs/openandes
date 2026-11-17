@@ -24,7 +24,7 @@ const posts = (
       const fallback = `../data/comentarios/es/${slug}.mdx`;
       const loader = allFiles[wanted] ?? allFiles[fallback];
       if (!loader) return null;
-      const post = await loader();
+      const post = (await loader()) as { frontmatter?: Record<string, any>; Content?: any };
       return {
         ...post,
         slug,
@@ -33,18 +33,18 @@ const posts = (
       };
     })
   )
-).filter((p): p is NonNullable<typeof p> => p !== null);
+).filter((p: any): p is NonNullable<typeof p> => p !== null);
 
-const sortedPosts = posts.sort((a, b) => {
+const sortedPosts = posts.sort((a: any, b: any) => {
   const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
   const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
-  return dateB - dateA;
+  return dateB.getTime() - dateA.getTime();
 });
 
 const tagCounts: Record<string, number> = {};
 for (const post of sortedPosts) {
   const tags = post.frontmatter?.tags || [];
-  tags.forEach((tag) => {
+  tags.forEach((tag: string) => {
     const key = tag.toLowerCase();
     tagCounts[key] = (tagCounts[key] || 0) + 1;
   });
@@ -56,7 +56,7 @@ const topics = Object.entries(tagCounts)
     slug: key.replace(/\s+/g, '-'),
     count,
   }))
-  .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+  .sort((a: any, b: any) => b.count - a.count || a.label.localeCompare(b.label));
 
 const metadata = {
   title: t.metaTitle,
@@ -98,7 +98,7 @@ const metadata = {
       <p class="text-center text-[#4b5563] dark:text-slate-300">{t.emptyState}</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {sortedPosts.map((post) => {
+        {sortedPosts.map((post: any) => {
           const image = post.frontmatter?.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80';
           return (
             <article class="group rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-[#e5e7eb] dark:border-[#2a2a2a] bg-white dark:bg-white/5">

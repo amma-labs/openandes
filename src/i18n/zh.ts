@@ -111,6 +111,7 @@ export const zh = {
 
   pages: {
     monitor: {
+      metaDesc: 'Open Andes 关于拉美-亚洲地缘经济、物流和金融研究的监测。',
       metaTitle: '拉丁美洲—亚洲研究 — OpenAndes',
       tagline: '研究',
       heroTitle: '拉丁美洲—亚洲',

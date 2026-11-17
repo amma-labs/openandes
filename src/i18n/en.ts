@@ -110,6 +110,7 @@ export const en = {
 
   pages: {
     monitor: {
+      metaDesc: 'Monitor of Open Andes research on LatAm-Asia geoeconomics, logistics and finance.',
       metaTitle: 'LatAm-Asia Research — OpenAndes',
       tagline: 'Research',
       heroTitle: 'LatAm-Asia',

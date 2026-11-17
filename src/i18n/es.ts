@@ -112,6 +112,7 @@ export const es = {
 
   pages: {
     monitor: {
+      metaDesc: 'Monitor de investigaciones de Open Andes sobre geoeconomía, logística y finanzas LatAm-Asia.',
       metaTitle: 'Investigación LatAm-Asia — OpenAndes',
       tagline: 'Investigación',
       heroTitle: 'LatAm-Asia',

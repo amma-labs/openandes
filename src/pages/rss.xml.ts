@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
-export async function GET(context) {
+export async function GET(context: { site: URL }) {
   const posts = await getCollection('post');
   const siteUrl = 'https://openandes.org';
   
@@ -15,7 +15,7 @@ export async function GET(context) {
       return {
         title: post.data.title,
         pubDate: post.data.pubDate,
-        description: post.data.excerpt || post.data.description || '',
+        description: post.data.description || post.data.description || '',
         link: `${siteUrl}/analisis/${slug}/`,
       };
     }),

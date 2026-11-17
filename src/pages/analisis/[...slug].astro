@@ -82,7 +82,7 @@ const metadata = {
           </div>
           {post.frontmatter?.tags && post.frontmatter.tags.length > 0 && (
             <div class="flex flex-wrap gap-2 mt-4">
-              {post.frontmatter.tags.map((tag) => (
+              {post.frontmatter.tags.map((tag: string) => (
                 <a
                   href={`/topics/${tag.toLowerCase().replace(/\s+/g, "-")}`}
                   class="text-xs bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] px-2 py-1 rounded-full text-[#1344e7] dark:text-[#5b8def] font-mono-tech uppercase hover:bg-[#1344e7] hover:text-white dark:hover:bg-[#1344e7] transition-colors"
@@ -128,7 +128,7 @@ const metadata = {
           <div class="mt-12 pt-8 border-t border-[#e5e7eb] dark:border-[#2a2a2a]">
             <h2 class="font-sans font-bold text-2xl text-[#111827] dark:text-[#f3f4f6] mb-4">Bibliografía</h2>
             <ol class="space-y-3 text-sm text-[#4b5563] dark:text-[#4b5563] list-decimal pl-5">
-              {post.frontmatter.bibliography.map((item) => (
+              {post.frontmatter.bibliography.map((item: string) => (
                 <li set:html={item.replace(/\*(.*?)\*/g, "<em>$1</em>")} />
               ))}
             </ol>

@@ -6,8 +6,6 @@ export const GET: APIRoute = async () => {
   try {
     const posts = await fetchInstagramPosts({
       username: 'openandes_org',
-      limit: 6,
-      proxyImages: false,
     });
     return new Response(JSON.stringify(posts), {
       status: 200,

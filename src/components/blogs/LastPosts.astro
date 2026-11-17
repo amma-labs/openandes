@@ -3,7 +3,7 @@ const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
 
 // Este componente obtiene el último post de Fun Politik y 2050lab desde sus feeds RSS
 
-const decodeHTML = (str) => {
+const decodeHTML = (str: string) => {
   if (!str) return '';
   return str
     .replace(/&amp;/g, '&')
@@ -11,14 +11,14 @@ const decodeHTML = (str) => {
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/&#([0-9]+);/g, (match, dec) => {
+    .replace(/&#([0-9]+);/g, (match: string, dec: string) => {
       try {
-        return String.fromCharCode(dec);
+        return String.fromCharCode(parseInt(dec, 10));
       } catch {
         return match;
       }
     })
-    .replace(/&#x([0-9a-fA-F]+);/g, (match, hex) => {
+    .replace(/&#x([0-9a-fA-F]+);/g, (match: string, hex: string) => {
       try {
         return String.fromCharCode(parseInt(hex, 16));
       } catch {
@@ -27,10 +27,10 @@ const decodeHTML = (str) => {
     });
 };
 
-const parseRSS = (xml) => {
+const parseRSS = (xml: string) => {
   const items = [];
   const itemRegex = /<item>([\s\S]*?)<\/item>/g;
-  let match;
+  let match: RegExpExecArray | null;
 
   while ((match = itemRegex.exec(xml)) !== null) {
     const itemXml = match[1];
@@ -57,7 +57,7 @@ const parseRSS = (xml) => {
   return items;
 };
 
-const fetchFeed = async (url) => {
+const fetchFeed = async (url: string) => {
   try {
     const res = await fetch(url);
     if (!res.ok) return [];
@@ -73,10 +73,10 @@ const [funPolitikPosts, futuresLabPosts] = await Promise.all([
   fetchFeed('https://2050lab.substack.com/feed'),
 ]);
 
-const getLastPost = (posts) => {
+const getLastPost = (posts: any[]) => {
   if (!posts || posts.length === 0) return null;
   return posts.sort(
-    (a, b) =>
+    (a: any, b: any) =>
       new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
   )[0];
 };

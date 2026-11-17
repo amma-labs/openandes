@@ -22,7 +22,7 @@ const posts = (
       const fallback = `../data/post/es/${slug}.mdx`;
       const loader = allFiles[wanted] ?? allFiles[fallback];
       if (!loader) return null;
-      const post = await loader();
+      const post = (await loader()) as { frontmatter?: Record<string, any>; Content?: any };
       return {
         ...post,
         slug,
@@ -31,12 +31,12 @@ const posts = (
       };
     })
   )
-).filter((p): p is NonNullable<typeof p> => p !== null);
+).filter((p: any): p is NonNullable<typeof p> => p !== null);
 
 // Ordenar por fecha y obtener el más reciente
-const sortedPosts = posts.sort((a, b) => {
-  const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01');
-  const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01');
+const sortedPosts = posts.sort((a: any, b: any) => {
+  const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01').getTime();
+  const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01').getTime();
   return dateB - dateA;
 });
 
@@ -49,7 +49,7 @@ const mainPost = visiblePosts[0] || null;
 
 // Importar reportes para el hero
 const reports = (await getCollection('reports', ({ data }) => !data.draft && data.lang === locale))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime());
 const mainReport = reports[0] || null;
 const getReportSlug = (id: string) => id.replace(/\.(md|mdx)$/, '');
 
@@ -61,7 +61,7 @@ const miradas = await Promise.all(
   Object.entries(allMiradas)
     .filter(([path]) => path.includes(`/comentarios/${locale}/`))
     .map(async ([path, load]) => {
-      const post = await load();
+      const post = (await load()) as { frontmatter?: Record<string, any>; Content?: any };
       const slug = path.split('/').pop()?.replace(/\.(md|mdx)$/, '') ?? '';
       return {
         ...post,
@@ -72,17 +72,17 @@ const miradas = await Promise.all(
 );
 
 // Ordenar por fecha descendente
-miradas.sort((a, b) => {
+miradas.sort((a: any, b: any) => {
   const dateA = new Date(a.frontmatter?.pubDate || '1970-01-01').getTime();
   const dateB = new Date(b.frontmatter?.pubDate || '1970-01-01').getTime();
   return dateB - dateA;
 });
 
 // Destacado principal: Bernardo Muñoz Aguilar
-const featuredComentario = miradas.find((m) => m.slug === 'bernardo-munoz-chile') || miradas[0];
+const featuredComentario = miradas.find((m: any) => m.slug === 'bernardo-munoz-chile') || miradas[0];
 
 // Siguientes 4 para el array briefs (excluyendo el destacado)
-const briefs = miradas.filter((m) => m.slug !== featuredComentario?.slug).slice(0, 4);
+const briefs = miradas.filter((m: any) => m.slug !== featuredComentario?.slug).slice(0, 4);
 
 const metadata = {
   title: t.metaTitle,
@@ -292,7 +292,7 @@ const metadata = {
     <!-- RADAR WIDGET                                 -->
     <!-- ============================================ -->
     <section class="py-12 px-4 sm:px-6 mx-auto max-w-7xl font-sans">
-      <RadarWidget title={t.radarTitle} badgePosition="right" />
+      <RadarWidget title={t.radarTitle} />
     </section>
 
   </div>

@@ -16,17 +16,17 @@ export async function getStaticPaths() {
   const allTags = new Set<string>();
 
   for (const path in posts) {
-    const mod = await posts[path]();
+    const mod = (await posts[path]()) as { frontmatter?: Record<string, any> };
     const tags = mod.frontmatter?.tags || [];
-    tags.forEach((tag) => allTags.add(tag));
+    tags.forEach((tag: string) => allTags.add(tag));
   }
   for (const path in miradas) {
-    const mod = await miradas[path]();
+    const mod = (await miradas[path]()) as { frontmatter?: Record<string, any> };
     const tags = mod.frontmatter?.tags || [];
-    tags.forEach((tag) => allTags.add(tag));
+    tags.forEach((tag: string) => allTags.add(tag));
   }
 
-  return Array.from(allTags).map((tag) => ({
+  return Array.from(allTags).map((tag: string) => ({
     params: { slug: tag.toLowerCase().replace(/\s+/g, '-') },
     props: { tag },
   }));
@@ -41,8 +41,8 @@ const miradasMods = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
 const items = [];
 
 for (const path in postsMods) {
-  const mod = await postsMods[path]();
-  const tags = (mod.frontmatter?.tags || []).map((tag) => tag.toLowerCase());
+  const mod = (await postsMods[path]()) as { frontmatter?: Record<string, any> };
+  const tags = (mod.frontmatter?.tags || []).map((tag: string) => tag.toLowerCase());
   if (tags.includes(normalizedTag)) {
     const m = path.match(/\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
     if (!m || m[1] !== locale) continue;
@@ -60,8 +60,8 @@ for (const path in postsMods) {
 }
 
 for (const path in miradasMods) {
-  const mod = await miradasMods[path]();
-  const tags = (mod.frontmatter?.tags || []).map((tag) => tag.toLowerCase());
+  const mod = (await miradasMods[path]()) as { frontmatter?: Record<string, any>; Content?: any };
+  const tags = (mod.frontmatter?.tags || []).map((tag: string) => tag.toLowerCase());
   if (tags.includes(normalizedTag)) {
     const m = path.match(/\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
     if (!m || m[1] !== locale) continue;
@@ -78,7 +78,7 @@ for (const path in miradasMods) {
   }
 }
 
-const sortedItems = items.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+const sortedItems = items.sort((a: any, b: any) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
 const metadata = {
   title: `${tag} — Open Andes`,
