@@ -41,23 +41,6 @@ const sortedPosts = posts.sort((a: any, b: any) => {
   return dateB.getTime() - dateA.getTime();
 });
 
-const tagCounts: Record<string, number> = {};
-for (const post of sortedPosts) {
-  const tags = post.frontmatter?.tags || [];
-  tags.forEach((tag: string) => {
-    const key = tag.toLowerCase();
-    tagCounts[key] = (tagCounts[key] || 0) + 1;
-  });
-}
-
-const topics = Object.entries(tagCounts)
-  .map(([key, count]) => ({
-    label: key,
-    slug: key.replace(/\s+/g, '-'),
-    count,
-  }))
-  .sort((a: any, b: any) => b.count - a.count || a.label.localeCompare(b.label));
-
 const metadata = {
   title: t.metaTitle,
   description: t.metaDesc,
@@ -76,19 +59,6 @@ const metadata = {
       <div class="mt-4 text-lg font-medium text-slate-700 dark:text-slate-400 md:mt-3 max-w-2xl mx-auto">
         {t.heroDesc}
       </div>
-      {topics.length > 0 && (
-        <div class="mt-8 flex flex-wrap justify-center gap-2">
-          {topics.map((topic) => (
-            <a
-              href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] text-[#1344e7] dark:text-[#5b8def] font-mono-tech text-xs hover:bg-[#1344e7] hover:text-white dark:hover:bg-[#1344e7] transition-colors"
-            >
-              <span>{topic.label}</span>
-              <span class="text-[10px] opacity-60">· {topic.count}</span>
-            </a>
-          ))}
-        </div>
-      )}
     </header>
   </section>
 
