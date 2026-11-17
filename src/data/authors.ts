@@ -53,6 +53,14 @@ export const authors: Record<string, Author> = {
     bio: 'es maestra en Derecho Constitucional y Derechos Humanos, con formación como abogada e internacionalista. Desde 2019 representa a colectivos en foros nacionales e internacionales, con trayectoria de colaboración junto a organizaciones como USAID, FMCN y Sureste Sostenible. Su trabajo analiza la justicia climática, los derechos humanos y la geopolítica. Es cofundadora de Hackers por Nuestro Futuro A.C. y actualmente es investigadora asociada en Open Andes.',
   },
 
+  'lautaro-pittier': {
+    name: 'Lautaro Ezequiel Pittier',
+    bio: 'es Abogado. Profesor Adjunto de Derechos Humanos y Derecho Constitucional en la Universidad Nacional de Lomas de Zamora (UNLZ) y Director de Asuntos Jurídicos de su Facultad de Derecho. Director del Instituto de Derechos Humanos del Colegio de Abogados de Lomas de Zamora. Docente también en la UAI y en la ECAE. Vocal del Consejo de la Magistratura de la Nación. Ex relator del fuero Contencioso Administrativo Federal de la Ciudad Autónoma de Buenos Aires.',
+  },
+  'nahuel-bento': {
+    name: 'Nahuel Agustín Bento',
+    bio: 'es Abogado y Procurador, Universidad de Mendoza. Especialista y Magister en "Justicia Constitucional y Derechos Humanos", Universidad Alma Mater de Bolonia, Italia. Magister en "Derecho Procesal Penal y Oratoria Forense", Universidad Latinoamericana de Ciencias Jurídicas de Miami, EEUU. Especialista en "Docencia en Entornos Virtuales", Universidad Champagnat de Mendoza, Argentina. Doctorando Universidad de Mendoza.',
+  },
   'dina-fazlizhanova': {
     name: 'Dina Fazlizhanova',
     bio: 'es doctora en ciencias por la Skoltech y física graduada con honores de la Universidad Estatal de Moscú (MSU). Ha publicado en Scientific Reports y colaborado con institutos de investigación internacionales. Aporta una perspectiva única respecto a las cadenas de suministro global, recursos estratégicos y dependencias tecnológicas.',

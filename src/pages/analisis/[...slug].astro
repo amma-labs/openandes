@@ -40,8 +40,10 @@ const loader =
 if (!loader) throw new Error(`No hay post para slug "${slug}" (locale=${locale})`);
 const post = (await loader()) as { Content: any; frontmatter: Record<string, any> };
 
-const authorSlug = post.frontmatter?.authorSlug;
-const authorData = authorSlug ? authors[authorSlug] : null;
+const authorSlugs: string[] =
+  (post.frontmatter?.authorSlugs as string[] | undefined) ??
+  (post.frontmatter?.authorSlug ? [post.frontmatter.authorSlug as string] : []);
+const authorDatas = authorSlugs.map((slug) => authors[slug]).filter(Boolean);
 
 const metadata = {
   title: `${post.frontmatter?.title || "Artículo"} | OpenAndes`,
@@ -115,12 +117,14 @@ const metadata = {
           <post.Content />
         </div>
 
-        {authorData && (
-          <div class="mt-12 pt-8 border-t border-[#e5e7eb] dark:border-[#2a2a2a]">
-            <p class="font-fraunces text-[#111827] dark:text-[#f3f4f6]">
-              <strong>{authorData.name}</strong>{" "}
-              <em>{authorData.bio}</em>
-            </p>
+        {authorDatas.length > 0 && (
+          <div class="mt-12 pt-8 border-t border-[#e5e7eb] dark:border-[#2a2a2a] space-y-4">
+            {authorDatas.map((author) => (
+              <p class="font-fraunces text-[#111827] dark:text-[#f3f4f6]">
+                <strong>{author.name}</strong>{" "}
+                <em>{author.bio}</em>
+              </p>
+            ))}
           </div>
         )}
 
