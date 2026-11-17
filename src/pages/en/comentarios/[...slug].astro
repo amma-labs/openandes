@@ -1,0 +1,149 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import ShareButtons from '~/components/common/ShareButtons.astro';
+import { authors } from '~/data/authors';
+
+export async function getStaticPaths() {
+  const files = import.meta.glob('../../../data/comentarios/en/*.{md,mdx}');
+  return Object.keys(files).map((filepath) => {
+    const slug = filepath.match(/\/([^/]+)\.(md|mdx)$/)![1];
+    return { params: { slug }, props: { locale: 'en' as const, slug } };
+  });
+}
+
+const { slug } = Astro.params;
+const locale = 'en' as const;
+
+const allPosts = import.meta.glob('../../../data/comentarios/en/*.{md,mdx}');
+const loader = 
+  allPosts[`../../../data/comentarios/${locale}/${slug}.mdx`] ||
+  allPosts[`../../../data/comentarios/${locale}/${slug}.md`] ||
+  allPosts[`../../../data/comentarios/es/${slug}.mdx`];
+
+if (!loader) throw new Error(`No hay artículo para slug "${slug}" (locale=${locale})`);
+const post = (await loader()) as { Content: any; frontmatter: Record<string, any> };
+
+const authorSlug = post.frontmatter?.authorSlug;
+const authorData = authorSlug ? authors[authorSlug] : null;
+
+const metadata = {
+  title: `${post.frontmatter?.title || "Artículo"} | OpenAndes`,
+  description: post.frontmatter?.excerpt || "",
+  openGraph: {
+    images: post.frontmatter?.image ? [{ url: post.frontmatter.image }] : [],
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="mx-auto max-w-5xl px-6 py-12 sm:py-16 lg:py-20">
+    <div class="lg:grid lg:grid-cols-[80px_1fr] lg:gap-8">
+
+      <ShareButtons variant="sticky" />
+
+      <article class="max-w-3xl">
+        <header class="mb-10">
+          <a href="/comentarios" class="text-[#1344e7] dark:text-[#5b8def] hover:underline text-sm font-medium">
+            &larr; {locale === 'es' ? 'Volver a Comentarios' : locale === 'en' ? 'Back to Commentary' : '返回评论'}
+          </a>
+          <h1 class="text-4xl font-sans font-bold mt-6 text-[#111827] dark:text-[#f3f4f6] leading-tight">
+            {post.frontmatter?.title || 'Sin título'}
+          </h1>
+          <div class="flex items-center gap-4 mt-4 text-sm text-[#4b5563]">
+            {post.frontmatter?.author && (
+              <span class="font-medium uppercase tracking-wide">Por {post.frontmatter.author}</span>
+            )}
+            {post.frontmatter?.pubDate && (
+              <time>
+                {new Date(post.frontmatter.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+            )}
+          </div>
+          {post.frontmatter?.tags && post.frontmatter.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-4">
+              {post.frontmatter.tags.map((tag) => (
+                <a
+                  href={`/topics/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+                  class="text-xs bg-[#e2f3ff]/70 dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] px-2 py-1 rounded-full text-[#1344e7] dark:text-[#5b8def] font-mono-tech hover:bg-[#1344e7] hover:text-white dark:hover:bg-[#1344e7] transition-colors"
+                >
+                  #{tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </header>
+
+        <div class="prose prose-lg max-w-none font-fraunces
+          text-[#111827] dark:text-[#f3f4f6]
+          prose-headings:font-sans prose-headings:font-bold prose-headings:tracking-tight
+          prose-headings:text-[#111827] dark:prose-headings:text-[#f3f4f6]
+          prose-p:leading-relaxed prose-p:text-[20px] prose-p:text-[#0a0705] dark:prose-p:text-[#f3f4f6] prose-p:font-light prose-p:mb-6
+          prose-a:text-[#1344e7] dark:prose-a:text-[#7fb3e0] prose-a:no-underline hover:prose-a:underline
+          prose-sup:text-xs prose-sup:font-mono-tech prose-sup:text-[#1344e7] dark:prose-sup:text-[#5b8def] prose-strong:text-[#111827] dark:prose-strong:text-[#f3f4f6]
+          prose-li:text-[#111827] dark:prose-li:text-[#f3f4f6]
+          prose-img:rounded-xl prose-img:shadow-md
+          prose-figure:my-8
+          prose-figcaption:text-center prose-figcaption:text-sm prose-figcaption:text-[#4b5563]
+          prose-blockquote:border-l-4 prose-blockquote:border-[#1344e7]
+          prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-[#4b5563] dark:prose-blockquote:text-[#4b5563]
+          [&_img]:my-8 [&_img]:rounded-xl [&_img]:shadow-lg">
+          <post.Content />
+        </div>
+
+        {authorData && (
+          <div data-author-bio class="not-prose mt-12 mb-10 text-base leading-relaxed">
+            <p class="font-fraunces text-[#111827] dark:text-[#f3f4f6]">
+              <strong>{authorData.name}</strong>{' '}
+              <em>{authorData.bio}</em>
+            </p>
+          </div>
+        )}
+
+        {post.frontmatter?.bibliography && post.frontmatter.bibliography.length > 0 && (
+          <div class="mt-12 pt-8 border-t border-[#e5e7eb] dark:border-[#2a2a2a]">
+            <h2 class="font-sans font-bold text-2xl text-[#111827] dark:text-[#f3f4f6] mb-4">Bibliografía</h2>
+            <ol class="space-y-3 text-sm text-[#4b5563] dark:text-[#4b5563] list-decimal pl-5">
+              {post.frontmatter.bibliography.map((item) => (
+                <li set:html={item.replace(/\*(.*?)\*/g, "<em>$1</em>")} />
+              ))}
+            </ol>
+          </div>
+        )}
+
+        <div class="mt-10 p-5 rounded-lg border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
+          <p class="font-mono-tech font-bold text-xs uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def] mb-2">
+            Nota editorial
+          </p>
+          <p class="text-sm text-[#4b5563] dark:text-[#4b5563] leading-relaxed">
+            Este trabajo representa exclusivamente las opiniones del autor o autores. Open Andes es un think tank y editorial independiente, y no adopta posturas institucionales sobre asuntos de política pública.
+          </p>
+        </div>
+
+        <ShareButtons variant="inline" />
+      </article>
+
+    </div>
+  </div>
+
+<script is:inline>
+  window.addEventListener('load', () => {
+    const headings = document.querySelectorAll('article h2');
+    let notesHeading = null;
+    for (const h of headings) {
+      const text = h.textContent?.trim().toLowerCase();
+      if (text === 'notas' || text === 'notes' || text === '注释') {
+        notesHeading = h;
+        break;
+      }
+    }
+    if (!notesHeading) return;
+    const authorBio = document.querySelector('[data-author-bio]');
+    if (!authorBio) return;
+    notesHeading.parentNode.insertBefore(authorBio, notesHeading);
+  });
+</script>
+</Layout>

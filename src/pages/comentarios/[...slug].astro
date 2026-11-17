@@ -4,32 +4,17 @@ import ShareButtons from '~/components/common/ShareButtons.astro';
 import { authors } from '~/data/authors';
 
 export async function getStaticPaths() {
-  const paths = [];
-  const locales = ['es', 'en', 'zh'] as const;
-  const files = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
-  const seen = new Set<string>();
-
-  for (const filepath in files) {
-    const m = filepath.match(/\/comentarios\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
-    if (!m) continue;
-    const [, locale, slug] = m;
-    if (!locales.includes(locale as any)) continue;
-    const key = `${locale}/${slug}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    paths.push({
-      params: { lang: locale === 'es' ? undefined : locale, slug },
-      props: { locale, slug },
-    });
-  }
-  return paths;
+  const files = import.meta.glob('../../data/comentarios/es/*.{md,mdx}');
+  return Object.keys(files).map((filepath) => {
+    const slug = filepath.match(/\/([^/]+)\.(md|mdx)$/)![1];
+    return { params: { slug }, props: { locale: 'es' as const, slug } };
+  });
 }
 
 const { slug } = Astro.params;
-const { locale: propLocale } = Astro.props;
-const locale = (propLocale || 'es');
+const locale = 'es' as const;
 
-const allPosts = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
+const allPosts = import.meta.glob('../../data/comentarios/es/*.{md,mdx}');
 const loader = 
   allPosts[`../../data/comentarios/${locale}/${slug}.mdx`] ||
   allPosts[`../../data/comentarios/${locale}/${slug}.md`] ||
