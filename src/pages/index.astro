@@ -13,7 +13,10 @@ const allFiles = import.meta.glob('../data/post/*/*.{md,mdx}');
 const slugs = new Set<string>();
 for (const filepath in allFiles) {
   const m = filepath.match(/\/post\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
-  if (m) slugs.add(m[2]);
+  if (!m) continue;
+  const [, fileLocale, slug] = m;
+  // Solo slugs del locale actual (la home no mezcla idiomas)
+  if (fileLocale === locale) slugs.add(slug);
 }
 const posts = (
   await Promise.all(
