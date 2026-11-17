@@ -33,6 +33,7 @@ export function headerData(lang: Lang = 'es'): HeaderData {
       { text: t.nav.research, href: localizedPath('/monitor', lang) },
       { text: t.nav.analysis, href: localizedPath('/analisis', lang) },
       { text: t.nav.commentary, href: localizedPath('/comentarios', lang) },
+      { text: t.nav.topics, href: localizedPath('/topics', lang) },
       { text: t.nav.events, href: localizedPath('/eventos', lang) },
     ],
   };

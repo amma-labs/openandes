@@ -17,6 +17,7 @@ export const es = {
     research: 'Investigación',
     analysis: 'Análisis',
     commentary: 'Comentarios',
+    topics: 'Temas',
     events: 'Eventos',
     ariaLabel: 'Navegación principal',
   },

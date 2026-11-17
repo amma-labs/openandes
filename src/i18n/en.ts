@@ -16,6 +16,7 @@ export const en = {
     research: 'Research',
     analysis: 'Analysis',
     commentary: 'Commentary',
+    topics: 'Topics',
     events: 'Events',
     ariaLabel: 'Main navigation',
   },
