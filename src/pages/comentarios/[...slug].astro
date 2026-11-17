@@ -104,7 +104,7 @@ const metadata = {
           prose-blockquote:border-l-4 prose-blockquote:border-[#1344e7]
           prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-[#4b5563] dark:prose-blockquote:text-[#4b5563]
           [&_img]:my-8 [&_img]:rounded-xl [&_img]:shadow-lg">
-          <div id="article-content" set:html={post.Content}></div>
+          <post.Content />
         </div>
 
         {authorData && (
@@ -116,18 +116,7 @@ const metadata = {
           </div>
         )}
 
-{post.frontmatter?.bibliography && post.frontmatter.bibliography.length > 0 && (
-          <div class="mt-12 pt-8 border-t border-[#e5e7eb] dark:border-[#2a2a2a]">
-            <h2 class="font-sans font-bold text-2xl text-[#111827] dark:text-[#f3f4f6] mb-4">Bibliografía</h2>
-            <ol class="space-y-3 text-sm text-[#4b5563] dark:text-[#4b5563] list-decimal pl-5">
-              {post.frontmatter.bibliography.map((item) => (
-                <li set:html={item.replace(/\*(.*?)\*/g, "<em>$1</em>")}
 
-         />
-              ))}
-            </ol>
-          </div>
-        )}
         <div class="mt-10 p-5 rounded-lg border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-white/5">
           <p class="font-mono-tech font-bold text-xs uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def] mb-2">
             Nota editorial
@@ -143,13 +132,13 @@ const metadata = {
     </div>
   </div>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const articleContent = document.getElementById('article-content');
-    if (!articleContent) return;
 
+
+
+<script is:inline>
+  window.addEventListener('load', () => {
     // Buscar el encabezado de notas (h2 con texto "Notas", "Notes" o "注释")
-    const headings = articleContent.querySelectorAll('h2');
+    const headings = document.querySelectorAll('article h2');
     let notesHeading = null;
     for (const h of headings) {
       const text = h.textContent?.trim().toLowerCase();
