@@ -5,13 +5,13 @@ import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 const lang = getLangFromUrl(Astro);
 const t = useTranslations(lang).pages.topics;
 
-const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
+const locale = 'es' as const;
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const posts = import.meta.glob('../../data/post/*/*.{md,mdx}');
-  const miradas = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
+  const posts = import.meta.glob('../../data/post/es/*.{md,mdx}');
+  const miradas = import.meta.glob('../../data/comentarios/es/*.{md,mdx}');
 
   const allTags = new Set<string>();
 
@@ -35,8 +35,8 @@ export async function getStaticPaths() {
 const { tag } = Astro.props;
 const normalizedTag = tag.toLowerCase();
 
-const postsMods = import.meta.glob('../../data/post/*/*.{md,mdx}');
-const miradasMods = import.meta.glob('../../data/comentarios/*/*.{md,mdx}');
+const postsMods = import.meta.glob('../../data/post/es/*.{md,mdx}');
+const miradasMods = import.meta.glob('../../data/comentarios/es/*.{md,mdx}');
 
 const items = [];
 
@@ -89,7 +89,7 @@ const metadata = {
 <Layout metadata={metadata}>
   <div class="mx-auto max-w-5xl px-6 py-12 sm:py-16 lg:py-20">
     <header class="mb-10 pb-8 border-b border-[#e5e7eb] dark:border-[#2a2a2a]">
-      <a href={locale === 'es' ? '/' : `/${locale}/`} class="text-[#1344e7] dark:text-[#5b8def] hover:underline text-sm font-medium">
+      <a href="/" class="text-[#1344e7] dark:text-[#5b8def] hover:underline text-sm font-medium">
         &larr; {t.backToHome}
       </a>
       <h1 class="text-4xl font-sans font-bold mt-6 text-[#111827] dark:text-[#f3f4f6] leading-tight capitalize">
@@ -140,7 +140,7 @@ const metadata = {
               {item.author && <span class="font-medium uppercase tracking-wide">{item.author}</span>}
               {item.pubDate && (
                 <time>
-                  {new Date(item.pubDate).toLocaleDateString(locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN', {
+                  {new Date(item.pubDate).toLocaleDateString('es-ES', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
