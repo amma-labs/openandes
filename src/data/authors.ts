@@ -50,7 +50,7 @@ export const authors: Record<string, Author> = {
   },
   'danna-mena': {
     name: 'Danna Mena',
-    bio: 'es maestra en Derecho Constitucional y Derechos Humanos, con formación como abogada e internacionalista. Desde 2019 representa a colectivos en foros nacionales e internacionales, con trayectoria de colaboración junto a organizaciones como USAID, FMCN y Sureste Sostenible. Su trabajo analiza la justicia climática, los derechos humanos y la geopolítica. Es cofundadora de Hackers por Nuestro Futuro A.C. y actualmente es investigadora asociada en Open Andes.',
+    bio: 'es magíster en Derecho Constitucional y Derechos Humanos, con formación como abogada e internacionalista. Desde 2019 representa a colectivos en foros nacionales e internacionales, con trayectoria de colaboración junto a organizaciones como USAID, FMCN y Sureste Sostenible. Su trabajo analiza la justicia climática, los derechos humanos y la geopolítica. Es cofundadora de Hackers por Nuestro Futuro A.C. y actualmente es investigadora asociada en Open Andes.',
   },
 
   'lautaro-pittier': {
