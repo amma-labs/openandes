@@ -55,7 +55,7 @@ export const authors: Record<string, Author> = {
 
   'lautaro-pittier': {
     name: 'Lautaro Ezequiel Pittier',
-    bio: 'es Abogado. Profesor Adjunto de Derechos Humanos y Derecho Constitucional en la Universidad Nacional de Lomas de Zamora (UNLZ) y Director de Asuntos Jurídicos de su Facultad de Derecho. Director del Instituto de Derechos Humanos del Colegio de Abogados de Lomas de Zamora. Docente también en la UAI y en la ECAE. Vocal del Consejo de la Magistratura de la Nación. Ex relator del fuero Contencioso Administrativo Federal de la Ciudad Autónoma de Buenos Aires.',
+    bio: 'es Abogado. Profesor Adjunto de Derechos Humanos y Derecho Constitucional en la Universidad Nacional de Lomas de Zamora (UNLZ) y Director de Asuntos Jurídicos de su Facultad de Derecho. Director del Instituto de Derechos Humanos del Colegio de Abogados de Lomas de Zamora. Docente también en la UAI y en la ECAE. Ex relator del fuero Contencioso Administrativo Federal de la Ciudad Autónoma de Buenos Aires.',
   },
   'nahuel-bento': {
     name: 'Nahuel Agustín Bento',
