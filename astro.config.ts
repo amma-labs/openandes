@@ -109,11 +109,14 @@ export default defineConfig({
       // csso off on purpose: its parser doesn't understand the media range
       // syntax Tailwind v4 emits for breakpoints. lightningcss parses it correctly.
       CSS: { csso: false, lightningcss: { minify: true } },
+      // HTML/JS minification disabled: the HTML minifier emits a
+      // `SyntaxError: Unexpected token '<'` on the JSON-LD script. Cosmetic,
+      // but noisy in build logs. Vercel compresses at the edge anyway.
       HTML: false,
       Image: false,
-      JavaScript: true,
+      JavaScript: false,
       SVG: false,
-      Logger: 1,
+      Logger: 0,
     }),
 
     astrowind({
