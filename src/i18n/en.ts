@@ -142,7 +142,7 @@ export const en = {
       indexDesc: 'Explore all the topics we cover: analysis, expert views and research.',
       indexBadge: 'Open Andes',
       indexHeroTitle: 'Topics',
-      indexHeroDesc: 'Explore all the topics we cover: analysis, expert views and research.',
+      indexHeroDesc: 'Explore all the thematic areas we cover across our analyses, expert commentary and research.',
       itemsCountSingular: 'topic',
       itemsCountPlural: 'topics',
       metaTitle: 'Topic — Open Andes',

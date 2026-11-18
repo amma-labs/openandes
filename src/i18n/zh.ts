@@ -143,7 +143,7 @@ export const zh = {
       indexDesc: '探索我们涵盖的所有主题：分析、专家观点和研究。',
       indexBadge: 'Open Andes',
       indexHeroTitle: '主题',
-      indexHeroDesc: '探索我们涵盖的所有主题：分析、专家观点和研究。',
+      indexHeroDesc: '探索我们涵盖的所有主题领域：分析、专家评论与研究。',
       itemsCountSingular: '个主题',
       itemsCountPlural: '个主题',
       metaTitle: '主题 — Open Andes',
