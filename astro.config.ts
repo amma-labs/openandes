@@ -10,7 +10,6 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
-import compress from 'astro-compress';
 
 import type { AstroIntegration } from 'astro';
 
@@ -105,19 +104,6 @@ export default defineConfig({
       })
     ),
 
-    compress({
-      // csso off on purpose: its parser doesn't understand the media range
-      // syntax Tailwind v4 emits for breakpoints. lightningcss parses it correctly.
-      CSS: { csso: false, lightningcss: { minify: true } },
-      // HTML/JS minification disabled: the HTML minifier emits a
-      // `SyntaxError: Unexpected token '<'` on the JSON-LD script. Cosmetic,
-      // but noisy in build logs. Vercel compresses at the edge anyway.
-      HTML: false,
-      Image: false,
-      JavaScript: false,
-      SVG: false,
-      Logger: 0,
-    }),
 
     astrowind({
       config: './src/config.yaml',
