@@ -145,7 +145,7 @@ export const es = {
       indexDesc: 'Explora todos los temas que cubrimos: análisis, miradas expertas e investigaciones.',
       indexBadge: 'Open Andes',
       indexHeroTitle: 'Topics',
-      indexHeroDesc: 'Explora todos los topics que cubrimos: análisis, miradas expertas e investigaciones.',
+      indexHeroDesc: 'Explora todos los ejes temáticos que cubrimos en nuestros análisis, comentarios de expertos e investigaciones.',
       itemsCountSingular: 'tema',
       itemsCountPlural: 'temas',
       metaTitle: 'Tema — Open Andes',
