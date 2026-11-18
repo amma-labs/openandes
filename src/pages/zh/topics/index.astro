@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/ui';
+import { slugify } from '~/utils/slugify';
 
 const lang = getLangFromUrl(Astro);
 const t = useTranslations(lang).pages.topics;
@@ -19,7 +20,7 @@ for (const path in posts) {
   const mod = (await posts[path]()) as { frontmatter?: Record<string, any> };
   const tags = mod.frontmatter?.tags || [];
   tags.forEach((tag: string) => {
-    const key = tag.toLowerCase().replace(/\s+/g, '-');
+    const key = slugify(tag);
     if (!tagCounts[key]) tagCounts[key] = { count: 0, label: tag };
     tagCounts[key].count++;
   });
@@ -28,7 +29,7 @@ for (const path in miradas) {
   const mod = (await miradas[path]()) as { frontmatter?: Record<string, any> };
   const tags = mod.frontmatter?.tags || [];
   tags.forEach((tag: string) => {
-    const key = tag.toLowerCase().replace(/\s+/g, '-');
+    const key = slugify(tag);
     if (!tagCounts[key]) tagCounts[key] = { count: 0, label: tag };
     tagCounts[key].count++;
   });
@@ -37,7 +38,7 @@ for (const path in reports) {
   const mod = (await reports[path]()) as { frontmatter?: Record<string, any> };
   const tags = mod.frontmatter?.tags || [];
   tags.forEach((tag: string) => {
-    const key = tag.toLowerCase().replace(/\s+/g, '-');
+    const key = slugify(tag);
     if (!tagCounts[key]) tagCounts[key] = { count: 0, label: tag };
     tagCounts[key].count++;
   });
@@ -120,7 +121,7 @@ const gradientClasses = [
                   href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
                   class={`flex items-center justify-center text-center px-4 py-6 rounded-lg font-sans font-bold text-lg leading-tight transition-transform hover:scale-[1.03] ${gradientClasses[i]}`}
                 >
-                  <span>{topic.label}</span>
+                  <span class="uppercase">{topic.label}</span>
                 </a>
               ))}
             </div>
@@ -138,7 +139,7 @@ const gradientClasses = [
                   href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
                   class="flex items-center justify-center text-center px-3 py-3 rounded-lg bg-white dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] hover:border-[#1344e7] dark:hover:border-[#5b8def] transition-colors"
                 >
-                  <span class="font-sans font-medium text-sm text-[#111827] dark:text-[#f3f4f6] truncate">
+                  <span class="font-sans font-medium text-sm text-[#111827] dark:text-[#f3f4f6] uppercase truncate">
                     {topic.label}
                   </span>
                 </a>

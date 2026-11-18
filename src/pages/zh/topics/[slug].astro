@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/ui';
+import { slugify } from '~/utils/slugify';
 
 const lang = getLangFromUrl(Astro);
 const t = useTranslations(lang).pages.topics;
@@ -28,7 +29,7 @@ const reports = import.meta.glob('../../../content/reports/zh/*.{md,mdx}');
   }
 
   return Array.from(allTags).map((tag: string) => ({
-    params: { slug: tag.toLowerCase().replace(/\s+/g, '-') },
+    params: { slug: slugify(tag) },
     props: { tag },
   }));
 }
