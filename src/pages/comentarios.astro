@@ -14,21 +14,23 @@ const allFiles = import.meta.glob('../data/comentarios/*/*.{md,mdx}');
 const slugs = new Set<string>();
 for (const filepath in allFiles) {
   const m = filepath.match(/\/comentarios\/(es|en|zh)\/([^/]+)\.(md|mdx)$/);
-  if (m) slugs.add(m[2]);
+  if (!m) continue;
+  const [, fileLocale, slug] = m;
+  // Solo slugs del locale actual (el listado no mezcla idiomas)
+  if (fileLocale === locale) slugs.add(slug);
 }
 
 const posts = (
   await Promise.all(
     Array.from(slugs).map(async (slug) => {
       const wanted = `../data/comentarios/${locale}/${slug}.mdx`;
-      const fallback = `../data/comentarios/es/${slug}.mdx`;
-      const loader = allFiles[wanted] ?? allFiles[fallback];
+      const loader = allFiles[wanted];
       if (!loader) return null;
       const post = (await loader()) as { frontmatter?: Record<string, any>; Content?: any };
       return {
         ...post,
         slug,
-        locale: allFiles[wanted] ? locale : 'es',
+        locale,
         url: locale === 'es' ? `/comentarios/${slug}` : `/${locale}/comentarios/${slug}`,
       };
     })
