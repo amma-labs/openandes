@@ -16,8 +16,8 @@ export interface HeaderData {
 export interface FooterData {
   // reservado para futuras columnas de footer; hoy el Footer lee i18n directo
 }
-
-/** Construye la ruta con el prefijo de locale (ES = sin prefijo). */
+      { text: t.nav.topics, href: localizedPath('/topics', lang) },
+      { text: t.nav.experts, href: localizedPath('/expertos', lang) },
 function localizedPath(path: string, lang: Lang): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
   return lang === 'es' ? clean : `/${lang}${clean}`;
@@ -29,11 +29,11 @@ export function headerData(lang: Lang = 'es'): HeaderData {
   return {
     links: [
       { text: t.nav.about, href: localizedPath('/about', lang) },
-      { text: t.nav.experts, href: localizedPath('/expertos', lang) },
+      { text: t.nav.topics, href: localizedPath('/topics', lang) },
       { text: t.nav.research, href: localizedPath('/monitor', lang) },
       { text: t.nav.analysis, href: localizedPath('/analisis', lang) },
       { text: t.nav.commentary, href: localizedPath('/comentarios', lang) },
-      { text: t.nav.topics, href: localizedPath('/topics', lang) },
+      { text: t.nav.experts, href: localizedPath('/expertos', lang) },
       { text: t.nav.events, href: localizedPath('/eventos', lang) },
     ],
   };
