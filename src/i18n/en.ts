@@ -11,6 +11,7 @@ export const en = {
   },
   nav: {
     about: 'About',
+    whatWeDo: 'What We Do',
     topics: 'Topics',
     experts: 'Experts',
     advisory: 'Advisory',

@@ -28,7 +28,7 @@ export function headerData(lang: Lang = 'es'): HeaderData {
   const t = useTranslations(lang);
   return {
     links: [
-      { text: t.nav.about, href: localizedPath('/about', lang) },
+      { text: t.nav.whatWeDo, href: localizedPath('/what-we-do', lang) },
       { text: t.nav.topics, href: localizedPath('/topics', lang) },
       { text: t.nav.experts, href: localizedPath('/expertos', lang) },
       { text: t.nav.research, href: localizedPath('/monitor', lang) },

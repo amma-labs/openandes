@@ -12,6 +12,7 @@ export const es = {
   },
   nav: {
     about: 'Nosotros',
+    whatWeDo: 'Qué hacemos',
     topics: 'Temas',
     experts: 'Expertos',
     advisory: 'Asesoría',
