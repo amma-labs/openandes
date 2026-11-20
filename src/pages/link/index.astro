@@ -29,15 +29,23 @@ const links = [
 ];
 
 const gridImages = [
-  { image: "/images/posts/2026_06_09-not-6.webp", link: "https://openandes.org/analisis/politica-exterior-chile-asia-pacifico" },
-  { image: "/images/posts/cover-lithium.webp", link: "https://openandes.org/analisis/el-estrecho-de-malaca-se-resuelve-en-salta" },
-  { image: "/images/posts/litio-07-l.webp", link: "https://openandes.org/analisis/no-es-el-litio-es-el-corredor" },
   { image: "/images/posts/cover-583b9f166270147.64153e11a39fd.webp", link: "https://openandes.org/analisis/centros-de-datos-latam-soberania-digital-peru" },
-  { image: "/images/posts/02-CHINAGLASS-JP1-superJumbo.webp", link: "https://openandes.org/comentarios/milagro-chino-zhou-qunfei" },
-  { image: "/images/posts/fertilizantes-rusia.webp", link: "https://openandes.org/comentarios/termodinamica-fortaleza-agricola-latinoamericana" },
+  { image: "/images/posts/cover-lithium.webp", link: "https://openandes.org/analisis/el-estrecho-de-malaca-se-resuelve-en-salta" },
+  { image: "/images/posts/vigilancia_en_la_frontera.avif", link: "https://openandes.org/analisis/la-frontera-norte-en-disputa" },
+  { image: "/images/posts/jakarta-setiabudi-menara-astra.webp", link: "https://openandes.org/analisis/la-leccion-indonesia" },
+  { image: "/images/posts/solar_panels.webp", link: "https://openandes.org/analisis/la-otra-cara-de-la-transicion-energetica" },
+  { image: "/images/posts/shenzhen-container-port.webp", link: "https://openandes.org/analisis/mas-alla-de-chancay" },
+  { image: "/images/posts/litio-07-l.webp", link: "https://openandes.org/analisis/no-es-el-litio-es-el-corredor" },
+  { image: "/images/posts/2026_06_09-not-6.webp", link: "https://openandes.org/analisis/politica-exterior-chile-asia-pacifico" },
+  { image: "/images/posts/america-power-and-resources.webp", link: "https://openandes.org/analisis/subsuelo-america-latina-parte-1" },
+  { image: "/images/posts/latin-america-cities-water.webp", link: "https://openandes.org/analisis/subsuelo-america-latina-parte-2" },
+  { image: "/images/posts/santiago-protesta-musalem.webp", link: "https://openandes.org/comentarios/bernardo-munoz-chile" },
   { image: "/images/posts/artificial-sun.webp", link: "https://openandes.org/comentarios/el-talon-de-aquiles-de-silicon-valley" },
-  { image: "/images/posts/subak-bali.webp", link: "https://openandes.org/comentarios/transicion-energetica-diferente-a-lo-planeado" },
+  { image: "/images/posts/nyc-climate-week.webp", link: "https://openandes.org/comentarios/estocolmo-paris-gobernanza-climatica-internacional" },
+  { image: "/images/posts/02-CHINAGLASS-JP1-superJumbo.webp", link: "https://openandes.org/comentarios/milagro-chino-zhou-qunfei" },
   { image: "/images/posts/1750905_0.png.webp", link: "https://openandes.org/comentarios/petroleo-saudi-sin-doble-salida" },
+  { image: "/images/posts/fertilizantes-rusia.webp", link: "https://openandes.org/comentarios/termodinamica-fortaleza-agricola-latinoamericana" },
+  { image: "/images/posts/subak-bali.webp", link: "https://openandes.org/comentarios/transicion-energetica-diferente-a-lo-planeado" },
 ];
 
 const title = 'Later — Open Andes';
@@ -120,7 +128,7 @@ const description = 'Nuestros links, lecturas y referencias.';
 
 
     <!-- Grilla de imágenes inferior -->
-    <div class="mt-12 grid w-full max-w-md grid-cols-3 gap-[2px] md:max-w-2xl">
+    <div class="mt-12 grid w-full max-w-md grid-cols-3 gap-[2px] md:max-w-2xl md:grid-cols-4">
       {gridImages.map((item) => (
         <div class="aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
           <a href={item.link} target="_blank" rel="noopener noreferrer" class="block h-full w-full">
