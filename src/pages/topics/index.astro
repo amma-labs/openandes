@@ -43,34 +43,12 @@ for (const path in reports) {
   });
 }
 
-// Top 16 por count, ordenados alfabéticamente dentro del top
-const top16 = Object.entries(tagCounts)
+// Todos los topics, ordenados por count descendente (relevancia)
+const allTopics = Object.entries(tagCounts)
   .sort((a, b) => b[1].count - a[1].count)
-  .slice(0, 16)
-  .sort((a, b) => a[1].label.localeCompare(b[1].label))
   .map(([slug, data]) => ({ slug, label: data.label, count: data.count }));
 
-const top16Slugs = new Set(top16.map((t) => t.slug));
-
-// Resto: alfabético
-const rest = Object.entries(tagCounts)
-  .filter(([slug]) => !top16Slugs.has(slug))
-  .sort((a, b) => a[1].label.localeCompare(b[1].label))
-  .map(([slug, data]) => ({ slug, label: data.label, count: data.count }));
-
-// Respetar mayúsculas: 'ia'/'Ia' → 'IA'
-for (const key in tagCounts) {
-  if (tagCounts[key].label.toLowerCase() === 'ia') {
-    tagCounts[key].label = 'IA';
-  }
-}
-
-const metadata = {
-  title: t.indexTitle,
-  description: t.indexDesc,
-};
-
-// Gradiente para los top 16: de índigo (más usado) a azul claro (menos usado)
+// Gradiente para todos los topics (ciclo de colores)
 const gradientClasses = [
   'bg-indigo-600 text-white',
   'bg-indigo-500 text-white',
@@ -88,7 +66,26 @@ const gradientClasses = [
   'bg-lime-300 text-slate-900',
   'bg-amber-300 text-slate-900',
   'bg-amber-200 text-slate-900',
+  'bg-orange-300 text-slate-900',
+  'bg-rose-300 text-slate-900',
+  'bg-pink-300 text-slate-900',
+  'bg-fuchsia-300 text-slate-900',
 ];
+
+// Respetar mayúsculas: 'ia'/'Ia' → 'IA'
+for (const key in tagCounts) {
+  if (tagCounts[key].label.toLowerCase() === 'ia') {
+    tagCounts[key].label = 'IA';
+  }
+}
+
+const metadata = {
+  title: t.indexTitle,
+  description: t.indexDesc,
+};
+
+// Gradiente para los top 16: de índigo (más usado) a azul claro (menos usado)
+
 ---
 
 <Layout metadata={metadata}>
@@ -105,48 +102,19 @@ const gradientClasses = [
       </p>
     </header>
 
-    {top16.length === 0 && rest.length === 0 ? (
+    {allTopics.length === 0 ? (
       <p class="text-[#4b5563]">{t.emptyState}</p>
     ) : (
-      <>
-        {top16.length > 0 && (
-          <section class="mb-12">
-            <h2 class="text-xs font-mono-tech uppercase tracking-widest text-[#4b5563] dark:text-slate-400 mb-4">
-              {t.topTopics}
-            </h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {top16.map((topic, i) => (
-                <a
-                  href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
-                  class={`flex items-center justify-center text-center px-4 py-6 rounded-lg font-sans font-bold text-lg leading-tight transition-transform hover:scale-[1.03] ${gradientClasses[i]}`}
-                >
-                  <span class="uppercase">{topic.label}</span>
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {rest.length > 0 && (
-          <section>
-            <h2 class="text-xs font-mono-tech uppercase tracking-widest text-[#4b5563] dark:text-slate-400 mb-4">
-              {t.allTopics}
-            </h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {rest.map((topic) => (
-                <a
-                  href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
-                  class="flex items-center justify-center text-center px-3 py-3 rounded-lg bg-white dark:bg-white/5 border border-[#e5e7eb] dark:border-[#2a2a2a] hover:border-[#1344e7] dark:hover:border-[#5b8def] transition-colors"
-                >
-                  <span class="font-sans font-medium text-sm text-[#111827] dark:text-[#f3f4f6] uppercase truncate">
-                    {topic.label}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
-      </>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        {allTopics.map((topic, i) => (
+          <a
+            href={`${locale === 'es' ? '' : `/${locale}`}/topics/${topic.slug}`}
+            class={`flex items-center justify-center text-center px-4 py-6 rounded-lg font-sans font-bold text-lg leading-tight transition-transform hover:scale-[1.03] ${gradientClasses[i % gradientClasses.length]}`}
+          >
+            <span class="uppercase">{topic.label}</span>
+          </a>
+        ))}
+      </div>
     )}
   </div>
 </Layout>
