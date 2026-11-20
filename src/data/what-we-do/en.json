@@ -1,0 +1,54 @@
+{
+  "metaTitle": "What We Do | Open Andes",
+  "metaDescription": "Tomorrow has already started. Strategic intelligence to decide ahead of the market.",
+  "heroKicker": "Tomorrow has already started",
+  "heroTitle": "Intelligence to decide ahead of the market.",
+  "heroDesc": "Your numbers look at yesterday. At Open Andes we read geopolitics, ports, trade, and real-world risk so executives and boards protect their business.",
+  "ctaPrimary": "View reports",
+  "ctaSecondary": "Request a briefing",
+  "cardsTitle": "What moves the board hits your bottom line.",
+  "cardsDesc": "We connect summits, shipping lanes, agribusiness, and supply chains with concrete decisions for your operation.",
+  "cards": [
+    {
+      "title": "Protect your margins",
+      "desc": "Spot regulatory shifts, input bottlenecks, and external shocks before they hit your P&L.",
+      "alt": "Export fruit from Chile"
+    },
+    {
+      "title": "Avoid bottlenecks",
+      "desc": "Track ports, corridors, and critical routes so your cargo and supply chains keep moving.",
+      "alt": "Container terminal at the Port of Rotterdam"
+    },
+    {
+      "title": "Ring-fence your capital",
+      "desc": "Assess political, territorial, and market risk before committing capital or closing deals.",
+      "alt": "International leaders meeting at a summit"
+    },
+    {
+      "title": "Decide with an edge",
+      "desc": "Follow the tables where rules are set across Latin America, Asia, and the U.S. before everyone else.",
+      "alt": "Leaders gathered at an APEC summit"
+    }
+  ],
+  "blocks": [
+    {
+      "title": "Monitors & Reports",
+      "desc": "Ongoing tracking of infrastructure, trade flows, and critical supply chains across the Pacific and the Americas. Clear reading on what moves today and what comes next.",
+      "cta": "Explore reports",
+      "alt": "Port operations and transpacific trade"
+    },
+    {
+      "title": "Bespoke Advisory",
+      "desc": "Confidential analysis and territorial risk assessment for investment, expansion, or operational continuity. Straight to the point for boards and executives.",
+      "cta": "See Advisory",
+      "alt": "Food chain and Pacific resources"
+    }
+  ],
+  "manifestoTitle": "Read the shift before it costs you margin. Move with clarity.",
+  "manifestoCta": "Request a briefing",
+  "objectionTitle": "Never brought geopolitical and territorial risk into your committee?",
+  "objectionDesc": "You do not need an academic treatise. You get direct reading, grounded in business and ready for action.",
+  "objectionCta": "See how it works",
+  "closingLine": "Tomorrow has already started.",
+  "closingCta": "Let's talk"
+}
