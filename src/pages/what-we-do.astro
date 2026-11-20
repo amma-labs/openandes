@@ -1,0 +1,274 @@
+---
+// src/pages/what-we-do.astro
+import Layout from '~/layouts/PageLayout.astro';
+import { getLangFromUrl } from '~/i18n/ui';
+
+const lang = getLangFromUrl(Astro);
+
+const metadata = {
+  title: 'What We Do | Open Andes',
+  description: 'Mañana ya empezó. Inteligencia estratégica para decidir antes que el mercado.',
+};
+
+const fourCards = [
+  {
+    title: 'Protege tus márgenes',
+    desc: 'Anticípate a cambios regulatorios, trabas en insumos y shocks externos antes de que golpeen tu resultado.',
+    image:
+      'https://www.marcachile.cl/wp-content/uploads/2022/05/Conoce-principales-frutas-Chile-exporta-mundo1.jpg',
+    alt: 'Fruta de exportación desde Chile',
+  },
+  {
+    title: 'Evita cuellos de botella',
+    desc: 'Lee puertos, corredores y rutas críticas para que tu carga y tus cadenas no queden varadas.',
+    image:
+      'https://www.portofrotterdam.com/sites/default/files/styles/header_landingspage_mobile/public/2022-01/apm-container-terminal.jpg?h=b9b2c2a7&itok=YiVlSb1m',
+    alt: 'Terminal de contenedores en el Puerto de Rotterdam',
+  },
+  {
+    title: 'Blinda tu capital',
+    desc: 'Evalúa riesgo político, territorial y de mercado antes de comprometer inversión o cerrar acuerdos.',
+    image:
+      'https://cdn.i-scmp.com/sites/default/files/styles/1020x680/public/d8/images/canvas/2026/11/19/052457e8-d51f-4f1d-8a48-35213deffa5a_3fd49893.jpg?itok=UGw6OONB&v=1795096048',
+    alt: 'Encuentro de líderes internacionales en cumbre',
+  },
+  {
+    title: 'Decide con ventaja',
+    desc: 'Sigue las mesas donde se negocian las reglas entre América Latina, Asia y EE. UU. antes que todos.',
+    image:
+      'https://web-cdnprod.aa.com.tr/uploads/Contents/2026/11/19/thumbs_b_c_6697a63728fd82ff910517b6c9dc2653.jpg',
+    alt: 'Líderes reunidos en cumbre APEC',
+  },
+];
+
+const alternateBlocks = [
+  {
+    title: 'Monitores y Reportes',
+    desc: 'Seguimiento continuo de infraestructura, flujos comerciales y cadenas críticas en el Pacífico y las Américas. Lectura clara para ver qué se mueve hoy y qué viene después.',
+    cta: 'Explorar reportes',
+    href: '/reports',
+    image: '/images/posts/shanghai-puerto-1920x1080-1.webp',
+    alt: 'Operación portuaria y comercio transpacífico',
+    imgRight: true,
+  },
+  {
+    title: 'Advisory a Medida',
+    desc: 'Análisis confidencial y lectura de riesgo territorial para decisiones de inversión, expansión o continuidad operativa. Directo al grano para directorios y gerencias.',
+    cta: 'Ver Advisory',
+    href: '/advisory',
+    image:
+      'https://cravingsjournal.com/wp-content/uploads/2018/08/ceviche-con-leche-de-tigre-1.jpg',
+    alt: 'Cadena alimentaria y recursos del Pacífico',
+    imgRight: false,
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <div class="bg-white text-neutral-950">
+    <!-- BLOQUE OSCURO SUPERIOR (IMPACTO INICIAL) -->
+    <section class="bg-neutral-950 text-white py-16 sm:py-24 border-b border-neutral-800">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div class="aspect-[4/3] overflow-hidden rounded-lg bg-neutral-900">
+            <img
+              src={fourCards[2].image}
+              alt={fourCards[2].alt}
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="aspect-[4/3] overflow-hidden rounded-lg bg-neutral-900 mt-6">
+            <img
+              src={fourCards[1].image}
+              alt={fourCards[1].alt}
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="aspect-[4/3] overflow-hidden rounded-lg bg-neutral-900 -mt-3">
+            <img
+              src={fourCards[3].image}
+              alt={fourCards[3].alt}
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="aspect-[4/3] overflow-hidden rounded-lg bg-neutral-900 mt-3">
+            <img
+              src={fourCards[0].image}
+              alt={fourCards[0].alt}
+              class="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-5">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+            Mañana ya empezó
+          </p>
+          <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.08]">
+            Inteligencia para decidir antes que el mercado.
+          </h1>
+          <p class="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl">
+            Tus números ven el pasado. En Open Andes leemos geopolítica, puertos, comercio y riesgo real para que gerencias y directorios protejan su negocio.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-3">
+            <a
+              href="/reports"
+              class="rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors"
+            >
+              Ver reportes
+            </a>
+            <a
+              href="mailto:contacto@openandes.org?subject=Solicitud%20de%20Briefing%20Ejecutivo"
+              class="rounded-full border border-neutral-600 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-colors"
+            >
+              Pedir un briefing
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 TARJETAS CON FOTO ARRIBA -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24">
+      <div class="max-w-2xl mb-10">
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950">
+          Lo que mueve el tablero entra a tu balance.
+        </h2>
+        <p class="mt-3 text-sm sm:text-base text-neutral-600 leading-relaxed">
+          Conectamos cumbres, rutas marítimas, agro y cadenas de suministro con decisiones concretas para tu operación.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {
+          fourCards.map((card) => (
+            <div class="rounded-xl bg-neutral-100/90 overflow-hidden flex flex-col">
+              <div class="aspect-[16/10] w-full overflow-hidden bg-neutral-200">
+                <img
+                  src={card.image}
+                  alt={card.alt}
+                  loading="lazy"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                <h3 class="text-base font-semibold text-neutral-950">
+                  {card.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                  {card.desc}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- BLOQUES ALTERNADOS -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 pb-16 sm:pb-24 space-y-20">
+      {
+        alternateBlocks.map((block) => (
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div
+              class:list={[
+                'md:col-span-5 space-y-4',
+                block.imgRight ? 'md:order-1' : 'md:order-2',
+              ]}
+            >
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-950">
+                {block.title}
+              </h3>
+              <p class="text-sm sm:text-base text-neutral-600 leading-relaxed">
+                {block.desc}
+              </p>
+              <div class="pt-1">
+                <a
+                  href={block.href}
+                  class="inline-flex items-center rounded-full border border-neutral-950 px-5 py-2 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-neutral-950 hover:text-white transition-colors"
+                >
+                  {block.cta}
+                </a>
+              </div>
+            </div>
+
+            <div
+              class:list={[
+                'md:col-span-7',
+                block.imgRight ? 'md:order-2' : 'md:order-1',
+              ]}
+            >
+              <div class="aspect-[16/10] w-full overflow-hidden rounded-xl bg-neutral-100">
+                <img
+                  src={block.image}
+                  alt={block.alt}
+                  loading="lazy"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </section>
+
+    <!-- MANIFIESTO CENTRAL + TARJETA FLOTANTE SOBRE IMAGEN -->
+    <section class="bg-neutral-100/70 py-16 sm:py-24 border-t border-neutral-200/80">
+      <div class="max-w-5xl mx-auto px-6 sm:px-10 text-center space-y-6">
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950 max-w-2xl mx-auto leading-tight">
+          Lee el cambio antes de que te cueste margen. Muévete con claridad.
+        </h2>
+        <div>
+          <a
+            href="mailto:contacto@openandes.org?subject=Solicitud%20de%20Briefing%20Ejecutivo"
+            class="inline-flex items-center rounded-full bg-neutral-950 px-6 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-[#1344e7] transition-colors"
+          >
+            Pedir un briefing
+          </a>
+        </div>
+
+        <div class="pt-8">
+          <div class="relative rounded-2xl overflow-hidden min-h-[280px] sm:min-h-[340px] flex items-center bg-neutral-900 text-left">
+            <img
+              src={fourCards[1].image}
+              alt={fourCards[1].alt}
+              loading="lazy"
+              class="absolute inset-0 h-full w-full object-cover opacity-75"
+            />
+            <div class="relative z-10 m-5 sm:m-10 max-w-md rounded-xl bg-white p-6 sm:p-8 shadow-lg space-y-3">
+              <h3 class="text-lg sm:text-xl font-semibold text-neutral-950">
+                ¿Nunca has sumado riesgo geopolítico y territorial a tu comité?
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                No necesitas un tratado académico. Te entregamos lectura directa, aterrizada al negocio y lista para decidir.
+              </p>
+              <div class="pt-1">
+                <a
+                  href="/reports"
+                  class="inline-flex items-center rounded-full border border-neutral-950 px-4 py-2 text-xs font-medium text-neutral-950 hover:bg-neutral-950 hover:text-white transition-colors"
+                >
+                  Ver cómo funciona
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIERRE SECO -->
+    <section class="bg-neutral-950 text-white py-14 sm:py-16">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <p class="text-xl sm:text-3xl font-semibold tracking-tight">
+          Mañana ya empezó.
+        </p>
+        <a
+          href="mailto:contacto@openandes.org?subject=Solicitud%20de%20Briefing%20Ejecutivo"
+          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
+        >
+          Hablemos
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>
