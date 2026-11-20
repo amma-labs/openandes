@@ -12,12 +12,12 @@ export const es = {
   },
   nav: {
     about: 'Nosotros',
+    topics: 'Temas',
     experts: 'Expertos',
     advisory: 'Asesoría',
     research: 'Investigación',
     analysis: 'Análisis',
     commentary: 'Comentarios',
-    topics: 'Temas',
     events: 'Eventos',
     ariaLabel: 'Navegación principal',
   },
