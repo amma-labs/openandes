@@ -11,12 +11,12 @@ export const en = {
   },
   nav: {
     about: 'About',
+    topics: 'Topics',
     experts: 'Experts',
     advisory: 'Advisory',
     research: 'Research',
     analysis: 'Analysis',
     commentary: 'Commentary',
-    topics: 'Topics',
     events: 'Events',
     ariaLabel: 'Main navigation',
   },

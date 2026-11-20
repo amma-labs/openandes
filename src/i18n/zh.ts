@@ -12,12 +12,12 @@ export const zh = {
   },
   nav: {
     about: '关于我们',
+    topics: '主题',
     experts: '专家',
     advisory: '咨询',
     research: '研究',
     analysis: '分析',
     commentary: '评论',
-    topics: '主题',
     events: '活动',
     ariaLabel: '主导航',
   },
