@@ -1,11 +1,11 @@
 {
   "metaTitle": "Qué hacemos | Open Andes",
-  "metaDescription": "El mañana ya empezó. Inteligencia geopolítica, comercial y territorial para decidir antes que el mercado.",
+  "metaDescription": "El mañana ya empezó. Inteligencia geopolítica, comercial, tecnológica y territorial para decidir antes que el mercado.",
   "heroKicker": "El mañana ya empezó",
-  "heroTitle": "Cuando el tablero cambia, el que llega tarde paga el pato.",
-  "heroDesc": "Tus estados financieros muestran dónde estuviste; nosotros leemos qué se está moviendo en geopolítica, comercio, puertos y territorios para que tu negocio no reaccione a ciegas.",
-  "ctaPrimary": "Explorar análisis",
-  "ctaSecondary": "Hablemos",
+  "heroTitle": "Cuando el tablero cambia, llegar tarde tiene un costo.",
+  "heroDesc": "Tus estados financieros muestran dónde estuviste; nosotros leemos qué se está moviendo en geopolítica, comercio, puertos, tecnología y territorios para que no reacciones a ciegas.",
+  "ctaPrimary": "Ver asesorías y consultorías",
+  "ctaSecondary": "Nuestra metodología",
   "cardsTitle": "Lo que pasa afuera entra directo a tu operación.",
   "cardsDesc": "Donde un movimiento externo cambia el costo o el ritmo del negocio.",
   "cards": [
@@ -22,33 +22,34 @@
     {
       "title": "Capital expuesto en terreno",
       "desc": "Entrar a un mercado, expandir una operación o sostener un activo choca con fricciones políticas, sociales o regulatorias que no salen en un Excel.",
-      "alt": "Encuentro de líderes internacionales en cumbre"
+      "alt": "Encuentro de líderes globales y correlación de poder"
     },
     {
       "title": "Decisiones a contrarreloj",
       "desc": "Cuando las grandes potencias y foros regionales redefinen reglas, enterarse por la prensa es llegar tarde a ajustar estrategia.",
-      "alt": "Líderes reunidos en cumbre APEC"
+      "alt": "Terminal de contenedores APM y movimiento portuario"
     }
   ],
   "blocks": [
     {
-      "title": "Monitores y Reportes",
-      "desc": "Seguimiento continuo y lectura estructurada sobre comercio, infraestructura y tensiones en el Pacífico y las Américas. Ideal para tener el radar encendido y detectar señales antes de que estallen.",
-      "cta": "Explorar reportes",
-      "alt": "Operación portuaria y comercio transpacífico"
+      "title": "Monitores, investigación y prospectiva",
+      "desc": "Seguimiento continuo, lectura de entorno y escenarios de mediano y largo plazo sobre comercio, rutas, tecnología y tensiones en el Pacífico y las Américas.",
+      "cta": "Ver cómo trabajamos",
+      "alt": "Visualización de escenarios, datos y prospectiva"
     },
     {
       "title": "Asesorías y Consultorías",
-      "desc": "Trabajo directo y confidencial para cuando tienes una decisión crítica encima: evaluar riesgos antes de invertir, leer un escenario complejo o preparar a tu directorio con criterio de terreno.",
-      "cta": "Ver asesorías y consultorías",
+      "desc": "Trabajo directo y confidencial para empresas, políticas públicas y escenarios políticos: riesgo territorial, inversión, expansión o lectura estratégica bajo reserva.",
+      "cta": "Explorar asesorías y consultorías",
       "alt": "Dinámica financiera y comercial entre divisas y mercados"
     }
   ],
   "manifestoTitle": "Dejar la geopolítica y el riesgo territorial para después sale caro.",
-  "manifestoCta": "Escribir a Open Andes",
+  "manifestoCta": "Hablar con Open Andes",
   "objectionTitle": "¿Nunca has llevado el riesgo geopolítico y territorial a la mesa de decisión?",
-  "objectionDesc": "No necesitas un tratado académico. Te entregamos lectura directa, aterrizada al negocio y lista para discutir.",
-  "objectionCta": "Ver publicaciones",
+  "objectionDesc": "No necesitas un tratado académico. Te entregamos lectura directa, prospectiva aplicada y criterio listo para discutir.",
+  "objectionCta": "Ver metodología",
+  "objectionAlt": "Análisis aplicado y lectura técnica de escenarios",
   "closingLine": "El mañana ya empezó.",
-  "closingCta": "Contactar"
+  "closingCta": "Escribir a contacto@openandes.org"
 }
