@@ -1,15 +1,6 @@
 ---
-import favIconDark from '~/assets/favicons/favicon-dark.svg';
-import favIconLight from '~/assets/favicons/favicon-light.svg';
+import favIconSvg from '~/assets/favicons/icon.svg';
 ---
 
-<!-- Favicon para tema claro (light mode) -->
-<link rel="icon" type="image/svg+xml" href={favIconLight.src} media="(prefers-color-scheme: light)" />
-
-<!-- Favicon para tema oscuro (dark mode) -->
-<link rel="icon" type="image/svg+xml" href={favIconDark.src} media="(prefers-color-scheme: dark)" />
-
-<!-- Fallback: favicon por defecto (sin media query) -->
-<link rel="icon" type="image/svg+xml" href={favIconLight.src} />
-
+<link rel="icon" type="image/svg+xml" href={favIconSvg.src} />
 <link rel="apple-touch-icon" href="/favicon-48x48.png" />
