@@ -197,13 +197,34 @@ const metadata = {
 };
 
 const images = {
-  agro: '/images/posts/Conoce-principales-frutas-Chile-exporta-mundo1.webp',
-  rotterdam: '/images/posts/rotterdam.webp',
-  summit: '/images/posts/thumbs_b_c_6697a63728fd82ff910517b6c9dc2653.webp',
-  apec: '/images/posts/shanghai-puerto-1920x1080-1.webp',
+  // Hero (arriba) - imágenes originales
+  heroAgro: '/images/posts/Conoce-principales-frutas-Chile-exporta-mundo1.webp',
+  heroRotterdam: '/images/posts/rotterdam.webp',
+  heroSummit: '/images/posts/thumbs_b_c_6697a63728fd82ff910517b6c9dc2653.webp',
+  heroApec: '/images/posts/shanghai-puerto-1920x1080-1.webp',
+  // Tarjetas (abajo) - imágenes de Pexels
+  cardAgro: '/images/posts/pexels-shvetsa-5324968.webp',
+  cardRotterdam: '/images/posts/pexels-thisisengineering-3862379.webp',
+  cardSummit: '/images/posts/pexels-googledeepmind-17483869.webp',
+  cardApec: '/images/posts/pexels-thales13-39334005.webp',
+  // Bloques alternados
   port: '/images/posts/pexels-romulo-queiroz-424988940-16594724.webp',
   markets: '/images/posts/pexels-googledeepmind-25630340.webp',
 };
+
+const heroCards = [
+  { ...data.cards[0], image: images.heroAgro },
+  { ...data.cards[1], image: images.heroRotterdam },
+  { ...data.cards[2], image: images.heroSummit },
+  { ...data.cards[3], image: images.heroApec },
+];
+
+const fourCards = [
+  { ...data.cards[0], image: images.cardAgro },
+  { ...data.cards[1], image: images.cardRotterdam },
+  { ...data.cards[2], image: images.cardSummit },
+  { ...data.cards[3], image: images.cardApec },
+];
 
 const fourCards = [
   { ...data.cards[0], image: images.agro },
