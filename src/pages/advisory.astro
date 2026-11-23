@@ -1,0 +1,328 @@
+---
+// src/pages/advisory.astro
+import Layout from '~/layouts/PageLayout.astro';
+import { getLangFromUrl } from '~/i18n/ui';
+
+const rawLang = getLangFromUrl(Astro);
+const lang: 'es' | 'en' | 'zh' =
+  rawLang === 'en' || rawLang === 'zh' ? rawLang : 'es';
+
+const content = {
+  es: {
+    metaTitle: 'Asesorías y Consultorías | Open Andes',
+    metaDescription:
+      'Trabajo directo, prospectiva y lectura de riesgo para decisiones críticas en empresas, políticas públicas y escenarios políticos bajo reserva.',
+    kicker: 'Asesorías y Consultorías',
+    title: 'Criterio de terreno y prospectiva cuando la decisión pesa.',
+    desc: 'Acompañamos a directorios, gerencias, equipos públicos y actores con decisiones sensibles. Leemos el presente y proyectamos escenarios antes de que el riesgo o el cambio de reglas golpeen la operación.',
+    ctaPrimary: 'Agendar conversación',
+    ctaSecondary: 'Ver metodología',
+    tracksTitle: 'Tres frentes, un mismo estándar de rigor y reserva.',
+    tracksDesc:
+      'Cada encargo se adapta al terreno real de quien decide, sin plantillas genéricas ni relleno académico.',
+    tracks: [
+      {
+        code: '01 · Empresas, fondos y directorios',
+        title: 'Riesgo territorial, rutas y márgenes',
+        desc: 'Evaluamos exposición operativa, logística, regulación y tensiones políticas o sociales antes de invertir, expandir o reestructurar.',
+        points: [
+          'Lectura de riesgo país, territorial y de cadena de suministro',
+          'Escenarios de comercio, aranceles, puertos y costos críticos',
+          'Briefings ejecutivos para comités y directorios',
+        ],
+      },
+      {
+        code: '02 · Gobierno y políticas públicas',
+        title: 'Entorno, cadenas críticas y prospectiva',
+        desc: 'Apoyamos a equipos públicos y tomadores de decisión institucional con lectura prospectiva de dinámicas regionales, comercio, infraestructura y regulación.',
+        points: [
+          'Mapas de escenarios y señales tempranas en América y el Pacífico',
+          'Impacto cruzado de tendencias tecnológicas, productivas y comerciales',
+          'Insumos claros para diseño y ajuste de políticas',
+        ],
+      },
+      {
+        code: '03 · Consultoría política discreta',
+        title: 'Poder, escenarios y reserva estricta',
+        desc: 'Análisis reservado de dinámicas de poder, riesgo regulatorio y escenarios estratégicos bajo confidencialidad e independencia total —sin involucrarnos en campañas ni contiendas partidarias.',
+        points: [
+          'Lectura de correlación de fuerzas, agendas y riesgos de entorno',
+          'Escenarios de mediano y largo plazo con enfoque prospectivo',
+          'Reserva estricta y distancia operativa de campañas electorales',
+        ],
+      },
+    ],
+    formatsTitle: 'Cómo se activa el trabajo',
+    formats: [
+      {
+        name: 'Briefing ejecutivo o de comité',
+        detail: 'Sesión enfocada y documento ejecutivo para leer un escenario puntual, una coyuntura o una decisión inminente.',
+      },
+      {
+        name: 'Diagnóstico de riesgo y prospectiva',
+        detail: 'Evaluación estructurada de variables territoriales, regulatorias, comerciales o tecnológicas con escenarios alternativos.',
+      },
+      {
+        name: 'Acompañamiento continuo bajo reserva',
+        detail: 'Seguimiento periódico y canal directo para decisiones recurrentes, expansión o lectura de entorno de mediano plazo.',
+      },
+    ],
+    reserveTitle: 'Reserva tipo Chatham House e independencia',
+    reserveDesc:
+      'La confidencialidad no es un detalle menor: cuando corresponde, operamos bajo principios de reserva tipo Chatham House para proteger la discreción de las conversaciones y de quienes consultan, manteniendo al mismo tiempo independencia analítica y autonomía institucional de Open Andes.',
+    closingLine: 'El mañana ya empezó.',
+    closingCta: 'Escribir a contacto@openandes.org',
+  },
+  en: {
+    metaTitle: 'Advisory & Consulting | Open Andes',
+    metaDescription:
+      'Direct work, foresight, and risk reading for high-stakes decisions across business, public policy, and political scenarios under discretion.',
+    kicker: 'Advisory & Consulting',
+    title: 'Ground-level judgment and foresight when the call carries weight.',
+    desc: 'We work with boards, executives, public teams, and decision-makers facing high-stakes choices. We read present dynamics and map scenarios before risk or shifting rules hit operations.',
+    ctaPrimary: 'Start a conversation',
+    ctaSecondary: 'See methodology',
+    tracksTitle: 'Three tracks, one standard of rigor and discretion.',
+    tracksDesc:
+      'Every engagement is tailored to the decision-maker’s real operating ground, with no generic templates or academic padding.',
+    tracks: [
+      {
+        code: '01 · Business, funds & boards',
+        title: 'Territorial risk, routes & margins',
+        desc: 'We assess operational exposure, logistics, regulation, and political or social friction before capital is committed, expanded, or restructured.',
+        points: [
+          'Country, territorial, and supply-chain risk reading',
+          'Trade, tariff, port, and critical-input scenarios',
+          'Executive briefings for committees and boards',
+        ],
+      },
+      {
+        code: '02 · Government & public policy',
+        title: 'Environment, critical chains & foresight',
+        desc: 'We support public-sector teams and institutional decision-makers with foresight on regional shifts, trade, infrastructure, and regulation.',
+        points: [
+          'Scenario mapping and early signals across the Americas and Pacific',
+          'Cross-cutting impact of tech, productive, and trade shifts',
+          'Clear inputs for policy design and calibration',
+        ],
+      },
+      {
+        code: '03 · Discreet political advisory',
+        title: 'Power, scenarios & strict discretion',
+        desc: 'Confidential analysis of power dynamics, regulatory risk, and strategic scenarios under strict discretion and independence —staying out of partisan campaigns.',
+        points: [
+          'Reading power shifts, agendas, and environmental risks',
+          'Medium- and long-term foresight scenarios',
+          'Strict discretion and zero entanglement in electoral campaigns',
+        ],
+      },
+    ],
+    formatsTitle: 'How engagements run',
+    formats: [
+      {
+        name: 'Executive or committee briefing',
+        detail: 'Focused session and concise brief to read a specific situation, flashpoint, or immediate decision.',
+      },
+      {
+        name: 'Risk & foresight assessment',
+        detail: 'Structured evaluation of territorial, regulatory, trade, or tech variables with alternative scenarios.',
+      },
+      {
+        name: 'Ongoing confidential retainer',
+        detail: 'Recurring tracking and direct counsel for ongoing decisions, expansion, or medium-term environment reading.',
+      },
+    ],
+    reserveTitle: 'Chatham House-style discretion & independence',
+    reserveDesc:
+      'Confidentiality is foundational: where appropriate, we apply Chatham House-style discretion principles to protect conversation privacy and client anonymity while preserving Open Andes’ analytical independence.',
+    closingLine: 'Tomorrow has already started.',
+    closingCta: 'Email contacto@openandes.org',
+  },
+  zh: {
+    metaTitle: '咨询与顾问服务 | Open Andes',
+    metaDescription:
+      '面向企业、公共政策与政治情景的务实研判、前瞻推演与保密咨询。',
+    kicker: '咨询与顾问服务',
+    title: '关键决策时刻的一线判断与前瞻推演。',
+    desc: '我们为董事会、管理层、公共部门与关键决策者提供支持。研判当下局势并推演未来情景，在风险或规则变化冲击业务前抢占先机。',
+    ctaPrimary: '预约交流',
+    ctaSecondary: '查看方法论',
+    tracksTitle: '三大方向，同一套严谨与保密标准。',
+    tracksDesc: '每次合作都紧贴决策方的实际业务与属地场景，拒绝空洞套话与冗长堆砌。',
+    tracks: [
+      {
+        code: '01 · 企业、基金与董事会',
+        title: '属地风险、航线与利润率',
+        desc: '在资本投入、业务扩张或架构调整前，评估运营敞口、物流、监管与政社摩擦。',
+        points: [
+          '国别、属地与供应链风险研判',
+          '贸易、关税、港口与关键成本情景推演',
+          '面向委员会与董事会的简报支持',
+        ],
+      },
+      {
+        code: '02 · 政府与公共政策',
+        title: '外部环境、关键链条与前瞻',
+        desc: '围绕区域演进、贸易、基础设施与监管，为公共部门与机构决策者提供前瞻分析。',
+        points: [
+          '美洲与太平洋方向的情景图谱与早期信号',
+          '技术、产业与贸易变动的交叉影响',
+          '贴近政策制定与调整的清晰研判',
+        ],
+      },
+      {
+        code: '03 · 审慎政治咨询',
+        title: '权力格局、情景与严格保密',
+        desc: '在严格保密与独立性原则下，研判权力动态、监管风险与战略情景——不介入竞选或党派争斗。',
+        points: [
+          '梳理力量变化、议程动向与环境风险',
+          '结合前瞻视角的 přeh 中长期情景分析',
+          '严格保密，保持独立，不卷入竞选活动',
+        ],
+      },
+    ],
+    formatsTitle: '合作形式',
+    formats: [
+      {
+        name: '高管或委员会简报',
+        detail: '针对特定局势、突发变量或迫在眉睫的决策，提供聚焦沟通与简明研判。',
+      },
+      {
+        name: '风险与前瞻评估',
+        detail: '围绕属地、监管、贸易或技术要素进行结构化拆解与多情景推演。',
+      },
+      {
+        name: '保密常态化顾问',
+        detail: '针对持续性决策、扩张布局或中长期环境追踪，提供定期研判与沟通支持。',
+      },
+    ],
+    reserveTitle: '查塔姆宫规则式的保密与独立性',
+    reserveDesc:
+      '保密是合作基石：在适用场合参照查塔姆宫规则式的保密原则，保护沟通隐私与咨询方身份，同时坚守 Open Andes 的分析独立性。',
+    closingLine: '明天已经开始。',
+    closingCta: '发送邮件至 contacto@openandes.org',
+  },
+};
+
+const data = content[lang];
+const prefix = lang === 'es' ? '' : `/${lang}`;
+const methodologyHref = `${prefix}/methodology`;
+const mailtoHref =
+  lang === 'en'
+    ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20Advisory'
+    : lang === 'zh'
+      ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20%E5%92%A8%E8%AF%A2%E5%90%88%E4%BD%9C'
+      : 'mailto:contacto@openandes.org?subject=Consulta%20y%20Asesor%C3%ADa%20%E2%80%94%20Open%20Andes';
+---
+
+<Layout metadata={{ title: data.metaTitle, description: data.metaDescription }}>
+  <div class="bg-white text-neutral-950">
+    <!-- HERO OSCURO -->
+    <section class="bg-neutral-950 text-white py-16 sm:py-24 border-b border-neutral-800">
+      <div class="max-w-5xl mx-auto px-6 sm:px-10 space-y-5">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+          {data.kicker}
+        </p>
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.08] max-w-3xl">
+          {data.title}
+        </h1>
+        <p class="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl">
+          {data.desc}
+        </p>
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a
+            href={mailtoHref}
+            class="rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors"
+          >
+            {data.ctaPrimary}
+          </a>
+          <a
+            href={methodologyHref}
+            class="rounded-full border border-neutral-600 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-colors"
+          >
+            {data.ctaSecondary}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 FRENTES COMERCIALES -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 space-y-10">
+      <div class="max-w-2xl space-y-2">
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950">
+          {data.tracksTitle}
+        </h2>
+        <p class="text-sm sm:text-base text-neutral-600 leading-relaxed">
+          {data.tracksDesc}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {
+          data.tracks.map((track) => (
+            <div class="rounded-2xl border border-neutral-200 bg-neutral-50/70 p-6 sm:p-7 flex flex-col justify-between space-y-5">
+              <div class="space-y-3">
+                <span class="block text-xs font-semibold text-[#1344e7]">
+                  {track.code}
+                </span>
+                <h3 class="text-xl font-semibold text-neutral-950">
+                  {track.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                  {track.desc}
+                </p>
+              </div>
+              <ul class="space-y-2 pt-3 border-t border-neutral-200/80 text-xs sm:text-sm text-neutral-700">
+                {track.points.map((pt) => (
+                  <li class="leading-snug">· {pt}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- FORMATOS DE TRABAJO -->
+    <section class="bg-neutral-100/70 py-16 sm:py-20 border-t border-neutral-200/80">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-8">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-950">
+          {data.formatsTitle}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            data.formats.map((fmt) => (
+              <div class="rounded-xl bg-white p-6 border border-neutral-200/80 space-y-2">
+                <h3 class="text-base font-semibold text-neutral-950">{fmt.name}</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">{fmt.detail}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- RESERVA E INDEPENDENCIA -->
+        <div class="rounded-2xl bg-white p-6 sm:p-8 border border-neutral-200 space-y-2">
+          <h3 class="text-lg font-semibold text-neutral-950">{data.reserveTitle}</h3>
+          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-4xl">
+            {data.reserveDesc}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="bg-neutral-950 text-white py-14 sm:py-16">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <p class="text-xl sm:text-3xl font-semibold tracking-tight">
+          {data.closingLine}
+        </p>
+        <a
+          href={mailtoHref}
+          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
+        >
+          {data.closingCta}
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>

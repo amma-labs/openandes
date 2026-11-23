@@ -1,0 +1,263 @@
+---
+// src/pages/methodology.astro
+import Layout from '~/layouts/PageLayout.astro';
+import { getLangFromUrl } from '~/i18n/ui';
+
+const rawLang = getLangFromUrl(Astro);
+const lang: 'es' | 'en' | 'zh' =
+  rawLang === 'en' || rawLang === 'zh' ? rawLang : 'es';
+
+const content = {
+  es: {
+    metaTitle: 'Nuestra Metodología | Open Andes',
+    metaDescription:
+      'Cómo leemos el presente y proyectamos escenarios: señales en terreno, cruce geopolítico y comercial, prospectiva y utilidad práctica.',
+    kicker: 'Nuestra Metodología',
+    title: 'Del ruido diario a escenarios útiles para decidir.',
+    desc: 'No competimos con el despacho de noticias ni escribimos tratados aislados del negocio. Combinamos lectura de terreno, análisis de poder y comercio, y prospectiva para ver qué se está moviendo y qué viene después.',
+    ctaPrimary: 'Ver asesorías y consultorías',
+    ctaSecondary: 'Hablar con Open Andes',
+    stepsTitle: 'Cómo trabajamos cada lectura',
+    steps: [
+      {
+        num: '01',
+        title: 'Señales y terreno antes que el titular',
+        desc: 'Miramos rutas, puertos, decisiones regulatorias, movimientos de capital, dinámicas territoriales y foros donde se negocian reglas reales —no solo el comentario del día.',
+      },
+      {
+        num: '02',
+        title: 'Cruce entre geopolítica, comercio y tecnología',
+        desc: 'Conectamos factores políticos y territoriales con cadenas de suministro, mercados, recursos y cambios tecnológicos que alteran costos, plazos y viabilidad.',
+      },
+      {
+        num: '03',
+        title: 'Prospectiva y escenarios (presente y futuro)',
+        desc: 'Separamos lo que ya está cambiando de lo que puede escalar en el mediano y largo plazo, construyendo escenarios claros y supuestos explícitos en vez de adivinar.',
+      },
+      {
+        num: '04',
+        title: 'Traducción directa a la mesa de decisión',
+        desc: 'Bajamos el análisis a implicancias concretas —riesgos, ventanas de acción y puntos ciegos— para directorios, gerencias, equipos públicos o consultas reservadas.',
+      },
+    ],
+    principlesTitle: 'Reglas de juego que sostienen el criterio',
+    principles: [
+      {
+        title: 'Independencia analítica',
+        desc: 'Criterio propio, sin subordinación a agendas partidarias ni campañas coyunturales.',
+      },
+      {
+        title: 'Reserva cuando corresponde',
+        desc: 'Resguardo de conversaciones y confidencialidad —incluyendo criterios tipo Chatham House en espacios privados o sensibles.',
+      },
+      {
+        title: 'Sentido comercial y práctico',
+        desc: 'Cada análisis responde a una pregunta real de riesgo, capital, operación o política pública.',
+      },
+    ],
+    closingLine: 'El mañana ya empezó.',
+    closingCta: 'Explorar asesorías y consultorías',
+  },
+  en: {
+    metaTitle: 'Our Methodology | Open Andes',
+    metaDescription:
+      'How we read the present and map scenarios: ground signals, geopolitical and trade cross-checks, foresight, and decision utility.',
+    kicker: 'Our Methodology',
+    title: 'From daily noise to scenarios built for decisions.',
+    desc: 'We do not chase breaking news or publish detached academic walls of text. We combine ground-level reading, power and trade analysis, and foresight to see what is shifting now and what comes next.',
+    ctaPrimary: 'See advisory & consulting',
+    ctaSecondary: 'Talk to Open Andes',
+    stepsTitle: 'How we build every reading',
+    steps: [
+      {
+        num: '01',
+        title: 'Ground signals ahead of the headline',
+        desc: 'We track routes, ports, regulatory moves, capital flows, territorial friction, and rule-setting forums —going past daily commentary.',
+      },
+      {
+        num: '02',
+        title: 'Connecting geopolitics, trade & technology',
+        desc: 'We link political and territorial shifts to supply chains, markets, resources, and tech changes that reshape costs, lead times, and feasibility.',
+      },
+      {
+        num: '03',
+        title: 'Foresight & scenarios (present and ahead)',
+        desc: 'We separate structural shifts already underway from medium- and long-term possibilities, mapping clear scenarios and explicit assumptions rather than guessing.',
+      },
+      {
+        num: '04',
+        title: 'Direct translation to the decision table',
+        desc: 'We turn analysis into concrete implications —risks, windows of action, and blind spots— for boards, executives, public teams, or discreet consultations.',
+      },
+    ],
+    principlesTitle: 'Operating principles behind our judgment',
+    principles: [
+      {
+        title: 'Analytical independence',
+        desc: 'Independent judgment free from partisan agendas or short-term electoral campaigns.',
+      },
+      {
+        title: 'Discretion where warranted',
+        desc: 'Protection of sensitive discussions and confidentiality —including Chatham House-style principles in private settings.',
+      },
+      {
+        title: 'Commercial & practical focus',
+        desc: 'Every assessment answers a concrete question on risk, capital, operations, or public policy.',
+      },
+    ],
+    closingLine: 'Tomorrow has already started.',
+    closingCta: 'Explore advisory & consulting',
+  },
+  zh: {
+    metaTitle: '方法论 | Open Andes',
+    metaDescription:
+      '我们如何研判当下与推演未来：一线信号、地缘与贸易交叉验证、前瞻情景与决策落地。',
+    kicker: '方法论',
+    title: '从日常喧嚣走向可支撑决策的情景推演。',
+    desc: '我们不追逐碎片化新闻，也不堆砌脱离业务的纯学术长文。通过一线观察、权力与贸易分析以及前瞻推演，看清正在发生的变化与下一步走向。',
+    ctaPrimary: '了解咨询服务',
+    ctaSecondary: '联系 Open Andes',
+    stepsTitle: '我们的研判步骤',
+    steps: [
+      {
+        num: '01',
+        title: '一线信号走在头条之前',
+        desc: '追踪航线、港口、监管动向、资金流向、属地摩擦与规则谈判场域，超越表层快讯。',
+      },
+      {
+        num: '02',
+        title: '打通地缘政治、贸易与技术',
+        desc: '将政治与属地变化连接到供应链、市场、资源与技术演进，评估对成本、周期与可行性的影响。',
+      },
+      {
+        num: '03',
+        title: '前瞻推演与多情景分析',
+        desc: '区分已在落地的结构性变化与中长期潜在路径，以清晰情景和明确假设替代盲目预测。',
+      },
+      {
+        num: '04',
+        title: '直通决策会的可执行判断',
+        desc: '将研判转化为风险点、行动窗口与盲区提示，服务董事会、管理层、公共团队或保密咨询。',
+      },
+    ],
+    principlesTitle: '支撑判断的核心原则',
+    principles: [
+      {
+        title: '分析独立性',
+        desc: '保持独立判断，不依附党派议程或短期竞选阵营。',
+      },
+      {
+        title: '适度保密',
+        desc: '在涉密或敏感沟通中落实保密原则，包括在适用场合参照查塔姆宫规则式保密。',
+      },
+      {
+        title: '务实与商业导向',
+        desc: '每一项研判都紧扣风险、资本、运营或公共政策中的真实问题。',
+      },
+    ],
+    closingLine: '明天已经开始。',
+    closingCta: '了解咨询服务',
+  },
+};
+
+const data = content[lang];
+const prefix = lang === 'es' ? '' : `/${lang}`;
+const advisoryHref = `${prefix}/advisory`;
+const mailtoHref =
+  lang === 'en'
+    ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20Methodology'
+    : lang === 'zh'
+      ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20%E6%96%B9%E6%B3%95%E8%AE%BA%E4%BA%A4%E6%B5%81'
+      : 'mailto:contacto@openandes.org?subject=Consulta%20Metodolog%C3%ADa%20%E2%80%94%20Open%20Andes';
+---
+
+<Layout metadata={{ title: data.metaTitle, description: data.metaDescription }}>
+  <div class="bg-white text-neutral-950">
+    <!-- HERO -->
+    <section class="bg-neutral-950 text-white py-16 sm:py-24 border-b border-neutral-800">
+      <div class="max-w-5xl mx-auto px-6 sm:px-10 space-y-5">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+          {data.kicker}
+        </p>
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.08] max-w-3xl">
+          {data.title}
+        </h1>
+        <p class="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl">
+          {data.desc}
+        </p>
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a
+            href={advisoryHref}
+            class="rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors"
+          >
+            {data.ctaPrimary}
+          </a>
+          <a
+            href={mailtoHref}
+            class="rounded-full border border-neutral-600 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-colors"
+          >
+            {data.ctaSecondary}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 PASOS -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 space-y-10">
+      <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950">
+        {data.stepsTitle}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          data.steps.map((step) => (
+            <div class="rounded-2xl bg-neutral-100/80 p-6 sm:p-7 space-y-3">
+              <span class="block text-xs font-semibold tracking-wider text-[#1344e7]">
+                {step.num}
+              </span>
+              <h3 class="text-lg sm:text-xl font-semibold text-neutral-950">
+                {step.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                {step.desc}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- PRINCIPIOS -->
+    <section class="bg-neutral-100/70 py-16 sm:py-20 border-t border-neutral-200/80">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-8">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-950">
+          {data.principlesTitle}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            data.principles.map((pr) => (
+              <div class="rounded-xl bg-white p-6 border border-neutral-200/80 space-y-2">
+                <h3 class="text-base font-semibold text-neutral-950">{pr.title}</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">{pr.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="bg-neutral-950 text-white py-14 sm:py-16">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <p class="text-xl sm:text-3xl font-semibold tracking-tight">
+          {data.closingLine}
+        </p>
+        <a
+          href={advisoryHref}
+          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
+        >
+          {data.closingCta}
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>
