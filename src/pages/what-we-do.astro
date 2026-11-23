@@ -56,7 +56,7 @@ const fallbackData = {
         alt: 'Operación portuaria y comercio transpacífico',
       },
       {
-        title: 'Asesoría para decisiones que pesan',
+        title: 'Asesorías y Consultorías a Medida',
         desc: 'Cuando hay capital, expansión o riesgo territorial en juego, bajamos la lectura a tu caso concreto. Sesiones y análisis confidenciales para directorios, fondos y gerencias que necesitan claridad antes de mover ficha.',
         cta: 'Conocer asesoría',
         alt: 'Dinámica financiera y comercial entre divisas y mercados',
@@ -68,8 +68,6 @@ const fallbackData = {
     objectionDesc:
       'No hace falta leer un ladrillo académico de 150 páginas. Te entregamos lectura concreta, conectada al negocio y lista para discutir en comité.',
     objectionCta: 'Leer análisis recientes',
-    closingLine: 'El mañana ya empezó.',
-    closingCta: 'Escribir a contacto@openandes.org',
   },
   en: {
     metaTitle: 'What We Do | Open Andes',
@@ -114,7 +112,7 @@ const fallbackData = {
         alt: 'Port operations and transpacific trade',
       },
       {
-        title: 'Advisory for high-stakes moves',
+        title: 'Tailored Advisory',
         desc: 'When capital, expansion, or territorial risk is on the line, we ground the analysis in your specific situation. Confidential briefings and assessments for boards, funds, and executives.',
         cta: 'Explore advisory',
         alt: 'Currency and market dynamics',
@@ -126,8 +124,6 @@ const fallbackData = {
     objectionDesc:
       'You do not need a 150-page academic tome. You get practical reading tied to your business and ready for a board discussion.',
     objectionCta: 'Read recent analysis',
-    closingLine: 'Tomorrow has already started.',
-    closingCta: 'Email contacto@openandes.org',
   },
   zh: {
     metaTitle: '业务范围 | Open Andes',
@@ -172,7 +168,7 @@ const fallbackData = {
         alt: '港口作业与跨太平洋贸易',
       },
       {
-        title: '面向关键决策的定制咨询',
+        title: '定制咨询与顾问服务',
         desc: '当涉及资本投入、业务扩张或属地风险时，我们将研判落到你的具体场景。为董事会、基金与管理层提供保密简报与风险评估。',
         cta: '了解咨询服务',
         alt: '汇率与市场动态',
@@ -184,8 +180,6 @@ const fallbackData = {
     objectionDesc:
       '你不需要啃 150 页的学术长文。我们给你的是贴近业务、拿得出手、适合在管理层会上直接讨论的判断。',
     objectionCta: '阅读最新分析',
-    closingLine: '明天已经开始。',
-    closingCta: '发送邮件至 contacto@openandes.org',
   },
 };
 
@@ -390,7 +384,7 @@ const mailtoHref =
 
     <!-- MANIFIESTO CENTRAL + TARJETA FLOTANTE SOBRE IMAGEN -->
     <section class="bg-neutral-100/70 py-16 sm:py-24 border-t border-neutral-200/80">
-      <div class="max-w-5xl mx-auto px-6 sm:px-10 text-center space-y-6">
+      <div class="max-w-5xl mx-auto px-6 sm:px-10 text-center space-y-6 flex flex-col items-center">
         <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950 max-w-2xl mx-auto leading-tight">
           {data.manifestoTitle}
         </h2>
@@ -432,19 +426,6 @@ const mailtoHref =
       </div>
     </section>
 
-    <!-- CIERRE SECO -->
-    <section class="bg-neutral-950 text-white py-14 sm:py-16">
-      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <p class="text-xl sm:text-3xl font-semibold tracking-tight">
-          {data.closingLine}
-        </p>
-        <a
-          href={mailtoHref}
-          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
-        >
-          {data.closingCta}
-        </a>
-      </div>
-    </section>
+
   </div>
 </Layout>
