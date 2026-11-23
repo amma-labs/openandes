@@ -1,54 +1,54 @@
 {
-  "metaTitle": "What We Do | Open Andes",
-  "metaDescription": "El mañana ya empezó. Inteligencia estratégica para decidir antes que el mercado.",
+  "metaTitle": "Qué hacemos | Open Andes",
+  "metaDescription": "El mañana ya empezó. Inteligencia geopolítica, comercial y territorial para decidir antes que el mercado.",
   "heroKicker": "El mañana ya empezó",
-  "heroTitle": "Inteligencia para decidir antes que el mercado.",
-  "heroDesc": "Tus números ven el pasado. En Open Andes leemos geopolítica, puertos, comercio y riesgo real para que gerencias y directorios protejan su negocio.",
-  "ctaPrimary": "Ver reportes",
-  "ctaSecondary": "Pedir un briefing",
-  "cardsTitle": "Lo que mueve el tablero entra a tu balance.",
-  "cardsDesc": "Conectamos cumbres, rutas marítimas, agro y cadenas de suministro con decisiones concretas para tu operación.",
+  "heroTitle": "Cuando el tablero cambia, el que llega tarde paga el pato.",
+  "heroDesc": "Tus estados financieros muestran dónde estuviste; nosotros leemos qué se está moviendo en geopolítica, comercio, puertos y territorios para que tu negocio no reaccione a ciegas.",
+  "ctaPrimary": "Explorar análisis",
+  "ctaSecondary": "Hablemos",
+  "cardsTitle": "Lo que pasa afuera entra directo a tu operación.",
+  "cardsDesc": "Donde un movimiento externo cambia el costo o el ritmo del negocio.",
   "cards": [
     {
-      "title": "Protege tus márgenes",
-      "desc": "Anticípate a cambios regulatorios, trabas en insumos y shocks externos antes de que golpeen tu resultado.",
+      "title": "Márgenes bajo presión",
+      "desc": "Un cambio normativo, un arancel o un salto en costos clave te come el margen sin que el presupuesto lo haya visto venir.",
       "alt": "Fruta de exportación desde Chile"
     },
     {
-      "title": "Evita cuellos de botella",
-      "desc": "Lee puertos, corredores y rutas críticas para que tu carga y tus cadenas no queden varadas.",
+      "title": "Carga y rutas que se trancan",
+      "desc": "Puertos saturados, desvíos o cuellos de botella en corredores críticos frenan entregas, encarecen fletes y tensionan a toda la cadena.",
       "alt": "Terminal de contenedores en el Puerto de Rotterdam"
     },
     {
-      "title": "Blinda tu capital",
-      "desc": "Evalúa riesgo político, territorial y de mercado antes de comprometer inversión o cerrar acuerdos.",
+      "title": "Capital expuesto en terreno",
+      "desc": "Entrar a un mercado, expandir una operación o sostener un activo choca con fricciones políticas, sociales o regulatorias que no salen en un Excel.",
       "alt": "Encuentro de líderes internacionales en cumbre"
     },
     {
-      "title": "Decide con ventaja",
-      "desc": "Sigue las mesas donde se negocian las reglas entre América Latina, Asia y EE. UU. antes que todos.",
+      "title": "Decisiones a contrarreloj",
+      "desc": "Cuando las grandes potencias y foros regionales redefinen reglas, enterarse por la prensa es llegar tarde a ajustar estrategia.",
       "alt": "Líderes reunidos en cumbre APEC"
     }
   ],
   "blocks": [
     {
       "title": "Monitores y Reportes",
-      "desc": "Seguimiento continuo de infraestructura, flujos comerciales y cadenas críticas en el Pacífico y las Américas. Lectura clara para ver qué se mueve hoy y qué viene después.",
+      "desc": "Seguimiento continuo y lectura estructurada sobre comercio, infraestructura y tensiones en el Pacífico y las Américas. Ideal para tener el radar encendido y detectar señales antes de que estallen.",
       "cta": "Explorar reportes",
       "alt": "Operación portuaria y comercio transpacífico"
     },
     {
       "title": "Asesorías y Consultorías",
-      "desc": "Análisis confidencial y lectura de riesgo territorial para decisiones de inversión, expansión o continuidad operativa. Directo al grano para directorios y gerencias.",
+      "desc": "Trabajo directo y confidencial para cuando tienes una decisión crítica encima: evaluar riesgos antes de invertir, leer un escenario complejo o preparar a tu directorio con criterio de terreno.",
       "cta": "Ver asesorías y consultorías",
-      "alt": "Cadena alimentaria y recursos del Pacífico"
+      "alt": "Dinámica financiera y comercial entre divisas y mercados"
     }
   ],
-  "manifestoTitle": "Lee el cambio antes de que te cueste margen. Muévete con claridad.",
-  "manifestoCta": "Pedir un briefing",
-  "objectionTitle": "¿Nunca has sumado riesgo geopolítico y territorial a tu comité?",
-  "objectionDesc": "No necesitas un tratado académico. Te entregamos lectura directa, aterrizada al negocio y lista para decidir.",
-  "objectionCta": "Ver cómo funciona",
+  "manifestoTitle": "Dejar la geopolítica y el riesgo territorial para después sale caro.",
+  "manifestoCta": "Escribir a Open Andes",
+  "objectionTitle": "¿Nunca has llevado el riesgo geopolítico y territorial a la mesa de decisión?",
+  "objectionDesc": "No necesitas un tratado académico. Te entregamos lectura directa, aterrizada al negocio y lista para discutir.",
+  "objectionCta": "Ver publicaciones",
   "closingLine": "El mañana ya empezó.",
-  "closingCta": "Hablemos"
+  "closingCta": "Contactar"
 }
