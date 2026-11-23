@@ -1,6 +1,5 @@
 ---
 import { getLangFromUrl } from '~/i18n/ui';
-import faviconDark from '~/assets/favicons/favicon-dark.svg';
 import faviconLight from '~/assets/favicons/favicon-light.svg';
 
 const lang = getLangFromUrl(Astro);
@@ -12,12 +11,7 @@ const homeUrl = lang === 'es' ? '/' : `/${lang}/`;
     <img 
       src={faviconLight.src} 
       alt="OpenAndes" 
-      class="h-8 w-auto hidden dark:block"
-    />
-    <img 
-      src={faviconDark.src} 
-      alt="OpenAndes" 
-      class="h-8 w-auto block dark:hidden"
+      class="h-8 w-auto"
     />
     OPEN ANDES
   </span>
