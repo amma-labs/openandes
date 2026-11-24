@@ -70,17 +70,7 @@ const labels = {
   },
 }[locale];
 
-// 2. Normalización de autores para formato Chicago (Apellido, Nombre)
-function formatChicagoAuthor(fullName: string, isFirst: boolean): string {
-  const clean = fullName.trim();
-  if (!clean || clean.toLowerCase() === 'open andes') return 'Open Andes';
-  if (!isFirst) return clean;
-  const parts = clean.split(/\s+/);
-  if (parts.length <= 1) return clean;
-  const lastName = parts.pop();
-  return `${lastName}, ${parts.join(' ')}`;
-}
-
+// 2. Resolución de autores
 const resolvedNames: string[] =
   authorSlugs.length > 0
     ? authorSlugs.map((s) => authorRegistry[s]?.name).filter(Boolean)
@@ -88,33 +78,101 @@ const resolvedNames: string[] =
       ? [author]
       : ['Open Andes'];
 
-let formattedAuthors = 'Open Andes';
-if (resolvedNames.length === 1) {
-  formattedAuthors = formatChicagoAuthor(resolvedNames[0], true);
-} else if (resolvedNames.length === 2) {
-  const connector = locale === 'es' ? ' y ' : locale === 'en' ? ' and ' : '、';
-  formattedAuthors = `${formatChicagoAuthor(resolvedNames[0], true)}${connector}${formatChicagoAuthor(resolvedNames[1], false)}`;
-} else if (resolvedNames.length > 2) {
-  const first = formatChicagoAuthor(resolvedNames[0], true);
-  const rest = resolvedNames.slice(1).map((n) => formatChicagoAuthor(n, false));
-  const last = rest.pop();
-  const connector = locale === 'es' ? ', y ' : locale === 'en' ? ', and ' : '、';
-  formattedAuthors = `${first}, ${rest.join(', ')}${connector}${last}`;
+function splitName(fullName: string) {
+  const clean = fullName.trim();
+  if (!clean || clean.toLowerCase() === 'open andes') {
+    return { isOrg: true, first: '', last: 'Open Andes' };
+  }
+  const parts = clean.split(/\s+/);
+  if (parts.length <= 1) return { isOrg: false, first: '', last: clean };
+  const last = parts.pop()!;
+  return { isOrg: false, first: parts.join(' '), last };
 }
 
-// 3. Fecha y URL canónica
+// Formato Chicago (Apellido, Nombre y Nombre Apellido)
+function buildChicagoAuthors(names: string[]): string {
+  const formatted = names.map((n, idx) => {
+    const p = splitName(n);
+    if (p.isOrg) return 'Open Andes';
+    return idx === 0 ? `${p.last}, ${p.first}` : `${p.first} ${p.last}`;
+  });
+  if (formatted.length === 1) return formatted[0];
+  const conn = locale === 'es' ? ' y ' : locale === 'en' ? ' and ' : '、';
+  if (formatted.length === 2) return `${formatted[0]}${conn}${formatted[1]}`;
+  const last = formatted.pop();
+  return `${formatted.join(', ')}${locale === 'zh' ? '、' : `,${conn}`}${last}`;
+}
+
+// Formato APA 7 (Apellido, N., & Apellido, N.)
+function buildApaAuthors(names: string[]): string {
+  const formatted = names.map((n) => {
+    const p = splitName(n);
+    if (p.isOrg) return 'Open Andes';
+    const initials = p.first
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((part) => `${part[0].toUpperCase()}.`)
+      .join(' ');
+    return `${p.last}, ${initials}`;
+  });
+  if (formatted.length === 1) return formatted[0];
+  if (formatted.length === 2) return `${formatted[0]} & ${formatted[1]}`;
+  const last = formatted.pop();
+  return `${formatted.join(', ')}, & ${last}`;
+}
+
+// Formato BibTeX (Apellido, Nombre and Apellido, Nombre)
+function buildBibtexAuthors(names: string[]): string {
+  return names
+    .map((n) => {
+      const p = splitName(n);
+      return p.isOrg ? '{Open Andes}' : `${p.last}, ${p.first}`;
+    })
+    .join(' and ');
+}
+
+// 3. Fechas y URL canónica
 const dateObj = pubDate instanceof Date ? pubDate : new Date(pubDate);
-const formattedDate = new Intl.DateTimeFormat(
+const year = dateObj.getUTCFullYear();
+const monthNum = String(dateObj.getUTCMonth() + 1).padStart(2, '0');
+const monthLong = new Intl.DateTimeFormat(
+  locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN',
+  { month: 'long', timeZone: 'UTC' }
+).format(dateObj);
+const formattedDateFull = new Intl.DateTimeFormat(
   locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN',
   { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
 ).format(dateObj);
+const apaDate = locale === 'zh'
+  ? `${year}年${dateObj.getUTCMonth() + 1}月${dateObj.getUTCDate()}日`
+  : `${year}, ${dateObj.getUTCDate()} de ${monthLong}`;
+const apaDateEn = `${year}, ${monthLong} ${dateObj.getUTCDate()}`;
 
 const cleanUrl = Astro.url.href.split('?')[0].split('#')[0];
 
-const citationText =
-  section === 'monitor'
-    ? `${formattedAuthors}. "${title}." ${reportType ? `${reportType}, ` : ''}Open Andes, ${formattedDate}. ${cleanUrl}`
-    : `${formattedAuthors}. "${title}." Open Andes, ${formattedDate}. ${cleanUrl}`;
+const chicagoAuthors = buildChicagoAuthors(resolvedNames);
+const apaAuthors = buildApaAuthors(resolvedNames);
+const bibtexAuthors = buildBibtexAuthors(resolvedNames);
+
+const firstAuthorLast = splitName(resolvedNames[0]).last.toLowerCase().replace(/[^a-z0-9]/g, '') || 'openandes';
+const cleanSlugKey = currentSlug.replace(/[^a-zA-Z0-9]/g, '').slice(0, 18) || 'article';
+const bibtexKey = `${firstAuthorLast}${year}${cleanSlugKey}`;
+
+const citations = {
+  chicago:
+    section === 'monitor'
+      ? `${chicagoAuthors}. "${title}." ${reportType ? `${reportType}, ` : ''}Open Andes, ${formattedDateFull}. ${cleanUrl}`
+      : `${chicagoAuthors}. "${title}." Open Andes, ${formattedDateFull}. ${cleanUrl}`,
+  apa: `${apaAuthors} (${locale === 'en' ? apaDateEn : apaDate}). ${title}${section === 'monitor' && reportType ? ` [${reportType}]` : ''}. Open Andes. ${cleanUrl}`,
+  bibtex: `@misc{${bibtexKey},
+  author = {${bibtexAuthors}},
+  title = {{${title}}},
+  year = {${year}},
+  month = {${monthNum}},
+  howpublished = {Open Andes},
+  url = {${cleanUrl}}
+}`,
+};
 
 // 4. Obtención automática de 3 lecturas relacionadas de la misma sección e idioma
 const prefix = locale === 'es' ? '' : `/${locale}`;
@@ -175,20 +233,55 @@ if (section === 'monitor') {
   class="not-prose my-12 grid grid-cols-1 md:grid-cols-2 gap-6"
 >
   <!-- TARJETA IZQUIERDA: CITAR -->
-  <div class="flex flex-col justify-between rounded-3xl border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#0b101b] p-7 sm:p-8 shadow-sm">
+  <div
+    data-citation-widget
+    data-cite-chicago={citations.chicago}
+    data-cite-apa={citations.apa}
+    data-cite-bibtex={citations.bibtex}
+    class="flex flex-col justify-between rounded-3xl border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#0b101b] p-7 sm:p-8 shadow-sm"
+  >
     <div>
-      <p class="text-center font-mono-tech text-[11px] font-bold uppercase tracking-[0.14em] text-[#4b5563] dark:text-[#9ca3af] mb-2">
+      <p class="text-center font-mono-tech text-[11px] font-bold uppercase tracking-[0.14em] text-[#1344e7] dark:text-[#5b8def] mb-2">
         {labels.shareEyebrow}
       </p>
-      <h2 class="text-center font-fraunces text-3xl sm:text-[34px] font-normal text-[#111827] dark:text-[#f3f4f6] tracking-tight mb-6">
+      <h2 class="text-center font-fraunces text-3xl sm:text-[34px] font-normal text-[#111827] dark:text-[#f3f4f6] tracking-tight mb-4">
         {section === 'monitor' ? labels.citeReportTitle : labels.citeTitle}
       </h2>
 
+      <!-- SELECTOR DE FORMATO -->
+      <div class="mb-4 flex items-center justify-center gap-1.5" role="tablist" aria-label="Formato de cita">
+        <button
+          type="button"
+          data-format-tab="chicago"
+          aria-selected="true"
+          class="cursor-pointer rounded-full px-3.5 py-1 font-mono-tech text-[11px] font-bold uppercase tracking-wider transition bg-[#1344e7] text-white"
+        >
+          Chicago
+        </button>
+        <button
+          type="button"
+          data-format-tab="apa"
+          aria-selected="false"
+          class="cursor-pointer rounded-full px-3.5 py-1 font-mono-tech text-[11px] font-bold uppercase tracking-wider transition bg-[#e2f3ff]/70 text-[#1344e7] hover:bg-[#e2f3ff] dark:bg-white/5 dark:text-[#9ca3af] dark:hover:text-white"
+        >
+          APA 7
+        </button>
+        <button
+          type="button"
+          data-format-tab="bibtex"
+          aria-selected="false"
+          class="cursor-pointer rounded-full px-3.5 py-1 font-mono-tech text-[11px] font-bold uppercase tracking-wider transition bg-[#e2f3ff]/70 text-[#1344e7] hover:bg-[#e2f3ff] dark:bg-white/5 dark:text-[#9ca3af] dark:hover:text-white"
+        >
+          BibTeX
+        </button>
+      </div>
+
+      <!-- CAJA CELESTE INSTITUCIONAL -->
       <div
         data-citation-box
-        class="rounded-2xl bg-[#f7f4ed] dark:bg-white/[0.04] border border-[#ece7dc] dark:border-white/10 p-5 font-fraunces text-[15px] leading-relaxed text-[#1f2937] dark:text-[#e5e7eb] select-all break-words"
+        class="rounded-2xl bg-[#e2f3ff]/65 dark:bg-[#1344e7]/10 border border-[#bfdbfe] dark:border-[#1344e7]/30 p-5 font-fraunces text-[14.5px] leading-relaxed text-[#111827] dark:text-[#e5e7eb] select-all break-words"
       >
-        {citationText}
+        {citations.chicago}
       </div>
     </div>
 
@@ -196,9 +289,10 @@ if (section === 'monitor') {
       <button
         type="button"
         data-copy-btn
-        data-copy-text={citationText}
+        data-copy-target="citation"
+        data-copy-text={citations.chicago}
         data-copied-label={labels.copied}
-        class="cursor-pointer rounded-full bg-[#111827] dark:bg-[#1344e7] px-5 py-2.5 text-xs font-semibold tracking-wide text-white transition hover:bg-[#1344e7] dark:hover:bg-[#1d4ed8]"
+        class="cursor-pointer rounded-full bg-[#1344e7] px-5 py-2.5 text-xs font-semibold tracking-wide text-white transition hover:bg-[#0f36b8]"
       >
         {labels.copyCitation}
       </button>
@@ -206,9 +300,10 @@ if (section === 'monitor') {
       <button
         type="button"
         data-copy-btn
+        data-copy-target="link"
         data-copy-text={cleanUrl}
         data-copied-label={labels.copied}
-        class="cursor-pointer rounded-full border border-[#111827] dark:border-[#4b5563] bg-transparent px-5 py-2.5 text-xs font-semibold tracking-wide text-[#111827] dark:text-[#f3f4f6] transition hover:bg-[#111827] hover:text-white dark:hover:bg-white/10"
+        class="cursor-pointer rounded-full border border-[#1344e7] dark:border-[#5b8def] bg-transparent px-5 py-2.5 text-xs font-semibold tracking-wide text-[#1344e7] dark:text-[#5b8def] transition hover:bg-[#e2f3ff]/60 dark:hover:bg-[#1344e7]/20"
       >
         {labels.copyLink}
       </button>
@@ -241,7 +336,7 @@ if (section === 'monitor') {
     <div class="mt-6 flex justify-center">
       <a
         href={exploreHref}
-        class="rounded-full bg-[#111827] dark:bg-[#1344e7] px-6 py-2.5 text-xs font-semibold tracking-wide text-white transition hover:bg-[#1344e7] dark:hover:bg-[#1d4ed8]"
+        class="rounded-full bg-[#1344e7] px-6 py-2.5 text-xs font-semibold tracking-wide text-white transition hover:bg-[#0f36b8]"
       >
         {labels.exploreMore[section]}
       </a>
@@ -250,7 +345,53 @@ if (section === 'monitor') {
 </section>
 
 <script is:inline>
-  function initCitationButtons() {
+  function initCitationWidgets() {
+    document.querySelectorAll('[data-citation-widget]').forEach((widget) => {
+      if (widget.dataset.bound === 'true') return;
+      widget.dataset.bound = 'true';
+
+      const box = widget.querySelector('[data-citation-box]');
+      const citeBtn = widget.querySelector('[data-copy-target="citation"]');
+      const tabs = widget.querySelectorAll('[data-format-tab]');
+
+      const activeClasses = ['bg-[#1344e7]', 'text-white'];
+      const inactiveClasses = ['bg-[#e2f3ff]/70', 'text-[#1344e7]', 'hover:bg-[#e2f3ff]', 'dark:bg-white/5', 'dark:text-[#9ca3af]', 'dark:hover:text-white'];
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const fmt = tab.getAttribute('data-format-tab');
+          const newText = widget.getAttribute(`data-cite-${fmt}`) || '';
+
+          if (box) {
+            box.textContent = newText;
+            if (fmt === 'bibtex') {
+              box.classList.remove('font-fraunces');
+              box.classList.add('font-mono-tech', 'text-xs', 'whitespace-pre-wrap');
+            } else {
+              box.classList.remove('font-mono-tech', 'text-xs', 'whitespace-pre-wrap');
+              box.classList.add('font-fraunces');
+            }
+          }
+
+          if (citeBtn) {
+            citeBtn.setAttribute('data-copy-text', newText);
+          }
+
+          tabs.forEach((t) => {
+            const isSelected = t === tab;
+            t.setAttribute('aria-selected', String(isSelected));
+            if (isSelected) {
+              t.classList.remove(...inactiveClasses);
+              t.classList.add(...activeClasses);
+            } else {
+              t.classList.remove(...activeClasses);
+              t.classList.add(...inactiveClasses);
+            }
+          });
+        });
+      });
+    });
+
     document.querySelectorAll('[data-copy-btn]').forEach((btn) => {
       if (btn.dataset.bound === 'true') return;
       btn.dataset.bound = 'true';
@@ -270,6 +411,7 @@ if (section === 'monitor') {
       });
     });
   }
-  initCitationButtons();
-  document.addEventListener('astro:page-load', initCitationButtons);
+
+  initCitationWidgets();
+  document.addEventListener('astro:page-load', initCitationWidgets);
 </script>
