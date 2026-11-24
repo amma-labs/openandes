@@ -1,0 +1,275 @@
+---
+import { getCollection } from 'astro:content';
+import { authors as authorRegistry } from '~/data/authors';
+
+export interface Props {
+  section: 'analisis' | 'comentarios' | 'monitor';
+  currentSlug: string;
+  locale?: 'es' | 'en' | 'zh';
+  title: string;
+  author?: string;
+  authorSlugs?: string[];
+  pubDate: Date | string;
+  reportType?: string;
+}
+
+const {
+  section,
+  currentSlug,
+  locale = 'es',
+  title,
+  author,
+  authorSlugs = [],
+  pubDate,
+  reportType,
+} = Astro.props;
+
+// 1. Etiquetas multilingües
+const labels = {
+  es: {
+    shareEyebrow: 'COMPARTE EL CONOCIMIENTO',
+    citeTitle: 'Citar este artículo',
+    citeReportTitle: 'Citar este informe',
+    copyCitation: 'Copiar cita',
+    copyLink: 'Copiar enlace',
+    copied: '¡Copiado!',
+    keepReading: 'Para seguir leyendo',
+    exploreMore: {
+      analisis: 'Seguir explorando análisis',
+      comentarios: 'Seguir explorando comentarios',
+      monitor: 'Explorar todos los informes',
+    },
+  },
+  en: {
+    shareEyebrow: 'SHARE KNOWLEDGE',
+    citeTitle: 'Cite this article',
+    citeReportTitle: 'Cite this report',
+    copyCitation: 'Copy citation',
+    copyLink: 'Copy link',
+    copied: 'Copied!',
+    keepReading: 'Continue reading',
+    exploreMore: {
+      analisis: 'Explore more analysis',
+      comentarios: 'Explore more commentaries',
+      monitor: 'Explore all reports',
+    },
+  },
+  zh: {
+    shareEyebrow: '分享知识',
+    citeTitle: '引用本文',
+    citeReportTitle: '引用本报告',
+    copyCitation: '复制引文',
+    copyLink: '复制链接',
+    copied: '已复制！',
+    keepReading: '延伸阅读',
+    exploreMore: {
+      analisis: '浏览更多深度分析',
+      comentarios: '浏览更多评论文章',
+      monitor: '浏览全部研究报告',
+    },
+  },
+}[locale];
+
+// 2. Normalización de autores para formato Chicago (Apellido, Nombre)
+function formatChicagoAuthor(fullName: string, isFirst: boolean): string {
+  const clean = fullName.trim();
+  if (!clean || clean.toLowerCase() === 'open andes') return 'Open Andes';
+  if (!isFirst) return clean;
+  const parts = clean.split(/\s+/);
+  if (parts.length <= 1) return clean;
+  const lastName = parts.pop();
+  return `${lastName}, ${parts.join(' ')}`;
+}
+
+const resolvedNames: string[] =
+  authorSlugs.length > 0
+    ? authorSlugs.map((s) => authorRegistry[s]?.name).filter(Boolean)
+    : author
+      ? [author]
+      : ['Open Andes'];
+
+let formattedAuthors = 'Open Andes';
+if (resolvedNames.length === 1) {
+  formattedAuthors = formatChicagoAuthor(resolvedNames[0], true);
+} else if (resolvedNames.length === 2) {
+  const connector = locale === 'es' ? ' y ' : locale === 'en' ? ' and ' : '、';
+  formattedAuthors = `${formatChicagoAuthor(resolvedNames[0], true)}${connector}${formatChicagoAuthor(resolvedNames[1], false)}`;
+} else if (resolvedNames.length > 2) {
+  const first = formatChicagoAuthor(resolvedNames[0], true);
+  const rest = resolvedNames.slice(1).map((n) => formatChicagoAuthor(n, false));
+  const last = rest.pop();
+  const connector = locale === 'es' ? ', y ' : locale === 'en' ? ', and ' : '、';
+  formattedAuthors = `${first}, ${rest.join(', ')}${connector}${last}`;
+}
+
+// 3. Fecha y URL canónica
+const dateObj = pubDate instanceof Date ? pubDate : new Date(pubDate);
+const formattedDate = new Intl.DateTimeFormat(
+  locale === 'es' ? 'es-ES' : locale === 'en' ? 'en-US' : 'zh-CN',
+  { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
+).format(dateObj);
+
+const cleanUrl = Astro.url.href.split('?')[0].split('#')[0];
+
+const citationText =
+  section === 'monitor'
+    ? `${formattedAuthors}. "${title}." ${reportType ? `${reportType}, ` : ''}Open Andes, ${formattedDate}. ${cleanUrl}`
+    : `${formattedAuthors}. "${title}." Open Andes, ${formattedDate}. ${cleanUrl}`;
+
+// 4. Obtención automática de 3 lecturas relacionadas de la misma sección e idioma
+const prefix = locale === 'es' ? '' : `/${locale}`;
+const exploreHref = `${prefix}/${section}`;
+
+interface RelatedItem {
+  title: string;
+  href: string;
+  date: number;
+}
+
+let relatedItems: RelatedItem[] = [];
+
+if (section === 'monitor') {
+  const allReports = await getCollection('reports');
+  relatedItems = allReports
+    .filter((entry) => entry.id.startsWith(`${locale}/`))
+    .map((entry) => {
+      const slug = entry.id.replace(/^(es|en|zh)\//, '').replace(/\.(md|mdx)$/, '');
+      return {
+        slug,
+        title: entry.data.title,
+        href: `${prefix}/monitor/${slug}`,
+        date: new Date(entry.data.date).getTime(),
+      };
+    })
+    .filter((item) => item.slug !== currentSlug && !currentSlug.endsWith(`/${item.slug}`))
+    .sort((a, b) => b.date - a.date)
+    .slice(0, 3);
+} else {
+  const globFiles =
+    section === 'analisis'
+      ? import.meta.glob('../../data/post/**/*.{md,mdx}', { eager: true })
+      : import.meta.glob('../../data/comentarios/**/*.{md,mdx}', { eager: true });
+
+  const folderPrefix = section === 'analisis' ? `../../data/post/${locale}/` : `../../data/comentarios/${locale}/`;
+
+  relatedItems = Object.entries(globFiles)
+    .filter(([filepath]) => filepath.startsWith(folderPrefix))
+    .map(([filepath, mod]: [string, any]) => {
+      const slug = filepath.match(/\/([^/]+)\.(md|mdx)$/)![1];
+      const fm = mod.frontmatter || {};
+      return {
+        slug,
+        title: fm.title || slug,
+        href: `${prefix}/${section}/${slug}`,
+        date: fm.pubDate ? new Date(fm.pubDate).getTime() : 0,
+      };
+    })
+    .filter((item) => item.slug !== currentSlug)
+    .sort((a, b) => b.date - a.date)
+    .slice(0, 3);
+}
+---
+
+<section
+  aria-label={section === 'monitor' ? labels.citeReportTitle : labels.citeTitle}
+  class="not-prose my-12 grid grid-cols-1 md:grid-cols-2 gap-6"
+>
+  <!-- TARJETA IZQUIERDA: CITAR -->
+  <div class="flex flex-col justify-between rounded-3xl border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#0b101b] p-7 sm:p-8 shadow-sm">
+    <div>
+      <p class="text-center font-mono-tech text-[11px] font-bold uppercase tracking-[0.14em] text-[#4b5563] dark:text-[#9ca3af] mb-2">
+        {labels.shareEyebrow}
+      </p>
+      <h2 class="text-center font-fraunces text-3xl sm:text-[34px] font-normal text-[#111827] dark:text-[#f3f4f6] tracking-tight mb-6">
+        {section === 'monitor' ? labels.citeReportTitle : labels.citeTitle}
+      </h2>
+
+      <div
+        data-citation-box
+        class="rounded-2xl bg-[#f7f4ed] dark:bg-white/[0.04] border border-[#ece7dc] dark:border-white/10 p-5 font-fraunces text-[15px] leading-relaxed text-[#1f2937] dark:text-[#e5e7eb] select-all break-words"
+      >
+        {citationText}
+      </div>
+    </div>
+
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+      <button
+        type="button"
+        data-copy-btn
+        data-copy-text={citationText}
+        data-copied-label={labels.copied}
+        class="cursor-pointer rounded-full bg-[#111827] dark:bg-[#1344e7] px-5 py-2.5 text-xs font-semibold tracking-wide text-white transition hover:bg-[#1344e7] dark:hover:bg-[#1d4ed8]"
+      >
+        {labels.copyCitation}
+      </button>
+
+      <button
+        type="button"
+        data-copy-btn
+        data-copy-text={cleanUrl}
+        data-copied-label={labels.copied}
+        class="cursor-pointer rounded-full border border-[#111827] dark:border-[#4b5563] bg-transparent px-5 py-2.5 text-xs font-semibold tracking-wide text-[#111827] dark:text-[#f3f4f6] transition hover:bg-[#111827] hover:text-white dark:hover:bg-white/10"
+      >
+        {labels.copyLink}
+      </button>
+    </div>
+  </div>
+
+  <!-- TARJETA DERECHA: PARA SEGUIR LEYENDO -->
+  <div class="flex flex-col justify-between rounded-3xl border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#0b101b] p-7 sm:p-8 shadow-sm">
+    <div>
+      <h2 class="text-center font-fraunces text-3xl sm:text-[34px] font-normal text-[#111827] dark:text-[#f3f4f6] tracking-tight mb-6">
+        {labels.keepReading}
+      </h2>
+
+      {relatedItems.length > 0 && (
+        <ul class="divide-y divide-[#e5e7eb] dark:divide-[#2a2a2a] border-t border-b border-[#e5e7eb] dark:border-[#2a2a2a]">
+          {relatedItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block py-4 px-2 text-center font-fraunces text-[17px] leading-snug text-[#111827] dark:text-[#f3f4f6] transition hover:text-[#1344e7] dark:hover:text-[#5b8def]"
+              >
+                {item.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    <div class="mt-6 flex justify-center">
+      <a
+        href={exploreHref}
+        class="rounded-full bg-[#111827] dark:bg-[#1344e7] px-6 py-2.5 text-xs font-semibold tracking-wide text-white transition hover:bg-[#1344e7] dark:hover:bg-[#1d4ed8]"
+      >
+        {labels.exploreMore[section]}
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  function initCitationButtons() {
+    document.querySelectorAll('[data-copy-btn]').forEach((btn) => {
+      if (btn.dataset.bound === 'true') return;
+      btn.dataset.bound = 'true';
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy-text') || '';
+        const copiedLabel = btn.getAttribute('data-copied-label') || '¡Copiado!';
+        const originalLabel = btn.textContent;
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = copiedLabel;
+          setTimeout(() => {
+            btn.textContent = originalLabel;
+          }, 2000);
+        } catch (err) {
+          console.error('Error al copiar:', err);
+        }
+      });
+    });
+  }
+  initCitationButtons();
+  document.addEventListener('astro:page-load', initCitationButtons);
+</script>

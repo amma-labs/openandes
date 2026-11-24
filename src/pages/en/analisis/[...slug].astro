@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import ShareButtons from '~/components/common/ShareButtons.astro';
+import ArticleFooterCards from '~/components/common/ArticleFooterCards.astro';
 import { authors } from '~/data/authors';
 
 export async function getStaticPaths() {
@@ -127,6 +128,16 @@ const metadata = {
             Este trabajo representa exclusivamente las opiniones del autor o autores. Open Andes es un think tank y editorial independiente, y no adopta posturas institucionales sobre asuntos de política pública.
           </p>
         </div>
+
+        <ArticleFooterCards
+          section="analisis"
+          currentSlug={slug!}
+          locale={locale}
+          title={post.frontmatter?.title || ''}
+          author={post.frontmatter?.author}
+          authorSlugs={authorSlugs}
+          pubDate={post.frontmatter?.pubDate || new Date()}
+        />
 
         <ShareButtons variant="inline" />
       </article>
