@@ -308,11 +308,11 @@ const mailtoHref =
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {
           fourCards.map((card) => (
             <div class="rounded-xl bg-neutral-100/90 overflow-hidden flex flex-col">
-              <div class="aspect-[16/10] w-full overflow-hidden bg-neutral-200">
+              <div class="aspect-[4/3] w-full overflow-hidden bg-neutral-200">
                 <img
                   src={card.image}
                   alt={card.alt}
@@ -320,7 +320,7 @@ const mailtoHref =
                   class="h-full w-full object-cover"
                 />
               </div>
-              <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
                 <h3 class="text-base font-semibold text-neutral-950">
                   {card.title}
                 </h3>
@@ -335,7 +335,7 @@ const mailtoHref =
     </section>
 
     <!-- BLOQUES ALTERNADOS -->
-    <section class="max-w-6xl mx-auto px-6 sm:px-10 pb-16 sm:pb-24 space-y-20">
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 pb-16 sm:pb-24 space-y-10">
       {
         alternateBlocks.map((block) => (
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
@@ -397,14 +397,14 @@ const mailtoHref =
         </div>
 
         <div>
-          <div class="relative rounded-2xl overflow-hidden min-h-[280px] sm:min-h-[340px] flex items-start bg-neutral-900 text-left">
+          <div class="relative rounded-2xl overflow-hidden min-h-[200px] sm:min-h-[240px] flex items-start bg-neutral-900 text-left">
             <img
               src={objectionImage}
               alt={data.objectionAlt}
               loading="lazy"
               class="absolute inset-0 h-full w-full object-cover opacity-75"
             />
-            <div class="relative z-10 m-5 sm:m-10 max-w-md rounded-xl bg-white p-6 sm:p-8 shadow-lg space-y-3">
+            <div class="relative z-10 m-4 sm:m-6 max-w-md rounded-xl bg-white p-5 sm:p-6 shadow-lg space-y-2">
               <h3 class="text-lg sm:text-xl font-semibold text-neutral-950">
                 {data.objectionTitle}
               </h3>
