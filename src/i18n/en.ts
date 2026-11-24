@@ -15,6 +15,8 @@ export const en = {
     topics: 'Topics',
     experts: 'Experts',
     advisory: 'Advisory',
+    publications: 'Publications',
+    articles: 'Articles',
     research: 'Research',
     analysis: 'Analysis',
     commentary: 'Commentary',

@@ -130,12 +130,12 @@ const currentLang: Lang = getLangFromUrl(Astro);
                         class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden xl:inline"
                       />
                     </button>
-                    <ul class="dropdown-menu xl:backdrop-blur-md dark:xl:bg-dark rounded xl:absolute pl-4 xl:pl-0 xl:hidden font-medium xl:bg-white/90 xl:min-w-[200px] drop-shadow-xl">
+                    <ul class="dropdown-menu xl:backdrop-blur-md dark:xl:bg-[#030620]/95 rounded-lg xl:absolute pl-4 xl:pl-0 xl:hidden font-medium xl:bg-white/95 xl:border xl:border-[#e5e7eb] dark:xl:border-white/10 xl:min-w-[210px] drop-shadow-xl py-1">
                       {links.map(({ text: text2, href: href2 }) => (
                         <li>
                           <a
                             class:list={[
-                              'first:rounded-t last:rounded-b xl:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
+                              'xl:hover:bg-gray-100 hover:text-[#1344e7] dark:hover:text-white dark:hover:bg-white/10 py-2 px-5 block whitespace-nowrap transition-colors',
                               { 'aw-link-active': href2 === currentPath },
                             ]}
                             href={href2}

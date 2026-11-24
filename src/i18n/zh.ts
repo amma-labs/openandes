@@ -16,6 +16,8 @@ export const zh = {
     topics: '主题',
     experts: '专家',
     advisory: '咨询',
+    publications: '出版物',
+    articles: '文章',
     research: '研究',
     analysis: '分析',
     commentary: '评论',

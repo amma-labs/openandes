@@ -5,7 +5,7 @@ import { useTranslations, type Lang } from './i18n/ui';
 
 export interface MenuLink {
   text: string;
-  href: string;
+  href?: string;
   links?: MenuLink[];
 }
 
@@ -31,9 +31,14 @@ export function headerData(lang: Lang = 'es'): HeaderData {
       { text: t.nav.whatWeDo, href: localizedPath('/what-we-do', lang) },
       { text: t.nav.topics, href: localizedPath('/topics', lang) },
       { text: t.nav.experts, href: localizedPath('/expertos', lang) },
-      { text: t.nav.research, href: localizedPath('/monitor', lang) },
-      { text: t.nav.analysis, href: localizedPath('/analisis', lang) },
-      { text: t.nav.commentary, href: localizedPath('/comentarios', lang) },
+      {
+        text: t.nav.publications,
+        links: [
+          { text: t.nav.articles, href: localizedPath('/analisis', lang) },
+          { text: t.nav.commentary, href: localizedPath('/comentarios', lang) },
+          { text: t.nav.research, href: localizedPath('/monitor', lang) },
+        ],
+      },
       { text: t.nav.events, href: localizedPath('/eventos', lang) },
     ],
   };
