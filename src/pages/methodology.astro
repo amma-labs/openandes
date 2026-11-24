@@ -7,155 +7,269 @@ const rawLang = getLangFromUrl(Astro);
 const lang: 'es' | 'en' | 'zh' =
   rawLang === 'en' || rawLang === 'zh' ? rawLang : 'es';
 
+const images = {
+  hero: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1800&q=85',
+  sources: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80',
+};
+
 const content = {
   es: {
     metaTitle: 'Nuestra Metodología | Open Andes',
     metaDescription:
-      'Cómo leemos el presente y proyectamos escenarios: señales en terreno, cruce geopolítico y comercial, prospectiva y utilidad práctica.',
-    kicker: 'Nuestra Metodología',
+      'Cómo leemos el presente y proyectamos escenarios: señales en terreno, cruce geopolítico y comercial, fuentes multipolares, geodata y prospectiva 2035+.',
+    kicker: 'OPEN ANDES METHODOLOGY · PROTOCOLO ANALÍTICO',
     title: 'Del ruido diario a escenarios útiles para decidir.',
-    desc: 'No competimos con el despacho de noticias ni escribimos tratados aislados del negocio. Combinamos lectura de terreno, análisis de poder y comercio, y prospectiva para ver qué se está moviendo y qué viene después.',
+    desc: 'No competimos con el despacho de noticias ni escribimos tratados aislados de la operación. Combinamos lectura de terreno, fuentes multipolares, geodata y prospectiva 2035+ para anticipar qué se está moviendo y qué viene después.',
     ctaPrimary: 'Ver asesorías y consultorías',
     ctaSecondary: 'Hablar con Open Andes',
+    heroCaption: 'Observación satelital, geointeligencia y modelado territorial del Pacífico Sur.',
+    pillars: [
+      { value: '04 Fases', label: 'De la señal primaria en terreno al memo de decisión' },
+      { value: 'Multipolar', label: 'Contraste sistemático entre centros de América, Asia y Europa' },
+      { value: '2035+', label: 'Modelado prospectivo junto a 2050 Futures Lab' },
+    ],
+    stepsKicker: 'PROCESO DE INTELIGENCIA',
     stepsTitle: 'Cómo trabajamos cada lectura',
+    stepsDesc:
+      'Cuatro filtros sucesivos separan la coyuntura mediática de los cambios estructurales que alteran activos, regulaciones y cadenas de suministro.',
     steps: [
       {
-        num: '01',
+        num: 'FASE 01',
         title: 'Señales y terreno antes que el titular',
-        desc: 'Miramos rutas, puertos, decisiones regulatorias, movimientos de capital, dinámicas territoriales y foros donde se negocian reglas reales —no solo el comentario del día.',
+        desc: 'Monitoreamos rutas marítimas, puertos, decisiones regulatorias, movimientos de capital, conflictividad territorial y foros donde se negocian reglas reales, más allá del comentario del día.',
       },
       {
-        num: '02',
+        num: 'FASE 02',
         title: 'Cruce entre geopolítica, comercio y tecnología',
-        desc: 'Conectamos factores políticos y territoriales con cadenas de suministro, mercados, recursos y cambios tecnológicos que alteran costos, plazos y viabilidad.',
+        desc: 'Conectamos factores políticos y territoriales con cadenas de suministro, infraestructura energética, minerales críticos y cambios tecnológicos que alteran costos, plazos y viabilidad.',
       },
       {
-        num: '03',
-        title: 'Prospectiva y escenarios (presente y futuro)',
-        desc: 'Separamos lo que ya está cambiando de lo que puede escalar en el mediano y largo plazo, construyendo escenarios claros y supuestos explícitos en vez de adivinar.',
+        num: 'FASE 03',
+        title: 'Prospectiva y escenarios (presente y 2035+)',
+        desc: 'Separamos lo que ya está cambiando de lo que puede escalar en el mediano y largo plazo, construyendo escenarios alternativos y supuestos explícitos en lugar de especulación.',
       },
       {
-        num: '04',
+        num: 'FASE 04',
         title: 'Traducción directa a la mesa de decisión',
-        desc: 'Bajamos el análisis a implicancias concretas —riesgos, ventanas de acción y puntos ciegos— para directorios, gerencias, equipos públicos o consultas reservadas.',
+        desc: 'Bajamos el análisis a implicancias concretas (riesgos operativos, ventanas de acción y puntos ciegos) para directorios, gerencias, equipos públicos o consultas reservadas.',
       },
     ],
+    rigorKicker: 'ARQUITECTURA DE EVIDENCIA',
+    rigorTitle: 'Contraste multipolar y trazabilidad de datos.',
+    rigorDesc:
+      'Para evitar puntos ciegos regionales o sesgos de una sola geografía, cruzamos evidencia primaria, capas geoespaciales y centros de pensamiento de distintos polos del sistema internacional.',
+    rigorImgAlt: 'Modelado cuantitativo y visualización de indicadores estratégicos',
+    rigorPoints: [
+      {
+        tag: 'FUENTES PRIMARIAS',
+        title: 'Datos oficiales, concesiones y registros regulatorios',
+        detail: 'Revisamos normativa vigente, estadísticas aduaneras, licitaciones de infraestructura y reportes técnicos sectoriales antes de interpretar tendencias.',
+      },
+      {
+        tag: 'MIRADA MULTIPOLAR',
+        title: 'Lectura comparada América–Asia–Europa',
+        detail: 'Contrastamos literatura estratégica y económica de instituciones occidentales y asiáticas para entender cómo se percibe América Latina desde los centros que invierten y compran en la región.',
+      },
+      {
+        tag: 'CAPA TERRITORIAL',
+        title: 'Geointeligencia y riesgo socioambiental',
+        detail: 'Superponemos variables físicas, hídricas, logísticas y de gobernanza local para medir fricción real sobre proyectos y corredores.',
+      },
+    ],
+    principlesKicker: 'ESTÁNDARES OPERATIVOS',
     principlesTitle: 'Reglas de juego que sostienen el criterio',
     principles: [
       {
+        num: '01',
         title: 'Independencia analítica',
-        desc: 'Criterio propio, sin subordinación a agendas partidarias ni campañas coyunturales.',
+        desc: 'Criterio propio, sin subordinación a agendas partidarias, financiamientos condicionados ni campañas coyunturales.',
       },
       {
+        num: '02',
         title: 'Reserva cuando corresponde',
-        desc: 'Resguardo de conversaciones y confidencialidad —incluyendo criterios tipo Chatham House en espacios privados o sensibles.',
+        desc: 'Resguardo estricto de conversaciones y confidencialidad, aplicando protocolos tipo Chatham House en espacios privados o sensibles.',
       },
       {
+        num: '03',
         title: 'Sentido comercial y práctico',
-        desc: 'Cada análisis responde a una pregunta real de riesgo, capital, operación o política pública.',
+        desc: 'Cada análisis responde a una pregunta real de riesgo, asignación de capital, continuidad operativa o diseño de política pública.',
       },
     ],
+    closingKicker: 'APLICACIÓN PRÁCTICA',
     closingLine: 'El mañana ya empezó.',
+    closingSub: 'Lleva este protocolo analítico a los desafíos concretos de tu organización.',
     closingCta: 'Explorar asesorías y consultorías',
   },
   en: {
     metaTitle: 'Our Methodology | Open Andes',
     metaDescription:
-      'How we read the present and map scenarios: ground signals, geopolitical and trade cross-checks, foresight, and decision utility.',
-    kicker: 'Our Methodology',
+      'How we read the present and map scenarios: ground signals, geopolitical and trade cross-checks, multipolar sources, geodata, and 2035+ foresight.',
+    kicker: 'OPEN ANDES METHODOLOGY · ANALYTICAL PROTOCOL',
     title: 'From daily noise to scenarios built for decisions.',
-    desc: 'We do not chase breaking news or publish detached academic walls of text. We combine ground-level reading, power and trade analysis, and foresight to see what is shifting now and what comes next.',
+    desc: 'We do not chase breaking news or publish detached academic walls of text. We combine ground-level reading, multipolar sources, geodata, and 2035+ foresight to see what is shifting now and what comes next.',
     ctaPrimary: 'See advisory & consulting',
     ctaSecondary: 'Talk to Open Andes',
+    heroCaption: 'Orbital observation, geointelligence, and territorial modeling across the South Pacific.',
+    pillars: [
+      { value: '04 Phases', label: 'From primary ground signals to the executive decision memo' },
+      { value: 'Multipolar', label: 'Systematic cross-checks across the Americas, Asia, and Europe' },
+      { value: '2035+', label: 'Strategic foresight modeling with 2050 Futures Lab' },
+    ],
+    stepsKicker: 'INTELLIGENCE PIPELINE',
     stepsTitle: 'How we build every reading',
+    stepsDesc:
+      'Four sequential filters separate media noise from structural shifts that reshape assets, regulation, and supply chains.',
     steps: [
       {
-        num: '01',
+        num: 'PHASE 01',
         title: 'Ground signals ahead of the headline',
-        desc: 'We track routes, ports, regulatory moves, capital flows, territorial friction, and rule-setting forums —going past daily commentary.',
+        desc: 'We track maritime routes, ports, regulatory moves, capital flows, territorial friction, and rule-setting forums, going past daily commentary.',
       },
       {
-        num: '02',
+        num: 'PHASE 02',
         title: 'Connecting geopolitics, trade & technology',
-        desc: 'We link political and territorial shifts to supply chains, markets, resources, and tech changes that reshape costs, lead times, and feasibility.',
+        desc: 'We link political and territorial shifts to supply chains, energy infrastructure, critical minerals, and tech changes that reshape costs, lead times, and feasibility.',
       },
       {
-        num: '03',
-        title: 'Foresight & scenarios (present and ahead)',
+        num: 'PHASE 03',
+        title: 'Foresight & scenarios (present and 2035+)',
         desc: 'We separate structural shifts already underway from medium- and long-term possibilities, mapping clear scenarios and explicit assumptions rather than guessing.',
       },
       {
-        num: '04',
+        num: 'PHASE 04',
         title: 'Direct translation to the decision table',
-        desc: 'We turn analysis into concrete implications —risks, windows of action, and blind spots— for boards, executives, public teams, or discreet consultations.',
+        desc: 'We turn analysis into concrete implications — operational risks, windows of action, and blind spots — for boards, executives, public teams, or discreet consultations.',
       },
     ],
+    rigorKicker: 'EVIDENCE ARCHITECTURE',
+    rigorTitle: 'Multipolar cross-checks and data traceability.',
+    rigorDesc:
+      'To eliminate single-geography blind spots, we cross-reference primary records, geospatial layers, and research institutions across multiple poles of the international system.',
+    rigorImgAlt: 'Quantitative modeling and strategic indicator visualization',
+    rigorPoints: [
+      {
+        tag: 'PRIMARY RECORDS',
+        title: 'Official data, concessions & regulatory filings',
+        detail: 'We examine enacted rules, customs statistics, infrastructure tenders, and technical sector reports before interpreting broader trends.',
+      },
+      {
+        tag: 'MULTIPOLAR LENS',
+        title: 'Comparative Americas–Asia–Europe reading',
+        detail: 'We weigh strategic and economic research from Western and Asian institutions to understand how Latin America is viewed from the capitals investing and sourcing in the region.',
+      },
+      {
+        tag: 'TERRITORIAL LAYER',
+        title: 'Geointelligence & socio-environmental risk',
+        detail: 'We overlay physical, water, logistics, and local governance variables to measure real-world friction on projects and corridors.',
+      },
+    ],
+    principlesKicker: 'OPERATING STANDARDS',
     principlesTitle: 'Operating principles behind our judgment',
     principles: [
       {
+        num: '01',
         title: 'Analytical independence',
-        desc: 'Independent judgment free from partisan agendas or short-term electoral campaigns.',
+        desc: 'Independent judgment free from partisan agendas, tied funding, or short-term electoral campaigns.',
       },
       {
+        num: '02',
         title: 'Discretion where warranted',
-        desc: 'Protection of sensitive discussions and confidentiality —including Chatham House-style principles in private settings.',
+        desc: 'Strict protection of sensitive discussions and confidentiality, applying Chatham House-style principles in private settings.',
       },
       {
+        num: '03',
         title: 'Commercial & practical focus',
-        desc: 'Every assessment answers a concrete question on risk, capital, operations, or public policy.',
+        desc: 'Every assessment answers a concrete question on risk, capital allocation, operational continuity, or public policy design.',
       },
     ],
+    closingKicker: 'PRACTICAL APPLICATION',
     closingLine: 'Tomorrow has already started.',
+    closingSub: 'Apply this analytical protocol to your organization’s strategic challenges.',
     closingCta: 'Explore advisory & consulting',
   },
   zh: {
     metaTitle: '方法论 | Open Andes',
     metaDescription:
-      '我们如何研判当下与推演未来：一线信号、地缘与贸易交叉验证、前瞻情景与决策落地。',
-    kicker: '方法论',
+      '我们如何研判当下与推演未来：一线信号、地缘与贸易交叉验证、多极化信源、地理数据与2035+前瞻推演。',
+    kicker: 'OPEN ANDES 方法论 · 分析规范',
     title: '从日常喧嚣走向可支撑决策的情景推演。',
-    desc: '我们不追逐碎片化新闻，也不堆砌脱离业务的纯学术长文。通过一线观察、权力与贸易分析以及前瞻推演，看清正在发生的变化与下一步走向。',
+    desc: '我们不追逐碎片化新闻，也不堆砌脱离业务的纯学术长文。通过一线观察、多极信源交叉验证、地理数据与2035+前瞻推演，看清正在发生的变化与下一步走向。',
     ctaPrimary: '了解咨询服务',
     ctaSecondary: '联系 Open Andes',
+    heroCaption: '南太平洋卫星观测、地理情报与属地空间建模。',
+    pillars: [
+      { value: '四阶段', label: '从一线原始信号直达高管决策备忘录' },
+      { value: '多极视角', label: '系统交叉比对美洲、亚洲与欧洲研究机构' },
+      { value: '2035+', label: '联合 2050 Futures Lab 开展战略前瞻建模' },
+    ],
+    stepsKicker: '情报研判流程',
     stepsTitle: '我们的研判步骤',
+    stepsDesc: '通过四道递进筛选，将表层舆论噪音与真正改变资产、监管和供应链的结构性变量剥离开来。',
     steps: [
       {
-        num: '01',
+        num: '阶段 01',
         title: '一线信号走在头条之前',
-        desc: '追踪航线、港口、监管动向、资金流向、属地摩擦与规则谈判场域，超越表层快讯。',
+        desc: '持续追踪海运航线、港口吞吐、监管动向、资金流向、属地摩擦与规则谈判场域，超越表层快讯。',
       },
       {
-        num: '02',
+        num: '阶段 02',
         title: '打通地缘政治、贸易与技术',
-        desc: '将政治与属地变化连接到供应链、市场、资源与技术演进，评估对成本、周期与可行性的影响。',
+        desc: '将政治与属地变化连接到供应链、能源基础设施、关键矿产与技术演进，评估对成本、周期与可行性的影响。',
       },
       {
-        num: '03',
-        title: '前瞻推演与多情景分析',
+        num: '阶段 03',
+        title: '前瞻推演与 2035+ 多情景分析',
         desc: '区分已在落地的结构性变化与中长期潜在路径，以清晰情景和明确假设替代盲目预测。',
       },
       {
-        num: '04',
+        num: '阶段 04',
         title: '直通决策会的可执行判断',
-        desc: '将研判转化为风险点、行动窗口与盲区提示，服务董事会、管理层、公共团队或保密咨询。',
+        desc: '将研判转化为运营风险、行动窗口与盲区提示，服务董事会、管理层、公共团队或保密咨询。',
       },
     ],
+    rigorKicker: '证据与信源架构',
+    rigorTitle: '多极交叉验证与数据可追溯性。',
+    rigorDesc: '为避免单一地理视角带来的盲区，我们系统比对一手官方档案、地理空间图层以及国际体系多极智库的研究成果。',
+    rigorImgAlt: '定量建模与战略指标可视化分析',
+    rigorPoints: [
+      {
+        tag: '一手档案',
+        title: '官方统计、特许经营权与监管文件',
+        detail: '在研判宏观趋势前，优先核查现行法规、海关贸易数据、基础设施招标文件与行业技术报告。',
+      },
+      {
+        tag: '多极视野',
+        title: '美洲—亚洲—欧洲比较研判',
+        detail: '并行参照西方与亚洲战略经济机构的研究视角，还原投资方与采购方如何评估拉丁美洲风险与机遇。',
+      },
+      {
+        tag: '属地图层',
+        title: '地理空间情报与社会环境风险',
+        detail: '叠加自然地理、水资源、物流走廊与地方治理变量，量化项目与通道面临的真实摩擦。',
+      },
+    ],
+    principlesKicker: '运营准则',
     principlesTitle: '支撑判断的核心原则',
     principles: [
       {
+        num: '01',
         title: '分析独立性',
-        desc: '保持独立判断，不依附党派议程或短期竞选阵营。',
+        desc: '保持独立判断，不依附党派议程、附加条件资金或短期竞选阵营。',
       },
       {
+        num: '02',
         title: '适度保密',
-        desc: '在涉密或敏感沟通中落实保密原则，包括在适用场合参照查塔姆宫规则式保密。',
+        desc: '严格保护敏感沟通与商业机密，在私密或涉密场合落实查塔姆宫规则式保密机制。',
       },
       {
+        num: '03',
         title: '务实与商业导向',
-        desc: '每一项研判都紧扣风险、资本、运营或公共政策中的真实问题。',
+        desc: '每一项研判都紧扣风险防控、资本配置、运营连续性或公共政策设计中的真实问题。',
       },
     ],
+    closingKicker: '实践落地',
     closingLine: '明天已经开始。',
+    closingSub: '将这套分析规范应用于贵机构面临的真实战略挑战。',
     closingCta: '了解咨询服务',
   },
 };
@@ -168,56 +282,92 @@ const mailtoHref =
     ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20Methodology'
     : lang === 'zh'
       ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20%E6%96%B9%E6%B3%95%E8%AE%BA%E4%BA%A4%E6%B5%81'
-      : 'mailto:contacto@openandes.org?subject=Consulta%20Metodolog%C3%ADa%20%E2%80%94%20Open%20Andes';
+      : 'mailto:contacto@openandes.org?subject=Consulta%20Metodologia%20Open%20Andes';
 ---
 
 <Layout metadata={{ title: data.metaTitle, description: data.metaDescription }}>
-  <div class="bg-white text-slate-950">
-    <!-- HERO -->
-    <section class="bg-[#030620] text-white py-16 sm:py-24 border-b border-slate-800">
-      <div class="max-w-5xl mx-auto px-6 sm:px-10 space-y-5">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-          {data.kicker}
-        </p>
-        <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.08] max-w-3xl">
-          {data.title}
-        </h1>
-        <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-          {data.desc}
-        </p>
-        <div class="pt-2 flex flex-wrap gap-3">
-          <a
-            href={advisoryHref}
-            class="rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 hover:bg-[#1344e7] hover:text-white transition-colors"
-          >
-            {data.ctaPrimary}
-          </a>
-          <a
-            href={mailtoHref}
-            class="rounded-full border border-slate-600 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-colors"
-          >
-            {data.ctaSecondary}
-          </a>
+  <div class="bg-[#ffffff] dark:bg-[#030620] text-[#111827] dark:text-[#f3f4f6]">
+    <!-- HERO EDITORIAL EN AZUL MEDIANOCHE (#030620) -->
+    <section class="relative overflow-hidden bg-[#030620] text-white border-b border-white/10">
+      <div class="absolute inset-0">
+        <img
+          src={images.hero}
+          alt={data.heroCaption}
+          class="h-full w-full object-cover object-center opacity-30"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#030620] via-[#030620]/88 to-[#030620]/45"></div>
+      </div>
+      <div class="absolute top-0 left-0 right-0 z-10 h-1 bg-[#1344e7]"></div>
+
+      <div class="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+        <div class="max-w-3xl space-y-6">
+          <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.2em] text-[#5b8def]">
+            {data.kicker}
+          </p>
+          <h1 class="font-fraunces font-normal text-4xl sm:text-5xl lg:text-[56px] tracking-tight leading-[1.08] text-white">
+            {data.title}
+          </h1>
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-light">
+            {data.desc}
+          </p>
+          <div class="pt-3 flex flex-wrap gap-3.5">
+            <a
+              href={advisoryHref}
+              class="rounded-full bg-[#1344e7] px-6 py-3 text-xs sm:text-sm font-semibold tracking-wide text-white hover:bg-[#1d4ed8] transition-colors shadow-lg shadow-[#1344e7]/25"
+            >
+              {data.ctaPrimary}
+            </a>
+            <a
+              href={mailtoHref}
+              class="rounded-full border border-white/30 bg-white/5 backdrop-blur-sm px-6 py-3 text-xs sm:text-sm font-medium text-white hover:border-white hover:bg-white/10 transition-colors"
+            >
+              {data.ctaSecondary}
+            </a>
+          </div>
+        </div>
+
+        <!-- PILARES DEL PROTOCOLO -->
+        <div class="mt-14 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {data.pillars.map((p) => (
+            <div class="space-y-1">
+              <p class="font-mono-tech text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                {p.value}
+              </p>
+              <p class="text-xs sm:text-sm text-slate-300">
+                {p.label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- 4 PASOS -->
-    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 space-y-10">
-      <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-slate-950">
-        {data.stepsTitle}
-      </h2>
+    <!-- 4 FASES DEL PROCESO ANALÍTICO -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-24 space-y-12">
+      <div class="max-w-2xl space-y-3">
+        <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#1344e7] dark:text-[#5b8def]">
+          {data.stepsKicker}
+        </p>
+        <h2 class="font-fraunces font-normal text-3xl sm:text-4xl tracking-tight text-[#111827] dark:text-[#f3f4f6]">
+          {data.stepsTitle}
+        </h2>
+        <p class="text-sm sm:text-base text-[#4b5563] dark:text-slate-400 leading-relaxed">
+          {data.stepsDesc}
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {
           data.steps.map((step) => (
-            <div class="rounded-2xl bg-neutral-100/80 p-6 sm:p-7 space-y-3">
-              <span class="block text-xs font-semibold tracking-wider text-[#1344e7]">
+            <div class="rounded-2xl border border-[#e5e7eb] dark:border-white/10 bg-[#ffffff] dark:bg-white/[0.03] p-6 sm:p-8 space-y-3.5 hover:border-[#1344e7]/50 transition-colors">
+              <span class="inline-block font-mono-tech text-xs font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def]">
                 {step.num}
               </span>
-              <h3 class="text-lg sm:text-xl font-semibold text-slate-950">
+              <h3 class="font-fraunces text-2xl font-normal text-[#111827] dark:text-[#f3f4f6] leading-snug">
                 {step.title}
               </h3>
-              <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              <p class="text-xs sm:text-sm text-[#4b5563] dark:text-slate-300 leading-relaxed">
                 {step.desc}
               </p>
             </div>
@@ -226,18 +376,46 @@ const mailtoHref =
       </div>
     </section>
 
-    <!-- PRINCIPIOS -->
-    <section class="bg-neutral-100/70 py-16 sm:py-20 border-t border-neutral-200/80">
-      <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-8">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-950">
-          {data.principlesTitle}
-        </h2>
+    <!-- ARQUITECTURA DE EVIDENCIA Y FUENTES MULTIPOLARES -->
+    <section class="bg-[#f8fafc] dark:bg-white/[0.02] py-20 sm:py-24 border-y border-[#e5e7eb] dark:border-white/10">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-3">
+            <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#1344e7] dark:text-[#5b8def]">
+              {data.rigorKicker}
+            </p>
+            <h2 class="font-fraunces font-normal text-3xl sm:text-4xl tracking-tight text-[#111827] dark:text-[#f3f4f6]">
+              {data.rigorTitle}
+            </h2>
+            <p class="text-sm sm:text-base text-[#4b5563] dark:text-slate-400 leading-relaxed">
+              {data.rigorDesc}
+            </p>
+          </div>
+          <div class="lg:col-span-6">
+            <div class="overflow-hidden rounded-2xl border border-[#e5e7eb] dark:border-white/10 shadow-sm h-56 sm:h-64">
+              <img
+                src={images.sources}
+                alt={data.rigorImgAlt}
+                class="h-full w-full object-cover object-center"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {
-            data.principles.map((pr) => (
-              <div class="rounded-xl bg-white p-6 border border-neutral-200/80 space-y-2">
-                <h3 class="text-base font-semibold text-slate-950">{pr.title}</h3>
-                <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">{pr.desc}</p>
+            data.rigorPoints.map((pt) => (
+              <div class="rounded-2xl bg-[#ffffff] dark:bg-[#030620] p-6 sm:p-7 border border-[#e5e7eb] dark:border-white/10 space-y-2.5">
+                <span class="inline-block rounded-full bg-[#e2f3ff]/80 dark:bg-[#1344e7]/15 px-3 py-1 font-mono-tech text-[10px] font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def]">
+                  {pt.tag}
+                </span>
+                <h3 class="font-fraunces text-xl text-[#111827] dark:text-[#f3f4f6]">
+                  {pt.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-[#4b5563] dark:text-slate-300 leading-relaxed">
+                  {pt.detail}
+                </p>
               </div>
             ))
           }
@@ -245,15 +423,49 @@ const mailtoHref =
       </div>
     </section>
 
-    <!-- CIERRE -->
-    <section class="bg-[#030620] text-white py-14 sm:py-16">
-      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <p class="text-xl sm:text-3xl font-semibold tracking-tight">
-          {data.closingLine}
+    <!-- PRINCIPIOS DE CRITERIO -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-24 space-y-10">
+      <div class="space-y-2">
+        <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#1344e7] dark:text-[#5b8def]">
+          {data.principlesKicker}
         </p>
+        <h2 class="font-fraunces font-normal text-3xl sm:text-4xl tracking-tight text-[#111827] dark:text-[#f3f4f6]">
+          {data.principlesTitle}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          data.principles.map((pr) => (
+            <div class="rounded-2xl bg-[#ffffff] dark:bg-white/[0.03] p-6 sm:p-7 border border-[#e5e7eb] dark:border-white/10 space-y-3">
+              <span class="font-mono-tech text-xs font-bold tracking-widest text-[#1344e7] dark:text-[#5b8def]">
+                {pr.num}
+              </span>
+              <h3 class="font-fraunces text-xl text-[#111827] dark:text-[#f3f4f6]">{pr.title}</h3>
+              <p class="text-xs sm:text-sm text-[#4b5563] dark:text-slate-300 leading-relaxed">{pr.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- CIERRE EN AZUL MEDIANOCHE (#030620) -->
+    <section class="bg-[#030620] text-white py-16 sm:py-20 border-t border-white/10">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div class="space-y-2">
+          <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#5b8def]">
+            {data.closingKicker}
+          </p>
+          <p class="font-fraunces text-2xl sm:text-4xl font-normal tracking-tight text-white">
+            {data.closingLine}
+          </p>
+          <p class="text-xs sm:text-sm text-slate-300">
+            {data.closingSub}
+          </p>
+        </div>
         <a
           href={advisoryHref}
-          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
+          class="inline-flex items-center rounded-full bg-[#1344e7] px-6 py-3 text-xs sm:text-sm font-semibold tracking-wide text-white hover:bg-[#1d4ed8] transition-colors self-start sm:self-auto shadow-lg shadow-[#1344e7]/25"
         >
           {data.closingCta}
         </a>
