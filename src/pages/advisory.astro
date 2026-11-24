@@ -7,199 +7,345 @@ const rawLang = getLangFromUrl(Astro);
 const lang: 'es' | 'en' | 'zh' =
   rawLang === 'en' || rawLang === 'zh' ? rawLang : 'es';
 
+const images = {
+  hero: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1800&q=85',
+  track1: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1000&q=80',
+  track2: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80',
+  track3: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80',
+  capabilities: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1400&q=80',
+};
+
 const content = {
   es: {
     metaTitle: 'Asesorías y Consultorías | Open Andes',
     metaDescription:
-      'Trabajo directo, prospectiva y lectura de riesgo para decisiones críticas en empresas, políticas públicas y escenarios políticos bajo reserva.',
-    kicker: 'Asesorías y Consultorías',
-    title: 'Criterio de terreno y prospectiva cuando la decisión pesa.',
-    desc: 'Acompañamos a directorios, gerencias, equipos públicos y actores con decisiones sensibles. Leemos el presente y proyectamos escenarios antes de que el riesgo o el cambio de reglas golpeen la operación.',
-    ctaPrimary: 'Agendar conversación',
+      'Geointeligencia territorial, prospectiva 2035+ y lectura de riesgo para decisiones críticas en empresas, políticas públicas y escenarios políticos bajo reserva.',
+    kicker: 'OPEN ANDES ADVISORY · INTELIGENCIA APLICADA',
+    title: 'Criterio de terreno, geodata y prospectiva cuando la decisión pesa.',
+    desc: 'Acompañamos a directorios, fondos, gerencias y equipos públicos en América Latina y el Pacífico. Integramos análisis geopolítico, modelado territorial y escenarios 2035+ antes de que el cambio de reglas o la fricción logística golpeen la operación.',
+    ctaPrimary: 'Agendar conversación ejecutiva',
     ctaSecondary: 'Ver metodología',
+    heroCaption: 'Corredores logísticos del Pacífico Sur y nodos críticos LatAm–Asia.',
+    metrics: [
+      { value: 'GeoINT', label: 'Modelado territorial y riesgo socioambiental' },
+      { value: '2035+', label: 'Prospectiva estratégica con 2050 Futures Lab' },
+      { value: '100%', label: 'Reserva operativa tipo Chatham House' },
+    ],
+    tracksKicker: 'ÁREAS DE PRÁCTICA',
     tracksTitle: 'Tres frentes, un mismo estándar de rigor y reserva.',
     tracksDesc:
-      'Cada encargo se adapta al terreno real de quien decide, sin plantillas genéricas ni relleno académico.',
+      'Cada encargo se diseña a medida sobre la realidad operativa de quien decide, sin plantillas genéricas ni relleno académico.',
     tracks: [
       {
         code: '01 · Empresas, fondos y directorios',
-        title: 'Riesgo territorial, rutas y márgenes',
-        desc: 'Evaluamos exposición operativa, logística, regulación y tensiones políticas o sociales antes de invertir, expandir o reestructurar.',
+        title: 'Riesgo territorial, corredores y márgenes',
+        img: images.track1,
+        imgAlt: 'Terminal portuaria y logística internacional',
+        desc: 'Evaluamos exposición operativa, corredores mine-to-port, cuellos de botella logísticos y conflictividad territorial antes de invertir, expandir o reestructurar.',
         points: [
-          'Lectura de riesgo país, territorial y de cadena de suministro',
-          'Escenarios de comercio, aranceles, puertos y costos críticos',
-          'Briefings ejecutivos para comités y directorios',
+          'Due diligence territorial, geoespacial y de cadena de suministro',
+          'Escenarios de comercio, aranceles, puertos e insumos críticos',
+          'Briefings ejecutivos y stress-tests para comités y directorios',
         ],
       },
       {
         code: '02 · Gobierno y políticas públicas',
-        title: 'Entorno, cadenas críticas y prospectiva',
-        desc: 'Apoyamos a equipos públicos y tomadores de decisión institucional con lectura prospectiva de dinámicas regionales, comercio, infraestructura y regulación.',
+        title: 'Cadenas críticas, infraestructura y prospectiva',
+        img: images.track2,
+        imgAlt: 'Conectividad global y redes estratégicas vista satelital',
+        desc: 'Apoyamos a equipos públicos e instituciones con lectura prospectiva de dinámicas regionales, inversión extranjera, infraestructura digital y regulación.',
         points: [
           'Mapas de escenarios y señales tempranas en América y el Pacífico',
-          'Impacto cruzado de tendencias tecnológicas, productivas y comerciales',
-          'Insumos claros para diseño y ajuste de políticas',
+          'Impacto cruzado de transiciones energéticas, tecnológicas y comerciales',
+          'Insumos técnicos accionables para diseño y ajuste regulatorio',
         ],
       },
       {
         code: '03 · Consultoría política discreta',
         title: 'Poder, escenarios y reserva estricta',
-        desc: 'Análisis reservado de dinámicas de poder, riesgo regulatorio y escenarios estratégicos bajo confidencialidad e independencia total —sin involucrarnos en campañas ni contiendas partidarias.',
+        img: images.track3,
+        imgAlt: 'Arquitectura institucional contemporánea',
+        desc: 'Análisis reservado de correlación de fuerzas, riesgo regulatorio y escenarios estratégicos bajo confidencialidad e independencia total, sin participar en campañas ni contiendas partidarias.',
         points: [
-          'Lectura de correlación de fuerzas, agendas y riesgos de entorno',
+          'Lectura de actores, agendas legislativas y riesgos de entorno',
           'Escenarios de mediano y largo plazo con enfoque prospectivo',
           'Reserva estricta y distancia operativa de campañas electorales',
         ],
       },
     ],
+    capKicker: 'CAPACIDADES Y ENTREGABLES',
+    capTitle: 'Qué ponemos exactamente sobre la mesa.',
+    capDesc:
+      'Combinamos la red de investigación regional de Open Andes con la unidad de prospectiva de 2050 Futures Lab para entregar inteligencia lista para ejecutar.',
+    capImgAlt: 'Cartografía y análisis geoespacial aplicado',
+    deliverables: [
+      {
+        tag: 'GEODATA & TERRITORIO',
+        title: 'Inteligencia Geoespacial (GeoINT)',
+        detail: 'Cruce de capas territoriales, infraestructura crítica, concesiones, presión hídrica y conflictividad local para evaluar activos y rutas.',
+      },
+      {
+        tag: 'FORESIGHT 2035+',
+        title: 'Diseño de Escenarios y Señales Tempranas',
+        detail: 'Modelación de futuros alternativos frente a disrupciones geopolíticas, cambios arancelarios y reconfiguración de cadenas LatAm–Asia.',
+      },
+      {
+        tag: 'RIESGO & REGULACIÓN',
+        title: 'Mapeo de Actores y Riesgo Regulatorio',
+        detail: 'Identificación de puntos de veto institucional, cambios normativos en curso y sensibilidad socioambiental en jurisdicciones clave.',
+      },
+      {
+        tag: 'DECISIÓN EJECUTIVA',
+        title: 'Briefings Privados de Directorio',
+        detail: 'Sesiones cerradas de trabajo con socios e investigadores líderes, acompañadas de memorandos ejecutivos concisos y accionables.',
+      },
+    ],
+    formatsKicker: 'MODALIDADES DE CONTRATACIÓN',
     formatsTitle: 'Cómo se activa el trabajo',
     formats: [
       {
+        step: 'MODALIDAD I',
         name: 'Briefing ejecutivo o de comité',
-        detail: 'Sesión enfocada y documento ejecutivo para leer un escenario puntual, una coyuntura o una decisión inminente.',
+        detail: 'Sesión cerrada y memorando ejecutivo para diagnosticar una coyuntura puntual, una operación o una decisión inminente en plazos acotados.',
       },
       {
+        step: 'MODALIDAD II',
         name: 'Diagnóstico de riesgo y prospectiva',
-        detail: 'Evaluación estructurada de variables territoriales, regulatorias, comerciales o tecnológicas con escenarios alternativos.',
+        detail: 'Evaluación profunda de variables territoriales, regulatorias, comerciales o tecnológicas con cartografía y escenarios alternativos.',
       },
       {
+        step: 'MODALIDAD III',
         name: 'Acompañamiento continuo bajo reserva',
-        detail: 'Seguimiento periódico y canal directo para decisiones recurrentes, expansión o lectura de entorno de mediano plazo.',
+        detail: 'Monitoreo periódico y canal directo con nuestro equipo para decisiones recurrentes, expansión regional o lectura de entorno.',
       },
     ],
-    reserveTitle: 'Reserva tipo Chatham House e independencia',
+    reserveTitle: 'Reserva tipo Chatham House e independencia analítica',
     reserveDesc:
-      'La confidencialidad no es un detalle menor: cuando corresponde, operamos bajo principios de reserva tipo Chatham House para proteger la discreción de las conversaciones y de quienes consultan, manteniendo al mismo tiempo independencia analítica y autonomía institucional de Open Andes.',
+      'La confidencialidad es un estándar operativo: trabajamos bajo protocolos de reserva tipo Chatham House y acuerdos de no divulgación para proteger la identidad de quienes consultan y el contenido de cada sesión, preservando al mismo tiempo la autonomía editorial e independencia institucional de Open Andes.',
+    closingKicker: 'CANAL DIRECTO',
     closingLine: 'El mañana ya empezó.',
+    closingSub: 'Conversemos de forma reservada sobre los desafíos de tu organización.',
     closingCta: 'Escribir a contacto@openandes.org',
   },
   en: {
     metaTitle: 'Advisory & Consulting | Open Andes',
     metaDescription:
-      'Direct work, foresight, and risk reading for high-stakes decisions across business, public policy, and political scenarios under discretion.',
-    kicker: 'Advisory & Consulting',
-    title: 'Ground-level judgment and foresight when the call carries weight.',
-    desc: 'We work with boards, executives, public teams, and decision-makers facing high-stakes choices. We read present dynamics and map scenarios before risk or shifting rules hit operations.',
-    ctaPrimary: 'Start a conversation',
-    ctaSecondary: 'See methodology',
+      'Territorial geointelligence, 2035+ foresight, and risk reading for high-stakes decisions across business, public policy, and political scenarios under strict discretion.',
+    kicker: 'OPEN ANDES ADVISORY · APPLIED INTELLIGENCE',
+    title: 'Ground-level judgment, geodata, and foresight when the call carries weight.',
+    desc: 'We advise boards, funds, executives, and public teams across Latin America and the Pacific. We integrate geopolitical intelligence, territorial modeling, and 2035+ scenarios before shifting rules or logistics friction hit operations.',
+    ctaPrimary: 'Schedule an executive conversation',
+    ctaSecondary: 'Explore methodology',
+    heroCaption: 'South Pacific logistics corridors and critical LatAm–Asia nodes.',
+    metrics: [
+      { value: 'GeoINT', label: 'Territorial modeling & socio-environmental risk' },
+      { value: '2035+', label: 'Strategic foresight with 2050 Futures Lab' },
+      { value: '100%', label: 'Chatham House-style operational discretion' },
+    ],
+    tracksKicker: 'PRACTICE AREAS',
     tracksTitle: 'Three tracks, one standard of rigor and discretion.',
     tracksDesc:
-      'Every engagement is tailored to the decision-maker’s real operating ground, with no generic templates or academic padding.',
+      'Every engagement is custom-built around the decision-maker’s operating reality, with no generic templates or academic padding.',
     tracks: [
       {
         code: '01 · Business, funds & boards',
-        title: 'Territorial risk, routes & margins',
-        desc: 'We assess operational exposure, logistics, regulation, and political or social friction before capital is committed, expanded, or restructured.',
+        title: 'Territorial risk, corridors & margins',
+        img: images.track1,
+        imgAlt: 'International port terminal and maritime logistics',
+        desc: 'We assess operational exposure, mine-to-port corridors, logistics bottlenecks, and territorial friction before capital is deployed, expanded, or restructured.',
         points: [
-          'Country, territorial, and supply-chain risk reading',
+          'Territorial, geospatial, and supply-chain due diligence',
           'Trade, tariff, port, and critical-input scenarios',
-          'Executive briefings for committees and boards',
+          'Executive briefings and stress-tests for boards and committees',
         ],
       },
       {
         code: '02 · Government & public policy',
-        title: 'Environment, critical chains & foresight',
-        desc: 'We support public-sector teams and institutional decision-makers with foresight on regional shifts, trade, infrastructure, and regulation.',
+        title: 'Critical chains, infrastructure & foresight',
+        img: images.track2,
+        imgAlt: 'Global connectivity and strategic networks from orbit',
+        desc: 'We support public-sector teams and institutions with foresight on regional shifts, foreign investment, digital infrastructure, and regulation.',
         points: [
           'Scenario mapping and early signals across the Americas and Pacific',
-          'Cross-cutting impact of tech, productive, and trade shifts',
-          'Clear inputs for policy design and calibration',
+          'Cross-cutting impact of energy, tech, and trade transitions',
+          'Actionable technical inputs for policy design and calibration',
         ],
       },
       {
         code: '03 · Discreet political advisory',
         title: 'Power, scenarios & strict discretion',
-        desc: 'Confidential analysis of power dynamics, regulatory risk, and strategic scenarios under strict discretion and independence —staying out of partisan campaigns.',
+        img: images.track3,
+        imgAlt: 'Contemporary institutional architecture',
+        desc: 'Confidential analysis of power dynamics, regulatory risk, and strategic scenarios under strict discretion and independence, staying out of partisan campaigns.',
         points: [
-          'Reading power shifts, agendas, and environmental risks',
+          'Reading key actors, legislative agendas, and environmental risks',
           'Medium- and long-term foresight scenarios',
           'Strict discretion and zero entanglement in electoral campaigns',
         ],
       },
     ],
+    capKicker: 'CAPABILITIES & DELIVERABLES',
+    capTitle: 'What we put on the table.',
+    capDesc:
+      'We combine Open Andes’ regional research network with 2050 Futures Lab’s foresight unit to deliver decision-ready intelligence.',
+    capImgAlt: 'Applied cartography and geospatial intelligence',
+    deliverables: [
+      {
+        tag: 'GEODATA & TERRITORY',
+        title: 'Geospatial Intelligence (GeoINT)',
+        detail: 'Layering territorial data, critical infrastructure, concessions, water stress, and local friction to evaluate assets and corridors.',
+      },
+      {
+        tag: 'FORESIGHT 2035+',
+        title: 'Scenario Design & Early Signals',
+        detail: 'Modeling alternative futures around geopolitical disruptions, tariff shifts, and LatAm–Asia supply chain reconfiguration.',
+      },
+      {
+        tag: 'RISK & REGULATION',
+        title: 'Stakeholder & Regulatory Risk Mapping',
+        detail: 'Identifying institutional veto points, pending regulatory shifts, and socio-environmental sensitivity across key jurisdictions.',
+      },
+      {
+        tag: 'EXECUTIVE DECISION',
+        title: 'Closed-Door Board Briefings',
+        detail: 'Private working sessions with senior partners and lead researchers, paired with concise, actionable executive memos.',
+      },
+    ],
+    formatsKicker: 'ENGAGEMENT MODELS',
     formatsTitle: 'How engagements run',
     formats: [
       {
+        step: 'MODEL I',
         name: 'Executive or committee briefing',
-        detail: 'Focused session and concise brief to read a specific situation, flashpoint, or immediate decision.',
+        detail: 'Closed session and concise executive memo to read a specific flashpoint, transaction, or immediate decision on a tight timeline.',
       },
       {
+        step: 'MODEL II',
         name: 'Risk & foresight assessment',
-        detail: 'Structured evaluation of territorial, regulatory, trade, or tech variables with alternative scenarios.',
+        detail: 'Structured evaluation of territorial, regulatory, trade, or tech variables complete with mapping and alternative scenarios.',
       },
       {
+        step: 'MODEL III',
         name: 'Ongoing confidential retainer',
-        detail: 'Recurring tracking and direct counsel for ongoing decisions, expansion, or medium-term environment reading.',
+        detail: 'Recurring tracking and direct counsel with our team for ongoing decisions, regional expansion, or horizon scanning.',
       },
     ],
-    reserveTitle: 'Chatham House-style discretion & independence',
+    reserveTitle: 'Chatham House-style discretion & analytical independence',
     reserveDesc:
-      'Confidentiality is foundational: where appropriate, we apply Chatham House-style discretion principles to protect conversation privacy and client anonymity while preserving Open Andes’ analytical independence.',
+      'Confidentiality is an operational baseline: we work under Chatham House-style discretion principles and NDAs to protect client identity and session privacy while preserving Open Andes’ editorial autonomy and institutional independence.',
+    closingKicker: 'DIRECT CHANNEL',
     closingLine: 'Tomorrow has already started.',
+    closingSub: 'Let us discuss your organization’s strategic challenges in confidence.',
     closingCta: 'Email contacto@openandes.org',
   },
   zh: {
     metaTitle: '咨询与顾问服务 | Open Andes',
     metaDescription:
-      '面向企业、公共政策与政治情景的务实研判、前瞻推演与保密咨询。',
-    kicker: '咨询与顾问服务',
-    title: '关键决策时刻的一线判断与前瞻推演。',
-    desc: '我们为董事会、管理层、公共部门与关键决策者提供支持。研判当下局势并推演未来情景，在风险或规则变化冲击业务前抢占先机。',
-    ctaPrimary: '预约交流',
+      '面向企业、公共政策与政治情景的属地地理情报、2035+前瞻推演与严格保密咨询。',
+    kicker: 'OPEN ANDES 战略咨询 · 应用情报',
+    title: '关键决策时刻的一线判断、地理数据与前瞻推演。',
+    desc: '我们为拉丁美洲与太平洋地区的董事会、投资基金、管理层及公共部门提供支持。整合地缘政治分析、属地建模与2035+情景推演，在规则变化或物流摩擦冲击业务前抢占先机。',
+    ctaPrimary: '预约高管交流',
     ctaSecondary: '查看方法论',
+    heroCaption: '南太平洋物流走廊与拉美—亚洲关键节点。',
+    metrics: [
+      { value: 'GeoINT', label: '属地空间建模与社会环境风险评估' },
+      { value: '2035+', label: '联合 2050 Futures Lab 开展战略前瞻' },
+      { value: '100%', label: '查塔姆宫规则式严格保密机制' },
+    ],
+    tracksKicker: '核心业务领域',
     tracksTitle: '三大方向，同一套严谨与保密标准。',
-    tracksDesc: '每次合作都紧贴决策方的实际业务与属地场景，拒绝空洞套话与冗长堆砌。',
+    tracksDesc: '每次合作都紧贴决策方的实际业务与属地场景量身定制，拒绝空洞套话与冗长堆砌。',
     tracks: [
       {
         code: '01 · 企业、基金与董事会',
-        title: '属地风险、航线与利润率',
-        desc: '在资本投入、业务扩张或架构调整前，评估运营敞口、物流、监管与政社摩擦。',
+        title: '属地风险、物流走廊与利润率',
+        img: images.track1,
+        imgAlt: '国际集装箱港口与海运物流',
+        desc: '在资本投入、业务扩张或架构调整前，评估运营敞口、矿到港（mine-to-port）走廊、物流瓶颈与属地社会摩擦。',
         points: [
-          '国别、属地与供应链风险研判',
-          '贸易、关税、港口与关键成本情景推演',
-          '面向委员会与董事会的简报支持',
+          '属地、地理空间与供应链尽职调查',
+          '贸易、关税、港口与关键投入品情景推演',
+          '面向委员会与董事会的高管简报与压力测试',
         ],
       },
       {
         code: '02 · 政府与公共政策',
-        title: '外部环境、关键链条与前瞻',
-        desc: '围绕区域演进、贸易、基础设施与监管，为公共部门与机构决策者提供前瞻分析。',
+        title: '关键链条、基础设施与前瞻',
+        img: images.track2,
+        imgAlt: '全球互联与卫星视角战略网络',
+        desc: '围绕区域演进、外商投资、数字基础设施与监管政策，为公共部门与机构决策者提供前瞻分析。',
         points: [
           '美洲与太平洋方向的情景图谱与早期信号',
-          '技术、产业与贸易变动的交叉影响',
-          '贴近政策制定与调整的清晰研判',
+          '能源、技术与贸易转型的交叉影响评估',
+          '贴近政策制定与监管调整的可执行技术研判',
         ],
       },
       {
         code: '03 · 审慎政治咨询',
         title: '权力格局、情景与严格保密',
-        desc: '在严格保密与独立性原则下，研判权力动态、监管风险与战略情景——不介入竞选或党派争斗。',
+        img: images.track3,
+        imgAlt: '现代机构建筑空间',
+        desc: '在严格保密与独立性原则下，研判力量对比、监管风险与战略情景，不介入竞选或党派争斗。',
         points: [
-          '梳理力量变化、议程动向与环境风险',
-          '结合前瞻视角的 přeh 中长期情景分析',
+          '梳理核心行为体、立法议程与环境风险',
+          '结合前瞻视角的中长期情景分析',
           '严格保密，保持独立，不卷入竞选活动',
         ],
       },
     ],
-    formatsTitle: '合作形式',
-    formats: [
+    capKicker: '核心能力与交付成果',
+    capTitle: '我们为决策桌带来什么。',
+    capDesc:
+      '我们将 Open Andes 的区域研究网络与 2050 Futures Lab 的前瞻实验室相结合，交付可直接落地的决策情报。',
+    capImgAlt: '应用制图与地理空间情报分析',
+    deliverables: [
       {
-        name: '高管或委员会简报',
-        detail: '针对特定局势、突发变量或迫在眉睫的决策，提供聚焦沟通与简明研判。',
+        tag: 'GEODATA · 属地数据',
+        title: '地理空间情报（GeoINT）',
+        detail: '叠加属地图层、关键基础设施、特许经营权、水资源压力与地方社会摩擦，精准评估资产与走廊风险。',
       },
       {
-        name: '风险与前瞻评估',
-        detail: '围绕属地、监管、贸易或技术要素进行结构化拆解与多情景推演。',
+        tag: 'FORESIGHT 2035+',
+        title: '情景设计与早期信号',
+        detail: '围绕地缘政治冲击、关税调整与拉美—亚洲供应链重构，构建多维度替代未来模型。',
       },
       {
-        name: '保密常态化顾问',
-        detail: '针对持续性决策、扩张布局或中长期环境追踪，提供定期研判与沟通支持。',
+        tag: 'RIESGO · 监管研判',
+        title: '利益相关方与监管风险图谱',
+        detail: '识别关键司法管辖区内的制度否决点、立法动向及社会环境敏感度。',
+      },
+      {
+        tag: 'DECISIÓN · 高管决策',
+        title: '董事会闭门简报',
+        detail: '由资深合伙人与首席研究员主持闭门研讨，并附带简明、可执行的战略备忘录。',
       },
     ],
-    reserveTitle: '查塔姆宫规则式的保密与独立性',
+    formatsKicker: '合作模式',
+    formatsTitle: '合作如何启动',
+    formats: [
+      {
+        step: '模式 I',
+        name: '高管或委员会简报',
+        detail: '针对特定局势、交易节点或迫在眉睫的决策，在紧凑周期内提供闭门沟通与高管备忘录。',
+      },
+      {
+        step: '模式 II',
+        name: '风险与前瞻评估',
+        detail: '围绕属地、监管、贸易或技术要素进行结构化拆解，交付空间制图与多情景推演报告。',
+      },
+      {
+        step: '模式 III',
+        name: '保密常态化顾问',
+        detail: '针对持续性决策、区域扩张布局或中长期环境追踪，提供定期研判与团队直通渠道。',
+      },
+    ],
+    reserveTitle: '查塔姆宫规则式的保密与分析独立性',
     reserveDesc:
-      '保密是合作基石：在适用场合参照查塔姆宫规则式的保密原则，保护沟通隐私与咨询方身份，同时坚守 Open Andes 的分析独立性。',
+      '保密是我们的运营底线：我们在查塔姆宫规则式的保密原则与保密协议（NDA）框架下开展工作，切实保护咨询方身份与每次沟通内容，同时坚守 Open Andes 的编辑自主权与机构独立性。',
+    closingKicker: '直通渠道',
     closingLine: '明天已经开始。',
+    closingSub: '欢迎在严格保密的前提下探讨贵机构面临的战略挑战。',
     closingCta: '发送邮件至 contacto@openandes.org',
   },
 };
@@ -212,113 +358,220 @@ const mailtoHref =
     ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20Advisory'
     : lang === 'zh'
       ? 'mailto:contacto@openandes.org?subject=Open%20Andes%20%E5%92%A8%E8%AF%A2%E5%90%88%E4%BD%9C'
-      : 'mailto:contacto@openandes.org?subject=Consulta%20y%20Asesor%C3%ADa%20%E2%80%94%20Open%20Andes';
+      : 'mailto:contacto@openandes.org?subject=Consulta%20y%20Asesor%C3%ADa%20Open%20Andes';
 ---
 
 <Layout metadata={{ title: data.metaTitle, description: data.metaDescription }}>
-  <div class="bg-white text-neutral-950">
-    <!-- HERO OSCURO -->
-    <section class="bg-neutral-950 text-white py-16 sm:py-24 border-b border-neutral-800">
-      <div class="max-w-5xl mx-auto px-6 sm:px-10 space-y-5">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
-          {data.kicker}
-        </p>
-        <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.08] max-w-3xl">
-          {data.title}
-        </h1>
-        <p class="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl">
-          {data.desc}
-        </p>
-        <div class="pt-2 flex flex-wrap gap-3">
-          <a
-            href={mailtoHref}
-            class="rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors"
-          >
-            {data.ctaPrimary}
-          </a>
-          <a
-            href={methodologyHref}
-            class="rounded-full border border-neutral-600 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-colors"
-          >
-            {data.ctaSecondary}
-          </a>
+  <div class="bg-[#ffffff] dark:bg-[#030712] text-[#111827] dark:text-[#f3f4f6]">
+    <!-- HERO EJECUTIVO CON FOTOGRAFÍA ESTRATÉGICA -->
+    <section class="relative overflow-hidden bg-[#060913] text-white border-b border-white/10">
+      <div class="absolute inset-0">
+        <img
+          src={images.hero}
+          alt={data.heroCaption}
+          class="h-full w-full object-cover object-center opacity-35"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#060913] via-[#060913]/90 to-[#060913]/55"></div>
+      </div>
+
+      <div class="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+        <div class="max-w-3xl space-y-6">
+          <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.2em] text-[#5b8def]">
+            {data.kicker}
+          </p>
+          <h1 class="font-fraunces font-normal text-4xl sm:text-5xl lg:text-[56px] tracking-tight leading-[1.08] text-white">
+            {data.title}
+          </h1>
+          <p class="text-base sm:text-lg text-neutral-300 leading-relaxed max-w-2xl font-light">
+            {data.desc}
+          </p>
+          <div class="pt-3 flex flex-wrap gap-3.5">
+            <a
+              href={mailtoHref}
+              class="rounded-full bg-[#1344e7] px-6 py-3 text-xs sm:text-sm font-semibold tracking-wide text-white hover:bg-[#1d4ed8] transition-colors shadow-lg shadow-[#1344e7]/25"
+            >
+              {data.ctaPrimary}
+            </a>
+            <a
+              href={methodologyHref}
+              class="rounded-full border border-white/30 bg-white/5 backdrop-blur-sm px-6 py-3 text-xs sm:text-sm font-medium text-white hover:border-white hover:bg-white/10 transition-colors"
+            >
+              {data.ctaSecondary}
+            </a>
+          </div>
+        </div>
+
+        <!-- MÉTRICAS / PILARES OPERATIVOS -->
+        <div class="mt-14 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {data.metrics.map((m) => (
+            <div class="space-y-1">
+              <p class="font-mono-tech text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                {m.value}
+              </p>
+              <p class="text-xs sm:text-sm text-neutral-300">
+                {m.label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- 3 FRENTES COMERCIALES -->
-    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 space-y-10">
-      <div class="max-w-2xl space-y-2">
-        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950">
+    <!-- 3 FRENTES COMERCIALES CON IMAGEN DISTINTA POR ÁREA -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-24 space-y-12">
+      <div class="max-w-2xl space-y-3">
+        <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#1344e7] dark:text-[#5b8def]">
+          {data.tracksKicker}
+        </p>
+        <h2 class="font-fraunces font-normal text-3xl sm:text-4xl tracking-tight text-[#111827] dark:text-[#f3f4f6]">
           {data.tracksTitle}
         </h2>
-        <p class="text-sm sm:text-base text-neutral-600 leading-relaxed">
+        <p class="text-sm sm:text-base text-[#4b5563] dark:text-neutral-400 leading-relaxed">
           {data.tracksDesc}
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
         {
           data.tracks.map((track) => (
-            <div class="rounded-2xl border border-neutral-200 bg-neutral-50/70 p-6 sm:p-7 flex flex-col justify-between space-y-5">
-              <div class="space-y-3">
-                <span class="block text-xs font-semibold text-[#1344e7]">
-                  {track.code}
-                </span>
-                <h3 class="text-xl font-semibold text-neutral-950">
-                  {track.title}
-                </h3>
-                <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                  {track.desc}
-                </p>
+            <article class="group overflow-hidden rounded-2xl border border-[#e5e7eb] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#0b101b] flex flex-col justify-between shadow-sm hover:border-[#1344e7]/50 transition-colors">
+              <div>
+                <div class="relative h-48 w-full overflow-hidden bg-neutral-900">
+                  <img
+                    src={track.img}
+                    alt={track.imgAlt}
+                    class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="p-6 sm:p-7 space-y-3">
+                  <span class="block font-mono-tech text-[11px] font-bold uppercase tracking-wider text-[#1344e7] dark:text-[#5b8def]">
+                    {track.code}
+                  </span>
+                  <h3 class="font-fraunces text-2xl font-normal text-[#111827] dark:text-[#f3f4f6] leading-snug">
+                    {track.title}
+                  </h3>
+                  <p class="text-xs sm:text-sm text-[#4b5563] dark:text-neutral-300 leading-relaxed">
+                    {track.desc}
+                  </p>
+                </div>
               </div>
-              <ul class="space-y-2 pt-3 border-t border-neutral-200/80 text-xs sm:text-sm text-neutral-700">
+
+              <ul class="mx-6 sm:mx-7 mb-6 sm:mb-7 space-y-2.5 pt-4 border-t border-[#e5e7eb] dark:border-[#2a2a2a] text-xs sm:text-sm text-[#1f2937] dark:text-neutral-300">
                 {track.points.map((pt) => (
-                  <li class="leading-snug">· {pt}</li>
+                  <li class="flex items-start gap-2 leading-snug">
+                    <span class="text-[#1344e7] dark:text-[#5b8def] font-bold">·</span>
+                    <span>{pt}</span>
+                  </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))
         }
       </div>
     </section>
 
-    <!-- FORMATOS DE TRABAJO -->
-    <section class="bg-neutral-100/70 py-16 sm:py-20 border-t border-neutral-200/80">
-      <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-8">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-950">
-          {data.formatsTitle}
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- CAPACIDADES Y ENTREGABLES TANGIBLES -->
+    <section class="bg-[#f8fafc] dark:bg-[#070b14] py-20 sm:py-24 border-y border-[#e5e7eb] dark:border-[#2a2a2a]">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-3">
+            <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#1344e7] dark:text-[#5b8def]">
+              {data.capKicker}
+            </p>
+            <h2 class="font-fraunces font-normal text-3xl sm:text-4xl tracking-tight text-[#111827] dark:text-[#f3f4f6]">
+              {data.capTitle}
+            </h2>
+            <p class="text-sm sm:text-base text-[#4b5563] dark:text-neutral-400 leading-relaxed">
+              {data.capDesc}
+            </p>
+          </div>
+          <div class="lg:col-span-6">
+            <div class="overflow-hidden rounded-2xl border border-[#e5e7eb] dark:border-[#2a2a2a] shadow-sm h-56 sm:h-64">
+              <img
+                src={images.capabilities}
+                alt={data.capImgAlt}
+                class="h-full w-full object-cover object-center"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {
-            data.formats.map((fmt) => (
-              <div class="rounded-xl bg-white p-6 border border-neutral-200/80 space-y-2">
-                <h3 class="text-base font-semibold text-neutral-950">{fmt.name}</h3>
-                <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">{fmt.detail}</p>
+            data.deliverables.map((item) => (
+              <div class="rounded-2xl bg-[#ffffff] dark:bg-[#0b101b] p-6 sm:p-7 border border-[#e5e7eb] dark:border-[#2a2a2a] space-y-2.5">
+                <span class="inline-block rounded-full bg-[#e2f3ff]/80 dark:bg-[#1344e7]/15 px-3 py-1 font-mono-tech text-[10px] font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def]">
+                  {item.tag}
+                </span>
+                <h3 class="font-fraunces text-xl text-[#111827] dark:text-[#f3f4f6]">
+                  {item.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-[#4b5563] dark:text-neutral-300 leading-relaxed">
+                  {item.detail}
+                </p>
               </div>
             ))
           }
         </div>
+      </div>
+    </section>
 
-        <!-- RESERVA E INDEPENDENCIA -->
-        <div class="rounded-2xl bg-white p-6 sm:p-8 border border-neutral-200 space-y-2">
-          <h3 class="text-lg font-semibold text-neutral-950">{data.reserveTitle}</h3>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-4xl">
-            {data.reserveDesc}
-          </p>
-        </div>
+    <!-- FORMATOS DE TRABAJO + PROTOCOLO CHATHAM HOUSE -->
+    <section class="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-24 space-y-10">
+      <div class="space-y-2">
+        <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#1344e7] dark:text-[#5b8def]">
+          {data.formatsKicker}
+        </p>
+        <h2 class="font-fraunces font-normal text-3xl sm:text-4xl tracking-tight text-[#111827] dark:text-[#f3f4f6]">
+          {data.formatsTitle}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          data.formats.map((fmt) => (
+            <div class="rounded-2xl bg-[#ffffff] dark:bg-[#0b101b] p-6 sm:p-7 border border-[#e5e7eb] dark:border-[#2a2a2a] space-y-3">
+              <span class="font-mono-tech text-[11px] font-bold uppercase tracking-widest text-[#1344e7] dark:text-[#5b8def]">
+                {fmt.step}
+              </span>
+              <h3 class="font-fraunces text-xl text-[#111827] dark:text-[#f3f4f6]">{fmt.name}</h3>
+              <p class="text-xs sm:text-sm text-[#4b5563] dark:text-neutral-300 leading-relaxed">{fmt.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- RESERVA E INDEPENDENCIA -->
+      <div class="rounded-2xl bg-[#e2f3ff]/55 dark:bg-[#1344e7]/10 p-7 sm:p-9 border border-[#bfdbfe] dark:border-[#1344e7]/30 space-y-2.5">
+        <h3 class="font-fraunces text-xl sm:text-2xl text-[#111827] dark:text-[#f3f4f6]">{data.reserveTitle}</h3>
+        <p class="text-xs sm:text-sm text-[#1f2937] dark:text-neutral-200 leading-relaxed max-w-4xl">
+          {data.reserveDesc}
+        </p>
       </div>
     </section>
 
     <!-- CIERRE -->
-    <section class="bg-neutral-950 text-white py-14 sm:py-16">
-      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <p class="text-xl sm:text-3xl font-semibold tracking-tight">
-          {data.closingLine}
-        </p>
+    <section class="bg-[#060913] text-white py-16 sm:py-20 border-t border-white/10">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div class="space-y-2">
+          <p class="font-mono-tech text-xs font-bold uppercase tracking-[0.18em] text-[#5b8def]">
+            {data.closingKicker}
+          </p>
+          <p class="font-fraunces text-2xl sm:text-4xl font-normal tracking-tight text-white">
+            {data.closingLine}
+          </p>
+          <p class="text-xs sm:text-sm text-neutral-300">
+            {data.closingSub}
+          </p>
+        </div>
         <a
           href={mailtoHref}
-          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
+          class="inline-flex items-center rounded-full bg-[#1344e7] px-6 py-3 text-xs sm:text-sm font-semibold tracking-wide text-white hover:bg-[#1d4ed8] transition-colors self-start sm:self-auto shadow-lg shadow-[#1344e7]/25"
         >
           {data.closingCta}
         </a>
