@@ -172,29 +172,29 @@ const mailtoHref =
 ---
 
 <Layout metadata={{ title: data.metaTitle, description: data.metaDescription }}>
-  <div class="bg-white text-neutral-950">
+  <div class="bg-white text-slate-950">
     <!-- HERO -->
-    <section class="bg-neutral-950 text-white py-16 sm:py-24 border-b border-neutral-800">
+    <section class="bg-slate-950 text-white py-16 sm:py-24 border-b border-slate-800">
       <div class="max-w-5xl mx-auto px-6 sm:px-10 space-y-5">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
           {data.kicker}
         </p>
         <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.08] max-w-3xl">
           {data.title}
         </h1>
-        <p class="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl">
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
           {data.desc}
         </p>
         <div class="pt-2 flex flex-wrap gap-3">
           <a
             href={advisoryHref}
-            class="rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors"
+            class="rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 hover:bg-[#1344e7] hover:text-white transition-colors"
           >
             {data.ctaPrimary}
           </a>
           <a
             href={mailtoHref}
-            class="rounded-full border border-neutral-600 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-colors"
+            class="rounded-full border border-slate-600 px-5 py-2.5 text-xs sm:text-sm font-medium text-white hover:border-white transition-colors"
           >
             {data.ctaSecondary}
           </a>
@@ -204,7 +204,7 @@ const mailtoHref =
 
     <!-- 4 PASOS -->
     <section class="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24 space-y-10">
-      <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950">
+      <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-slate-950">
         {data.stepsTitle}
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -214,7 +214,7 @@ const mailtoHref =
               <span class="block text-xs font-semibold tracking-wider text-[#1344e7]">
                 {step.num}
               </span>
-              <h3 class="text-lg sm:text-xl font-semibold text-neutral-950">
+              <h3 class="text-lg sm:text-xl font-semibold text-slate-950">
                 {step.title}
               </h3>
               <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
@@ -229,14 +229,14 @@ const mailtoHref =
     <!-- PRINCIPIOS -->
     <section class="bg-neutral-100/70 py-16 sm:py-20 border-t border-neutral-200/80">
       <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-8">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-950">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-950">
           {data.principlesTitle}
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {
             data.principles.map((pr) => (
               <div class="rounded-xl bg-white p-6 border border-neutral-200/80 space-y-2">
-                <h3 class="text-base font-semibold text-neutral-950">{pr.title}</h3>
+                <h3 class="text-base font-semibold text-slate-950">{pr.title}</h3>
                 <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">{pr.desc}</p>
               </div>
             ))
@@ -246,14 +246,14 @@ const mailtoHref =
     </section>
 
     <!-- CIERRE -->
-    <section class="bg-neutral-950 text-white py-14 sm:py-16">
+    <section class="bg-slate-950 text-white py-14 sm:py-16">
       <div class="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p class="text-xl sm:text-3xl font-semibold tracking-tight">
           {data.closingLine}
         </p>
         <a
           href={advisoryHref}
-          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-neutral-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
+          class="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 hover:bg-[#1344e7] hover:text-white transition-colors self-start sm:self-auto"
         >
           {data.closingCta}
         </a>
