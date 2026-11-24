@@ -85,8 +85,31 @@ function splitName(fullName: string) {
   }
   const parts = clean.split(/\s+/);
   if (parts.length <= 1) return { isOrg: false, first: '', last: clean };
-  const last = parts.pop()!;
-  return { isOrg: false, first: parts.join(' '), last };
+  if (parts.length === 2) {
+    return { isOrg: false, first: parts[0], last: parts[1] };
+  }
+  // Si termina en inicial (ej. "Francisco J. Covarrubias R.") o tiene inicial intermedia ("Nicolás H. Pinzón")
+  const hasInitial = parts.some((pt) => /^[A-ZÁÉÍÓÚÑ]\.$/.test(pt));
+  if (hasInitial) {
+    const firstParts: string[] = [];
+    const lastParts: string[] = [];
+    let foundFirstInitial = false;
+    for (let i = 0; i < parts.length; i++) {
+      if (i === 0) {
+        firstParts.push(parts[i]);
+      } else if (/^[A-ZÁÉÍÓÚÑ]\.$/.test(parts[i]) && !foundFirstInitial) {
+        firstParts.push(parts[i]);
+        foundFirstInitial = true;
+      } else {
+        lastParts.push(parts[i]);
+      }
+    }
+    return { isOrg: false, first: firstParts.join(' '), last: lastParts.join(' ') };
+  }
+  // Nombres hispanos estándar con 2 nombres y 2 apellidos (ej. "Mauricio Aaron Bravo Melendez") o 1 nombre y 2 apellidos ("Bernardo Muñoz Aguilar")
+  const last = parts.slice(-2).join(' ');
+  const first = parts.slice(0, -2).join(' ');
+  return { isOrg: false, first, last };
 }
 
 // Formato Chicago (Apellido, Nombre y Nombre Apellido)
@@ -148,7 +171,7 @@ const apaDate = locale === 'zh'
   : `${year}, ${dateObj.getUTCDate()} de ${monthLong}`;
 const apaDateEn = `${year}, ${monthLong} ${dateObj.getUTCDate()}`;
 
-const cleanUrl = Astro.url.href.split('?')[0].split('#')[0];
+const cleanUrl = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', 'https://openandes.org').href;
 
 const chicagoAuthors = buildChicagoAuthors(resolvedNames);
 const apaAuthors = buildApaAuthors(resolvedNames);
