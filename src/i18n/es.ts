@@ -5,6 +5,7 @@
 export const es = {
   meta: {
     siteName: 'Open Andes',
+    siteTitle: 'Análisis de Riesgo y Tendencias Globales — Open Andes',
     siteTagline: 'El primer think tank descentralizado y 100% digital.',
     siteDescription:
       'Investigación independiente dedicada a la inteligencia geopolítica y la prospectiva geoeconómica en el eje América Latina-Asia.',

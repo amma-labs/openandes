@@ -4,6 +4,7 @@ import type { UIStrings } from './es';
 export const en = {
   meta: {
     siteName: 'Open Andes',
+    siteTitle: 'Global Risk & Trend Analytics — Open Andes',
     siteTagline: 'The first decentralized, 100% digital think tank.',
     siteDescription:
       'Independent research dedicated to geopolitical intelligence and geoeconomic foresight across the Latin America–Asia axis.',

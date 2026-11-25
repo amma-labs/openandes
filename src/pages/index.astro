@@ -6,6 +6,7 @@ import { getLangFromUrl, useTranslations } from '~/i18n/ui';
 
 const lang = getLangFromUrl(Astro);
 const t = useTranslations(lang).home;
+const dict = useTranslations(lang);
 
 // Importar posts de Análisis (por locale)
 const locale = (Astro.currentLocale as 'es' | 'en' | 'zh' | undefined) ?? 'es';
@@ -88,7 +89,7 @@ const featuredComentario = miradas.find((m: any) => m.slug === 'bernardo-munoz-c
 const briefs = miradas.filter((m: any) => m.slug !== featuredComentario?.slug).slice(0, 4);
 
 const metadata = {
-  title: t.metaTitle,
+  title: dict.meta.siteTitle,
   description: t.metaDesc,
   ignoreTitleTemplate: true,
 };

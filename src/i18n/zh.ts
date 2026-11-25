@@ -5,6 +5,7 @@ import type { UIStrings } from './es';
 export const zh = {
   meta: {
     siteName: 'Open Andes',
+    siteTitle: '全球风险与趋势分析 — Open Andes',
     siteTagline: '首个去中心化、100% 数字化的智库。',
     siteDescription:
       '专注拉丁美洲—亚洲轴心地缘政治情报与地缘经济前瞻的独立研究机构。',
