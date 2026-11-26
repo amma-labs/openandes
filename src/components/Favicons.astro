@@ -1,13 +1,5 @@
----
-import favIconLight from '~/assets/favicons/favicon-light.svg';
-import favIconDark from '~/assets/favicons/favicon-dark.svg';
----
-
-<!-- Favicon principal: cambia según el tema del sistema -->
-<link rel="icon" type="image/svg+xml" href={favIconLight.src} media="(prefers-color-scheme: light)" />
-<link rel="icon" type="image/svg+xml" href={favIconDark.src} media="(prefers-color-scheme: dark)" />
-
-<!-- Fallback para navegadores que ignoran media (Safari antiguo) -->
-<link rel="alternate icon" type="image/svg+xml" href={favIconLight.src} />
-
-<link rel="apple-touch-icon" href="/favicon-48x48.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
