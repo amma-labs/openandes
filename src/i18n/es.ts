@@ -15,7 +15,7 @@ export const es = {
     about: 'Nosotros',
     whatWeDo: 'Qué hacemos',
     topics: 'Temas',
-    experts: 'Expertos',
+    experts: 'Quiénes somos',
     advisory: 'Asesoría',
     publications: 'Publicaciones',
     articles: 'Artículos',

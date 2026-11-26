@@ -15,7 +15,7 @@ export const zh = {
     about: '关于我们',
     whatWeDo: '业务范围',
     topics: '主题',
-    experts: '专家',
+    experts: '关于我们',
     advisory: '咨询',
     publications: '出版物',
     articles: '文章',

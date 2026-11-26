@@ -14,7 +14,7 @@ export const en = {
     about: 'About',
     whatWeDo: 'What We Do',
     topics: 'Topics',
-    experts: 'Experts',
+    experts: 'Who We Are',
     advisory: 'Advisory',
     publications: 'Publications',
     articles: 'Articles',
